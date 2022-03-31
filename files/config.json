@@ -1,0 +1,7 @@
+{
+  "port": 5432,
+  "user": "postgres",
+  "password": "your-password",
+  "db": "B1-AgeRoyal",
+  "url":"jdbc:postgresql://localhost:5432/postgres"
+}
