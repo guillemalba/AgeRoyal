@@ -1,14 +1,20 @@
 import persistence.UserSQLDAO;
+import presentation.controllers.LoginController;
+import presentation.controllers.LogoutController;
+import presentation.controllers.RegisterController;
 
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("First commit");
-        UserSQLDAO sl = new UserSQLDAO();
-        //sl.register("Mario","1234","mario@mario.com");
-        //sl.register("Guille","1234","guille@mario.com");
+
+        RegisterController registerController = new RegisterController();
+        LoginController loginController = new LoginController();
+        LogoutController logoutController = new LogoutController();
+
+        /*sl.register("Mario","1234","mario@mario.com");
+        sl.register("Guille","1234","guille@mario.com");
         sl.register("Didac","1234","didac@mario.com");
-        //sl.register("Puchi","1234","puchi@mario.com");
+        sl.register("Puchi","1234","puchi@mario.com");
 
         boolean proba1 = sl.login("Mario","1234"); //prueba nombre buena
         boolean proba2 = sl.login("mario@mario.com","1234"); //prueba correo buena
@@ -21,7 +27,7 @@ public class Main {
         sl.deleteAccount("Didac");
         sl.deleteAccount("Pepe");
 
-        sl.mostrar();
+        sl.mostrar();*/
     }
     
 }

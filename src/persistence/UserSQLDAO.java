@@ -1,24 +1,72 @@
 package persistence;
+import business.entities.User;
 import business.json.*;
 import java.sql.*;
 
 
-public class UserSQLDAO {
+public class UserSQLDAO implements UserDAO{
+    private ConfigData data;
+
     public UserSQLDAO() {
+        data = JsonReader.llegeixJson();
     }
 
-    ConfigData data = JsonReader.llegeixJson();
-
-    public void register(String user, String pass, String mail) {
+    @Override
+    public boolean createUser(User user) {
         try {
             Connection connection = DriverManager.getConnection(data.getUrl(), data.getUser(), data.getPassword());
             Statement statement = connection.createStatement();
-            statement.execute("insert into player values('" + user + "','" + mail + "','" + pass + "',0,0,0)");
+            statement.execute("insert into player values('" + user.getName() + "','" + user.getEmail() + "','" + user.getPassword() + "',0,0,0)");
+            return true;
         } catch (SQLException e) {
             System.out.println("Connection failure.");
             e.printStackTrace();
         }
+        return false;
     }
+
+    @Override
+    public boolean deleteUser(String username) {
+        try {
+            Connection connection = DriverManager.getConnection(data.getUrl(), data.getUser(), data.getPassword());
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("Select * from player");
+
+            while ((resultSet.next())) {
+                if(resultSet.getString("name").equals(username)){
+                    statement.execute("delete from player where name ='" + username + "'");
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Connection failure.");
+            e.printStackTrace();
+        }
+        System.out.println("No s'ha trobat el usuari"); // TODO: eliminar sout
+        return false;
+    }
+
+    @Override
+    public boolean checkLogin(User user) {
+        try {
+            Connection connection = DriverManager.getConnection(data.getUrl(), data.getUser(), data.getPassword());
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("Select * from player");
+
+            while ((resultSet.next())) {
+                if(resultSet.getString("name").equals(user.getName()) || resultSet.getString("mail").equals(user.getEmail())){
+                    if(resultSet.getString("password").equals(user.getPassword())){
+                        return true;
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Connection failure.");
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
     public void mostrar() {
         try {
@@ -33,48 +81,5 @@ public class UserSQLDAO {
             System.out.println("Connection failure.");
             e.printStackTrace();
         }
-    }
-
-    public boolean login(String user,String pass) {
-        boolean correcte = false;
-        try {
-            Connection connection = DriverManager.getConnection(data.getUrl(), data.getUser(), data.getPassword());
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("Select * from player");
-
-            while ((resultSet.next())) {
-                if(resultSet.getString("name").equals(user) || resultSet.getString("mail").equals(user)){
-                    if(resultSet.getString("password").equals(pass)){
-                        correcte = true;
-                        return correcte;
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println("Connection failure.");
-            e.printStackTrace();
-        }
-        return correcte;
-    }
-
-    public void deleteAccount(String user){
-        try {
-            Connection connection = DriverManager.getConnection(data.getUrl(), data.getUser(), data.getPassword());
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("Select * from player");
-
-            while ((resultSet.next())) {
-                if(resultSet.getString("name").equals(user)){
-                    statement.execute("delete from player where name ='" + user + "'");
-                    System.out.println("The account has been successfully deleted");
-                    return;
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println("Connection failure.");
-            e.printStackTrace();
-        }
-        System.out.println("No s ha trobat el usuari");
-        return;
     }
 }
