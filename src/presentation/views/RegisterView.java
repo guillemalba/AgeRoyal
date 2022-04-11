@@ -51,7 +51,7 @@ public class RegisterView extends JPanel {
         JPanel jpButtons = new JPanel();
 
         //Creamos un boton para poder enviar la información
-        jbSingin = new JButton("Sign in");
+        jbSingin = new JButton("Register");
         jbSingin.setActionCommand(BTN_SING);
         jpButtons.add(jbSingin);
 

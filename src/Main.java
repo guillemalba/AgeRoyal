@@ -15,8 +15,6 @@ public class Main {
 
         CardLayout viewComponents = new CardLayout();
 
-        LogoutController logoutController = new LogoutController();
-
         RegisterView registerView = new RegisterView();
 
         LoginView loginView = new LoginView();
@@ -30,6 +28,9 @@ public class Main {
 
         RegisterController registerController = new RegisterController(registerView, mainView, viewComponents);
         registerView.registerController(registerController);
+
+        LogoutController logoutController = new LogoutController(logoutView, mainView, viewComponents);
+        logoutView.registerController(logoutController);
 
         mainView.start();
 

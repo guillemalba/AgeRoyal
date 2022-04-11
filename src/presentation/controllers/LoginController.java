@@ -42,6 +42,13 @@ public class LoginController implements ActionListener {
                 loginView.setComponents(viewComponents);
                 loginView.showRegister();
             break;
+
+            //TODO:ELIMINAR ESTO
+            case LoginView.BTN_LOGOUT:
+                loginView.setMainView(mainView);
+                loginView.setComponents(viewComponents);
+                loginView.showLogout();
+                break;
         }
     }
 }

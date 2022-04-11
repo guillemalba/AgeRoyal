@@ -133,4 +133,8 @@ public class LogoutView extends JPanel {
      * This method show the EditUserView
      */
     public void showEditUser(){ components.show(this.mainView.getContentPane(), "editUserView");}
+
+    public void showLogin() {
+        components.show(this.mainView.getContentPane(), "loginView");
+    }
 }
