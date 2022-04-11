@@ -25,7 +25,7 @@ public class RegisterView extends JPanel {
         setLayout(new BoxLayout(this ,BoxLayout.PAGE_AXIS));
 
         //Creamos los labels que queremos que aparezcan en la pagina
-        JLabel jlSingIn = new JLabel("SING IN");
+        JLabel jlSingIn = new JLabel("Register");
 
         //Creamos un panel nuevo para tener una tabla para intriducir los datos de los usuarios
         JPanel jpTable = new JPanel(new GridLayout(0,2));

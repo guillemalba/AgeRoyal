@@ -1,7 +1,6 @@
 package presentation.controllers;
 
 import business.UserManager;
-import presentation.views.LoginView;
 import presentation.views.LogoutView;
 import presentation.views.MainView;
 
@@ -31,7 +30,7 @@ public class LogoutController implements ActionListener {
             case LogoutView.BTN_BACK:
                 logoutView.setmainView(mainView);
                 logoutView.setComponents(viewComponents);
-                logoutView.showLogin();
+                logoutView.showMenu();
             break;
 
         }

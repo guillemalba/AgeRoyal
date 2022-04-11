@@ -14,10 +14,6 @@ public class LoginView extends JPanel {
     private CardLayout components;
     private MainView mainView;
 
-    //TODO: Eliminar boton de prueba
-    public static final String BTN_LOGOUT = "BTN_LOGOUT";
-    private JButton jbLogout;
-
     public LoginView(){
         configureLoginView();
     }
@@ -51,12 +47,6 @@ public class LoginView extends JPanel {
         jbBack.setActionCommand(BTN_REG);
         jpButtons.add(jbBack);
 
-        //TODO: ELIMINAR ESTO
-        //Creamos un boton para poder volver
-        jbLogout = new JButton("Logout");
-        jbLogout.setActionCommand(BTN_LOGOUT);
-        jpButtons.add(jbLogout);
-
         //Añadimos los elementos a la pantalla
         add(jlLogin);
         add(jpTable);
@@ -67,7 +57,6 @@ public class LoginView extends JPanel {
     public void loginController(ActionListener listener) {
         jbLogin.addActionListener(listener);
         jbBack.addActionListener(listener);
-        jbLogout.addActionListener(listener);
     }
 
     public String getInputUsernameEmail() {
@@ -94,8 +83,7 @@ public class LoginView extends JPanel {
         components.show(this.mainView.getContentPane(), "registerView");
     }
 
-    //TODO:ELIMINAR ESTO
-    public void showLogout() {
-        components.show(this.mainView.getContentPane(), "logoutView");
+    public void showMenu() {
+        components.show(this.mainView.getContentPane(), "menuView");
     }
 }

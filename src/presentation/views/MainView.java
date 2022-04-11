@@ -13,8 +13,9 @@ public class MainView extends JFrame {
     private RegisterView registerView;
     private LoginView loginView;
     private LogoutView logoutView;
+    private MenuView menuView;
 
-    public MainView(CardLayout viewComponents, RegisterView registerView, LoginView loginView, LogoutView logoutView){
+    public MainView(CardLayout viewComponents, RegisterView registerView, LoginView loginView, LogoutView logoutView, MenuView menuView){
          this.viewComponents = viewComponents;
          this.setLayout(viewComponents);
          this.configureWindow();
@@ -22,9 +23,11 @@ public class MainView extends JFrame {
          this.registerView = registerView;
          this.add(registerView, "registerView");
          this.loginView = loginView;
-        this.add(loginView, "loginView");
-        this.logoutView = logoutView;
-        this.add(logoutView, "logoutView");
+         this.add(loginView, "loginView");
+         this.logoutView = logoutView;
+         this.add(logoutView, "logoutView");
+         this.menuView = menuView;
+         this.add(menuView, "menuView");
     }
 
     private void configureMainView() {

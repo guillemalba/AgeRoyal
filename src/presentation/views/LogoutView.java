@@ -6,12 +6,12 @@ import java.awt.event.ActionListener;
 
 public class LogoutView extends JPanel {
     public static final String BTN_LOGOUT = "BTN_LOGOUT";
-    public static final String BTN_EDIT = "BTN_EDIT";
+    //public static final String BTN_EDIT = "BTN_EDIT";
     public static final String BTN_DEL = "BTN_DEL";
     public static final String BTN_BACK = "BTN_BACK";
 
     private JButton jbLogout;
-    private JButton jbEdit;
+    //private JButton jbEdit;
     private JButton jbDelete;
     private JButton jbBack;
 
@@ -38,15 +38,15 @@ public class LogoutView extends JPanel {
 
         jbLogout = new JButton("Logout");
         jbLogout.setActionCommand(BTN_LOGOUT);
-        jbEdit = new JButton("Edit User");
-        jbEdit.setActionCommand(BTN_EDIT);
+        //jbEdit = new JButton("Edit User");
+        //jbEdit.setActionCommand(BTN_EDIT);
         jbDelete = new JButton("Delete");
         jbDelete.setActionCommand(BTN_DEL);
         jbBack = new JButton("Back");
         jbBack.setActionCommand(BTN_BACK);
 
         jpButtons.add(jbLogout, BorderLayout.NORTH);
-        jpButtons.add(jbEdit, BorderLayout.CENTER);
+        //jpButtons.add(jbEdit, BorderLayout.CENTER);
         jpButtons.add(jbDelete, BorderLayout.SOUTH);
 
         add(jpButtons);
@@ -61,7 +61,7 @@ public class LogoutView extends JPanel {
      */
     public void registerController(ActionListener listener) {
         jbLogout.addActionListener(listener);
-        jbEdit.addActionListener(listener);
+        //jbEdit.addActionListener(listener);
         jbDelete.addActionListener(listener);
         jbBack.addActionListener(listener);
     }
@@ -134,7 +134,7 @@ public class LogoutView extends JPanel {
      */
     public void showEditUser(){ components.show(this.mainView.getContentPane(), "editUserView");}
 
-    public void showLogin() {
-        components.show(this.mainView.getContentPane(), "loginView");
+    public void showMenu() {
+        components.show(this.mainView.getContentPane(), "menuView");
     }
 }

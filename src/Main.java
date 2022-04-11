@@ -1,11 +1,9 @@
 import persistence.UserSQLDAO;
 import presentation.controllers.LoginController;
 import presentation.controllers.LogoutController;
+import presentation.controllers.MenuController;
 import presentation.controllers.RegisterController;
-import presentation.views.LoginView;
-import presentation.views.LogoutView;
-import presentation.views.MainView;
-import presentation.views.RegisterView;
+import presentation.views.*;
 
 import java.awt.*;
 
@@ -21,7 +19,9 @@ public class Main {
 
         LogoutView logoutView = new LogoutView();
 
-        MainView mainView = new MainView(viewComponents, registerView, loginView, logoutView);
+        MenuView menuView = new MenuView();
+
+        MainView mainView = new MainView(viewComponents, registerView, loginView, logoutView, menuView);
 
         LoginController loginController = new LoginController(loginView, mainView, viewComponents);
         loginView.loginController(loginController);
@@ -31,6 +31,9 @@ public class Main {
 
         LogoutController logoutController = new LogoutController(logoutView, mainView, viewComponents);
         logoutView.registerController(logoutController);
+
+        MenuController menuController = new MenuController(menuView, mainView, viewComponents);
+        menuView.registerActionListener(menuController);
 
         mainView.start();
 
