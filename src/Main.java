@@ -2,14 +2,38 @@ import persistence.UserSQLDAO;
 import presentation.controllers.LoginController;
 import presentation.controllers.LogoutController;
 import presentation.controllers.RegisterController;
+import presentation.views.LoginView;
+import presentation.views.LogoutView;
+import presentation.views.MainView;
+import presentation.views.RegisterView;
+
+import java.awt.*;
 
 
 public class Main {
     public static void main(String[] args) {
 
-        RegisterController registerController = new RegisterController();
-        LoginController loginController = new LoginController();
+        CardLayout viewComponents = new CardLayout();
+
         LogoutController logoutController = new LogoutController();
+
+        RegisterView registerView = new RegisterView();
+
+        LoginView loginView = new LoginView();
+
+        LogoutView logoutView = new LogoutView();
+
+        MainView mainView = new MainView(viewComponents, registerView, loginView, logoutView);
+
+        LoginController loginController = new LoginController(loginView, mainView, viewComponents);
+        loginView.loginController(loginController);
+
+        RegisterController registerController = new RegisterController(registerView, mainView, viewComponents);
+        registerView.registerController(registerController);
+
+        mainView.start();
+
+
 
         /*sl.register("Mario","1234","mario@mario.com");
         sl.register("Guille","1234","guille@mario.com");
