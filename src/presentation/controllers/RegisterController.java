@@ -27,34 +27,33 @@ public class RegisterController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case RegisterView.BTN_SING:
-                String username = registerView.getInputUsername(), email = registerView.getInputEmail();
-                String password = String.valueOf(registerView.getInputPassword()), confPassword = String.valueOf(registerView.getInputConfPassword());
-
-                if(password.equals(confPassword)){
-                    User user = new User(username, email, password);
-                    if(isValidMail(email)){
-                        if (userManager.emailIsUnique(user)) {
-
-                        }
-                        if (userManager.usernameIsUnique(user)) {
-
-                        }
-                        if(userManager.register(user)){
-                            userManager.register(user);
-                            System.out.println(username+" register successful");
-                            userManager.setUser(user.getName());//Registrar el user en la ram
-                            registerView.setmainView(mainView);
-                            registerView.setComponents(viewComponents);
-                            registerView.showMenu();
-                        }else{
-                            registerView.errorExists();
-                        }
-                    }else{
-                        registerView.errorFormat();
-                    }
-                }else{
-                    registerView.errorPassword();
+                String username = registerView.getInputUsername();
+                String email = registerView.getInputEmail();
+                String password = String.valueOf(registerView.getInputPassword());
+                String confPassword = String.valueOf(registerView.getInputConfPassword());
+                if (password.length() < 8) {
+                    registerView.errorPasswordLength();
+                } else if (!isValidPassword(password)) {
+                    registerView.errorUpperLowerNumber();
+                } else if (!password.equals(confPassword)) {
+                    registerView.errorConfirmPassword();
+                } else if (!isValidMail(email)) {
+                    registerView.errorFormat();
+                } else if (!userManager.usernameIsUnique(username)) {
+                    registerView.errorUsernameExist();
+                } else if (!userManager.emailIsUnique(email)) {
+                    registerView.errorEmailExist();
+                } else if (userManager.register(new User(username, email, password))){
+                    System.out.println(username+" register successful");
+                    userManager.setUser(username);
+                    registerView.setmainView(mainView);
+                    registerView.setComponents(viewComponents);
+                    registerView.showMenu();
+                } else {
+                    registerView.errorConnection();
                 }
+
+
             break;
 
             case RegisterView.BTN_BACK:
@@ -62,6 +61,27 @@ public class RegisterController implements ActionListener {
                 registerView.setComponents(viewComponents);
                 registerView.showMain();
             break;
+        }
+    }
+
+    public boolean isValidPassword(String password) {
+        int upper = 0, lower = 0, number = 0;
+
+        for(int i = 0; i < password.length(); i++)
+        {
+            char ch = password.charAt(i);
+            if (ch >= 'A' && ch <= 'Z') {
+                upper++;
+            } else if (ch >= 'a' && ch <= 'z'){
+                lower++;
+            } else if (ch >= '0' && ch <= '9') {
+                number++;
+            }
+        }
+        if (upper == 0  || lower == 0 || number == 0) {
+            return false;
+        } else {
+            return true;
         }
     }
 

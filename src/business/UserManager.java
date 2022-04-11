@@ -26,20 +26,20 @@ public class UserManager {
         return userDAO.checkLogin(user);
     }
 
-    public boolean emailIsUnique(User u) {
+    public boolean emailIsUnique(String email) {
         LinkedList<User> users = userDAO.readAllUsers();
         for (User user: users) {
-            if (user.getEmail().equals(u.getEmail())) {
+            if (user.getEmail().equals(email)) {
                 return false;
             }
         }
         return true;
     }
 
-    public boolean usernameIsUnique(User u) {
+    public boolean usernameIsUnique(String username) {
         LinkedList<User> users = userDAO.readAllUsers();
         for (User user: users) {
-            if (user.getName().equals(u.getName())) {
+            if (user.getName().equals(username)) {
                 return false;
             }
         }

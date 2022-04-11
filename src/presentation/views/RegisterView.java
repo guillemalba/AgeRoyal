@@ -96,16 +96,32 @@ public class RegisterView extends JPanel {
         return jpfConfPassword.getPassword();
     }
 
-    public void errorPassword() {
-        JOptionPane.showMessageDialog(this, "The password is too short or its not the same as the confirmation password");
+    public void errorPasswordLength() {
+        JOptionPane.showMessageDialog(this, "The minimum password lenght is 8 characters.");
     }
 
-    public void errorExists() {
-        JOptionPane.showMessageDialog(this, "The user already exists");
+    public void errorConfirmPassword() {
+        JOptionPane.showMessageDialog(this, "Both passwords are not equal.");
+    }
+
+    public void errorUpperLowerNumber() {
+        JOptionPane.showMessageDialog(this, "Password must have at least 1 upper case, 1 lower case and 1 number.");
+    }
+
+    public void errorConnection() {
+        JOptionPane.showMessageDialog(this, "Something went wrong with the database connection");
+    }
+
+    public void errorEmailExist() {
+        JOptionPane.showMessageDialog(this, "The email already exist.");
+    }
+
+    public void errorUsernameExist() {
+        JOptionPane.showMessageDialog(this, "The username already exist.");
     }
 
     public void errorFormat() {
-        JOptionPane.showMessageDialog(this, "The mail has an invalid format");
+        JOptionPane.showMessageDialog(this, "The mail has an invalid format.");
     }
 
     public void showMain(){
