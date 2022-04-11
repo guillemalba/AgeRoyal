@@ -111,6 +111,9 @@ public class RegisterView extends JPanel {
     public void showMain(){
         components.show(this.mainView.getContentPane(), "loginView");
     }
+    public void showMenu(){
+        components.show(this.mainView.getContentPane(), "menuView");
+    }
 
     public void setComponents(CardLayout viewComponents) {
         this.components = viewComponents;

@@ -8,6 +8,7 @@ import java.util.LinkedList;
 
 public class UserManager {
     private UserDAO userDAO;
+    private String user;
 
     public UserManager() {
         userDAO = new UserSQLDAO();
@@ -17,8 +18,8 @@ public class UserManager {
         return userDAO.createUser(user);
     }
 
-    public boolean delete(String username) {
-        return userDAO.deleteUser(username);
+    public boolean delete() {
+        return userDAO.deleteUser(user);
     }
 
     public boolean login(User user) {
@@ -43,5 +44,13 @@ public class UserManager {
             }
         }
         return true;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 }

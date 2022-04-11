@@ -14,12 +14,13 @@ public class RegisterController implements ActionListener {
     private final RegisterView registerView;
     private final MainView mainView;
     private final CardLayout viewComponents;
-    private UserManager userManager = new UserManager();
+    private UserManager userManager;
 
-    public RegisterController(RegisterView registerView, MainView mainView, CardLayout viewComponents) {
+    public RegisterController(RegisterView registerView, MainView mainView, CardLayout viewComponents,UserManager userManager) {
         this.registerView = registerView;
         this.mainView = mainView;
         this.viewComponents = viewComponents;
+        this.userManager = userManager;
     }
 
     @Override
@@ -41,6 +42,10 @@ public class RegisterController implements ActionListener {
                         if(userManager.register(user)){
                             userManager.register(user);
                             System.out.println(username+" register successful");
+                            userManager.setUser(user.getName());//Registrar el user en la ram
+                            registerView.setmainView(mainView);
+                            registerView.setComponents(viewComponents);
+                            registerView.showMenu();
                         }else{
                             registerView.errorExists();
                         }

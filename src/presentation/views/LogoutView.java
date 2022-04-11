@@ -72,18 +72,27 @@ public class LogoutView extends JPanel {
      * @return integer parameter
      */
     public int logout(){
-        //JOptionPane.showMessageDialog(this, "Are you sure you want to log out?", "confirm", JOptionPane.YES_NO_OPTION);
         int dialogButton = JOptionPane.showConfirmDialog (null, "Are you sure you want to logout?","WARNING",JOptionPane.YES_NO_OPTION);
-        int option = 0;
+        int option;
         if(dialogButton == JOptionPane.YES_OPTION) {
-            //System.exit(0);
             option = 1;
 
         }else {
             option = 0;
         }
         return option;
+    }
 
+    public int delete(){
+        int dialogDeleteButton = JOptionPane.showConfirmDialog (null, "Are you sure you want to Delete this account?","WARNING",JOptionPane.YES_NO_OPTION);
+        int option;
+        if(dialogDeleteButton == JOptionPane.YES_OPTION) {
+            option = 1;
+
+        }else {
+            option = 0;
+        }
+        return option;
     }
 
     /**
@@ -136,5 +145,12 @@ public class LogoutView extends JPanel {
 
     public void showMenu() {
         components.show(this.mainView.getContentPane(), "menuView");
+    }
+
+    public void showLogin() {
+        components.show(this.mainView.getContentPane(), "loginView");
+    }
+    public void showLogout() {
+        components.show(this.mainView.getContentPane(), "logoutView");
     }
 }

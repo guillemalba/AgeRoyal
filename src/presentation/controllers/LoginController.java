@@ -4,21 +4,23 @@ import business.UserManager;
 import business.entities.User;
 import presentation.views.LoginView;
 import presentation.views.MainView;
+import javax.swing.JOptionPane;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginController implements ActionListener {
-    private UserManager userManager = new UserManager();
+    private UserManager userManager;
     private LoginView loginView;
     private MainView mainView;
     private CardLayout viewComponents;
 
-    public LoginController(LoginView loginView, MainView mainView, CardLayout viewComponents) {
+    public LoginController(LoginView loginView, MainView mainView, CardLayout viewComponents, UserManager userManager) {
         this.loginView = loginView;
         this.mainView = mainView;
         this.viewComponents = viewComponents;
+        this.userManager = userManager;
     }
 
     @Override
@@ -33,6 +35,7 @@ public class LoginController implements ActionListener {
                 if (userManager.login(user)) {
                     userManager.login(user);
                     System.out.println(user.getName() + " login successful");
+                    userManager.setUser(user.getName());//Registrar user en la ram
                 } else {
                     loginView.errorMessage();
                 }
