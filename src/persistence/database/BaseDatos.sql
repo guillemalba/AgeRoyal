@@ -93,4 +93,4 @@ create table Movement(
     foreign key(trop) references Troops(id)
 );
 
-
+select * from player;

@@ -14,7 +14,7 @@ public interface UserDAO {
     boolean createUser(User user);
 
     /**
-     * Deletes the Edition from the DAO
+     * Deletes the User from the DAO
      *
      * @param username with all info to delete
      * @return true if it succeeded or false if not
@@ -28,4 +28,11 @@ public interface UserDAO {
      * @return true if it succeeded or false if not
      */
     boolean checkLogin(User user);
+
+    /**
+     * Gets a list with all the Users
+     *
+     * @return a list of Users
+     */
+    LinkedList<User> readAllUsers();
 }

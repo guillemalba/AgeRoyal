@@ -32,6 +32,12 @@ public class RegisterController implements ActionListener {
                 if(password.equals(confPassword)){
                     User user = new User(username, email, password);
                     if(isValidMail(email)){
+                        if (userManager.emailIsUnique(user)) {
+
+                        }
+                        if (userManager.usernameIsUnique(user)) {
+
+                        }
                         if(userManager.register(user)){
                             userManager.register(user);
                             System.out.println(username+" register successful");

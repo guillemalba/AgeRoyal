@@ -2,6 +2,7 @@ package persistence;
 import business.entities.User;
 import business.json.*;
 import java.sql.*;
+import java.util.LinkedList;
 
 
 public class UserSQLDAO implements UserDAO{
@@ -66,6 +67,34 @@ public class UserSQLDAO implements UserDAO{
         }
         return false;
     }
+
+    @Override
+    public LinkedList<User> readAllUsers() {
+        try {
+            Connection connection = DriverManager.getConnection(data.getUrl(), data.getUser(), data.getPassword());
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("Select * from player");
+
+            LinkedList<User> users = new LinkedList<>();
+            while ((resultSet.next())) {
+                User user = new User(
+                        resultSet.getString("name"),
+                        resultSet.getString("mail"),
+                        resultSet.getString("password"),
+                        resultSet.getInt("victorias"),
+                        resultSet.getInt("totalGames"),
+                        resultSet.getFloat("ratio")
+                );
+                users.add(user);
+            }
+            return users;
+        } catch (SQLException e) {
+            System.out.println("Connection failure.");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 
     public void mostrar() {
