@@ -1,9 +1,6 @@
 import business.UserManager;
 import persistence.UserSQLDAO;
-import presentation.controllers.LoginController;
-import presentation.controllers.LogoutController;
-import presentation.controllers.MenuController;
-import presentation.controllers.RegisterController;
+import presentation.controllers.*;
 import presentation.views.*;
 
 import java.awt.*;
@@ -11,6 +8,9 @@ import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
+        MainMenuView mainMenuView = new MainMenuView();
+        MainMenuController mainMenuController = new MainMenuController(mainMenuView);
+        mainMenuView.mainController(mainMenuController);
 
         CardLayout viewComponents = new CardLayout();
 
@@ -39,7 +39,6 @@ public class Main {
         menuView.registerActionListener(menuController);
 
         mainView.start();
-
     }
     
 }
