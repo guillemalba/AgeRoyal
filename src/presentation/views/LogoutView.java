@@ -18,16 +18,10 @@ public class LogoutView extends JPanel {
     private MainView mainView;
     private CardLayout components;
 
-    /**
-     * This is the constructor of class LoggoutView
-     */
     public LogoutView() {
         configureLogoutView();
     }
 
-    /**
-     * This is the method that develop the graphic view
-     */
     private void configureLogoutView() {
         setLayout(new BoxLayout(this ,BoxLayout.PAGE_AXIS));
 
@@ -54,11 +48,6 @@ public class LogoutView extends JPanel {
 
     }
 
-    /**
-     *This method register the event(Button clicked)
-     *
-     * @param listener Object created to detect events
-     */
     public void registerController(ActionListener listener) {
         jbLogout.addActionListener(listener);
         //jbEdit.addActionListener(listener);
@@ -66,11 +55,6 @@ public class LogoutView extends JPanel {
         jbBack.addActionListener(listener);
     }
 
-    /**
-     * This method shows a popup windows with a confirm logout message
-     *
-     * @return integer parameter
-     */
     public int logout(){
         int dialogButton = JOptionPane.showConfirmDialog (null, "Are you sure you want to logout?","WARNING",JOptionPane.YES_NO_OPTION);
         int option;
@@ -95,52 +79,28 @@ public class LogoutView extends JPanel {
         return option;
     }
 
-    /**
-     * This method shows a popup window with the error message that there isnt any user logged in
-     */
     public void errorusernull() {
         JOptionPane.showMessageDialog(this, "You have not log any user yet");
     }
 
-    /**
-     * This method shows a popup window informing that the user has been deleted
-     */
     public void userdeletedmessage() {JOptionPane.showMessageDialog(this, "Your user has been deleted");}
 
-    /**
-     *This method Setter gets the type Jpanel to use it in the actual view
-     *
-     * @param viewComponents parameter Class CardLayout
-     */
     public void setComponents(CardLayout viewComponents) {
         this.components = viewComponents;
     }
 
-    /**
-     * This method shows the main view
-     */
     public void showMain(){
         components.show(this.mainView.getContentPane(), "main");
     }
 
-    /**
-     *This method Setter gets the main view to use it in the actual view
-     *
-     * @param mainView parameter Class MainView
-     */
     public void setmainView(MainView mainView){
         this.mainView = mainView;
     }
-    /**
-     *This method show the loggedmain view
-     */
+
     public void showLoggedMain() {
         components.show(this.mainView.getContentPane(), "loggedMainView");
     }
 
-    /**
-     * This method show the EditUserView
-     */
     public void showEditUser(){ components.show(this.mainView.getContentPane(), "editUserView");}
 
     public void showMenu() {
@@ -150,6 +110,7 @@ public class LogoutView extends JPanel {
     public void showLogin() {
         components.show(this.mainView.getContentPane(), "loginView");
     }
+
     public void showLogout() {
         components.show(this.mainView.getContentPane(), "logoutView");
     }
