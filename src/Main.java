@@ -1,5 +1,4 @@
 import business.UserManager;
-import persistence.UserSQLDAO;
 import presentation.controllers.*;
 import presentation.views.*;
 
@@ -10,7 +9,10 @@ public class Main {
     public static void main(String[] args) {
         MainMenuView mainMenuView = new MainMenuView();
         MainMenuController mainMenuController = new MainMenuController(mainMenuView);
-        mainMenuView.mainController(mainMenuController);
+        mainMenuView.mainMenuController(mainMenuController);
+
+
+
 
         CardLayout viewComponents = new CardLayout();
 
