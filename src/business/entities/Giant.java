@@ -2,10 +2,10 @@ package business.entities;
 
 public class Giant extends Ofensive{
 
-    public Giant(int range, String name, float life, int cost, float damage, float attackVelocity, String type, int movementVelocity, String prefObjective) {
-        super(range, name, life, cost, damage, attackVelocity, type, movementVelocity, prefObjective);
+    public Giant() {
+        super();
         this.setRange(1);//cuadrados a la redonda posible 5
-        this.setName("Giant");
+        this.setName("G");
         this.setLife(100);
         this.setCost(4);
         this.setDamage(5);

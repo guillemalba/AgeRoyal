@@ -16,10 +16,16 @@ public class GameManager{
         mapa = new String[21][21];
         base1 = new Base();
         base2 = new Base();
-        mapa[0][11] = base1.getName();
-        mapa[20][11] = base2.getName();
-        
-        
+
+
+        for(int m =0; m < mapa.length;m++){
+            for(int n = 0; n < mapa.length;n++){
+                mapa[m][n] = "|";
+            }
+        }
+
+        mapa[0][10] = base1.getName();
+        mapa[20][10] = base2.getName();
 
         for(int i =0; i < mapa.length;i++){
             System.out.println();

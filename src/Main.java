@@ -1,3 +1,4 @@
+import business.GameManager;
 import business.UserManager;
 import presentation.controllers.*;
 import presentation.views.*;
@@ -11,7 +12,7 @@ public class Main {
         //MainMenuController mainMenuController = new MainMenuController(mainMenuView);
         //mainMenuView.mainMenuController(mainMenuController);
 
-
+        new GameManager();
 
         CardLayout viewComponents = new CardLayout();
 
@@ -39,7 +40,7 @@ public class Main {
         MenuController menuController = new MenuController(menuView, mainView, viewComponents,userManager);
         menuView.registerActionListener(menuController);
 
-        mainView.start();
+        //mainView.start();
     }
     
 }

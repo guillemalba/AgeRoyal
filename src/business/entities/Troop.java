@@ -20,6 +20,10 @@ public class Troop {
         this.type = type;
     }
 
+    public Troop() {
+
+    }
+
     public int getRange() {
         return range;
     }
@@ -75,4 +79,41 @@ public class Troop {
     public void setType(String type) {
         this.type = type;
     }
+
+    public String checkMove(int movel, int fila, int columna, String[][] mapa) {
+        boolean front = false;
+        boolean fRight = false;
+        boolean fLeft = false;
+        int finalpos[];
+        int i = 1;
+        if (columna == 0) {
+            while (i <= movel) {
+                if (mapa[fila + i][columna].equals("|")) front = true;
+                if (mapa[fila + i][columna + i].equals("|")) fRight = true;
+                i++;
+            }
+        } else if (columna == 20) {
+            while (i <= movel) {
+                if (mapa[fila + i][columna].equals("|")) front = true;
+                if (mapa[fila + i][columna - i].equals("|")) fLeft = true;
+                i++;
+            }
+        } else {
+            while (i <= movel) {
+                if (mapa[fila + i][columna].equals("|")) front = true;
+                if (mapa[fila + i][columna - i].equals("|")) fLeft = true;
+                if (mapa[fila + i][columna + i].equals("|")) fRight = true;
+                i++;
+            }
+        }
+        if(front){
+            return "front";
+        }else if (fRight){
+            return "fRight";
+        }else if (fLeft){
+            return "fLeft";
+        }else return "cant";
+    }
+
 }
+

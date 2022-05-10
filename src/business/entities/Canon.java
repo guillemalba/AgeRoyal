@@ -2,8 +2,8 @@ package business.entities;
 
 public class Canon extends Defensive {
 
-    public Canon(int range, String name, float life, int cost, float damage, float attackVelocity, String type, int timeLife) {
-        super(range, name, life, cost, damage, attackVelocity,type, timeLife);
+    public Canon() {
+        super();
         this.setRange(2);//cuadrados a la redonda
         this.setName("Canon");
         this.setLife(30);

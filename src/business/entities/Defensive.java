@@ -9,6 +9,10 @@ public class Defensive extends Troop {
         this.timeLife = timeLife;
     }
 
+    public Defensive(){
+        super();
+    }
+
     public int getTimeLife() {
         return timeLife;
     }

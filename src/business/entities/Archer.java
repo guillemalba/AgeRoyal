@@ -3,10 +3,10 @@ package business.entities;
 public class Archer extends Ofensive{
 
 
-    public Archer(int range, String name, float life, int cost, float damage, float attackVelocity, String type, int movementVelocity, String prefObjective) {
-        super(range, name, life, cost, damage, attackVelocity, type, movementVelocity, prefObjective);
+    public Archer( int movementVelocity, String prefObjective) {
+        super(movementVelocity, prefObjective);
         this.setRange(1);//cuadrados a la redonda posible 5
-        this.setName("ARcher");
+        this.setName("A");
         this.setLife(12);
         this.setCost(2);
         this.setDamage(3);//quiza 2

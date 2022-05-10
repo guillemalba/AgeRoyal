@@ -1,10 +1,10 @@
 package business.entities;
 
 public class Base extends Defensive{
-    public Base(int range, String name, float life, int cost, float damage, float attackVelocity, String type, int timeLife) {
-        super(range, name, life, cost, damage, attackVelocity, type, timeLife);
+    public Base() {
+        super();
         this.setRange(4);//cuadrados a la redonda posible 5
-        this.setName("Base");
+        this.setName("B");
         this.setLife(400);
         this.setCost(0);
         this.setDamage(6);
