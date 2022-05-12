@@ -12,7 +12,9 @@ public class Main {
         //MainMenuController mainMenuController = new MainMenuController(mainMenuView);
         //mainMenuView.mainMenuController(mainMenuController);
 
-        new GameManager();
+        int time = 0;
+        
+        //new GameManager(time);
 
         CardLayout viewComponents = new CardLayout();
 

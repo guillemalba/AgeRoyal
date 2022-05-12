@@ -1,6 +1,6 @@
 package business.entities;
 
-public class Archer extends Ofensive{
+public class Archer extends Ofensive {
 
 
     public Archer( int movementVelocity, String prefObjective) {
@@ -11,7 +11,12 @@ public class Archer extends Ofensive{
         this.setCost(2);
         this.setDamage(3);//quiza 2
         this.setAttackVelocity(3);
-        this.setMovementVelocity(3);
+        this.setMovementVelocity(3000);
         this.setPrefObjective("all");
+    }
+
+    @Override
+    public int getMovementVelocity() {
+        return super.getMovementVelocity();
     }
 }
