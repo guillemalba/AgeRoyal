@@ -5,6 +5,7 @@ import business.entities.Base;
 import business.entities.Troop;
 import business.threads.GameTimer;
 import business.threads.TroopMovement;
+import business.threads.UpdateMap;
 
 import java.awt.image.AffineTransformOp;
 import java.io.IOException;
@@ -38,13 +39,19 @@ public class GameManager{
 
         mapa[20][10] = "B";
         mapa[0][10] = "B";
-        mapa[0][12] = "A";
+        mapa[0][0] = "A";
+        mapa[0][20] = "A";
 
         GameTimer gameTimer = new GameTimer(1000, time);
-        TroopMovement troopMovement = new TroopMovement(new Archer(0, "all"), mapa);
+        TroopMovement archer = new TroopMovement(new Archer(0, "all"), mapa);
+        TroopMovement archer2 = new TroopMovement(new Archer(0, "all"), mapa);
+
+        UpdateMap updateMap = new UpdateMap(mapa);
+        new Thread(updateMap).start();
 
         //new Thread(gameTimer).start();
-        new Thread(troopMovement).start();
+        new Thread(archer).start();
+        new Thread(archer2).start();
 
     }
 

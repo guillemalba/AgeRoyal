@@ -16,14 +16,38 @@ public class TroopMovement implements Runnable {
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
         while (true) {
             try {
                 Thread.sleep(((Archer)troop).getMovementVelocity());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            drawMap();
+            //drawMap();
+            moveTroop();
+        }
+    }
+
+    public void moveTroop() {
+        int auxI = -1;
+        int auxJ = -1;
+        for(int i =0; i < mapa.length;i++){
+            for(int j = 0; j < mapa.length;j++){
+                if (mapa[i][j].equals(troop.getName())) {
+                    auxI = i;
+                    auxJ = j;
+                }
+            }
+        }
+        if (auxI != -1) {
+            mapa[auxI][auxJ] = "|";
+            if (auxJ > 10 && auxJ <= 20) {
+                auxJ--;
+            }
+            if (auxJ < 10 && auxJ >= 0) {
+                auxJ++;
+            }
+            mapa[auxI+1][auxJ] = troop.getName();
         }
     }
 
@@ -43,9 +67,14 @@ public class TroopMovement implements Runnable {
             }
         }
         if (auxI != -1) {
-            int randomNum = ThreadLocalRandom.current().nextInt(auxJ-1, auxJ+1 + 1);
             mapa[auxI][auxJ] = "|";
-            mapa[auxI+1][randomNum] = troop.getName();
+            if (auxJ > 10 && auxJ <= 20) {
+                auxJ--;
+            }
+            if (auxJ < 10 && auxJ >= 0) {
+                auxJ++;
+            }
+            mapa[auxI+1][auxJ] = troop.getName();
         }
 
     }
