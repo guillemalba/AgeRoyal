@@ -1,4 +1,3 @@
-import business.GameManager;
 import business.UserManager;
 import presentation.controllers.*;
 import presentation.views.*;
@@ -8,14 +7,6 @@ import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-        //MainMenuView mainMenuView = new MainMenuView();
-        //MainMenuController mainMenuController = new MainMenuController(mainMenuView);
-        //mainMenuView.mainMenuController(mainMenuController);
-
-        int time = 0;
-        
-        //new GameManager(time);
-
         CardLayout viewComponents = new CardLayout();
 
         UserManager userManager = new UserManager();
@@ -28,7 +19,9 @@ public class Main {
 
         MenuView menuView = new MenuView();
 
-        MainView mainView = new MainView(viewComponents, registerView, loginView, logoutView, menuView);
+        GameView gameView = new GameView();
+
+        MainView mainView = new MainView(viewComponents, registerView, loginView, logoutView, menuView, gameView);
 
         LoginController loginController = new LoginController(loginView, mainView, viewComponents, userManager);
         loginView.loginController(loginController);
@@ -42,7 +35,10 @@ public class Main {
         MenuController menuController = new MenuController(menuView, mainView, viewComponents,userManager);
         menuView.registerActionListener(menuController);
 
-        //mainView.start();
+        GameViewController gameViewController = new GameViewController(gameView, mainView);
+        gameView.registerController(gameViewController);
+
+        mainView.start();
     }
     
 }

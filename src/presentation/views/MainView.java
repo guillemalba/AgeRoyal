@@ -14,8 +14,9 @@ public class MainView extends JFrame {
     private LoginView loginView;
     private LogoutView logoutView;
     private MenuView menuView;
+    private GameView gameView;
 
-    public MainView(CardLayout viewComponents, RegisterView registerView, LoginView loginView, LogoutView logoutView, MenuView menuView){
+    public MainView(CardLayout viewComponents, RegisterView registerView, LoginView loginView, LogoutView logoutView, MenuView menuView, GameView gameView){
          this.viewComponents = viewComponents;
          this.setLayout(viewComponents);
          this.configureWindow();
@@ -28,6 +29,8 @@ public class MainView extends JFrame {
          this.add(logoutView, "logoutView");
          this.menuView = menuView;
          this.add(menuView, "menuView");
+         this.gameView = gameView;
+         this.add(gameView, "gameView");
     }
 
     private void configureMainView() {
@@ -52,5 +55,17 @@ public class MainView extends JFrame {
     public void start() {
         setVisible(true);
         this.getViewComponent().show(this.getContentPane(), "loginView");
+    }
+
+    public void showGameView(){
+        this.getViewComponent().show(this.getContentPane(), "gameView");
+    }
+
+    public void showMenu(){
+        this.getViewComponent().show(this.getContentPane(), "menuView");
+    }
+
+    public void showSettings() {
+        this.getViewComponent().show(this.getContentPane(), "logoutView");
     }
 }
