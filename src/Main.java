@@ -35,6 +35,9 @@ public class Main {
         MenuController menuController = new MenuController(menuView, mainView, viewComponents,userManager);
         menuView.registerActionListener(menuController);
 
+        GameViewController gameViewController = new GameViewController(gameView, mainView);
+        gameView.registerController(gameViewController);
+
         mainView.start();
     }
     

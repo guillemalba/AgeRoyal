@@ -28,13 +28,16 @@ public class GameView extends JPanel {
         GridLayout layout = new GridLayout(2,2);
         midJp.setLayout(layout);
 
-        JPanel table = new JPanel();
-        GridLayout tableLayout = new GridLayout(21,21);
-        table.setLayout(tableLayout);
-        tableGrid = new JPanel[21][21];
+        int height = 15;
+        int width = 15;
 
-        for(int i = 0; i < 21; i++){
-            for(int j = 0; j < 21; j++) {
+        JPanel table = new JPanel();
+        GridLayout tableLayout = new GridLayout(width,height);
+        table.setLayout(tableLayout);
+        tableGrid = new JPanel[width][height];
+
+        for(int i = 0; i < width; i++){
+            for(int j = 0; j < height; j++) {
                 tableGrid[i][j] = new JPanel();
                 tableGrid[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                 table.add(tableGrid[i][j]);
@@ -44,6 +47,7 @@ public class GameView extends JPanel {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         tableGrid[finalI][finalJ].setBackground(Color.cyan);
+                        System.out.println("Position pressed: x -> "+finalI+" y -> "+finalJ);
                         super.mouseClicked(e);
                     }
 
@@ -241,4 +245,8 @@ public class GameView extends JPanel {
         add(general);
     }
 
+    public void registerController(ActionListener listener) {
+        settingsJb.addActionListener(listener);
+        backJb.addActionListener(listener);
+    }
 }

@@ -1,5 +1,7 @@
 package presentation.controllers;
 
+
+import com.sun.tools.javac.Main;
 import presentation.views.GameView;
 import presentation.views.MainView;
 
@@ -10,8 +12,10 @@ public class GameViewController implements ActionListener {
     private GameView gameView;
     private MainView mainView;
 
-    public GameViewController (GameView gameView){
+
+    public GameViewController (GameView gameView, MainView mainView){
         this.gameView = gameView;
+        this.mainView = mainView;
     }
 
     @Override
