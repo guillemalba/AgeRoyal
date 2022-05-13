@@ -3,11 +3,11 @@ package presentation.controllers;
 import business.UserManager;
 import presentation.views.MainView;
 import presentation.views.MenuView;
+import presentation.views.RecordedGameView;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.security.cert.CertPathValidatorException;
 
 public class MenuController implements ActionListener {
 
@@ -31,6 +31,19 @@ public class MenuController implements ActionListener {
                 menuView.setViewComponents(viewComponents);
                 menuView.showLogout();
             break;
+            case "play_game":
+                mainView.showGameView();
+                break;
+            case "raking":
+                break;
+            case "game_graphics":
+                break;
+            case "game_recording":
+                menuView.setVisible(false);
+                /*RecordedGameView recordedGameView = new RecordedGameView();
+                RecordedGameMenuController recordedGameMenuController = new RecordedGameMenuController(recordedGameView, mainView, viewComponents, userManager);
+                recordedGameView.recordedGameMenuController(recordedGameMenuController);*/
+                break;
         }
     }
 }
