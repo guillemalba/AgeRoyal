@@ -19,7 +19,7 @@ public class Main {
 
         MenuView menuView = new MenuView();
 
-        GameView gameView = new GameView();
+        GameView gameView = new GameView(new GameViewController());
 
         MainView mainView = new MainView(viewComponents, registerView, loginView, logoutView, menuView, gameView);
 
