@@ -22,10 +22,12 @@ public class GameView extends JPanel {
     }
 
     private void configureView() {
+        setLayout(new BorderLayout());
+        setSize(1080, 720);
         JPanel general = new JPanel();
-
+        general.setLayout(new BorderLayout());
         JPanel topJp = new JPanel();
-        //topJp.add(settingsJb, BorderLayout.EAST);
+        topJp.add(settingsJb, BorderLayout.EAST);
 
         JPanel midJp = new JPanel();
         GridLayout layout = new GridLayout(2,2);
@@ -35,6 +37,7 @@ public class GameView extends JPanel {
         int width = 15;
 
         JPanel table = new JPanel();
+        table.setSize(400, 400);
         GridLayout tableLayout = new GridLayout(width,height);
         table.setLayout(tableLayout);
         tableGrid = new JPanel[width][height];
@@ -42,6 +45,7 @@ public class GameView extends JPanel {
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++) {
                 tableGrid[i][j] = new JPanel();
+                tableGrid[i][j].setSize(50,50);
                 tableGrid[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                 table.add(tableGrid[i][j]);
                 int finalI = i;
@@ -240,16 +244,16 @@ public class GameView extends JPanel {
         goldPanel.add(mLabel);
         midJp.add(goldPanel);
 
-        add(midJp);
+        //add(midJp);
 
         JPanel botJp = new JPanel();
-        //botJp.add(backJb, BorderLayout.EAST);
+        botJp.add(backJb, BorderLayout.EAST);
 
-        general.add(settingsJb, BorderLayout.NORTH);
+        general.add(topJp, BorderLayout.NORTH);
         general.add(midJp, BorderLayout.CENTER);
-        general.add(backJb, BorderLayout.SOUTH);
+        general.add(botJp, BorderLayout.SOUTH);
 
-        add(general);
+        add(general, BorderLayout.CENTER);
     }
 
     public void registerController(ActionListener listener) {

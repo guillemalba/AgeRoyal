@@ -42,11 +42,10 @@ public class GameViewController implements ActionListener, MouseListener {
     public void mouseClicked(MouseEvent e) {
 
         System.out.println("HEHEHEHE");
-        JPanel jpanel = (JPanel) e.getSource();
-
-        jpanel.setBackground(Color.BLUE);
-        if (jpanel.getName().equals("offT2")) {
-            System.out.println("Algo="+jpanel.getName());
+        //e.getComponent().getName()
+        //jpanel.setBackground(Color.BLUE);
+        if (((JComponent)e.getSource()).getName().equals("offT2")) {
+          //  System.out.println("Algo="+jpanel.getName());
         }
     }
 

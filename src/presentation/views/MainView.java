@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainView extends JFrame {
-    static final int width = 800;
-    static final int height = 600;
+    static final int width = 1080;
+    static final int height = 720;
 
     private final JPanel jpView = new JPanel();
 
