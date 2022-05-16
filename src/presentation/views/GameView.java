@@ -49,29 +49,7 @@ public class GameView extends JPanel {
                 tableGrid[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                 tableGrid[i][j].setName(i+","+j);
                 table.add(tableGrid[i][j]);
-                int finalI = i;
-                int finalJ = j;
                 tableGrid[i][j].addMouseListener(gameViewController);
-                /*tableGrid[i][j].addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        tableGrid[finalI][finalJ].setBackground(Color.cyan);
-                        System.out.println("Position pressed: x -> "+finalI+" y -> "+finalJ);
-                        super.mouseClicked(e);
-                    }
-
-                    @Override
-                    public void mouseEntered(MouseEvent e) {
-                        tableGrid[finalI][finalJ].setBackground(Color.GRAY);
-                        super.mouseEntered(e);
-                    }
-
-                    @Override
-                    public void mouseExited(MouseEvent e) {
-                        tableGrid[finalI][finalJ].setBackground(Color.WHITE);
-                        super.mouseExited(e);
-                    }
-                });*/
             }
         }
         midJp.add(table);
@@ -131,35 +109,11 @@ public class GameView extends JPanel {
         offT1.setBackground(Color.green);
         offT1.setName("offT1");
         offT1.addMouseListener(gameViewController);
-        /*offT1.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                offT1.setBackground(Color.lightGray);
-                super.mouseClicked(e);
-            }
-            @Override
-            public void mouseExited(MouseEvent e) {
-                offT1.setBackground(Color.green);
-                super.mouseClicked(e);
-            }
-        });*/
         offensiveCardPanel.add(offT1);
         JPanel offT2 = new JPanel();
         offT2.setBackground(Color.pink);
         offT2.setName("offT2");
         offT2.addMouseListener(gameViewController);
-        /*offT2.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                offT2.setBackground(Color.lightGray);
-                super.mouseClicked(e);
-            }
-            @Override
-            public void mouseExited(MouseEvent e) {
-                offT2.setBackground(Color.pink);
-                super.mouseClicked(e);
-            }
-        });*/
         offensiveCardPanel.add(offT2);
         offensiveCardPanel.add(new JLabel("5"));
         offensiveCardPanel.add(new JLabel("3"));
@@ -172,35 +126,11 @@ public class GameView extends JPanel {
         defT1.setBackground(Color.green);
         defT1.setName("defT1");
         defensiveCardPanel.add(defT1);
-        defT1.addMouseListener(gameViewController
-                /*new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                defT1.setBackground(Color.lightGray);
-                super.mouseClicked(e);
-            }
-            @Override
-            public void mouseExited(MouseEvent e) {
-                defT1.setBackground(Color.green);
-                super.mouseClicked(e);
-            }
-        }*/);
+        defT1.addMouseListener(gameViewController);
         JPanel defT2 = new JPanel();
         defT2.setBackground(Color.pink);
         defT2.setName("defT2");
-        defT2.addMouseListener(gameViewController
-            /*  new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                defT2.setBackground(Color.lightGray);
-                super.mouseClicked(e);
-            }
-            @Override
-            public void mouseExited(MouseEvent e) {
-                defT2.setBackground(Color.pink);
-                super.mouseClicked(e);
-            }
-        }*/);
+        defT2.addMouseListener(gameViewController);
         defensiveCardPanel.add(defT2);
         defensiveCardPanel.add(new JLabel("4"));
         defensiveCardPanel.add(new JLabel("2"));
@@ -208,8 +138,6 @@ public class GameView extends JPanel {
 
         midJp.add(troopPanel);
         JPanel goldPanel = new JPanel();
-        //goldPanel.setBackground(Color.white);
-        //goldPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         GridLayout goldLayout = new GridLayout(2,1);
         goldPanel.setLayout(goldLayout);
         JLabel gLabel = new JLabel("Gold");

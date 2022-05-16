@@ -40,12 +40,14 @@ public class GameViewController implements ActionListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        if(e.getComponent().getName().equals("offT1") || e.getComponent().getName().equals("offT2") || e.getComponent().getName().equals("defT1") || e.getComponent().getName().equals("defT2")){
+            e.getComponent().setBackground(Color.lightGray);
+        } else {
+            e.getComponent().setBackground(Color.cyan);
+            int x = getPositionX(e.getComponent().getName());
+            int y = getPositionY(e.getComponent().getName());
 
-        System.out.println("HEHEHEHE");
-        //e.getComponent().getName()
-        //jpanel.setBackground(Color.BLUE);
-        if (((JComponent)e.getSource()).getName().equals("offT2")) {
-          //  System.out.println("Algo="+jpanel.getName());
+            System.out.println("Position pressed: x -> "+x+" y -> "+y);
         }
     }
 
@@ -61,11 +63,32 @@ public class GameViewController implements ActionListener, MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
+        if(e.getComponent().getName().equals("offT1") || e.getComponent().getName().equals("offT2") || e.getComponent().getName().equals("defT1") || e.getComponent().getName().equals("defT2")){
+            //e.getComponent().setBackground(Color.lightGray);
+        } else {
+            e.getComponent().setBackground(Color.GRAY);
+        }
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+        if(e.getComponent().getName().equals("offT1") || e.getComponent().getName().equals("defT1")){
+            e.getComponent().setBackground(Color.green);
+        }else if(e.getComponent().getName().equals("offT2") || e.getComponent().getName().equals("defT2")){
+            e.getComponent().setBackground(Color.pink);
+        }
+        else {
+            e.getComponent().setBackground(Color.WHITE);
+        }
+    }
 
+    private int getPositionX(String name){
+        String[] positions = name.split(",");
+        return Integer.parseInt(String.valueOf(positions[0]));
+    }
+
+    private int getPositionY(String name){
+        String[] positions = name.split(",");
+        return Integer.parseInt(String.valueOf(positions[1]));
     }
 }
