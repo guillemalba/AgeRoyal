@@ -1,6 +1,7 @@
 package presentation.controllers;
 
 
+import business.entities.*;
 import com.sun.tools.javac.Main;
 import presentation.views.GameView;
 import presentation.views.MainView;
@@ -16,7 +17,7 @@ public class GameViewController implements ActionListener, MouseListener {
     private GameView gameView;
     private MainView mainView;
 
-
+    private Troop selectedT;
 
     public GameViewController (GameView gameView, MainView mainView){
         this.gameView = gameView;
@@ -40,14 +41,56 @@ public class GameViewController implements ActionListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(e.getComponent().getName().equals("offT1") || e.getComponent().getName().equals("offT2") || e.getComponent().getName().equals("defT1") || e.getComponent().getName().equals("defT2")){
-            e.getComponent().setBackground(Color.lightGray);
-        } else {
-            e.getComponent().setBackground(Color.cyan);
-            int x = getPositionX(e.getComponent().getName());
-            int y = getPositionY(e.getComponent().getName());
+        switch(e.getComponent().getName()){
+            case "offT1":
+                e.getComponent().setBackground(Color.green);
+                selectedT = new Archer(2, "kajsdkjas");
+                break;
 
-            System.out.println("Position pressed: x -> "+x+" y -> "+y);
+            case "offT2":
+                e.getComponent().setBackground(Color.pink);
+                selectedT = new Giant();
+                break;
+
+            case "defT1":
+                e.getComponent().setBackground(Color.red);
+                selectedT = new TeslaTower();
+                break;
+
+            case "defT2":
+                e.getComponent().setBackground(Color.blue);
+                selectedT = new Canon();
+                break;
+
+            default:
+                e.getComponent().setBackground(Color.cyan);
+                int x = getPositionX(e.getComponent().getName());
+                int y = getPositionY(e.getComponent().getName());
+                if(selectedT == null){
+                    System.out.println("Error, you have not selected a troop");
+                }else{
+                    System.out.println(selectedT.getClass().getSimpleName());
+                    switch (selectedT.getClass().getSimpleName()){
+                        case "Archer":
+                            e.getComponent().setBackground(Color.green);
+                            break;
+
+                        case "Giant":
+                            e.getComponent().setBackground(Color.pink);
+                            break;
+
+                        case "TeslaTower":
+                            e.getComponent().setBackground(Color.red);
+                            break;
+
+                        case "Canon":
+                            e.getComponent().setBackground(Color.blue);
+                            break;
+                    }
+                    selectedT = null;
+                }
+                System.out.println("Position pressed: x -> "+x+" y -> "+y);
+            break;
         }
     }
 
@@ -66,19 +109,38 @@ public class GameViewController implements ActionListener, MouseListener {
         if(e.getComponent().getName().equals("offT1") || e.getComponent().getName().equals("offT2") || e.getComponent().getName().equals("defT1") || e.getComponent().getName().equals("defT2")){
             //e.getComponent().setBackground(Color.lightGray);
         } else {
-            e.getComponent().setBackground(Color.GRAY);
+            //e.getComponent().setBackground(Color.GRAY);
         }
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        if(e.getComponent().getName().equals("offT1") || e.getComponent().getName().equals("defT1")){
-            e.getComponent().setBackground(Color.green);
-        }else if(e.getComponent().getName().equals("offT2") || e.getComponent().getName().equals("defT2")){
-            e.getComponent().setBackground(Color.pink);
-        }
-        else {
-            e.getComponent().setBackground(Color.WHITE);
+        switch(e.getComponent().getName()){
+            case "offT1":
+                e.getComponent().setBackground(Color.green);
+                selectedT = new Archer(2, "kajsdkjas");
+                break;
+
+            case "offT2":
+                e.getComponent().setBackground(Color.pink);
+                selectedT = new Giant();
+                break;
+
+            case "defT1":
+                e.getComponent().setBackground(Color.red);
+                selectedT = new TeslaTower();
+                break;
+
+            case "defT2":
+                e.getComponent().setBackground(Color.blue);
+                selectedT = new Canon();
+                break;
+
+            default:
+                if (selectedT == null) {
+                    e.getComponent().setBackground(Color.WHITE);
+                }
+            break;
         }
     }
 

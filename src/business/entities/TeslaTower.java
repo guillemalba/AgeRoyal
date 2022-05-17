@@ -16,6 +16,18 @@ public class TeslaTower extends Defensive{
         this.setTimeLife(30);//seg
     }
 
+    public TeslaTower() {
+        this.setRange(2);//cuadrados a la redonda
+        this.setName("TeslaTower");
+        this.setLife(20);
+        this.setCost(3);
+        this.setDamage(5);
+        this.setAttackVelocity(2);
+        this.setType("Structure");
+        this.setTimeLife(30);//seg
+    }
+
+
     public boolean isHide() {
         return hide;
     }

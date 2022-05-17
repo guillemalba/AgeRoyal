@@ -123,12 +123,12 @@ public class GameView extends JPanel {
         GridLayout defensiveCardLayout = new GridLayout(2, 2);
         defensiveCardPanel.setLayout(defensiveCardLayout);
         JPanel defT1 = new JPanel();
-        defT1.setBackground(Color.green);
+        defT1.setBackground(Color.red);
         defT1.setName("defT1");
         defensiveCardPanel.add(defT1);
         defT1.addMouseListener(gameViewController);
         JPanel defT2 = new JPanel();
-        defT2.setBackground(Color.pink);
+        defT2.setBackground(Color.blue);
         defT2.setName("defT2");
         defT2.addMouseListener(gameViewController);
         defensiveCardPanel.add(defT2);

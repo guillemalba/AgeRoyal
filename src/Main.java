@@ -39,9 +39,9 @@ public class Main {
         GameViewController gameViewController = new GameViewController(gameView, mainView);
         gameView.registerController(gameViewController);
 
-        new GameManager(3000);
+        //new GameManager(3000);
 
-        //mainView.start();
+        mainView.start();
     }
     
 }
