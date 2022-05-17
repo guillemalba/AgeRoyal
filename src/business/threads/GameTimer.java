@@ -6,17 +6,20 @@ public class GameTimer implements Runnable{
     private final long sleepTime;
     // The number of times we want the Thread to print values.
     private int time;
+    // bolean to stop the timer
+    private boolean stop;
 
-    public GameTimer(long sleepTime, int time) {
+    public GameTimer(long sleepTime, int time, boolean stop) {
         this.sleepTime = sleepTime;
         this.time = time;
+        this.stop = stop;
     }
 
     @Override
     public void run() {
 
         time = 0;
-        while (true) {
+        while (!stop) {
             try {
                 Thread.sleep(sleepTime);
             } catch (InterruptedException e) {
@@ -27,5 +30,9 @@ public class GameTimer implements Runnable{
         }
         /*System.out.println("*** CountWorker FINISHED ***");*/
 
+    }
+
+    public void stop() {
+        stop = true;
     }
 }

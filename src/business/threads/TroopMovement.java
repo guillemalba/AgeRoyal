@@ -28,7 +28,7 @@ public class TroopMovement implements Runnable {
         }
     }
 
-    public void moveTroop() {
+    public synchronized void moveTroop() {
         int auxI = -1;
         int auxJ = -1;
         for(int i =0; i < mapa.length;i++){
@@ -41,14 +41,27 @@ public class TroopMovement implements Runnable {
         }
         if (auxI != -1) {
             mapa[auxI][auxJ] = "|";
-            if (auxJ > 10 && auxJ <= 20) {
+            if (auxJ > 10 && auxJ <= 20 && mapa[auxI+1][auxJ-1].equals("|")) {
+                auxJ--;
+                auxI++;
+            } else if (auxJ < 10 && auxJ >= 0 && mapa[auxI+1][auxJ+1].equals("|")) {
+                auxJ++;
+                auxI++;
+            } else if (mapa[auxI+1][auxJ].equals("|")) {
+                auxI++;
+            } else if (mapa[auxI+1][auxJ--].equals("|")) {
+                auxI++;
+                auxJ--;
+            } else if (mapa[auxI+1][auxJ++].equals("|")) {
+                auxI++;
                 auxJ--;
             }
-            if (auxJ < 10 && auxJ >= 0) {
-                auxJ++;
-            }
-            mapa[auxI+1][auxJ] = troop.getName();
+            mapa[auxI][auxJ] = troop.getName();
         }
+    }
+
+    public void cellIsEmpty() {
+
     }
 
     public void drawMap() {

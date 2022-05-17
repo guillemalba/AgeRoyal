@@ -39,10 +39,11 @@ public class GameManager{
 
         mapa[20][10] = "B";
         mapa[0][10] = "B";
-        mapa[0][0] = "A";
-        mapa[0][20] = "A";
+        mapa[0][18] = "A";
+        mapa[0][3] = "A";
+        mapa[16][10] = "Z";
 
-        GameTimer gameTimer = new GameTimer(1000, time);
+        GameTimer gameTimer = new GameTimer(1000, time, false);
         TroopMovement archer = new TroopMovement(new Archer(0, "all"), mapa);
         TroopMovement archer2 = new TroopMovement(new Archer(0, "all"), mapa);
 
@@ -51,7 +52,7 @@ public class GameManager{
 
         //new Thread(gameTimer).start();
         new Thread(archer).start();
-        new Thread(archer2).start();
+        //new Thread(archer2).start();
 
     }
 

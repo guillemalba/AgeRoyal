@@ -1,3 +1,4 @@
+import business.GameManager;
 import business.UserManager;
 import presentation.controllers.*;
 import presentation.views.*;
@@ -38,7 +39,9 @@ public class Main {
         GameViewController gameViewController = new GameViewController(gameView, mainView);
         gameView.registerController(gameViewController);
 
-        mainView.start();
+        new GameManager(3000);
+
+        //mainView.start();
     }
     
 }
