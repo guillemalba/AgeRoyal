@@ -44,22 +44,22 @@ public class GameViewController implements ActionListener, MouseListener {
         switch(e.getComponent().getName()){
             case "offT1":
                 e.getComponent().setBackground(Color.green);
-                selectedT = new Archer(2, "kajsdkjas");
+                //selectedT = new Archer();//esto llama al manager
                 break;
 
             case "offT2":
                 e.getComponent().setBackground(Color.pink);
-                selectedT = new Giant();
+               // selectedT = new Giant();
                 break;
 
             case "defT1":
                 e.getComponent().setBackground(Color.red);
-                selectedT = new TeslaTower();
+                //selectedT = new TeslaTower();
                 break;
 
             case "defT2":
                 e.getComponent().setBackground(Color.blue);
-                selectedT = new Canon();
+                //selectedT = new Canon();
                 break;
 
             default:
@@ -118,22 +118,22 @@ public class GameViewController implements ActionListener, MouseListener {
         switch(e.getComponent().getName()){
             case "offT1":
                 e.getComponent().setBackground(Color.green);
-                selectedT = new Archer(2, "kajsdkjas");
+                //selectedT = new Archer();
                 break;
 
             case "offT2":
                 e.getComponent().setBackground(Color.pink);
-                selectedT = new Giant();
+                //selectedT = new Giant();
                 break;
 
             case "defT1":
                 e.getComponent().setBackground(Color.red);
-                selectedT = new TeslaTower();
+                //selectedT = new TeslaTower();
                 break;
 
             case "defT2":
                 e.getComponent().setBackground(Color.blue);
-                selectedT = new Canon();
+               // selectedT = new Canon();
                 break;
 
             default:

@@ -1,11 +1,11 @@
 package business.threads;
 
-import business.entities.Archer;
-import business.entities.Troop;
+
+import business.entities.*;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class TroopMovement implements Runnable {
+public class TroopMovement {
 
     private Troop troop;
     private String[][] mapa;
@@ -15,7 +15,7 @@ public class TroopMovement implements Runnable {
         this.mapa = mapa;
     }
 
-    @Override
+    /*@Override
     public synchronized void run() {
         while (true) {
             try {
@@ -26,45 +26,15 @@ public class TroopMovement implements Runnable {
             //drawMap();
             moveTroop();
         }
-    }
+    }*/
 
-    public synchronized void moveTroop() {
-        int auxI = -1;
-        int auxJ = -1;
-        for(int i =0; i < mapa.length;i++){
-            for(int j = 0; j < mapa.length;j++){
-                if (mapa[i][j].equals(troop.getName())) {
-                    auxI = i;
-                    auxJ = j;
-                }
-            }
-        }
-        if (auxI != -1) {
-            mapa[auxI][auxJ] = "|";
-            if (auxJ > 10 && auxJ <= 20 && mapa[auxI+1][auxJ-1].equals("|")) {
-                auxJ--;
-                auxI++;
-            } else if (auxJ < 10 && auxJ >= 0 && mapa[auxI+1][auxJ+1].equals("|")) {
-                auxJ++;
-                auxI++;
-            } else if (mapa[auxI+1][auxJ].equals("|")) {
-                auxI++;
-            } else if (mapa[auxI+1][auxJ--].equals("|")) {
-                auxI++;
-                auxJ--;
-            } else if (mapa[auxI+1][auxJ++].equals("|")) {
-                auxI++;
-                auxJ--;
-            }
-            mapa[auxI][auxJ] = troop.getName();
-        }
-    }
+
 
     public void cellIsEmpty() {
 
     }
 
-    public void drawMap() {
+    /*public void drawMap() {
         int auxI = -1;
         int auxJ = -1;
         System.out.println();
@@ -90,5 +60,38 @@ public class TroopMovement implements Runnable {
             mapa[auxI+1][auxJ] = troop.getName();
         }
 
+    }*/
+    public synchronized void moveTroop(String name) {
+
+        int auxI = -1;
+        int auxJ = -1;
+
+        for (int i = 0; i < mapa.length; i++) {
+            for (int j = 0; j < mapa.length; j++) {
+                if (mapa[i][j].equals(name)) {
+                    auxI = i;
+                    auxJ = j;
+                }
+            }
+        }
+        if (auxI != -1) {
+            mapa[auxI][auxJ] = "|";
+            if (auxJ > 10 && auxJ <= 20 && mapa[auxI + 1][auxJ - 1].equals("|")) {
+                auxJ--;
+                auxI++;
+            } else if (auxJ < 10 && auxJ >= 0 && mapa[auxI + 1][auxJ + 1].equals("|")) {
+                auxJ++;
+                auxI++;
+            } else if (mapa[auxI + 1][auxJ].equals("|")) {
+                auxI++;
+            } else if (mapa[auxI + 1][auxJ--].equals("|")) {
+                auxI++;
+                auxJ--;
+            } else if (mapa[auxI + 1][auxJ++].equals("|")) {
+                auxI++;
+                auxJ--;
+            }
+            mapa[auxI][auxJ] = name;
+        }
     }
 }

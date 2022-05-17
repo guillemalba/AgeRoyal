@@ -1,6 +1,11 @@
 package business.entities;
 
-public class Troop {
+import business.GameManager;
+import business.threads.TroopMovement;
+
+import java.awt.*;
+
+public class Troop implements Runnable{
 
     private int range;
     private String name;
@@ -9,19 +14,18 @@ public class Troop {
     private float damage;
     private float attackVelocity;
     private String type;
+    private GameManager gameManager;
+    private String[][] mapa;
+    private TroopMovement movement;
+    private int posx;
+    private int posy;
+    private Color color;
 
-    public Troop(int range, String name, float life, int cost, float damage, float attackVelocity, String type) {
-        this.range = range;
-        this.name = name;
-        this.life = life;
-        this.cost = cost;
-        this.damage = damage;
-        this.attackVelocity = attackVelocity;
-        this.type = type;
-    }
 
-    public Troop() {
+    public Troop(int posx, int posy) {
 
+        this.posx = posx;
+        this.posy = posy;
     }
 
     public int getRange() {
@@ -80,7 +84,45 @@ public class Troop {
         this.type = type;
     }
 
-    public String checkMove(int movel, int fila, int columna, String[][] mapa) {
+    public int getPosx() {
+        return posx;
+    }
+
+    public void setPosx(int posx) {
+        this.posx = posx;
+    }
+
+    public int getPosy() {
+        return posy;
+    }
+
+    public void setPosy(int posy) {
+        this.posy = posy;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    @Override
+    public void run() {
+
+    }
+
+
+    public void tropMove(String name){
+        movement.moveTroop(name);
+    }
+
+
+
+
+
+    /*public String checkMove(int movel, int fila, int columna, String[][] mapa) {
         boolean front = false;
         boolean fRight = false;
         boolean fLeft = false;
@@ -113,7 +155,7 @@ public class Troop {
         }else if (fLeft){
             return "fLeft";
         }else return "cant";
-    }
+    }*/
 
 }
 

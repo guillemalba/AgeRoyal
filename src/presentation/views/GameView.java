@@ -1,5 +1,7 @@
 package presentation.views;
 
+import business.entities.Board;
+import business.entities.Troop;
 import org.w3c.dom.Text;
 import presentation.controllers.GameViewController;
 
@@ -8,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.LinkedList;
 
 public class GameView extends JPanel {
 
@@ -15,11 +18,23 @@ public class GameView extends JPanel {
     private JButton backJb = new JButton("Back");
     private JPanel[][] tableGrid;
     private GameViewController gameViewController;
+    private Board board;
+    private JPanel table = new JPanel();
+    private JPanel midJp = new JPanel();
 
     public GameView(GameViewController gameViewController){
         this.gameViewController = gameViewController;
+        board = new Board();
         configureView();
     }
+
+    public GameView(GameViewController gameViewController,Board board){
+        this.gameViewController = gameViewController;
+        this.board = board;
+
+        configureView();
+    }
+
 
     private void configureView() {
         setLayout(new BorderLayout());
@@ -29,29 +44,19 @@ public class GameView extends JPanel {
         JPanel topJp = new JPanel();
         topJp.add(settingsJb, BorderLayout.EAST);
 
-        JPanel midJp = new JPanel();
+
         GridLayout layout = new GridLayout(2,2);
         midJp.setLayout(layout);
 
         int height = 15;
         int width = 15;
 
-        JPanel table = new JPanel();
+
         table.setSize(400, 400);
         GridLayout tableLayout = new GridLayout(width,height);
         table.setLayout(tableLayout);
-        tableGrid = new JPanel[width][height];
+        updateView(board);
 
-        for(int i = 0; i < width; i++){
-            for(int j = 0; j < height; j++) {
-                tableGrid[i][j] = new JPanel();
-                tableGrid[i][j].setSize(15,15);
-                tableGrid[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
-                tableGrid[i][j].setName(i+","+j);
-                table.add(tableGrid[i][j]);
-                tableGrid[i][j].addMouseListener(gameViewController);
-            }
-        }
         midJp.add(table);
 
         JPanel info = new JPanel();
@@ -161,5 +166,44 @@ public class GameView extends JPanel {
     public void registerController(ActionListener listener) {
         settingsJb.addActionListener(listener);
         backJb.addActionListener(listener);
+    }
+
+    public void updateView(Board board) {
+        tableGrid = new JPanel[15][15];
+        String name;
+        table.removeAll();
+
+        //funcion para pinta mapa nuevo
+
+        for(int i = 0; i < board.getSide(); i++){
+            for(int j = 0; j < board.getSide(); j++) {
+                tableGrid[i][j] = new JPanel();
+                tableGrid[i][j].setSize(board.getSide(),board.getSide());
+                tableGrid[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
+                tableGrid[i][j].setName(i+","+j);
+                table.add(tableGrid[i][j]);
+                tableGrid[i][j].addMouseListener(gameViewController);
+            }
+        }
+
+        for(int i = 0; i < board.getSide(); i++){
+            for(int j = 0; j < board.getSide(); j++) {
+                if(board.isEmpty(i,j)){
+                    tableGrid[i][j].setBackground(Color.WHITE);
+                }else{
+                    tableGrid[i][j].setBackground(board.getColorTroop(i,j));
+                }
+            }
+        }
+
+        table.revalidate();
+        table.repaint();
+
+        /*MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map, players, userPlayer, revealMap);
+        jpCenter = mp.creaMapa();
+
+        background.add(jpCenter, BorderLayout.CENTER);
+
+        */
     }
 }

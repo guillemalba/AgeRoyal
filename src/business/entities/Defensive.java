@@ -4,14 +4,12 @@ public class Defensive extends Troop {
     private int timeLife;
 
 
-    public Defensive(int range, String name, float life, int cost, float damage, float attackVelocity, String type, int timeLife) {
-        super(range, name, life, cost, damage, attackVelocity, type);
+    public Defensive(int posx,int posy) {
+        super(posx,posy);
         this.timeLife = timeLife;
     }
 
-    public Defensive(){
-        super();
-    }
+
 
     public int getTimeLife() {
         return timeLife;
@@ -20,4 +18,17 @@ public class Defensive extends Troop {
     public void setTimeLife(int timeLife) {
         this.timeLife = timeLife;
     }
+
+    /*@Override
+    public synchronized void run() {
+        while (true) {
+            try {
+                Thread.sleep(((Archer)troop).getMovementVelocity());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            //drawMap();
+            moveTroop();
+        }
+    }*/
 }

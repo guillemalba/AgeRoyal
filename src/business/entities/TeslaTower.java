@@ -2,30 +2,26 @@ package business.entities;
 
 public class TeslaTower extends Defensive{
     private boolean hide;
+    private int posx;
+    private int posy;
 
-    public TeslaTower(int range, String name, float life, int cost, float damage, float attackVelocity, String type, int timeLife, boolean hide) {
-        super(range, name, life, cost, damage, attackVelocity, type, timeLife);
+    public TeslaTower(int posx,int posy) {
+        super(posx,posy);
         this.hide = hide;
         this.setRange(2);//cuadrados a la redonda
         this.setName("TeslaTower");
         this.setLife(20);
         this.setCost(3);
         this.setDamage(5);
-        this.setAttackVelocity(2);
+        this.setAttackVelocity(2000);
         this.setType("Structure");
         this.setTimeLife(30);//seg
+        this.posx = posx;
+        this.posy = posy;
     }
 
-    public TeslaTower() {
-        this.setRange(2);//cuadrados a la redonda
-        this.setName("TeslaTower");
-        this.setLife(20);
-        this.setCost(3);
-        this.setDamage(5);
-        this.setAttackVelocity(2);
-        this.setType("Structure");
-        this.setTimeLife(30);//seg
-    }
+
+    
 
 
     public boolean isHide() {

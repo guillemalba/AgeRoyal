@@ -1,6 +1,8 @@
 package presentation.controllers;
 
+import business.GameManager;
 import business.UserManager;
+import presentation.views.GameView;
 import presentation.views.MainView;
 import presentation.views.MenuView;
 import presentation.views.RecordedGameView;
@@ -15,12 +17,14 @@ public class MenuController implements ActionListener {
     private MainView mainView;
     private CardLayout viewComponents;
     private UserManager userManager;
+    private GameManager gameManager;
 
-    public MenuController(MenuView menuView, MainView mainView, CardLayout viewComponents, UserManager userManager) {
+    public MenuController(MenuView menuView, MainView mainView, CardLayout viewComponents, UserManager userManager,GameManager gameManager) {
         this.menuView = menuView;
         this.mainView = mainView;
         this.viewComponents = viewComponents;
         this.userManager = userManager;
+        this.gameManager = gameManager;
     }
 
     @Override
@@ -32,7 +36,10 @@ public class MenuController implements ActionListener {
                 menuView.showLogout();
             break;
             case "play_game":
+
+                GameView gameView = new GameView(new GameViewController(),gameManager.getBoard());
                 mainView.showGameView();
+
                 break;
             case "raking":
                 break;

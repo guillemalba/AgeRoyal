@@ -12,6 +12,8 @@ public class Main {
 
         UserManager userManager = new UserManager();
 
+        GameManager gameManager = new GameManager();
+
         RegisterView registerView = new RegisterView();
 
         LoginView loginView = new LoginView();
@@ -33,7 +35,7 @@ public class Main {
         LogoutController logoutController = new LogoutController(logoutView, mainView, viewComponents,userManager);
         logoutView.registerController(logoutController);
 
-        MenuController menuController = new MenuController(menuView, mainView, viewComponents,userManager);
+        MenuController menuController = new MenuController(menuView, mainView, viewComponents,userManager,gameManager);
         menuView.registerActionListener(menuController);
 
         GameViewController gameViewController = new GameViewController(gameView, mainView);

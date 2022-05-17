@@ -60,6 +60,10 @@ public class MainView extends JFrame {
     public void showGameView(){
         this.getViewComponent().show(this.getContentPane(), "gameView");
     }
+    public void showGameView2(){
+        this.getViewComponent().show(this.getContentPane(), "gameView");
+    }
+
 
     public void showMenu(){
         this.getViewComponent().show(this.getContentPane(), "menuView");

@@ -4,14 +4,13 @@ public class Ofensive extends Troop {
     private int movementVelocity;
     private String prefObjective;
 
-    public Ofensive( int movementVelocity, String prefObjective) {
-        super();
-        this.movementVelocity = movementVelocity;
-        this.prefObjective = prefObjective;
+
+
+
+    public Ofensive(int posx,int posy) {
+        super(posx,posy);
     }
-    public Ofensive(){
-        super();
-    }
+
 
 
     public int getMovementVelocity() {
@@ -29,4 +28,7 @@ public class Ofensive extends Troop {
     public void setPrefObjective(String prefObjective) {
         this.prefObjective = prefObjective;
     }
+
+
+
 }

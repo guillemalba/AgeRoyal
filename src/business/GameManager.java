@@ -1,60 +1,67 @@
 package business;
 
-import business.entities.Archer;
+
+
 import business.entities.Base;
+import business.entities.Board;
 import business.entities.Troop;
 import business.threads.GameTimer;
+import business.entities.*;
 import business.threads.TroopMovement;
 import business.threads.UpdateMap;
 
 import java.awt.image.AffineTransformOp;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class GameManager{
     private Base base2;
     private String mapa[][];
+    private Board board;
     private Troop base1;
     private int time;
+    private LinkedList<Troop> troops= new LinkedList();
 
-    public GameManager(int time) {
-        mapa = new String[21][21];
-        base1 = new Base();
-        base2 = new Base();
+    public String[][] getMapa() {
+        return mapa;
+    }
 
-        this.time = time;
+    public GameManager() {
 
-
-
-        /*mapa[0][10] = base1.getName();
-        mapa[0][10] = "B2";
-        mapa[20][10] = base2.getName();
-        mapa[20][10] = "B1";*/
-
-        for(int m =0; m < mapa.length;m++){
-            for(int n = 0; n < mapa.length;n++){
-                mapa[m][n] = "|";
-            }
-        }
-
-        mapa[20][10] = "B";
-        mapa[0][10] = "B";
-        mapa[0][18] = "A";
-        mapa[0][3] = "A";
-        mapa[16][10] = "Z";
-
+        board = new Board();
         GameTimer gameTimer = new GameTimer(1000, time, false);
-        TroopMovement archer = new TroopMovement(new Archer(0, "all"), mapa);
-        TroopMovement archer2 = new TroopMovement(new Archer(0, "all"), mapa);
+        Archer archer = new Archer(2,10);
+        Base baseIA = new Base(0,10);
+        Base baseUser = new Base(14,10);
 
-        UpdateMap updateMap = new UpdateMap(mapa);
-        new Thread(updateMap).start();
+        //new Thread(archer).start();
+        //new Thread(baseIA).start();
+       // new Thread(baseUser).start();
+        board.setTroopBoard(archer);
+        board.setTroopBoard(baseIA);
+        board.setTroopBoard(baseUser);
+
+        //new Thread(new Archer(13,10)).start();
+
+        //UpdateMap updateMap = new UpdateMap(mapa);
+        //new Thread(updateMap).start();
 
         //new Thread(gameTimer).start();
-        new Thread(archer).start();
+        //new Thread(archer).start();
         //new Thread(archer2).start();
+        System.out.println("Me cago en dios");
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public synchronized void addTroop(){
+
 
     }
+
 
 
 }

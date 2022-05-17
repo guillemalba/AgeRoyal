@@ -1,6 +1,6 @@
 package business.threads;
 
-public class UpdateMap implements Runnable{
+public class UpdateMap {
 
     private String[][] mapa;
 
@@ -8,7 +8,7 @@ public class UpdateMap implements Runnable{
         this.mapa = mapa;
     }
 
-    @Override
+   /* @Override
     public void run() {
         while (true) {
             try {
@@ -18,9 +18,9 @@ public class UpdateMap implements Runnable{
             }
             drawMap();
         }
-    }
+    }*/
 
-    public void drawMap() {
+   /* public void drawMap() {
         System.out.println();
         for(int i =0; i < mapa.length;i++){
             System.out.println();
@@ -29,5 +29,5 @@ public class UpdateMap implements Runnable{
                 System.out.print(" ");
             }
         }
-    }
+    }*/
 }
