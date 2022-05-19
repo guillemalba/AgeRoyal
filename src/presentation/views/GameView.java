@@ -211,7 +211,5 @@ public class GameView extends JPanel {
 
         revalidate();
         repaint();
-
-        System.out.println("joder");
     }
 }

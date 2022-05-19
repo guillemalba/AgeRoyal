@@ -1,5 +1,7 @@
 import business.GameManager;
 import business.UserManager;
+import persistence.UserDAO;
+import persistence.UserSQLDAO;
 import presentation.controllers.*;
 import presentation.views.*;
 
@@ -10,68 +12,49 @@ public class Main {
     public static void main(String[] args) {
 
         /**
-         *
-         *
          * 1- New dels DAO
          * 2- New dels Manager
          * 3- New de les vistes
          * 4- New del Mainview, o Cardlayout
          * 5- New dels Controller
          * 6- Vincular controladors
-         *
          */
 
+        /* New dels DAO */
+        UserDAO userDAO = new UserSQLDAO();
+
+        /* News dels Managers */
         GameManager gameManager = new GameManager();
-
-
-
-
-
-        CardLayout viewComponents = new CardLayout();
-
         UserManager userManager = new UserManager();
 
-
-        RegisterView registerView = new RegisterView();
-
+        /* New de les Vistes */
         LoginView loginView = new LoginView();
-
+        RegisterView registerView = new RegisterView();
         LogoutView logoutView = new LogoutView();
-
         MenuView menuView = new MenuView();
-
         GameView gameView = new GameView();
-
-
-
-
         RecordedGameMenuView recordedGameMenuView = new RecordedGameMenuView();
 
-        MainView mainView = new MainView(viewComponents, registerView, loginView, logoutView, menuView, gameView, recordedGameMenuView);
+        /* New del mainView i CardLayout */
+        CardLayout cardLayout = new CardLayout();
+        MainView mainView = new MainView(cardLayout, registerView, loginView, logoutView, menuView, gameView, recordedGameMenuView);
 
-        LoginController loginController = new LoginController(loginView, mainView, viewComponents, userManager);
-        loginView.loginController(loginController);
-
-        RegisterController registerController = new RegisterController(registerView, mainView, viewComponents,userManager);
-        registerView.registerController(registerController);
-
-        LogoutController logoutController = new LogoutController(logoutView, mainView, viewComponents,userManager);
-        logoutView.registerController(logoutController);
-
-        MenuController menuController = new MenuController(menuView, mainView, viewComponents,userManager,gameManager);
-        menuView.registerActionListener(menuController);
-
+        /* New dels Controller */
+        LoginController loginController = new LoginController(loginView, mainView, cardLayout, userManager);
+        RegisterController registerController = new RegisterController(registerView, mainView, cardLayout,userManager);
+        LogoutController logoutController = new LogoutController(logoutView, mainView, cardLayout,userManager);
+        MenuController menuController = new MenuController(menuView, mainView, cardLayout,userManager,gameManager);
         GameViewController gameViewController = new GameViewController(gameView, mainView);
-        gameView.registerController(gameViewController, gameViewController);
-
-
-
-        gameManager.registerController(gameViewController);
-
         RecordedGameMenuController recordedGameMenuController = new RecordedGameMenuController(recordedGameMenuView, mainView);
-        recordedGameMenuView.recordedGameMenuController(recordedGameMenuController);
 
-        //new GameManager(3000);
+        /* Vincular Controllers */
+        loginView.loginController(loginController);
+        registerView.registerController(registerController);
+        logoutView.registerController(logoutController);
+        menuView.registerActionListener(menuController);
+        gameView.registerController(gameViewController, gameViewController);
+        recordedGameMenuView.recordedGameMenuController(recordedGameMenuController);
+        gameManager.registerController(gameViewController);
 
         mainView.start();
     }
