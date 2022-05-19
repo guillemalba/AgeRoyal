@@ -36,17 +36,15 @@ public class MenuController implements ActionListener {
                 menuView.showLogout();
             break;
             case "play_game":
-
-                GameView gameView = new GameView(new GameViewController(),gameManager.getBoard());
                 mainView.showGameView();
-
                 break;
             case "raking":
                 break;
             case "game_graphics":
                 break;
             case "game_recording":
-                menuView.setVisible(false);
+                mainView.showRecordedGame();
+                //menuView.setVisible(false);
                 /*RecordedGameView recordedGameView = new RecordedGameView();
                 RecordedGameMenuController recordedGameMenuController = new RecordedGameMenuController(recordedGameView, mainView, viewComponents, userManager);
                 recordedGameView.recordedGameMenuController(recordedGameMenuController);*/
