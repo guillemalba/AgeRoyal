@@ -121,6 +121,7 @@ public class MenuView extends JPanel {
     public void registerActionListener(ActionListener actionListener){
         jbSettings.addActionListener(actionListener);
         jbPlayGame.addActionListener(actionListener);
+        jbGameRecording.addActionListener(actionListener);
     }
 
     public void showLogout() {

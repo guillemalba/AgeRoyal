@@ -72,4 +72,8 @@ public class MainView extends JFrame {
     public void showSettings() {
         this.getViewComponent().show(this.getContentPane(), "logoutView");
     }
+
+    public void showRecordedGame() {
+        this.getViewComponent().show(this.getContentPane(), "recordedGameView");
+    }
 }
