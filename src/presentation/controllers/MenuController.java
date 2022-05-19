@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 
 public class MenuController implements ActionListener {
 
-    public MenuView menuView;
+    private MenuView menuView;
     private MainView mainView;
     private CardLayout viewComponents;
     private UserManager userManager;
@@ -37,7 +37,7 @@ public class MenuController implements ActionListener {
             break;
             case "play_game":
 
-                GameView gameView = new GameView(new GameViewController(),gameManager.getBoard());
+                gameManager.initGame();
                 mainView.showGameView();
 
                 break;

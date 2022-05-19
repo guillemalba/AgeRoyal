@@ -12,7 +12,6 @@ public class Main {
 
         UserManager userManager = new UserManager();
 
-        GameManager gameManager = new GameManager();
 
         RegisterView registerView = new RegisterView();
 
@@ -23,6 +22,9 @@ public class Main {
         MenuView menuView = new MenuView();
 
         GameView gameView = new GameView(new GameViewController());
+
+        GameManager gameManager = new GameManager();
+
 
         MainView mainView = new MainView(viewComponents, registerView, loginView, logoutView, menuView, gameView);
 

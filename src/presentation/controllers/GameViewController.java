@@ -153,4 +153,9 @@ public class GameViewController implements ActionListener, MouseListener {
         String[] positions = name.split(",");
         return Integer.parseInt(String.valueOf(positions[1]));
     }
+
+    public void addTroop(Board board) {
+        gameView = new GameView();
+        gameView.updateView(board);
+    }
 }

@@ -1,5 +1,7 @@
 package business.threads;
 
+import business.GameManager;
+
 public class GameTimer implements Runnable{
 
     // The time in milliseconds to make the Thread wait.
@@ -8,11 +10,13 @@ public class GameTimer implements Runnable{
     private int time;
     // bolean to stop the timer
     private boolean stop;
+    private GameManager gameManager;
 
-    public GameTimer(long sleepTime, int time, boolean stop) {
+    public GameTimer(long sleepTime, int time, boolean stop, GameManager gameManager) {
         this.sleepTime = sleepTime;
         this.time = time;
         this.stop = stop;
+        this.gameManager = gameManager;
     }
 
     @Override
@@ -26,7 +30,10 @@ public class GameTimer implements Runnable{
                 e.printStackTrace();
             }
             time++;
+
             System.out.println("Time: " + time);
+            gameManager.UpdateViewMap();
+
         }
         /*System.out.println("*** CountWorker FINISHED ***");*/
 

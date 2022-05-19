@@ -28,7 +28,11 @@ public class GameView extends JPanel {
         configureView();
     }
 
-    public GameView(GameViewController gameViewController,Board board){
+    public GameView() {
+
+    }
+
+    public GameView(GameViewController gameViewController, Board board){
         this.gameViewController = gameViewController;
         this.board = board;
 
@@ -57,7 +61,7 @@ public class GameView extends JPanel {
         table.setLayout(tableLayout);
         updateView(board);
 
-        midJp.add(table);
+        //si fa falta borrar el table
 
         JPanel info = new JPanel();
         info.setLayout(new BorderLayout());
@@ -169,9 +173,10 @@ public class GameView extends JPanel {
     }
 
     public void updateView(Board board) {
+        midJp.remove(table);
         tableGrid = new JPanel[15][15];
         String name;
-        table.removeAll();
+
 
         //funcion para pinta mapa nuevo
 
@@ -181,7 +186,7 @@ public class GameView extends JPanel {
                 tableGrid[i][j].setSize(board.getSide(),board.getSide());
                 tableGrid[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                 tableGrid[i][j].setName(i+","+j);
-                table.add(tableGrid[i][j]);
+
                 tableGrid[i][j].addMouseListener(gameViewController);
             }
         }
@@ -195,15 +200,23 @@ public class GameView extends JPanel {
                 }
             }
         }
+        for(int i = 0; i < board.getSide(); i++){
+            for(int j = 0; j < board.getSide(); j++) {
+                table.add(tableGrid[i][j]);
+            }
+        }
 
-        table.revalidate();
-        table.repaint();
+        System.out.println("lwlerlwklkwlewlekwleklweklwelwkelwelwkel");
 
+        midJp.add(table);
         /*MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map, players, userPlayer, revealMap);
         jpCenter = mp.creaMapa();
 
         background.add(jpCenter, BorderLayout.CENTER);
 
         */
+        revalidate();
+        repaint();
+        System.out.println("joder");
     }
 }
