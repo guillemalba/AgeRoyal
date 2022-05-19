@@ -45,7 +45,9 @@ public class Main {
 
 
 
-        MainView mainView = new MainView(viewComponents, registerView, loginView, logoutView, menuView, gameView);
+        RecordedGameMenuView recordedGameMenuView = new RecordedGameMenuView();
+
+        MainView mainView = new MainView(viewComponents, registerView, loginView, logoutView, menuView, gameView, recordedGameMenuView);
 
         LoginController loginController = new LoginController(loginView, mainView, viewComponents, userManager);
         loginView.loginController(loginController);
@@ -65,6 +67,9 @@ public class Main {
 
 
         gameManager.registerController(gameViewController);
+
+        RecordedGameMenuController recordedGameMenuController = new RecordedGameMenuController(recordedGameMenuView, mainView);
+        recordedGameMenuView.recordedGameMenuController(recordedGameMenuController);
 
         //new GameManager(3000);
 

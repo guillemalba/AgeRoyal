@@ -26,10 +26,6 @@ public class MainMenuController implements ActionListener {
             case "game_graphics":
                 break;
             case "game_recording":
-                mainMenuView.setVisible(false);
-                RecordedGameMenuView recordedGameMenuView = new RecordedGameMenuView();
-                RecordedGameMenuController recordedGameMenuController = new RecordedGameMenuController(recordedGameMenuView);
-                recordedGameMenuView.recordedGameMenuController(recordedGameMenuController);
                 break;
         }
     }

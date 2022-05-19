@@ -1,6 +1,7 @@
 package presentation.controllers;
 
 import presentation.views.MainMenuView;
+import presentation.views.MainView;
 import presentation.views.RecordedGameMenuView;
 
 import java.awt.event.ActionEvent;
@@ -8,9 +9,11 @@ import java.awt.event.ActionListener;
 
 public class RecordedGameMenuController implements ActionListener {
     private RecordedGameMenuView recordedGameMenuView;
+    private MainView mainView;
 
-    public RecordedGameMenuController(RecordedGameMenuView recordedGameMenuView) {
+    public RecordedGameMenuController(RecordedGameMenuView recordedGameMenuView, MainView mainView) {
         this.recordedGameMenuView = recordedGameMenuView;
+        this.mainView = mainView;
     }
 
     @Override
@@ -18,12 +21,10 @@ public class RecordedGameMenuController implements ActionListener {
         String command = e.getActionCommand();
         switch (command) {
             case "settings":
+                mainView.showSettings();
                 break;
             case "back":
-                recordedGameMenuView.setVisible(false);
-                MainMenuView mainMenuView = new MainMenuView();
-                MainMenuController mainMenuController = new MainMenuController(mainMenuView);
-                mainMenuView.mainMenuController(mainMenuController);
+                mainView.showMenu();
                 break;
         }
     }
