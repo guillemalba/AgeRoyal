@@ -24,6 +24,8 @@ public class Board {
     public boolean isEmpty(int i, int j){
         return board[i][j].getTroop() == null;
     }
+
+
     public Color getColorTroop(int i, int j){
 
         return board[i][j].getTroop().getColor();
@@ -40,8 +42,18 @@ public class Board {
         board[troop.getPosx()][troop.getPosy()].setTroop(troop);
     }
 
+    public void removeTroopBoard(Troop troop){
 
-    /*public setTroop(Troop troop){
-        board[i][j].se
-    }*/
+        board[troop.getPosx()][troop.getPosy()] = null;
+    }
+
+    public boolean isFinal(int x, int y){
+        if(x >=0 && x < side){
+            if(y >= 0 && y < side) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

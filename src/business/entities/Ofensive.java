@@ -1,5 +1,7 @@
 package business.entities;
 
+import business.GameManager;
+
 public class Ofensive extends Troop {
     private int movementVelocity;
     private String prefObjective;
@@ -7,8 +9,9 @@ public class Ofensive extends Troop {
 
 
 
-    public Ofensive(int posx,int posy) {
-        super(posx,posy);
+
+    public Ofensive(int posx, int posy, GameManager gameManager) {
+        super(posx,posy,gameManager);
     }
 
 

@@ -1,11 +1,13 @@
 package business.entities;
 
+import business.GameManager;
+
 public class Defensive extends Troop {
     private int timeLife;
 
 
-    public Defensive(int posx,int posy) {
-        super(posx,posy);
+    public Defensive(int posx, int posy, GameManager gamemanager) {
+        super(posx,posy,gamemanager);
         this.timeLife = timeLife;
     }
 

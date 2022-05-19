@@ -24,9 +24,6 @@ public class GameViewController implements ActionListener, MouseListener {
         this.mainView = mainView;
     }
 
-    public GameViewController() {
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
@@ -155,7 +152,7 @@ public class GameViewController implements ActionListener, MouseListener {
     }
 
     public void addTroop(Board board) {
-        gameView = new GameView();
+        //gameView = new GameView();
         gameView.updateView(board);
     }
 }

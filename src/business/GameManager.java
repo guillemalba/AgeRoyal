@@ -26,7 +26,6 @@ public class GameManager{
     private LinkedList<Troop> troops= new LinkedList();
 
     private GameViewController gameController;
-    private GameView gameView = new GameView();
 
     public String[][] getMapa() {
         return mapa;
@@ -36,16 +35,16 @@ public class GameManager{
 
     }
     public void initGame(){
-        gameController = new GameViewController();
         board = new Board();
         GameTimer gameTimer = new GameTimer(1000, time, false, this);
-        Archer archer = new Archer(2,10);
-        Base baseIA = new Base(0,10);
-        Base baseUser = new Base(14,10);
 
-        //new Thread(archer).start();
-        //new Thread(baseIA).start();
-        // new Thread(baseUser).start();
+        Archer archer = new Archer(2,7,this);
+        Base baseIA = new Base(0,7,this);
+        Base baseUser = new Base(14,7,this);
+
+        new Thread(archer).start();
+        new Thread(baseIA).start();
+        new Thread(baseUser).start();
         board.setTroopBoard(archer);
         board.setTroopBoard(baseIA);
         board.setTroopBoard(baseUser);
@@ -64,6 +63,10 @@ public class GameManager{
 
     public Board getBoard() {
         return board;
+    }
+
+    public void registerController(GameViewController controller) {
+        this.gameController = controller;
     }
 
     public void UpdateViewMap(){

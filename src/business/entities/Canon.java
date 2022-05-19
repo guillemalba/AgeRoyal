@@ -1,10 +1,11 @@
 package business.entities;
 
+import business.GameManager;
+
 public class Canon extends Defensive {
-    private int posx;
-    private int posy;
-    public Canon(int posx,int posy) {
-        super(posx,posy);
+
+    public Canon(int posx, int posy, GameManager gameManager) {
+        super(posx,posy,gameManager);
         this.setRange(2);//cuadrados a la redonda
         this.setName("Canon");
         this.setLife(30);
@@ -13,8 +14,7 @@ public class Canon extends Defensive {
         this.setAttackVelocity(2000);
         this.setType("Structure");
         this.setTimeLife(20);//seg
-        this.posx = posx;
-        this.posy = posy;
+
     }
 
 }

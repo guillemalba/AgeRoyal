@@ -1,14 +1,13 @@
 package business.entities;
 
+import business.GameManager;
+
 import java.awt.*;
 
 public class Base extends Defensive{
-    private int posx;
-    private int posy;
 
-
-    public Base(int posx,int posy) {
-        super(posx,posy);
+    public Base(int posx, int posy, GameManager gameManager) {
+        super(posx,posy,gameManager);
         this.setRange(4);//cuadrados a la redonda posible 5
         this.setName("B");
         this.setLife(400);
@@ -18,7 +17,5 @@ public class Base extends Defensive{
         this.setType("Structure");
         this.setTimeLife(10000);//seg
         this.setColor(Color.BLUE);
-        this.posx = posx;
-        this.posy = posy;
     }
 }

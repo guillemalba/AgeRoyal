@@ -1,12 +1,13 @@
 package business.entities;
 
+import business.GameManager;
+
 public class TeslaTower extends Defensive{
     private boolean hide;
-    private int posx;
-    private int posy;
 
-    public TeslaTower(int posx,int posy) {
-        super(posx,posy);
+
+    public TeslaTower(int posx, int posy, GameManager gameManager) {
+        super(posx,posy,gameManager);
         this.hide = hide;
         this.setRange(2);//cuadrados a la redonda
         this.setName("TeslaTower");
@@ -16,8 +17,7 @@ public class TeslaTower extends Defensive{
         this.setAttackVelocity(2000);
         this.setType("Structure");
         this.setTimeLife(30);//seg
-        this.posx = posx;
-        this.posy = posy;
+
     }
 
 

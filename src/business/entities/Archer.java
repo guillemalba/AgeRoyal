@@ -1,16 +1,14 @@
 package business.entities;
 
+import business.GameManager;
+
 import java.awt.*;
+
 
 public class Archer extends Ofensive {
 
-    private int posx;
-    private int posy;
-
-
-
-    public Archer(int posx,int posy) {
-        super(posx,posy);
+    public Archer(int posx,int posy, GameManager gameManager) {
+        super(posx,posy,gameManager);
         this.setRange(1);//cuadrados a la redonda posible 5
         this.setName("A");
         this.setLife(12);
@@ -19,9 +17,8 @@ public class Archer extends Ofensive {
         this.setAttackVelocity(3000);
         this.setMovementVelocity(3000);
         this.setPrefObjective("all");
-        this.posx = posx;
-        this.posy = posy;
         this.setColor(Color.RED);
+
     }
 
 
@@ -29,6 +26,16 @@ public class Archer extends Ofensive {
     @Override
     public int getMovementVelocity() {
         return super.getMovementVelocity();
+    }
+
+    @Override
+    public void move() {
+        super.move();
+    }
+
+    @Override
+    public boolean canMove() {
+        return super.canMove();
     }
 
     @Override
@@ -40,8 +47,9 @@ public class Archer extends Ofensive {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            //drawMap();
-            //tropMove("A");
+            if(canMove()) move();
+            System.out.println(getPosx());
+
         }
     }
 }

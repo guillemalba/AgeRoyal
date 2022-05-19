@@ -22,10 +22,11 @@ public class Troop implements Runnable{
     private Color color;
 
 
-    public Troop(int posx, int posy) {
+    public Troop(int posx, int posy,GameManager gameManager) {
 
         this.posx = posx;
         this.posy = posy;
+        this.gameManager = gameManager;
     }
 
     public int getRange() {
@@ -122,7 +123,95 @@ public class Troop implements Runnable{
 
 
 
-    /*public String checkMove(int movel, int fila, int columna, String[][] mapa) {
+    public void move() {
+
+        gameManager.getBoard().removeTroopBoard(this);
+        setPosy(getPosx()+1);
+        gameManager.getBoard().setTroopBoard(this);
+
+
+    }
+
+
+    public boolean canMove() {
+
+        if(gameManager.getBoard().isFinal(getPosx()+1,getPosy()) && gameManager.getBoard().isEmpty(getPosx()+1,getPosy())) return true;
+
+        return false;
+    }
+
+   /*
+
+   public void attack() {
+        int damage = getAtaque() / getRival().getDefensa();
+        if (rival.getNom().equals("Base")){
+            pm.baseAtacada(damage, usuari);
+        } else {
+            getRival().setVida(getRival().getVida() - (damage * 4));
+        }
+    }
+
+    public boolean enemyNear() {
+        boolean enemic = false;
+        int rang_accio;
+
+        if (this.usuari) {
+            rang_accio = -this.rangAccio;
+        } else {
+            rang_accio = this.rangAccio;
+        }
+
+        //mirar dreta(U) / esquerra(M)
+        if(esPotAtacar(rang_accio, 0)) {
+            enemic = true;
+            setRival(getPartidaManager().getTaulell().getFitxaCasella(getPosx() + rang_accio, getPosy()));
+            //rival.setRival(this);
+
+            //mirar esquerra
+        } else if(esPotAtacar(-rang_accio, 0)){
+            enemic = true;
+            setRival(getPartidaManager().getTaulell().getFitxaCasella(getPosX() - rang_accio, getPosY()));
+            //rival.setRival(this);
+
+            //mirar endavant
+        } else if(esPotAtacar(0, rang_accio)){
+            enemic = true;
+            setRival(getPartidaManager().getTaulell().getFitxaCasella(getPosX(), getPosY() + rang_accio));
+            //rival.setRival(this);
+        }
+
+        return enemic;
+    }
+
+
+    private boolean checkBoardLimits(int rangAccioX, int rangAccioY){
+        return getPartidaManager().getTaulell().inTheLimit(getPosX() + rangAccioX, getPosY() + rangAccioY);
+    }
+
+
+    private boolean cellIsEmpty(int rangAccioX, int rangAccioY){
+        return getPartidaManager().getTaulell().getFitxaCasella(getPosX() + rangAccioX, getPosY() + rangAccioY) != null;
+    }
+
+
+    private boolean isEnemy(int rangAccioX, int rangAccioY){
+        return getPartidaManager().getTaulell().getFitxaCasella(getPosX() + rangAccioX, getPosY() + rangAccioY).isUsuari() != usuari;
+    }
+
+
+    private boolean canAttack(int rangAccioX, int rangAccioY){
+        if (comprovarLimit(rangAccioX, rangAccioY) && comprovarSiHiHaAlgu(rangAccioX, rangAccioY) && comprovarSiEsEnemic(rangAccioX, rangAccioY)){
+            return true;
+        }
+        return false;
+    }
+
+
+
+
+
+
+    public String checkMove(int movel, int fila, int columna, String[][] mapa) {
         boolean front = false;
         boolean fRight = false;
         boolean fLeft = false;

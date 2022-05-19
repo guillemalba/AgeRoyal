@@ -34,33 +34,7 @@ public class TroopMovement {
 
     }
 
-    /*public void drawMap() {
-        int auxI = -1;
-        int auxJ = -1;
-        System.out.println();
-        for(int i =0; i < mapa.length;i++){
-            System.out.println();
-            for(int j = 0; j < mapa.length;j++){
-                System.out.print((mapa[i][j]));
-                System.out.print(" ");
-                if (mapa[i][j].equals(troop.getName())) {
-                    auxI = i;
-                    auxJ = j;
-                }
-            }
-        }
-        if (auxI != -1) {
-            mapa[auxI][auxJ] = "|";
-            if (auxJ > 10 && auxJ <= 20) {
-                auxJ--;
-            }
-            if (auxJ < 10 && auxJ >= 0) {
-                auxJ++;
-            }
-            mapa[auxI+1][auxJ] = troop.getName();
-        }
 
-    }*/
     public synchronized void moveTroop(String name) {
 
         int auxI = -1;
