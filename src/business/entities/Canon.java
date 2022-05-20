@@ -4,8 +4,8 @@ import business.GameManager;
 
 public class Canon extends Defensive {
 
-    public Canon(int posx, int posy, GameManager gameManager) {
-        super(posx,posy,gameManager);
+    public Canon(int posx, int posy, GameManager gameManager, boolean isUser) {
+        super(posx,posy,gameManager, isUser);
         this.setRange(2);//cuadrados a la redonda
         this.setName("Canon");
         this.setLife(30);

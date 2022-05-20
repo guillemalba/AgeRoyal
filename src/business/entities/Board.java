@@ -17,7 +17,7 @@ public class Board {
 
     }
 
-    public Cell[][] getBoard() {
+    public Cell[][] getCellsMatrix() {
         return cellsMatrix;
     }
 
@@ -47,7 +47,7 @@ public class Board {
         cellsMatrix[troop.getPosx()][troop.getPosy()].setTroop(null);
     }
 
-    public boolean isFinal(int x, int y){
+    public boolean isOnTheEdge(int x, int y){
         if(x >=0 && x < side){
             if(y >= 0 && y < side) {
                 return true;

@@ -38,27 +38,27 @@ public class GameManager{
         board = new Board();
         GameTimer gameTimer = new GameTimer(1000, time, false, this);
 
-        Archer archer = new Archer(2,2,this);
-        Base baseIA = new Base(0,7,this);
-        Base baseUser = new Base(14,7,this);
+        Archer archer = new Archer(2,2,this, false);
+        Archer archer2 = new Archer(2,12,this, false);
+        Archer archer3 = new Archer(10,7,this, true);
+        Base baseIA = new Base(0,7,this, false);
+        Base baseUser = new Base(14,7,this, true);
 
         new Thread(archer).start();
+        new Thread(archer2).start();
+        new Thread(archer3).start();
         new Thread(baseIA).start();
         new Thread(baseUser).start();
         board.setTroopBoard(archer);
+        board.setTroopBoard(archer2);
+        board.setTroopBoard(archer3);
         board.setTroopBoard(baseIA);
         board.setTroopBoard(baseUser);
         gameController.addTroop(board);
 
-        //new Thread(new Archer(13,10)).start();
-
-        //UpdateMap updateMap = new UpdateMap(mapa);
-        //new Thread(updateMap).start();
 
         new Thread(gameTimer).start();
-        //new Thread(archer).start();
-        //new Thread(archer2).start();
-        System.out.println("Me cago en dios");
+
     }
 
     public Board getBoard() {

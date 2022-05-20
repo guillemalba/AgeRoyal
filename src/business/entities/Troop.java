@@ -7,6 +7,7 @@ import java.awt.*;
 
 public class Troop implements Runnable{
 
+    private boolean isUser;
     private int range;
     private String name;
     private float life;
@@ -22,11 +23,12 @@ public class Troop implements Runnable{
     private Color color;
 
 
-    public Troop(int posx, int posy,GameManager gameManager) {
+    public Troop(int posx, int posy, GameManager gameManager, boolean isUser) {
 
         this.posx = posx;
         this.posy = posy;
         this.gameManager = gameManager;
+        this.isUser = isUser;
     }
 
     public int getRange() {
@@ -109,8 +111,20 @@ public class Troop implements Runnable{
         return color;
     }
 
+    public boolean isUser() {
+        return isUser;
+    }
+
+    public void setUser(boolean user) {
+        isUser = user;
+    }
+
     @Override
     public void run() {
+
+        if(enemyNear()) {
+            //attack();
+        }
 
     }
 
@@ -125,46 +139,23 @@ public class Troop implements Runnable{
 
     public void move() {
 
-        gameManager.getBoard().removeTroopBoard(this);
-        int auxI = getPosx();
-        int auxJ = getPosy();
+        if(!isUser) {
 
-        if (auxJ > 7 && auxJ <= 15) {
-            auxJ--;
-            auxI++;
-        } else if (auxJ < 7 && auxJ >= 0) {
-            auxJ++;
-            auxI++;
-        } else{
-            auxI++;
-        }
-        setPosy(auxJ);
-        setPosx(auxI);
-        gameManager.getBoard().setTroopBoard(this);
+            gameManager.getBoard().removeTroopBoard(this);
+            int auxI = getPosx();
+            int auxJ = getPosy();
 
-
-    }
-
-    /*public synchronized void moveTroop() {
-        int auxI = -1;
-        int auxJ = -1;
-        for(int i =0; i < mapa.length;i++){
-            for(int j = 0; j < mapa.length;j++){
-                if (mapa[i][j].equals(troop.getName())) {
-                    auxI = i;
-                    auxJ = j;
-                }
-            }
-        }
-        if (auxI != -1) {
-            mapa[auxI][auxJ] = "|";
-            if (auxJ > 10 && auxJ <= 20 && mapa[auxI+1][auxJ-1].equals("|")) {
+            if (auxJ > 7 && auxJ <= 15) {
                 auxJ--;
                 auxI++;
-            } else if (auxJ < 10 && auxJ >= 0 && mapa[auxI+1][auxJ+1].equals("|")) {
+            } else if (auxJ < 7 && auxJ >= 0) {
                 auxJ++;
                 auxI++;
-            } else if (mapa[auxI+1][auxJ].equals("|")) {
+            } else {
+                auxI++;
+            }
+            /*
+            *  else if (mapa[auxI+1][auxJ].equals("|")) {
                 auxI++;
             } else if (mapa[auxI+1][auxJ--].equals("|")) {
                 auxI++;
@@ -172,16 +163,66 @@ public class Troop implements Runnable{
             } else if (mapa[auxI+1][auxJ++].equals("|")) {
                 auxI++;
                 auxJ--;
-            }
-            mapa[auxI][auxJ] = troop.getName();
+            }*/
+            setPosy(auxJ);
+            setPosx(auxI);
+            gameManager.getBoard().setTroopBoard(this);
         }
-    }*/
+
+
+    }
+
+
+
+    public boolean enemyNear() {
+        for (int i = this.posx - this.range; i < this.posx + this.range; i++) {
+            /*System.out.println("next");*/
+            for (int j = this.posy - this.range; j < this.posx + this.range; j++) {
+                if (i >= 0 && j >= 0 && i <= 14 && j <= 14) {
+                    /*System.out.println("i = " + i +" --> j = " + j);*/
+                    if (gameManager.getBoard().getCellsMatrix()[i][j].getTroop() != null){
+                        if (gameManager.getBoard().getCellsMatrix()[i][j].getTroop().isUser()) {
+                            System.out.println("isHere");
+                        }
+                    }
+                }
+                /*Troop posibleEnemy = gameManager.getBoard().getCellsMatrix()[i][j].getTroop();*/
+                /*if (gameManager.getBoard().getCellsMatrix()[i][j].getTroop() != null){
+                    if (gameManager.getBoard().getCellsMatrix()[i][j].getTroop().isUser()) {
+
+                    }
+                }*/
+            }
+        }
+
+
+        /*//mirar dreta(U) / esquerra(M)
+        if(esPotAtacar(rang_accio, 0)) {
+            return true;
+            setRival(getPartidaManager().getTaulell().getFitxaCasella(getPosx() + rang_accio, getPosy()));
+            //rival.setRival(this);
+
+            //mirar esquerra
+        } else if(esPotAtacar(-rang_accio, 0)){
+            return true;
+            setRival(getPartidaManager().getTaulell().getFitxaCasella(getPosX() - rang_accio, getPosY()));
+            //rival.setRival(this);
+
+            //mirar endavant
+        } else if(esPotAtacar(0, rang_accio)){
+            return true;
+            setRival(getPartidaManager().getTaulell().getFitxaCasella(getPosX(), getPosY() + rang_accio));
+            //rival.setRival(this);
+        }*/
+
+        return false;
+    }
 
 
 
     public boolean canMove() {
 
-        if(gameManager.getBoard().isFinal(getPosx()+1,getPosy()) && gameManager.getBoard().isEmpty(getPosx()+1,getPosy())) return true;
+        if(gameManager.getBoard().isOnTheEdge(getPosx()+1,getPosy()) && gameManager.getBoard().isEmpty(getPosx()+1,getPosy())) return true;
 
         return false;
     }

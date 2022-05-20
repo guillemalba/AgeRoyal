@@ -6,8 +6,8 @@ public class TeslaTower extends Defensive{
     private boolean hide;
 
 
-    public TeslaTower(int posx, int posy, GameManager gameManager) {
-        super(posx,posy,gameManager);
+    public TeslaTower(int posx, int posy, GameManager gameManager, boolean isUser) {
+        super(posx, posy, gameManager, isUser);
         this.hide = hide;
         this.setRange(2);//cuadrados a la redonda
         this.setName("TeslaTower");

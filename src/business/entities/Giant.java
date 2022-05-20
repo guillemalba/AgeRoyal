@@ -4,8 +4,8 @@ import business.GameManager;
 
 public class Giant extends Ofensive{
 
-    public Giant(int posx, int posy, GameManager gameManager) {
-        super(posx, posy,gameManager);
+    public Giant(int posx, int posy, GameManager gameManager, boolean isUser) {
+        super(posx, posy,gameManager, isUser);
         this.setRange(1);//cuadrados a la redonda posible 5
         this.setName("G");
         this.setLife(100);
