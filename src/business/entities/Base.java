@@ -8,7 +8,7 @@ public class Base extends Defensive{
 
     public Base(int posx, int posy, GameManager gameManager, boolean isUser) {
         super(posx,posy,gameManager, isUser);
-        this.setRange(4);//cuadrados a la redonda posible 5
+        this.setRange(2);//cuadrados a la redonda posible 5
         this.setName("B");
         this.setLife(400);
         this.setCost(0);

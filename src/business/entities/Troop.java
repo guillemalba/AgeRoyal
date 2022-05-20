@@ -1,7 +1,6 @@
 package business.entities;
 
 import business.GameManager;
-import business.threads.TroopMovement;
 
 import java.awt.*;
 
@@ -17,7 +16,6 @@ public class Troop implements Runnable{
     private String type;
     private GameManager gameManager;
     private String[][] mapa;
-    private TroopMovement movement;
     private int posx;
     private int posy;
     private Color color;
@@ -122,18 +120,14 @@ public class Troop implements Runnable{
     @Override
     public void run() {
 
-        if(enemyNear()) {
-            //attack();
+        while(true) {
+            if(enemyNear()) {
+                //attack();
+            }
+
         }
 
     }
-
-
-    public void tropMove(String name){
-        movement.moveTroop(name);
-    }
-
-
 
 
 
@@ -175,14 +169,23 @@ public class Troop implements Runnable{
 
 
     public boolean enemyNear() {
+        /*System.out.println("Range is: " + getRange());*/
         for (int i = this.posx - this.range; i < this.posx + this.range; i++) {
+            /*System.out.println("i = " + i + " -> this.posx = " + this.posx + " -> this.range = " + this.range);*/
             /*System.out.println("next");*/
             for (int j = this.posy - this.range; j < this.posx + this.range; j++) {
                 if (i >= 0 && j >= 0 && i <= 14 && j <= 14) {
                     /*System.out.println("i = " + i +" --> j = " + j);*/
                     if (gameManager.getBoard().getCellsMatrix()[i][j].getTroop() != null){
                         if (gameManager.getBoard().getCellsMatrix()[i][j].getTroop().isUser()) {
-                            System.out.println("isHere");
+                            /*System.out.println("i = " + i + "-->  j = " + j);*/
+                            if (this.posx == i && this.posy == j) {
+                            } else {
+                                Troop troop = gameManager.getBoard().getCellsMatrix()[i][j].getTroop();
+                                /*System.out.println("name: " + troop.getName() + " --> pos (" + troop.getPosx() + "," + troop.getPosy() + ")");*/
+                                return true;
+                            }
+
                         }
                     }
                 }

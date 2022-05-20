@@ -53,4 +53,5 @@ public class UserManager {
     public void setUser(String user) {
         this.user = user;
     }
+
 }

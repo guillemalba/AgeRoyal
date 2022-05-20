@@ -154,4 +154,8 @@ public class GameViewController implements ActionListener, MouseListener {
     public void addTroop(Board board) {
         gameView.updateView(board);
     }
+
+    public void updateMoney() {
+        //gameView.updateMoney();
+    }
 }
