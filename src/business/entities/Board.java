@@ -3,32 +3,32 @@ package business.entities;
 import java.awt.*;
 
 public class Board {
-    private Cell[][] board;
+    private Cell[][] cellsMatrix;
     private int side = 15;
     private Cell cell;
 
     public Board() {
-        this.board = new Cell[side][side];
+        this.cellsMatrix = new Cell[side][side];
         for (int i = 0; i < side; i++) {
             for (int j = 0; j < side; j++) {
-                board[i][j] = new Cell(i, j, null);
+                cellsMatrix[i][j] = new Cell(i, j, null);
             }
         }
 
     }
 
     public Cell[][] getBoard() {
-        return board;
+        return cellsMatrix;
     }
 
     public boolean isEmpty(int i, int j){
-        return board[i][j].getTroop() == null;
+        return cellsMatrix[i][j].getTroop() == null;
     }
 
 
     public Color getColorTroop(int i, int j){
 
-        return board[i][j].getTroop().getColor();
+        return cellsMatrix[i][j].getTroop().getColor();
     }
 
     public int getSide(){
@@ -39,12 +39,12 @@ public class Board {
 
 
     public void setTroopBoard(Troop troop){
-        board[troop.getPosx()][troop.getPosy()].setTroop(troop);
+        cellsMatrix[troop.getPosx()][troop.getPosy()].setTroop(troop);
     }
 
     public void removeTroopBoard(Troop troop){
 
-        board[troop.getPosx()][troop.getPosy()] = null;
+        cellsMatrix[troop.getPosx()][troop.getPosy()].setTroop(null);
     }
 
     public boolean isFinal(int x, int y){

@@ -17,13 +17,15 @@ public class GameView extends JPanel {
 
     private JButton settingsJb = new JButton("Settings");
     private JButton backJb = new JButton("Back");
-    private JPanel[][] tableGrid;
+    private JPanel[][] tableGrid = new JPanel[15][15];
     private Board board;
     private JPanel table = new JPanel();
     private JPanel midJp = new JPanel();
 
     public GameView(){
-
+        if (board == null) {
+            board = new Board();
+        }
         configureView();
     }
 
@@ -162,9 +164,8 @@ public class GameView extends JPanel {
     public void registerController(ActionListener listener1, MouseListener listener2) {
         settingsJb.addActionListener(listener1);
         backJb.addActionListener(listener1);
-
-        for(int i = 0; i < board.getSide(); i++){
-            for(int j = 0; j < board.getSide(); j++) {
+        for(int i = 0; i < 15; i++){
+            for(int j = 0; j < 15; j++) {
                 tableGrid[i][j].addMouseListener(listener2);
             }
         }
@@ -181,10 +182,11 @@ public class GameView extends JPanel {
 
         //funcion para pinta mapa nuevo
 
-        for(int i = 0; i < board.getSide(); i++){
-            for(int j = 0; j < board.getSide(); j++) {
+
+        for(int i = 0; i < 15; i++){
+            for(int j = 0; j < 15; j++) {
                 tableGrid[i][j] = new JPanel();
-                tableGrid[i][j].setSize(board.getSide(),board.getSide());
+                tableGrid[i][j].setSize(15,15);
                 tableGrid[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                 tableGrid[i][j].setName(i+","+j);
             }
@@ -192,17 +194,18 @@ public class GameView extends JPanel {
 
         //pintem el panell
         for(int i = 0; i < board.getSide(); i++){
-            for(int j = 0; j < board.getSide(); j++) {
-                if(board.isEmpty(i,j)){
+            for(int j = 0; j < 15; j++) {
+                if (board.isEmpty(i,j)) {
                     tableGrid[i][j].setBackground(Color.WHITE);
-                }else{
+                } else {
                     tableGrid[i][j].setBackground(board.getColorTroop(i,j));
                 }
+
             }
         }
         //omplim la table amb el panell pintat
-        for(int i = 0; i < board.getSide(); i++){
-            for(int j = 0; j < board.getSide(); j++) {
+        for(int i = 0; i < 15; i++){
+            for(int j = 0; j < 15; j++) {
                 table.add(tableGrid[i][j]);
             }
         }

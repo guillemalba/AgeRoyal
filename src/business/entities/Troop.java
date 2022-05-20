@@ -126,11 +126,57 @@ public class Troop implements Runnable{
     public void move() {
 
         gameManager.getBoard().removeTroopBoard(this);
-        setPosy(getPosx()+1);
+        int auxI = getPosx();
+        int auxJ = getPosy();
+
+        if (auxJ > 7 && auxJ <= 15) {
+            auxJ--;
+            auxI++;
+        } else if (auxJ < 7 && auxJ >= 0) {
+            auxJ++;
+            auxI++;
+        } else{
+            auxI++;
+        }
+        setPosy(auxJ);
+        setPosx(auxI);
         gameManager.getBoard().setTroopBoard(this);
 
 
     }
+
+    /*public synchronized void moveTroop() {
+        int auxI = -1;
+        int auxJ = -1;
+        for(int i =0; i < mapa.length;i++){
+            for(int j = 0; j < mapa.length;j++){
+                if (mapa[i][j].equals(troop.getName())) {
+                    auxI = i;
+                    auxJ = j;
+                }
+            }
+        }
+        if (auxI != -1) {
+            mapa[auxI][auxJ] = "|";
+            if (auxJ > 10 && auxJ <= 20 && mapa[auxI+1][auxJ-1].equals("|")) {
+                auxJ--;
+                auxI++;
+            } else if (auxJ < 10 && auxJ >= 0 && mapa[auxI+1][auxJ+1].equals("|")) {
+                auxJ++;
+                auxI++;
+            } else if (mapa[auxI+1][auxJ].equals("|")) {
+                auxI++;
+            } else if (mapa[auxI+1][auxJ--].equals("|")) {
+                auxI++;
+                auxJ--;
+            } else if (mapa[auxI+1][auxJ++].equals("|")) {
+                auxI++;
+                auxJ--;
+            }
+            mapa[auxI][auxJ] = troop.getName();
+        }
+    }*/
+
 
 
     public boolean canMove() {

@@ -38,7 +38,7 @@ public class GameManager{
         board = new Board();
         GameTimer gameTimer = new GameTimer(1000, time, false, this);
 
-        Archer archer = new Archer(2,7,this);
+        Archer archer = new Archer(2,2,this);
         Base baseIA = new Base(0,7,this);
         Base baseUser = new Base(14,7,this);
 
