@@ -31,6 +31,8 @@ public class Board {
         return cellsMatrix[i][j].getTroop().getColor();
     }
 
+
+
     public int getSide(){
         return side;
     }
@@ -55,5 +57,11 @@ public class Board {
         }
         return false;
     }
+
+    public void killTroop(int x,int y){
+        cellsMatrix[x][y].getTroop().setStop(true);
+    }
+
+
 
 }

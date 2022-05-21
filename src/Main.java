@@ -45,7 +45,7 @@ public class Main {
         RegisterController registerController = new RegisterController(registerView, mainView, cardLayout,userManager);
         LogoutController logoutController = new LogoutController(logoutView, mainView, cardLayout,userManager);
         RecordedGameMenuController recordedGameMenuController = new RecordedGameMenuController(recordedGameMenuView, mainView, gameManager);
-        GameViewController gameViewController = new GameViewController(gameView, mainView);
+        GameViewController gameViewController = new GameViewController(gameView, mainView,gameManager);
         RankingController rankingController = new RankingController(rankingView, mainView, userManager);
         MenuController menuController = new MenuController(menuView, mainView, cardLayout,userManager,gameManager, recordedGameMenuController, rankingController);
 

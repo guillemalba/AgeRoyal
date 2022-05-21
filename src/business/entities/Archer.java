@@ -8,20 +8,18 @@ import java.awt.*;
 public class Archer extends Ofensive {
 
 
-    public Archer(int posx,int posy, GameManager gameManager, boolean isUser) {
-        super(posx,posy,gameManager, isUser);
+    public Archer(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop) {
+        super(name,posx, posy, gameManager, isUser,stop);
         this.setRange(4);//cuadrados a la redonda posible 5
-        this.setName("A");
         this.setLife(12);
         this.setCost(2);
-        this.setDamage(100);//quiza 2
-        this.setAttackVelocity(3000);
+        this.setDamage(4);//quiza 2
+        this.setAttackVelocity(2000);
         this.setMovementVelocity(3000);
         this.setPrefObjective("all");
         this.setColor(Color.RED);
 
     }
-
 
 
     @Override
@@ -41,27 +39,36 @@ public class Archer extends Ofensive {
 
     @Override
     public synchronized void run() {
-        while (true) {
-            try {
 
+        while(!isStop()) {
+            try {
                 Thread.sleep(getMovementVelocity());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if(enemyNear()!=null && enemyNear().getLife() <= 0){
+
+            if (enemyNear() != null && enemyNear().getLife() >= 0.0) {
+
                 atack(enemyNear());
-            }else{
-                if(canMove()) move();
+
+            } else {
+
+                if (canMove()) move();
                 enemyNear();
-                System.out.println(getPosx());
             }
 
 
         }
+        dieTroop(this);
     }
 
     @Override
     public Troop enemyNear() {
         return super.enemyNear();
+    }
+
+    @Override
+    public void dieTroop(Troop troop) {
+        super.dieTroop(troop);
     }
 }

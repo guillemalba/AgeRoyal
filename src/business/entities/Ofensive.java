@@ -10,8 +10,8 @@ public class Ofensive extends Troop {
 
 
 
-    public Ofensive(int posx, int posy, GameManager gameManager, boolean isUser) {
-        super(posx,posy,gameManager, isUser);
+    public Ofensive(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop) {
+        super(name,posx,posy,gameManager, isUser,stop);
     }
 
 

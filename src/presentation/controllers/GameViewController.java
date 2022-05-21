@@ -1,6 +1,7 @@
 package presentation.controllers;
 
 
+import business.GameManager;
 import business.entities.*;
 import com.sun.tools.javac.Main;
 import presentation.views.GameView;
@@ -16,12 +17,13 @@ import java.awt.event.MouseListener;
 public class GameViewController implements ActionListener, MouseListener {
     private GameView gameView;
     private MainView mainView;
-
+    private GameManager gameManager;
     private Troop selectedT;
 
-    public GameViewController (GameView gameView, MainView mainView){
+    public GameViewController (GameView gameView, MainView mainView, GameManager gameManager){
         this.gameView = gameView;
         this.mainView = mainView;
+        this.gameManager = gameManager;
     }
 
     @Override
@@ -31,7 +33,8 @@ public class GameViewController implements ActionListener, MouseListener {
                 mainView.showSettings();
             break;
             case "Back":
-                mainView.showMenu();
+                gameManager.stopGame();
+
             break;
         }
     }
@@ -157,5 +160,9 @@ public class GameViewController implements ActionListener, MouseListener {
 
     public void updateMoney() {
         //gameView.updateMoney();
+    }
+
+    public void finishGame(){
+        mainView.showMenu();
     }
 }

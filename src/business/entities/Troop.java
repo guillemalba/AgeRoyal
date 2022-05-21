@@ -7,27 +7,38 @@ import java.awt.*;
 public class Troop implements Runnable{
 
     private boolean isUser;
+    private boolean stop;
     private int range;
     private String name;
     private float life;
     private int cost;
     private float damage;
-    private float attackVelocity;
+    private int attackVelocity;
     private String type;
     private GameManager gameManager;
-    private String[][] mapa;
     private int posx;
     private int posy;
     private Color color;
-    private Troop enemyTroop;
 
 
-    public Troop(int posx, int posy, GameManager gameManager, boolean isUser) {
 
+
+    public Troop(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop) {
+
+        this.name = name;
         this.posx = posx;
         this.posy = posy;
         this.gameManager = gameManager;
         this.isUser = isUser;
+        this.stop = stop;
+    }
+
+    public boolean isStop() {
+        return stop;
+    }
+
+    public void setStop(boolean stop) {
+        this.stop = stop;
     }
 
     public int getRange() {
@@ -70,11 +81,11 @@ public class Troop implements Runnable{
         this.damage = damage;
     }
 
-    public float getAttackVelocity() {
+    public long getAttackVelocity() {
         return attackVelocity;
     }
 
-    public void setAttackVelocity(float attackVelocity) {
+    public void setAttackVelocity(int attackVelocity) {
         this.attackVelocity = attackVelocity;
     }
 
@@ -127,12 +138,10 @@ public class Troop implements Runnable{
 
     public void move() {
 
+        gameManager.getBoard().removeTroopBoard(this);
+        int auxI = getPosx();
+        int auxJ = getPosy();
         if(!isUser) {
-
-            gameManager.getBoard().removeTroopBoard(this);
-            int auxI = getPosx();
-            int auxJ = getPosy();
-
             if (auxJ > 7 && auxJ <= 15) {
                 auxJ--;
                 auxI++;
@@ -141,21 +150,23 @@ public class Troop implements Runnable{
                 auxI++;
             } else {
                 auxI++;
+
             }
-            /*
-            *  else if (mapa[auxI+1][auxJ].equals("|")) {
-                auxI++;
-            } else if (mapa[auxI+1][auxJ--].equals("|")) {
-                auxI++;
+
+        } else {
+            if (auxJ > 7 && auxJ <= 15) {
                 auxJ--;
-            } else if (mapa[auxI+1][auxJ++].equals("|")) {
-                auxI++;
-                auxJ--;
-            }*/
-            setPosy(auxJ);
-            setPosx(auxI);
-            gameManager.getBoard().setTroopBoard(this);
+                auxI--;
+            } else if (auxJ < 7 && auxJ >= 0) {
+                auxJ++;
+                auxI--;
+            } else {
+                auxI--;
+            }
         }
+        setPosy(auxJ);
+        setPosx(auxI);
+        gameManager.getBoard().setTroopBoard(this);
 
 
     }
@@ -166,10 +177,12 @@ public class Troop implements Runnable{
         for (int i = this.posx - this.range; i <= this.posx + this.range; i++) {
             for (int j = this.posy - this.range; j <= this.posy + this.range; j++) {
                 if (i >= 0 && j >= 0 && i <= 14 && j <= 14) {
+
                     if (gameManager.getBoard().getCellsMatrix()[i][j].getTroop() != null){
                         if (gameManager.getBoard().getCellsMatrix()[i][j].getTroop().isUser() && !this.isUser) {
                             Troop troop = gameManager.getBoard().getCellsMatrix()[i][j].getTroop();
                             /*System.out.println("["+this.posy+","+this.posx+"]" + " --> pos (" + troop.getPosx() + "," + troop.getPosy() + ")");*/ // TODO: elimina
+
                             return troop;
 
                         } else if (!(gameManager.getBoard().getCellsMatrix()[i][j].getTroop().isUser()) && this.isUser) {
@@ -207,38 +220,42 @@ public class Troop implements Runnable{
     }
 
     public void atack(Troop enemyTroop){
-        System.out.println("entro en atack");
-        while(enemyNear()!= null){
+
+        while(enemyNear().getLife() > 0 && !stop){
+
             try {
-                Thread.sleep(2000);
+                Thread.sleep(attackVelocity);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            if(enemyTroop.getLife() > 0){
-                System.out.println("Te meto un meco");
+            if(enemyTroop.getLife() > 0.0){
                 enemyTroop.setLife(enemyTroop.getLife() - getDamage());
-                System.out.println(enemyTroop.getName()+" "+enemyTroop.getLife());
+                System.out.println(name+" "+" pega a "+enemyTroop.name+" le deja con " +enemyTroop.getLife());
+            }else{
+                System.out.println(name + "Mata a "+enemyTroop.name);
+                enemyTroop.setStop(true);
             }
-            if(enemyTroop.getLife() <=0){
-                gameManager.getBoard().removeTroopBoard(enemyTroop);
-            }
+
         }
-        System.out.println("no he entrado");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        System.out.println("Soy "+ name+ " salgo de matar a "+ enemyTroop.name);
 
     }
 
+    public void dieTroop(Troop troop){
+        gameManager.getBoard().removeTroopBoard(troop);
+    }
 
     public boolean canMove() {
 
         if(gameManager.getBoard().isOnTheEdge(getPosx()+1,getPosy()) && gameManager.getBoard().isEmpty(getPosx()+1,getPosy())) return true;
 
         return false;
+    }
+
+    public void stopGame(){
+        gameManager.stopGame();
     }
 
 

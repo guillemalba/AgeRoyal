@@ -6,14 +6,14 @@ import java.awt.*;
 
 public class Base extends Defensive{
 
-    public Base(int posx, int posy, GameManager gameManager, boolean isUser) {
-        super(posx,posy,gameManager, isUser);
-        this.setRange(1);//cuadrados a la redonda posible 5
-        this.setName("B");
-        this.setLife(400);
+    public Base(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop) {
+        super(name,posx,posy,gameManager, isUser,stop);
+        this.setRange(5);//cuadrados a la redonda posible 5
+
+        this.setLife(30);
         this.setCost(0);
         this.setDamage(6);
-        this.setAttackVelocity(2000);
+        this.setAttackVelocity(1000);
         this.setType("Structure");
         this.setTimeLife(10000);//seg
         this.setColor(Color.BLUE);
@@ -24,15 +24,21 @@ public class Base extends Defensive{
     public synchronized void run() {
 
 
-        while (true) {
+        while (getLife() > 0) {
             try {
 
-                Thread.sleep(2000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if(!isUser())System.out.println(getLife());
+            if (enemyNear() != null && enemyNear().getLife() >= 0.0) {
+                atack(enemyNear());
+            }
+
         }
+        dieTroop(this);
+        stopGame();
+
     }
 
 }
