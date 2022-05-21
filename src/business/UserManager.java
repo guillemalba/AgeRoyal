@@ -9,6 +9,7 @@ import java.util.LinkedList;
 public class UserManager {
     private UserDAO userDAO;
     private String user;
+    private LinkedList<User> users;
 
     public UserManager() {
         userDAO = new UserSQLDAO();
@@ -52,6 +53,12 @@ public class UserManager {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public LinkedList<User> updateUsers(){
+        if(users != null) users.removeAll(users);
+        users = userDAO.readAllUsers();
+        return users;
     }
 
 }

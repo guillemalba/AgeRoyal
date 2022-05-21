@@ -19,6 +19,7 @@ public class Troop implements Runnable{
     private int posx;
     private int posy;
     private Color color;
+    private Troop enemyTroop;
 
 
     public Troop(int posx, int posy, GameManager gameManager, boolean isUser) {
@@ -205,6 +206,32 @@ public class Troop implements Runnable{
         return null;
     }
 
+    public void atack(Troop enemyTroop){
+        System.out.println("entro en atack");
+        while(enemyNear()!= null){
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            if(enemyTroop.getLife() > 0){
+                System.out.println("Te meto un meco");
+                enemyTroop.setLife(enemyTroop.getLife() - getDamage());
+                System.out.println(enemyTroop.getName()+" "+enemyTroop.getLife());
+            }
+            if(enemyTroop.getLife() <=0){
+                gameManager.getBoard().removeTroopBoard(enemyTroop);
+            }
+        }
+        System.out.println("no he entrado");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
     public boolean canMove() {
@@ -213,6 +240,7 @@ public class Troop implements Runnable{
 
         return false;
     }
+
 
    /*
 
@@ -278,6 +306,16 @@ public class Troop implements Runnable{
             return true;
         }
         return false;
+    }
+    public void atack(){
+        enemyTroop = enemyNear();
+        while(enemyNear() != null){
+            System.out.println("te meto cerdo");
+            while(enemyTroop.getLife()-getDamage() >= 0){
+                enemyTroop.setLife(enemyTroop.getLife() - getDamage());
+            }
+
+        }
     }
 
 

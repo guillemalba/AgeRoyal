@@ -7,13 +7,14 @@ import java.awt.*;
 
 public class Archer extends Ofensive {
 
+
     public Archer(int posx,int posy, GameManager gameManager, boolean isUser) {
         super(posx,posy,gameManager, isUser);
         this.setRange(4);//cuadrados a la redonda posible 5
         this.setName("A");
         this.setLife(12);
         this.setCost(2);
-        this.setDamage(3);//quiza 2
+        this.setDamage(100);//quiza 2
         this.setAttackVelocity(3000);
         this.setMovementVelocity(3000);
         this.setPrefObjective("all");
@@ -47,9 +48,14 @@ public class Archer extends Ofensive {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            //if(canMove()) move();
-            enemyNear();
-            //System.out.println(getPosx());
+            if(enemyNear()!=null && enemyNear().getLife() <= 0){
+                atack(enemyNear());
+            }else{
+                if(canMove()) move();
+                enemyNear();
+                System.out.println(getPosx());
+            }
+
 
         }
     }

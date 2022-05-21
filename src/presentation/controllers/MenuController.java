@@ -19,15 +19,16 @@ public class MenuController implements ActionListener {
     private UserManager userManager;
     private GameManager gameManager;
     private RecordedGameMenuController recordedGameMenuController;
+    private RankingController rankingController;
 
-    public MenuController(MenuView menuView, MainView mainView, CardLayout viewComponents, UserManager userManager,GameManager gameManager, RecordedGameMenuController recordedGameMenuController) {
+    public MenuController(MenuView menuView, MainView mainView, CardLayout viewComponents, UserManager userManager,GameManager gameManager, RecordedGameMenuController recordedGameMenuController, RankingController rankingController) {
         this.menuView = menuView;
         this.mainView = mainView;
         this.viewComponents = viewComponents;
         this.userManager = userManager;
         this.gameManager = gameManager;
         this.recordedGameMenuController = recordedGameMenuController;
-
+        this.rankingController = rankingController;
     }
 
     @Override
@@ -43,7 +44,9 @@ public class MenuController implements ActionListener {
                 gameManager.initGame();
                 mainView.showGameView();
                 break;
-            case "raking":
+            case "ranking":
+                rankingController.updateRecorderUsers();
+                mainView.showRanking();
                 break;
             case "game_graphics":
                 break;
