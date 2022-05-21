@@ -18,4 +18,21 @@ public class Base extends Defensive{
         this.setTimeLife(10000);//seg
         this.setColor(Color.BLUE);
     }
+
+
+    @Override
+    public synchronized void run() {
+
+
+        while (true) {
+            try {
+
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if(!isUser())System.out.println(getLife());
+        }
+    }
+
 }

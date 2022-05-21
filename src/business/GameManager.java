@@ -40,9 +40,9 @@ public class GameManager{
         board = new Board();
         GameTimer gameTimer = new GameTimer(1000, time, false, this);
 
-        Archer archer = new Archer(2,6,this, false);
+        Archer archer = new Archer(10,6,this, false);
         //Archer archer2 = new Archer(2,12,this, false);
-        Archer archer3 = new Archer(5,2,this, true);
+        //Archer archer3 = new Archer(5,2,this, true);
         Base baseIA = new Base(0,7,this, false);
         Base baseUser = new Base(14,7,this, true);
 
@@ -51,12 +51,13 @@ public class GameManager{
         new Thread(moneyCounterIA).start();
 
         //new Thread(archer2).start();
-        new Thread(archer3).start();
-        new Thread(baseIA).start();
+        //new Thread(archer3).start();
         new Thread(baseUser).start();
+        new Thread(baseIA).start();
+
         new Thread(archer).start();
         //board.setTroopBoard(archer2);
-        board.setTroopBoard(archer3);
+        //board.setTroopBoard(archer3);
         board.setTroopBoard(baseIA);
         board.setTroopBoard(baseUser);
         board.setTroopBoard(archer);
