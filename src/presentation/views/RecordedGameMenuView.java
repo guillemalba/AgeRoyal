@@ -1,20 +1,39 @@
 package presentation.views;
 
+import business.entities.Game;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
+import java.util.LinkedList;
 
 public class RecordedGameMenuView extends JPanel {
-    JButton jbSettings;
-    JButton jbBack;
+    private JButton jbSettings;
+    private JButton jbBack;
+    private LinkedList<Game> games;
+
+    private JPanel table = new JPanel();
+    private JPanel jpCenter = new JPanel();
+    private JScrollPane scrollPane = new JScrollPane();
+
+
+    private JPanel[] recorded;
+
 
     public RecordedGameMenuView() {
+        if(games == null){
+            games = new LinkedList<Game>();
+        }
+        setLayout(new BorderLayout());
+        setSize(550, 720);
         JPanel background = new JPanel(new BorderLayout());
+        background.setSize(550, 50);
         background.setLayout(new BorderLayout());
-        background.setBackground(Color.GRAY);
+        //background.setBackground(Color.GRAY);
 
         /**************************************** HEADER *********************************************/
         JPanel jpNorth = new JPanel(new BorderLayout());
@@ -29,42 +48,17 @@ public class RecordedGameMenuView extends JPanel {
         background.add(jpNorth, BorderLayout.NORTH);
 
         /******************************************** BODY *******************************************/
-        Dimension dimension = new Dimension(300,100);
-        Border border = BorderFactory.createCompoundBorder(
-                BorderFactory.createEmptyBorder(15, 15, 15, 15),
-                BorderFactory.createCompoundBorder(
-                        BorderFactory.createLineBorder(Color.WHITE,3,true),
-                        BorderFactory.createEmptyBorder(5,5,10,10)
-                )
-        );
 
-        JPanel jpCenter = new JPanel(new GridLayout(1,4));
+        scrollPane.setBounds(5, 10, 580, 80);
+
+
         //TODO: Sacar el numero de Juegos grabados por usuario y la informacion de cada juego
-        int score1 = 4;
-        int score2 = 0;
-        for(int i = 0; i < 4; i++){
-            JPanel recorded = new JPanel();
-            recorded.setLayout(new BoxLayout(recorded, BoxLayout.PAGE_AXIS));
-            String name = "Hola";
-            recorded.add(new JLabel("Name: "+name));
-            recorded.add(new JLabel("["+(score1-i)+"-"+(score2+i)+"]"));
-            if((score1-i) > (score2+i)){
-                recorded.setBorder(BorderFactory.createLineBorder(Color.blue));
-            }else if ((score1-i) == (score2+i)){
-                recorded.setBorder(BorderFactory.createLineBorder(Color.black));
-            }else {
-                recorded.setBorder(BorderFactory.createLineBorder(Color.red));
-            }
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDateTime now = LocalDateTime.now();
-            recorded.add(new JLabel(dtf.format(now)));
-            jpCenter.add(recorded);
-        }
+        BoxLayout layout = new BoxLayout(jpCenter, BoxLayout.PAGE_AXIS);
+        jpCenter.setLayout(layout);
 
-        JPanel jpBody = new JPanel(new GridLayout());
-        jpBody.add(jpCenter);
-        jpBody.setOpaque(false);
-        background.add(jpBody, BorderLayout.CENTER);
+        jpCenter.add(scrollPane);
+
+        background.add(scrollPane, BorderLayout.CENTER);
 
         /******************************************** FOOT *******************************************/
         JPanel jpSouth = new JPanel(new BorderLayout());
@@ -84,5 +78,37 @@ public class RecordedGameMenuView extends JPanel {
     public void recordedGameMenuController(ActionListener actionListener) {
         jbSettings.addActionListener(actionListener);
         jbBack.addActionListener(actionListener);
+    }
+
+    public void update(LinkedList<Game> games){
+        this.games = games;
+        scrollPane.remove(table);
+
+        if(games.size() != 0) {
+            for (int i = 0; i < games.size(); i++) {
+                recorded[i] = new JPanel(new BorderLayout());
+                recorded[i].setSize(50, 50);
+
+                String name = "Hola";
+                recorded[i].add(new JLabel("Name: " + games.get(i).getName()), BorderLayout.NORTH);
+                recorded[i].add(new JLabel("Player: "+ games.get(i).getPlayer()));
+                if (games.get(i).getWin()) {
+                    recorded[i].setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(100, 5, 0, 5), BorderFactory.createLineBorder(Color.blue)));
+                } else {
+                    recorded[i].setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(100, 5, 0, 5), BorderFactory.createLineBorder(Color.red)));
+                }
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+                recorded[i].add(new JLabel(dtf.format((TemporalAccessor) games.get(i).getDate())), BorderLayout.SOUTH);
+
+                table.add(recorded[i]);
+            }
+        }else{
+            jpCenter.add(new Label("There are no games recorded!"));
+        }
+        scrollPane.setViewportView(table);
+
+        revalidate();
+        repaint();
     }
 }

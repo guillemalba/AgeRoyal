@@ -43,9 +43,9 @@ public class Main {
         LoginController loginController = new LoginController(loginView, mainView, cardLayout, userManager);
         RegisterController registerController = new RegisterController(registerView, mainView, cardLayout,userManager);
         LogoutController logoutController = new LogoutController(logoutView, mainView, cardLayout,userManager);
-        MenuController menuController = new MenuController(menuView, mainView, cardLayout,userManager,gameManager);
+        RecordedGameMenuController recordedGameMenuController = new RecordedGameMenuController(recordedGameMenuView, mainView, gameManager);
         GameViewController gameViewController = new GameViewController(gameView, mainView);
-        RecordedGameMenuController recordedGameMenuController = new RecordedGameMenuController(recordedGameMenuView, mainView);
+        MenuController menuController = new MenuController(menuView, mainView, cardLayout,userManager,gameManager, recordedGameMenuController);
 
         /* Vincular Controllers */
         loginView.loginController(loginController);
