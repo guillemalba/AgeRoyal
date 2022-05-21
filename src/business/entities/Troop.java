@@ -161,24 +161,27 @@ public class Troop implements Runnable{
 
 
 
-    public boolean enemyNear() {
-        System.out.println("Troop name is: " + getName() + " Range is: " + getRange());
-        for (int i = this.posx - this.range; i < this.posx + this.range; i++) {
-            /*System.out.println("i = " + i + " -> this.posx = " + this.posx + " -> this.range = " + this.range);*/
+    public Troop enemyNear() {
+        /*System.out.println("Troop name is: " + getName() + " Range is: " + getRange());*/
+        for (int i = this.posx - this.range; i <= this.posx + this.range; i++) {
             /*System.out.println("next");*/
-            for (int j = this.posy - this.range; j < this.posx + this.range; j++) {
+            for (int j = this.posy - this.range; j <= this.posx + this.range; j++) {
+            /*System.out.println("["+this.posy+","+this.posx+"]" + " | i = " + i + " | j = " + j + " | this.range = " + this.range);*/
                 if (i >= 0 && j >= 0 && i <= 14 && j <= 14) {
                     /*System.out.println("i = " + i +" --> j = " + j);*/
                     if (gameManager.getBoard().getCellsMatrix()[i][j].getTroop() != null){
-                        if (gameManager.getBoard().getCellsMatrix()[i][j].getTroop().isUser()) {
+                        if (gameManager.getBoard().getCellsMatrix()[i][j].getTroop().isUser() && !this.isUser) {
                             /*System.out.println("i = " + i + "-->  j = " + j);*/
-                            if (this.posx == i && this.posy == j) {
-                            } else {
-                                Troop troop = gameManager.getBoard().getCellsMatrix()[i][j].getTroop();
-                                /*System.out.println("name: " + troop.getName() + " --> pos (" + troop.getPosx() + "," + troop.getPosy() + ")");*/
-                                return true;
-                            }
 
+                            Troop troop = gameManager.getBoard().getCellsMatrix()[i][j].getTroop();
+                            System.out.println("["+this.posy+","+this.posx+"]" + " --> pos (" + troop.getPosx() + "," + troop.getPosy() + ")");
+                            return troop;
+
+                        } else if (!(gameManager.getBoard().getCellsMatrix()[i][j].getTroop().isUser()) && this.isUser) {
+                            Troop troop = gameManager.getBoard().getCellsMatrix()[i][j].getTroop();
+                            System.out.println("["+this.posx+","+this.posy+"]" + " --> pos (" + troop.getPosx() + "," + troop.getPosy() + ")");
+                            /*System.out.println("name: " + troop.getName() + " --> pos (" + troop.getPosx() + "," + troop.getPosy() + ")");*/
+                            return troop;
                         }
                     }
                 }
@@ -190,6 +193,7 @@ public class Troop implements Runnable{
                 }*/
             }
         }
+
 
 
         /*//mirar dreta(U) / esquerra(M)
@@ -211,7 +215,7 @@ public class Troop implements Runnable{
             //rival.setRival(this);
         }*/
 
-        return false;
+        return null;
     }
 
 

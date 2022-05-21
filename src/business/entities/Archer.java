@@ -9,7 +9,7 @@ public class Archer extends Ofensive {
 
     public Archer(int posx,int posy, GameManager gameManager, boolean isUser) {
         super(posx,posy,gameManager, isUser);
-        this.setRange(1);//cuadrados a la redonda posible 5
+        this.setRange(3);//cuadrados a la redonda posible 5
         this.setName("A");
         this.setLife(12);
         this.setCost(2);
@@ -47,15 +47,15 @@ public class Archer extends Ofensive {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if(canMove()) move();
+            //if(canMove()) move();
             enemyNear();
-            System.out.println(getPosx());
+            //System.out.println(getPosx());
 
         }
     }
 
     @Override
-    public boolean enemyNear() {
+    public Troop enemyNear() {
         return super.enemyNear();
     }
 }
