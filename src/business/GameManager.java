@@ -16,7 +16,6 @@ import java.util.LinkedList;
 
 public class GameManager{
     private Base base2;
-    private String mapa[][];
     private Board board;
     private Troop base1;
     private int time;
@@ -32,6 +31,7 @@ public class GameManager{
     }
 
     public LinkedList<Game> updateGames() {
+        if(games != null) games.removeAll(games);
         games = gameDAO.readAllGames();
         return games;
     }

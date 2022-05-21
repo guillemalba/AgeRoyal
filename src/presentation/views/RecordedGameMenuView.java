@@ -84,6 +84,7 @@ public class RecordedGameMenuView extends JPanel {
         this.games = games;
         scrollPane.remove(table);
 
+
         if(games.size() != 0) {
             for (int i = 0; i < games.size(); i++) {
                 recorded[i] = new JPanel(new BorderLayout());

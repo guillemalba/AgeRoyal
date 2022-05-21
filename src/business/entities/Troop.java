@@ -192,6 +192,12 @@ public class Troop implements Runnable{
         }
 
 
+        //public void Atack(){
+         //   if()
+
+       // }
+
+
         /*//mirar dreta(U) / esquerra(M)
         if(esPotAtacar(rang_accio, 0)) {
             return true;
