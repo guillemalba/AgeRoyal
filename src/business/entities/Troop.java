@@ -120,13 +120,6 @@ public class Troop implements Runnable{
     @Override
     public void run() {
 
-        while(true) {
-            if(enemyNear()) {
-                //attack();
-            }
-
-        }
-
     }
 
 
@@ -169,7 +162,7 @@ public class Troop implements Runnable{
 
 
     public boolean enemyNear() {
-        /*System.out.println("Range is: " + getRange());*/
+        System.out.println("Troop name is: " + getName() + " Range is: " + getRange());
         for (int i = this.posx - this.range; i < this.posx + this.range; i++) {
             /*System.out.println("i = " + i + " -> this.posx = " + this.posx + " -> this.range = " + this.range);*/
             /*System.out.println("next");*/
