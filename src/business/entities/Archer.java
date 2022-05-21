@@ -9,7 +9,7 @@ public class Archer extends Ofensive {
 
     public Archer(int posx,int posy, GameManager gameManager, boolean isUser) {
         super(posx,posy,gameManager, isUser);
-        this.setRange(3);//cuadrados a la redonda posible 5
+        this.setRange(4);//cuadrados a la redonda posible 5
         this.setName("A");
         this.setLife(12);
         this.setCost(2);
