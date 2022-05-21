@@ -20,7 +20,7 @@ public class RecordedGameMenuView extends JPanel {
     private JPanel jpCenter = new JPanel();
     private JScrollPane scrollPane = new JScrollPane();
 
-
+    //TODO: Hacer que el array guarde todas las partidas no solo 10
     private JPanel[] recorded = new JPanel[10];
 
 
@@ -52,7 +52,6 @@ public class RecordedGameMenuView extends JPanel {
         scrollPane.setBounds(5, 10, 580, 80);
 
 
-        //TODO: Sacar el numero de Juegos grabados por usuario y la informacion de cada juego
         BoxLayout layout = new BoxLayout(jpCenter, BoxLayout.PAGE_AXIS);
         jpCenter.setLayout(layout);
 
@@ -82,15 +81,22 @@ public class RecordedGameMenuView extends JPanel {
 
     public void update(LinkedList<Game> games){
         this.games = games;
+
+        if(recorded[0] != null){
+            for (int i = 0; i < recorded.length; i++) {
+                if(recorded[i] != null) {
+                    table.remove(recorded[i]);
+                }
+            }
+        }
         scrollPane.remove(table);
 
-
         if(games.size() != 0) {
+
             for (int i = 0; i < games.size(); i++) {
                 recorded[i] = new JPanel(new BorderLayout());
                 recorded[i].setSize(50, 50);
 
-                String name = "Hola";
                 recorded[i].add(new JLabel("Name: " + games.get(i).getName()), BorderLayout.NORTH);
                 recorded[i].add(new JLabel("Player: "+ games.get(i).getPlayer()));
                 if (games.get(i).getWin()) {

@@ -12,13 +12,14 @@ Create table Player(
 Drop table if exists Game cascade;
 Create table Game(
     name            varchar(255),
-    data            date,
-    public          varchar(255),
+    data            Varchar(255),
     win             boolean,
     player          varchar(255),
     primary key(name),
     foreign key (player) references Player(name)
 );
+insert into Game (name,data,win,player) Values ('A','21-02-2020',true,'Mario');
+select * from game;
 
 Drop table if exists Troops cascade;
 create table Troops(
