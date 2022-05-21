@@ -18,13 +18,16 @@ public class MenuController implements ActionListener {
     private CardLayout viewComponents;
     private UserManager userManager;
     private GameManager gameManager;
+    private RecordedGameMenuController recordedGameMenuController;
 
-    public MenuController(MenuView menuView, MainView mainView, CardLayout viewComponents, UserManager userManager,GameManager gameManager) {
+    public MenuController(MenuView menuView, MainView mainView, CardLayout viewComponents, UserManager userManager,GameManager gameManager, RecordedGameMenuController recordedGameMenuController) {
         this.menuView = menuView;
         this.mainView = mainView;
         this.viewComponents = viewComponents;
         this.userManager = userManager;
         this.gameManager = gameManager;
+        this.recordedGameMenuController = recordedGameMenuController;
+
     }
 
     @Override
@@ -45,6 +48,7 @@ public class MenuController implements ActionListener {
             case "game_graphics":
                 break;
             case "game_recording":
+                recordedGameMenuController.updateRecordedGame();
                 mainView.showRecordedGame();
                 //menuView.setVisible(false);
                 /*RecordedGameView recordedGameView = new RecordedGameView();

@@ -2,8 +2,9 @@ package presentation.views;
 
 import business.entities.Board;
 import business.entities.Troop;
-import org.w3c.dom.Text;
+
 import presentation.controllers.GameViewController;
+import org.w3c.dom.*;
 
 import javax.swing.*;
 import java.awt.*;

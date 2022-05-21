@@ -23,12 +23,15 @@ public class RegisterView extends JPanel {
 
     private void configureRegisterView() {
         setLayout(new BoxLayout(this ,BoxLayout.PAGE_AXIS));
+        setSize(550, 720);
 
         //Creamos los labels que queremos que aparezcan en la pagina
         JLabel jlSingIn = new JLabel("Register");
 
         //Creamos un panel nuevo para tener una tabla para intriducir los datos de los usuarios
         JPanel jpTable = new JPanel(new GridLayout(0,2));
+        jpTable.setSize(550, 720);
+        jpTable.setBackground(Color.red);
         JLabel jlUsername = new JLabel("Username");
         jtfUsername = new JTextField();
         JLabel jlEmail = new JLabel("Email");

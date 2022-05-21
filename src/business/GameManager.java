@@ -8,13 +8,14 @@ import business.entities.Troop;
 import business.threads.GameTimer;
 import business.entities.*;
 import business.threads.MoneyCounter;
+import persistence.GameDAO;
+import persistence.GameSQLDAO;
 import presentation.controllers.GameViewController;
 
 import java.util.LinkedList;
 
 public class GameManager{
     private Base base2;
-    private String mapa[][];
     private Board board;
     private Troop base1;
     private int time;
@@ -22,14 +23,19 @@ public class GameManager{
     private MoneyCounter moneyCounterIA;
 
     private GameViewController gameController;
-
-    public String[][] getMapa() {
-        return mapa;
-    }
+    private GameDAO gameDAO;
+    private LinkedList<Game> games;
 
     public GameManager() {
-
+        gameDAO = new GameSQLDAO();
     }
+
+    public LinkedList<Game> updateGames() {
+        if(games != null) games.removeAll(games);
+        games = gameDAO.readAllGames();
+        return games;
+    }
+
     public void initGame(){
         board = new Board();
         GameTimer gameTimer = new GameTimer(1000, time, false, this);
@@ -72,7 +78,6 @@ public class GameManager{
     public void UpdateViewMap(){
         gameController.addTroop(board);
     }
-
 
     public void updateMoney() {
         gameController.updateMoney();

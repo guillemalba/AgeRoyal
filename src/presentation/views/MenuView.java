@@ -21,19 +21,16 @@ public class MenuView extends JPanel {
     }
 
     private void configureMenuView() {
-        JFrame jframe = new JFrame();
 
-        /** Configurem la finestra **/
-        jframe.setTitle("Main Menu");
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        setSize(screenSize.width, screenSize.height);
-        //jframe.setLocationRelativeTo(null);
-        jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+        setSize(550, 720);
+
 
         /** Creem un background per afegir les coses **/
         JPanel background = new JPanel();
         background.setLayout(new BorderLayout());
-        background.setBackground(Color.GRAY);
+        setSize(550, 720);
+        background.setBackground(Color.WHITE);
 
         /******************************************** HEADER *******************************************/
         /** Creem un altre BorderLayout per distribuir el header de la finestra**/
@@ -51,7 +48,7 @@ public class MenuView extends JPanel {
         JPanel jpBody = new JPanel(new GridBagLayout());
         JLabel viewTitle = new JLabel("AGE ROYALE", JLabel.CENTER);
         viewTitle.setFont(new Font("font", Font.BOLD, 70));
-        viewTitle.setForeground(Color.WHITE);
+        viewTitle.setForeground(Color.BLACK);
         jpNorth.add(viewTitle, BorderLayout.CENTER);
 
         background.add(jpNorth, BorderLayout.NORTH);
@@ -74,7 +71,8 @@ public class MenuView extends JPanel {
         jbPlayGame.setForeground(Color.BLACK);
         jbPlayGame.setBackground(Color.WHITE);
         jbPlayGame.setActionCommand("play_game");
-        jbPlayGame.setBorder(border);
+        jbPlayGame.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0), BorderFactory.createLineBorder(Color.black)));
+
         jbPlayGame.setPreferredSize(dimension);
         jpCenter.add(jbPlayGame);
 
@@ -82,7 +80,7 @@ public class MenuView extends JPanel {
         jbRanking.setForeground(Color.BLACK);
         jbRanking.setBackground(Color.WHITE);
         jbRanking.setActionCommand("ranking");
-        jbRanking.setBorder(border);
+        jbRanking.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0), BorderFactory.createLineBorder(Color.black)));
         jbRanking.setPreferredSize(dimension);
         jpCenter.add(jbRanking);
 
@@ -90,7 +88,7 @@ public class MenuView extends JPanel {
         jbGameGraphics.setForeground(Color.BLACK);
         jbGameGraphics.setBackground(Color.WHITE);
         jbGameGraphics.setActionCommand("game_graphics");
-        jbGameGraphics.setBorder(border);
+        jbGameGraphics.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0), BorderFactory.createLineBorder(Color.black)));
         jbGameGraphics.setPreferredSize(dimension);
         jpCenter.add(jbGameGraphics);
 
@@ -98,7 +96,7 @@ public class MenuView extends JPanel {
         jbGameRecording.setForeground(Color.BLACK);
         jbGameRecording.setBackground(Color.WHITE);
         jbGameRecording.setActionCommand("game_recording");
-        jbGameRecording.setBorder(border);
+        jbGameRecording.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0), BorderFactory.createLineBorder(Color.black)));
         jbGameRecording.setPreferredSize(dimension);
         jpCenter.add(jbGameRecording);
 
