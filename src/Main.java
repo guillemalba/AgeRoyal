@@ -53,7 +53,7 @@ public class Main {
         logoutView.registerController(logoutController);
         menuView.registerActionListener(menuController);
         gameView.registerController(gameViewController, gameViewController);
-        recordedGameMenuView.recordedGameMenuController(recordedGameMenuController);
+        recordedGameMenuView.setRecordedGameMenuController(recordedGameMenuController);
         gameManager.registerController(gameViewController);
 
         mainView.start();

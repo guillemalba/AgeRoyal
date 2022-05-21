@@ -1,11 +1,13 @@
 package presentation.views;
 
 import business.entities.Game;
+import presentation.controllers.RecordedGameMenuController;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseMotionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
@@ -19,6 +21,7 @@ public class RecordedGameMenuView extends JPanel {
     private JPanel table = new JPanel();
     private JPanel jpCenter = new JPanel();
     private JScrollPane scrollPane = new JScrollPane();
+    private RecordedGameMenuController recordedGameMenuController;
 
     private JPanel[] recorded = new JPanel[100];
 
@@ -73,6 +76,11 @@ public class RecordedGameMenuView extends JPanel {
         add(background);
     }
 
+    public void setRecordedGameMenuController(RecordedGameMenuController recordedGameMenuController) {
+        this.recordedGameMenuController = recordedGameMenuController;
+        recordedGameMenuController(recordedGameMenuController);
+    }
+
     public void recordedGameMenuController(ActionListener actionListener) {
         jbSettings.addActionListener(actionListener);
         jbBack.addActionListener(actionListener);
@@ -103,7 +111,7 @@ public class RecordedGameMenuView extends JPanel {
                 } else {
                     recorded[i].setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(100, 5, 0, 5), BorderFactory.createLineBorder(Color.red)));
                 }
-
+                recorded[i].addMouseListener(recordedGameMenuController);
                 recorded[i].add(new JLabel(games.get(i).getDate()), BorderLayout.SOUTH);
 
                 table.add(recorded[i]);
@@ -115,5 +123,12 @@ public class RecordedGameMenuView extends JPanel {
 
         revalidate();
         repaint();
+    }
+
+    public void popUp() {
+        int input = JOptionPane.showConfirmDialog(new RecordedGameMenuView(),
+                "Do you want to watch that game?", "Customized Dialog",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        System.out.println(input);
     }
 }
