@@ -1,7 +1,7 @@
 {
   "port": 5432,
   "user": "postgres",
-  "password": "your-password",
-  "db": "B1-AgeRoyal",
+  "password": " 123",
+  "db": "dpoo-2122-s2-b1",
   "url":"jdbc:postgresql://localhost:5432/postgres"
 }

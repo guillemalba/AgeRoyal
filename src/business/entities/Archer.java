@@ -48,8 +48,14 @@ public class Archer extends Ofensive {
                 e.printStackTrace();
             }
             if(canMove()) move();
+            enemyNear();
             System.out.println(getPosx());
 
         }
+    }
+
+    @Override
+    public boolean enemyNear() {
+        return super.enemyNear();
     }
 }
