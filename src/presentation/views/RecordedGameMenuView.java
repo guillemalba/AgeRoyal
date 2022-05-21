@@ -21,7 +21,7 @@ public class RecordedGameMenuView extends JPanel {
     private JScrollPane scrollPane = new JScrollPane();
 
 
-    private JPanel[] recorded;
+    private JPanel[] recorded = new JPanel[10];
 
 
     public RecordedGameMenuView() {
@@ -97,9 +97,8 @@ public class RecordedGameMenuView extends JPanel {
                 } else {
                     recorded[i].setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(100, 5, 0, 5), BorderFactory.createLineBorder(Color.red)));
                 }
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-                recorded[i].add(new JLabel(dtf.format((TemporalAccessor) games.get(i).getDate())), BorderLayout.SOUTH);
+                recorded[i].add(new JLabel(games.get(i).getDate()), BorderLayout.SOUTH);
 
                 table.add(recorded[i]);
             }

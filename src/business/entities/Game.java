@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class Game {
     private String name;
-    private Date date;
+    private String date;
     private Boolean win;
     private String player;
 
-    public Game(String name, Date date, Boolean win, String player) {
+    public Game(String name, String date, Boolean win, String player) {
         this.name = name;
         this.date = date;
         this.win = win;
@@ -27,11 +27,11 @@ public class Game {
         this.name = name;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

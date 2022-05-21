@@ -23,7 +23,7 @@ public class GameSQLDAO implements GameDAO{
             while ((resultSet.next())) {
                 Game game = new Game(
                         resultSet.getString("name"),
-                        resultSet.getDate("data"),
+                        resultSet.getString("data"),
                         resultSet.getBoolean("win"),
                         resultSet.getString("player")
                 );
