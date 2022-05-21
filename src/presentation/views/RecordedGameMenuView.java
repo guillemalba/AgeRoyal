@@ -20,8 +20,7 @@ public class RecordedGameMenuView extends JPanel {
     private JPanel jpCenter = new JPanel();
     private JScrollPane scrollPane = new JScrollPane();
 
-    //TODO: Hacer que el array guarde todas las partidas no solo 10
-    private JPanel[] recorded = new JPanel[10];
+    private JPanel[] recorded = new JPanel[100];
 
 
     public RecordedGameMenuView() {
