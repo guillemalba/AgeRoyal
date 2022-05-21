@@ -34,10 +34,11 @@ public class Main {
         MenuView menuView = new MenuView();
         GameView gameView = new GameView();
         RecordedGameMenuView recordedGameMenuView = new RecordedGameMenuView();
+        RankingView rankingView = new RankingView();
 
         /* New del mainView i CardLayout */
         CardLayout cardLayout = new CardLayout();
-        MainView mainView = new MainView(cardLayout, registerView, loginView, logoutView, menuView, gameView, recordedGameMenuView);
+        MainView mainView = new MainView(cardLayout, registerView, loginView, logoutView, menuView, gameView, recordedGameMenuView, rankingView);
 
         /* New dels Controller */
         LoginController loginController = new LoginController(loginView, mainView, cardLayout, userManager);
@@ -45,7 +46,8 @@ public class Main {
         LogoutController logoutController = new LogoutController(logoutView, mainView, cardLayout,userManager);
         RecordedGameMenuController recordedGameMenuController = new RecordedGameMenuController(recordedGameMenuView, mainView, gameManager);
         GameViewController gameViewController = new GameViewController(gameView, mainView);
-        MenuController menuController = new MenuController(menuView, mainView, cardLayout,userManager,gameManager, recordedGameMenuController);
+        RankingController rankingController = new RankingController(rankingView, mainView, userManager);
+        MenuController menuController = new MenuController(menuView, mainView, cardLayout,userManager,gameManager, recordedGameMenuController, rankingController);
 
         /* Vincular Controllers */
         loginView.loginController(loginController);
@@ -55,6 +57,7 @@ public class Main {
         gameView.registerController(gameViewController, gameViewController);
         recordedGameMenuView.setRecordedGameMenuController(recordedGameMenuController);
         gameManager.registerController(gameViewController);
+        rankingView.registerRankingController(rankingController);
 
         mainView.start();
     }
