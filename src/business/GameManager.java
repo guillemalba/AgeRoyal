@@ -39,7 +39,7 @@ public class GameManager{
 
     public void initGame(){
         board = new Board();
-       gameTimer = new GameTimer(1000, time, false, this);
+        gameTimer = new GameTimer(1000, time, false, this);
 
         Archer archer = new Archer("archer1Maquina",3,6,this, false,false);
         Archer archer2 = new Archer("archer2Maquina",0,14,this, false,false);

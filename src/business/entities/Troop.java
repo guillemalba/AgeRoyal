@@ -136,36 +136,41 @@ public class Troop implements Runnable{
 
 
 
-    public void move() {
+    public void move(String direction) {
 
         gameManager.getBoard().removeTroopBoard(this);
-        int auxI = getPosx();
-        int auxJ = getPosy();
-        if(!isUser) {
-            if (auxJ > 7 && auxJ <= 15) {
-                auxJ--;
-                auxI++;
-            } else if (auxJ < 7 && auxJ >= 0) {
-                auxJ++;
-                auxI++;
-            } else {
-                auxI++;
+        int auxX = getPosx();
+        int auxY = getPosy();
 
-            }
-
-        } else {
-            if (auxJ > 7 && auxJ <= 15) {
-                auxJ--;
-                auxI--;
-            } else if (auxJ < 7 && auxJ >= 0) {
-                auxJ++;
-                auxI--;
-            } else {
-                auxI--;
-            }
+        switch (direction) {
+            case "up":
+                auxX--;
+                break;
+            case "up-left":
+                auxX--;
+                auxY--;
+                break;
+            case "up-right":
+                auxX--;
+                auxY++;
+                break;
+            case "down":
+                auxX++;
+                break;
+            case "down-left":
+                auxX++;
+                auxY--;
+                break;
+            case "down-right":
+                auxX++;
+                auxY++;
+                break;
+            case "false":
+                break;
         }
-        setPosy(auxJ);
-        setPosx(auxI);
+
+        setPosx(auxX);
+        setPosy(auxY);
         gameManager.getBoard().setTroopBoard(this);
 
 
@@ -247,11 +252,54 @@ public class Troop implements Runnable{
         gameManager.getBoard().removeTroopBoard(troop);
     }
 
-    public boolean canMove() {
+    public String canMove() {
+        if (this.isUser) {
+            if (getPosy() > 7 && getPosy() <= 15) {
+                if (gameManager.getBoard().isEmpty(getPosx() - 1, getPosy() - 1)) {
+                    return "up-left";
+                } else if (gameManager.getBoard().isEmpty(getPosx() - 1, getPosy())) {
+                    return "up";
+                }
+            } else if (getPosy() < 7 && getPosy() >= 0) {
+                if (gameManager.getBoard().isEmpty(getPosx() - 1, getPosy() + 1)) {
+                    return "up-right";
+                } else if (gameManager.getBoard().isEmpty(getPosx() - 1, getPosy())) {
+                    return "up";
+                }
+            } else {
+                if (gameManager.getBoard().isEmpty(getPosx() - 1, getPosy())) {
+                    return "up";
+                } else if (gameManager.getBoard().isEmpty(getPosx() - 1, getPosy() - 1)) {
+                    return "up-left";
+                } else if (gameManager.getBoard().isEmpty(getPosx() - 1, getPosy() + 1)) {
+                    return "up-right";
+                }
+            }
+        } else {
+            if (getPosy() > 7 && getPosy() <= 15) {
+                if (gameManager.getBoard().isEmpty(getPosx() + 1, getPosy() - 1)) {
+                    return "down-left";
+                } else if (gameManager.getBoard().isEmpty(getPosx() + 1, getPosy())) {
+                    return "down";
+                }
+            } else if (getPosy() < 7 && getPosy() >= 0) {
+                if (gameManager.getBoard().isEmpty(getPosx() + 1, getPosy() + 1)) {
+                    return "down-right";
+                } else if (gameManager.getBoard().isEmpty(getPosx() + 1, getPosy())) {
+                    return "down";
+                }
+            } else {
+                if (gameManager.getBoard().isEmpty(getPosx() + 1, getPosy())) {
+                    return "down";
+                } else if (gameManager.getBoard().isEmpty(getPosx() + 1, getPosy() - 1)) {
+                    return "down-left";
+                } else if (gameManager.getBoard().isEmpty(getPosx() + 1, getPosy() + 1)) {
+                    return "down-right";
+                }
+            }
 
-        if(gameManager.getBoard().isOnTheEdge(getPosx()+1,getPosy()) && gameManager.getBoard().isEmpty(getPosx()+1,getPosy())) return true;
-
-        return false;
+        }
+        return "false";
     }
 
     public void stopGame(){

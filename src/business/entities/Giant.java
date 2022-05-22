@@ -24,12 +24,12 @@ public class Giant extends Ofensive{
     }
 
     @Override
-    public void move() {
-        super.move();
+    public void move(String direction) {
+        super.move(direction);
     }
 
     @Override
-    public boolean canMove() {
+    public String canMove() {
         return super.canMove();
     }
 
@@ -48,7 +48,8 @@ public class Giant extends Ofensive{
 
             } else {
 
-                if (canMove()) move();
+                String move = canMove();
+                if (!move.equals("false")) move(move);
                 enemyNear();
             }
 

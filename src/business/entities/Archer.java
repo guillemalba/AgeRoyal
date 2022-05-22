@@ -28,17 +28,17 @@ public class Archer extends Ofensive {
     }
 
     @Override
-    public void move() {
-        super.move();
+    public void move(String direction) {
+        super.move(direction);
     }
 
     @Override
-    public boolean canMove() {
+    public String canMove() {
         return super.canMove();
     }
 
     @Override
-    public synchronized void run() {
+    public void run() {
 
         while(!isStop()) {
             try {
@@ -52,9 +52,8 @@ public class Archer extends Ofensive {
                 atack(enemyNear());
 
             } else {
-
-                if (canMove()) move();
-                enemyNear();
+                String move = canMove();
+                if (!move.equals("false")) move(move);
             }
 
 
