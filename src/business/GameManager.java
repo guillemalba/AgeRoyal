@@ -50,10 +50,10 @@ public class GameManager{
         Archer archer6 = new Archer("Arche3Player",12,1,this, true,false,Color.ORANGE);
         Base baseIA = new Base("BaseMAquina",0,7,this, false,false,Color.ORANGE);
         Base baseUser = new Base("BasePlayer",14,7,this, true,false,Color.ORANGE);
-        Giant giant1 = new Giant("GigantePlayer",12,2,this,true,false,Color.BLUE);
-        Giant giant2 = new Giant("GiganteMaquina",4,3,this,false,false,Color.CYAN);
-        Giant giant3 = new Giant("GigantePlayer",12,13,this,true,false,Color.BLUE);
-        Giant giant4 = new Giant("GiganteMaquina",4,13,this,false,false,Color.CYAN);
+        Giant giant1 = new Giant("GigantePlayer1",12,2,this,true,false,Color.BLUE);
+        Giant giant2 = new Giant("GiganteMaquina1",4,3,this,false,false,Color.CYAN);
+        Giant giant3 = new Giant("GigantePlayer2",12,11,this,true,false,Color.BLUE);
+        Giant giant4 = new Giant("GiganteMaquina2",4,13,this,false,false,Color.CYAN);
         Canon canon1 = new Canon("CanonPlayer",11,6,this,true,false,Color.ORANGE);
         Canon canon2 = new Canon("CanonMaquina",3,5,this,false,false,Color.ORANGE);
 

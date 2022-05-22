@@ -225,7 +225,8 @@ public class Troop implements Runnable{
         return null;
     }
 
-    public void atack(Troop enemyTroop){
+    public synchronized void atack(Troop enemyTroop){ //Cuando salga del ranog que fem.
+                                        //TODO:A veces entran dos tropas a lavez y no se suma el daño.
 
         while(enemyTroop.getLife() > 0 && !stop){
 
