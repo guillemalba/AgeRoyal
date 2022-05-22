@@ -2,6 +2,8 @@ package business.entities;
 
 import business.GameManager;
 
+import java.awt.*;
+
 public class Ofensive extends Troop {
     private int movementVelocity;
     private String prefObjective;
@@ -10,8 +12,8 @@ public class Ofensive extends Troop {
 
 
 
-    public Ofensive(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop) {
-        super(name,posx,posy,gameManager, isUser,stop);
+    public Ofensive(String name, int posx, int posy, GameManager gameManager, boolean isUser, boolean stop, Color color) {
+        super(name,posx,posy,gameManager, isUser,stop,color);
     }
 
 

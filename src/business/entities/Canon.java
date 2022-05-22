@@ -2,18 +2,20 @@ package business.entities;
 
 import business.GameManager;
 
+import java.awt.*;
+
 public class Canon extends Defensive {
 
-    public Canon(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop) {
-        super(name,posx,posy,gameManager, isUser,stop);
-        this.setRange(2);//cuadrados a la redonda
-        this.setName("Canon");
+    public Canon(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop,Color color) {
+        super(name,posx,posy,gameManager, isUser,stop,color);
+        this.setRange(3);//cuadrados a la redonda
         this.setLife(30);
         this.setCost(3);
         this.setDamage(4);
-        this.setAttackVelocity(2000);
+        this.setAttackVelocity(3000);
         this.setType("Structure");
         this.setTimeLife(20);//seg
+        this.setColor(Color.BLACK);
 
     }
 
@@ -34,7 +36,7 @@ public class Canon extends Defensive {
 
         }
         dieTroop(this);
-        stopGame();
+        //stopGame();
 
     }
 

@@ -2,12 +2,14 @@ package business.entities;
 
 import business.GameManager;
 
+import java.awt.*;
+
 public class Defensive extends Troop {
     private int timeLife;
 
 
-    public Defensive(String name,int posx, int posy, GameManager gamemanager, boolean isUser,boolean stop) {
-        super(name,posx,posy,gamemanager, isUser,stop);
+    public Defensive(String name, int posx, int posy, GameManager gamemanager, boolean isUser, boolean stop, Color color) {
+        super(name,posx,posy,gamemanager, isUser,stop,color);
         this.timeLife = timeLife;
     }
 

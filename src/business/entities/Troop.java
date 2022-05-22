@@ -23,7 +23,7 @@ public class Troop implements Runnable{
 
 
 
-    public Troop(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop) {
+    public Troop(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop,Color color) {
 
         this.name = name;
         this.posx = posx;
@@ -31,6 +31,7 @@ public class Troop implements Runnable{
         this.gameManager = gameManager;
         this.isUser = isUser;
         this.stop = stop;
+        this.color =color;
     }
 
     public boolean isStop() {
@@ -226,7 +227,11 @@ public class Troop implements Runnable{
 
     public void atack(Troop enemyTroop){
 
-        while(enemyNear().getLife() > 0 && !stop){
+        while(enemyTroop.getLife() > 0 && !stop){
+
+            //if(enemyTroop != enemyNear()) enemyTroop = enemyNear();
+
+            System.out.println("Soy"+ name + "voy a pegar a " +enemyTroop.getName());
 
             try {
                 Thread.sleep(attackVelocity);
@@ -237,14 +242,14 @@ public class Troop implements Runnable{
             if(enemyTroop.getLife() > 0.0){
                 enemyTroop.setLife(enemyTroop.getLife() - getDamage());
                 System.out.println(name+" "+" pega a "+enemyTroop.name+" le deja con " +enemyTroop.getLife());
-            }else{
-                System.out.println(name + "Mata a "+enemyTroop.name);
-                enemyTroop.setStop(true);
             }
 
         }
+        if(!stop) {
+            System.out.println(name + "Mata a " + enemyTroop.name);
+            enemyTroop.setStop(true);
+        }
 
-        System.out.println("Soy "+ name+ " salgo de matar a "+ enemyTroop.name);
 
     }
 

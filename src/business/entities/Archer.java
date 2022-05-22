@@ -8,16 +8,16 @@ import java.awt.*;
 public class Archer extends Ofensive {
 
 
-    public Archer(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop) {
-        super(name,posx, posy, gameManager, isUser,stop);
-        this.setRange(4);//cuadrados a la redonda posible 5
+    public Archer(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop,Color color) {
+        super(name,posx, posy, gameManager, isUser,stop,color);
+        this.setRange(3);//cuadrados a la redonda posible 5
         this.setLife(12);
         this.setCost(2);
         this.setDamage(4);//quiza 2
         this.setAttackVelocity(2000);
         this.setMovementVelocity(3000);
         this.setPrefObjective("all");
-        this.setColor(Color.RED);
+
 
     }
 
@@ -41,6 +41,7 @@ public class Archer extends Ofensive {
     public void run() {
 
         while(!isStop()) {
+
             try {
                 Thread.sleep(getMovementVelocity());
             } catch (InterruptedException e) {

@@ -2,12 +2,14 @@ package business.entities;
 
 import business.GameManager;
 
+import java.awt.*;
+
 public class TeslaTower extends Defensive{
     private boolean hide;
 
 
-    public TeslaTower(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop) {
-        super(name,posx, posy, gameManager, isUser,stop);
+    public TeslaTower(String name, int posx, int posy, GameManager gameManager, boolean isUser, boolean stop, Color color) {
+        super(name,posx, posy, gameManager, isUser,stop,color);
         this.hide = hide;
         this.setRange(2);//cuadrados a la redonda
         this.setName("TeslaTower");

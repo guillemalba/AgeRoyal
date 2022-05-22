@@ -6,10 +6,9 @@ import java.awt.*;
 
 public class Base extends Defensive{
 
-    public Base(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop) {
-        super(name,posx,posy,gameManager, isUser,stop);
-        this.setRange(5);//cuadrados a la redonda posible 5
-
+    public Base(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop,Color color) {
+        super(name,posx,posy,gameManager, isUser,stop,color);
+        this.setRange(4);//cuadrados a la redonda posible 5
         this.setLife(30);
         this.setCost(0);
         this.setDamage(6);
