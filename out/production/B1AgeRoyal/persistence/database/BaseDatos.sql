@@ -19,7 +19,7 @@ Create table Game(
     foreign key (player) references Player(name)
 );
 
-Insert INTO game (name, data, win, player) values ('A', '18-04-2002', true, 'admin');
+Insert INTO game (name, data, win, player) values ('A', '18-04-2002', true, 'hehe');
 
 
 Drop table if exists Troops cascade;
