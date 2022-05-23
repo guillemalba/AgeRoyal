@@ -21,7 +21,7 @@ public class Board {
         return cellsMatrix;
     }
 
-    public boolean isEmpty(int i, int j){
+    public synchronized boolean isEmpty(int i, int j){
         return cellsMatrix[i][j].getTroop() == null;
     }
 

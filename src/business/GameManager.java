@@ -27,6 +27,8 @@ public class GameManager{
     private GameViewController gameController;
     private GameDAO gameDAO;
     private LinkedList<Game> games;
+    private IA ia;
+    private LinkedList<Troop> linkedList = new LinkedList<>();
 
     public GameManager() {
         gameDAO = new GameSQLDAO();
@@ -60,6 +62,11 @@ public class GameManager{
         // thread para contar el dinero de la IA
         moneyCounterIA = new MoneyCounter(false, this);
         new Thread(moneyCounterIA).start();
+
+        /*ia = new IA(this);
+        new Thread(ia).start();*/
+
+
 
         new Thread(giant1).start();
         new Thread(giant2).start();
@@ -136,4 +143,16 @@ public class GameManager{
     }
 
 
+    public void addTroop(Ids id, int x, int y) {
+        switch (id) {
+            case ARCHER -> linkedList.add(new Archer("archer100Maquina",x,y,this, false,false, Color.YELLOW));
+            case CANNON -> linkedList.add(new Canon("CanonPlayer",x,y,this,false,false,Color.ORANGE));
+            case GIANT -> linkedList.add(new Giant("GigantePlayer1",x,y,this,false,false,Color.BLUE));
+            /*case TESLA -> linkedList.add(new TeslaTower("tesla100Maquina",x,y,this, false,false, Color.YELLOW));*/
+        }
+
+        board.setTroopBoard(linkedList.get(linkedList.size()-1));
+        new Thread(linkedList.get(linkedList.size()-1)).start();
+
+    }
 }

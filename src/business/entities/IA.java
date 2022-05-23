@@ -16,13 +16,13 @@ public class IA implements Runnable{
         while (true) {
 
             if (time == 4) {
-                //invokeOfensiveTroop();
+                invokeOfensiveTroop();
                 System.out.println("->intenta ofensiva");
                 time = 0;
             }
 
             //invokeDefensiveTroop();
-            System.out.println("////...intenta defensiva");
+            /*System.out.println("////...intenta defensiva");*/
 
             try {
                 long sleepTime = 1000;
@@ -37,8 +37,8 @@ public class IA implements Runnable{
 
 
     public void invokeOfensiveTroop() {
-        int maxX = 15;
-        int maxY = 7;
+        int maxX = 7;
+        int maxY = 14;
         int newPosX;
         int newPosY;
 
@@ -48,8 +48,14 @@ public class IA implements Runnable{
         }while(gameManager.getBoard().getCellsMatrix()[newPosX][newPosY].getTroop() != null);
 
         /*if (hasMoney()) {
-
         }*/
+            int rand = (int)(Math.random() * 2);
+            System.out.println("x = " + newPosX + "   y = " + newPosY);
+            if (rand == 0) {
+                gameManager.addTroop(Ids.ARCHER, newPosX, newPosY);
+            } else {
+                gameManager.addTroop(Ids.GIANT, newPosX, newPosY);
+            }
 
     }
 

@@ -50,7 +50,7 @@ public class Giant extends Ofensive{
 
                 String move = canMove();
                 if (!move.equals("false")) move(move);
-                enemyNear();
+
             }
 
 

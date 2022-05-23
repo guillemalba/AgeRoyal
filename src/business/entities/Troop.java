@@ -143,32 +143,36 @@ public class Troop implements Runnable{
         int auxX = getPosx();
         int auxY = getPosy();
 
-        switch (direction) {
-            case "up":
-                auxX--;
-                break;
-            case "up-left":
-                auxX--;
-                auxY--;
-                break;
-            case "up-right":
-                auxX--;
-                auxY++;
-                break;
-            case "down":
-                auxX++;
-                break;
-            case "down-left":
-                auxX++;
-                auxY--;
-                break;
-            case "down-right":
-                auxX++;
-                auxY++;
-                break;
-            case "false":
-                break;
+        synchronized (Troop.class) {
+            switch (direction) {
+                case "up":
+                    auxX--;
+                    break;
+                case "up-left":
+                    auxX--;
+                    auxY--;
+                    break;
+                case "up-right":
+                    auxX--;
+                    auxY++;
+                    break;
+                case "down":
+                    auxX++;
+                    break;
+                case "down-left":
+                    auxX++;
+                    auxY--;
+                    break;
+                case "down-right":
+                    auxX++;
+                    auxY++;
+                    break;
+                case "false":
+                    break;
+            }
         }
+
+
 
         setPosx(auxX);
         setPosy(auxY);
@@ -225,8 +229,9 @@ public class Troop implements Runnable{
         return null;
     }
 
-    public synchronized void atack(Troop enemyTroop){ //Cuando salga del ranog que fem.
+    public void atack(Troop enemyTroop){ //Cuando salga del ranog que fem.
                                         //TODO:A veces entran dos tropas a lavez y no se suma el daño.
+
 
         while(enemyTroop.getLife() > 0 && !stop){
 
@@ -240,10 +245,14 @@ public class Troop implements Runnable{
                 e.printStackTrace();
             }
 
-            if(enemyTroop.getLife() > 0.0){
-                enemyTroop.setLife(enemyTroop.getLife() - getDamage());
-                System.out.println(name+" "+" pega a "+enemyTroop.name+" le deja con " +enemyTroop.getLife());
+            synchronized (Troop.class) {
+                if(enemyTroop.getLife() > 0.0){
+                    enemyTroop.setLife(enemyTroop.getLife() - getDamage());
+                    System.out.println(name+" "+" pega a "+enemyTroop.name+" le deja con " +enemyTroop.getLife());
+                }
             }
+
+
 
         }
         if(!stop) {
