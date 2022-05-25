@@ -70,12 +70,9 @@ public class GameManager{
         //Usuario de la partida
         user = new User(this,time);
 
-
         // thread para contar el dinero de la IA
         moneyCounter = new MoneyCounter(this,ia,user);
         new Thread(moneyCounter).start();
-
-
 
         //Thread del tiempo
         gameTimer = new GameTimer(time, false, this);
@@ -86,8 +83,6 @@ public class GameManager{
     public void stopGame(){
 
         //guardar partida
-
-
 
         //Parar todos los threads
         for (int i = 0; i < board.getSide(); i++) {
@@ -129,7 +124,6 @@ public class GameManager{
             /*case TESLA -> linkedList.add(new TeslaTower("tesla100Maquina",x,y,this, false,false, Color.YELLOW));*/
         }
 
-        System.out.println("list sizxe " + linkedList.size());
         if (linkedList.size() > 0) {
             Troop newTroop = linkedList.get(linkedList.size()-1);
 

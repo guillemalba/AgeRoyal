@@ -22,7 +22,7 @@ public class GameView extends JPanel {
 
     private JButton settingsJb = new JButton("Settings");
     private JButton backJb = new JButton("Back");
-    private JLabel[][] tableGrid = new JLabel[15][15];
+    private JPanel[][] tableGrid = new JPanel[15][15];
     private Board board;
     private JPanel table = new JPanel();
     private JPanel midJp = new JPanel();
@@ -60,11 +60,11 @@ public class GameView extends JPanel {
         table.setLayout(tableLayout);
         //----------
         //----------
-        tableGrid = new JLabel[15][15];
+        tableGrid = new JPanel[15][15];
         //funcion para pinta mapa nuevo
         for(int i = 0; i < 15; i++){
             for(int j = 0; j < 15; j++) {
-                tableGrid[i][j] = new JLabel();
+                tableGrid[i][j] = new JPanel();
                 tableGrid[i][j].setSize(15,15);
                 tableGrid[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                 tableGrid[i][j].setName(i+","+j);
@@ -129,11 +129,27 @@ public class GameView extends JPanel {
 
         offT1.setBackground(Color.YELLOW);
         offT1.setName("offT1");
+        try {
+            BufferedImage image = ImageIO.read(new File("files/user_archer.png"));
+            JLabel label = new JLabel(new ImageIcon(image));
+            offT1.add(label);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         offensiveCardPanel.add(offT1);
 
         offT2.setBackground(Color.BLUE);
         offT2.setName("offT2");
+        try {
+            BufferedImage image = ImageIO.read(new File("files/user_giant.png"));
+            JLabel label = new JLabel(new ImageIcon(image));
+            offT2.add(label);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         offensiveCardPanel.add(offT2);
         offensiveCardPanel.add(new JLabel("5"));
@@ -146,11 +162,27 @@ public class GameView extends JPanel {
 
         defT1.setBackground(Color.BLACK);
         defT1.setName("defT1");
+        try {
+            BufferedImage image = ImageIO.read(new File("files/user_cannon.png"));
+            JLabel label = new JLabel(new ImageIcon(image));
+            defT1.add(label);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         defensiveCardPanel.add(defT1);
 
 
         defT2.setBackground(Color.ORANGE);
         defT2.setName("defT2");
+        try {
+            BufferedImage image = ImageIO.read(new File("files/user_tesla.png"));
+            JLabel label = new JLabel(new ImageIcon(image));
+            defT2.add(label);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         defensiveCardPanel.add(defT2);
         defensiveCardPanel.add(new JLabel("4"));
@@ -202,14 +234,13 @@ public class GameView extends JPanel {
         //pintem el panell
         for(int i = 0; i < board.getSide(); i++){
             for(int j = 0; j < 15; j++) {
+                tableGrid[i][j].removeAll();
                 if (board.isEmpty(i,j)) {
-                    if (!board.isEmpty(i, j)) {
-                        tableGrid[i][j].add(new JLabel (new ImageIcon(board.getCellsMatrix()[i][j].getTroop().getImage())));
-                    } else {
-                        tableGrid[i][j].setBackground(Color.BLACK);
-                    }
+                    tableGrid[i][j].setBackground(Color.WHITE);
                 } else {
-                    tableGrid[i][j].setBackground(board.getColorTroop(i,j));
+                    tableGrid[i][j].add(new JLabel (new ImageIcon(board.getCellsMatrix()[i][j].getTroop().getImage())));
+
+                    /*tableGrid[i][j].setBackground(board.getColorTroop(i,j));*/
                 }
 
             }

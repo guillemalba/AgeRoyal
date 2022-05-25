@@ -21,7 +21,7 @@ public class GameViewController implements ActionListener, MouseListener {
     private GameManager gameManager;
     private Troop selectedT;
     private int x,y;
-    private String tipo;
+    private String tipo = "null";
 
     public GameViewController (GameView gameView, MainView mainView, GameManager gameManager){
         this.gameView = gameView;
@@ -68,6 +68,7 @@ public class GameViewController implements ActionListener, MouseListener {
                     break;
 
                 default:
+                    tipo = "null";
                     System.out.println("hola");
                     break;
             }
@@ -91,6 +92,9 @@ public class GameViewController implements ActionListener, MouseListener {
                     case "tesla":
                         gameManager.posTroop(Attributes.TESLA_ID, x, y);
 
+                        break;
+                    default:
+                        System.out.println("Default peta igual");
                         break;
                 }
 
