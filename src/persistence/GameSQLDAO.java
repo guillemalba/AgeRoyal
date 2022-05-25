@@ -29,7 +29,6 @@ public class GameSQLDAO implements GameDAO{
                 );
                 games.add(game);
             }
-            System.out.println(games.get(0).getName());
             return games;
         } catch (SQLException e) {
             System.out.println("Connection failure.");

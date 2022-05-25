@@ -3,13 +3,14 @@ package business.entities;
 import business.GameManager;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 
 public class Archer extends Ofensive {
 
 
-    public Archer(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop,Color color) {
-        super(name,posx, posy, gameManager, isUser,stop,color);
+    public Archer(String name, int posx, int posy, GameManager gameManager, boolean isUser, boolean stop, Color color, BufferedImage image) {
+        super(name,posx, posy, gameManager, isUser, stop, color, image);
         this.setCost(Attributes.ARCHER_COST.getValue());
         this.setLife(Attributes.ARCHER_LIFE.getValue());
         this.setDamage(Attributes.ARCHER_DAMAGE.getValue());//quiza 2

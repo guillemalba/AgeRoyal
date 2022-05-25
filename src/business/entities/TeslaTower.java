@@ -3,13 +3,14 @@ package business.entities;
 import business.GameManager;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class TeslaTower extends Defensive{
     private boolean hide;
 
 
-    public TeslaTower(String name, int posx, int posy, GameManager gameManager, boolean isUser, boolean stop, Color color) {
-        super(name,posx, posy, gameManager, isUser,stop,color);
+    public TeslaTower(String name, int posx, int posy, GameManager gameManager, boolean isUser, boolean stop, Color color, BufferedImage image) {
+        super(name,posx, posy, gameManager, isUser, stop, color, image);
         this.hide = hide;
         this.setName("TeslaTower");
         this.setCost(Attributes.TESLA_COST.getValue());

@@ -58,12 +58,12 @@ public class IA implements Runnable{
                 int rand = (int)(Math.random() * 2);
                 if (rand == 0) {
                     if (this.money >= Attributes.ARCHER_COST.getValue()) {
-                        gameManager.addTroop(Attributes.ARCHER_ID, newPosX, newPosY, gameTime, false);
+                        gameManager.addTroop(Attributes.ARCHER_ID, newPosX, newPosY, gameTime, false, "ia_archer");
                         System.out.println("-------->Added ARCHER on time " + gameManager.getTime());
                     }
                 } else {
                     if (this.money >= Attributes.GIANT_COST.getValue()) {
-                        gameManager.addTroop(Attributes.GIANT_ID, newPosX, newPosY, gameTime, false);
+                        gameManager.addTroop(Attributes.GIANT_ID, newPosX, newPosY, gameTime, false, "ia_giant");
                         System.out.println("-------->Added GIANT on time " + gameManager.getTime());
                     }
                 }
@@ -96,12 +96,12 @@ public class IA implements Runnable{
                 int rand = (int)(Math.random() * 2);
                 if (rand == 0) {
                     if (this.money >= Attributes.CANNON_COST.getValue()) {
-                        gameManager.addTroop(Attributes.CANNON_ID, newPosX, newPosY, gameTime, false);
+                        gameManager.addTroop(Attributes.CANNON_ID, newPosX, newPosY, gameTime, false, "ia_cannon");
                         System.out.println("-------->Added CANNON on time " + gameManager.getTime());
                     }
                 } else {
                     if (this.money >= Attributes.TESLA_COST.getValue()) {
-                        gameManager.addTroop(Attributes.TESLA_ID, newPosX, newPosY, gameTime, false);
+                        gameManager.addTroop(Attributes.TESLA_ID, newPosX, newPosY, gameTime, false, "ia_tesla");
                         System.out.println("-------->Added TESLA on time " + gameManager.getTime());
                     }
                 }

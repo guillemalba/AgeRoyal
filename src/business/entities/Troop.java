@@ -2,7 +2,9 @@ package business.entities;
 
 import business.GameManager;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Troop implements Runnable{
 
@@ -19,11 +21,12 @@ public class Troop implements Runnable{
     private int posx;
     private int posy;
     private Color color;
+    private BufferedImage image;
 
 
 
 
-    public Troop(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop,Color color) {
+    public Troop(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop,Color color, BufferedImage image) {
 
         this.name = name;
         this.posx = posx;
@@ -32,6 +35,7 @@ public class Troop implements Runnable{
         this.isUser = isUser;
         this.stop = stop;
         this.color =color;
+        this.image = image;
     }
 
     public boolean isStop() {
@@ -128,6 +132,14 @@ public class Troop implements Runnable{
 
     public void setUser(boolean user) {
         isUser = user;
+    }
+
+    public BufferedImage getImage() {
+        return image;
+    }
+
+    public void setImage(BufferedImage image) {
+        this.image = image;
     }
 
     @Override

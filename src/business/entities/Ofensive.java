@@ -3,6 +3,7 @@ package business.entities;
 import business.GameManager;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Ofensive extends Troop {
     private int movementVelocity;
@@ -12,8 +13,8 @@ public class Ofensive extends Troop {
 
 
 
-    public Ofensive(String name, int posx, int posy, GameManager gameManager, boolean isUser, boolean stop, Color color) {
-        super(name,posx,posy,gameManager, isUser,stop,color);
+    public Ofensive(String name, int posx, int posy, GameManager gameManager, boolean isUser, boolean stop, Color color, BufferedImage image) {
+        super(name,posx,posy,gameManager, isUser, stop, color, image);
     }
 
 

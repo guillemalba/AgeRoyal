@@ -6,19 +6,23 @@ import business.entities.Troop;
 import presentation.controllers.GameViewController;
 import org.w3c.dom.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 
 public class GameView extends JPanel {
 
     private JButton settingsJb = new JButton("Settings");
     private JButton backJb = new JButton("Back");
-    private JPanel[][] tableGrid = new JPanel[15][15];
+    private JLabel[][] tableGrid = new JLabel[15][15];
     private Board board;
     private JPanel table = new JPanel();
     private JPanel midJp = new JPanel();
@@ -56,11 +60,11 @@ public class GameView extends JPanel {
         table.setLayout(tableLayout);
         //----------
         //----------
-        tableGrid = new JPanel[15][15];
+        tableGrid = new JLabel[15][15];
         //funcion para pinta mapa nuevo
         for(int i = 0; i < 15; i++){
             for(int j = 0; j < 15; j++) {
-                tableGrid[i][j] = new JPanel();
+                tableGrid[i][j] = new JLabel();
                 tableGrid[i][j].setSize(15,15);
                 tableGrid[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                 tableGrid[i][j].setName(i+","+j);
@@ -199,7 +203,11 @@ public class GameView extends JPanel {
         for(int i = 0; i < board.getSide(); i++){
             for(int j = 0; j < 15; j++) {
                 if (board.isEmpty(i,j)) {
-                    tableGrid[i][j].setBackground(Color.WHITE);
+                    if (!board.isEmpty(i, j)) {
+                        tableGrid[i][j].add(new JLabel (new ImageIcon(board.getCellsMatrix()[i][j].getTroop().getImage())));
+                    } else {
+                        tableGrid[i][j].setBackground(Color.BLACK);
+                    }
                 } else {
                     tableGrid[i][j].setBackground(board.getColorTroop(i,j));
                 }

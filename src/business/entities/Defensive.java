@@ -3,13 +3,14 @@ package business.entities;
 import business.GameManager;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Defensive extends Troop {
     private int timeLife;
 
 
-    public Defensive(String name, int posx, int posy, GameManager gamemanager, boolean isUser, boolean stop, Color color) {
-        super(name,posx,posy,gamemanager, isUser,stop,color);
+    public Defensive(String name, int posx, int posy, GameManager gamemanager, boolean isUser, boolean stop, Color color, BufferedImage image) {
+        super(name,posx,posy,gamemanager, isUser, stop, color, image);
         this.timeLife = timeLife;
     }
 
