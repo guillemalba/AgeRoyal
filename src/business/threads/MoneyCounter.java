@@ -3,6 +3,7 @@ package business.threads;
 import business.GameManager;
 import business.UserManager;
 import business.entities.IA;
+import business.entities.User;
 
 public class MoneyCounter implements Runnable {
 
@@ -10,10 +11,12 @@ public class MoneyCounter implements Runnable {
     private IA ia;
     private int money;
     private boolean stop;
+    private User user;
 
-    public MoneyCounter(GameManager gameManager, IA ia) {
+    public MoneyCounter(GameManager gameManager, IA ia,User user) {
         this.gameManager = gameManager;
         this.ia = ia;
+        this.user = user;
     }
 
     @Override
@@ -25,7 +28,9 @@ public class MoneyCounter implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
             money++;
+            user.setMoney(user.getMoney()+1);
             ia.setMoney(ia.getMoney() + 1);
         }
     }

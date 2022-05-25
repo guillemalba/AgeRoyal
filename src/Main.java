@@ -24,8 +24,9 @@ public class Main {
         UserDAO userDAO = new UserSQLDAO();
 
         /* News dels Managers */
-        GameManager gameManager = new GameManager();
         UserManager userManager = new UserManager();
+        GameManager gameManager = new GameManager(userManager);
+
 
         /* New de les Vistes */
         LoginView loginView = new LoginView();

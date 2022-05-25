@@ -18,8 +18,8 @@ import java.util.LinkedList;
 public class GameManager{
 
     private int time = 0;
-    private MoneyCounter moneyCounterIA;
-    private MoneyCounter moneyCounterUser;
+
+    private MoneyCounter moneyCounter;
     private GameTimer gameTimer;
     private Board board;
     private LinkedList<Troop> troops= new LinkedList();
@@ -28,9 +28,11 @@ public class GameManager{
     private GameDAO gameDAO;
     private LinkedList<Game> games;
     private IA ia;
+    private User user;
     private LinkedList<Troop> linkedList = new LinkedList<>();
 
-    public GameManager() {
+
+    public GameManager(UserManager userManager) {
         gameDAO = new GameSQLDAO();
     }
 
@@ -42,73 +44,33 @@ public class GameManager{
 
     public void initGame(){
         board = new Board();
-        gameTimer = new GameTimer(time, false, this);
 
-        Archer archer = new Archer("archer1Maquina",3,6,this, false,false, Color.YELLOW);
-        Archer archer2 = new Archer("archer2Maquina",0,14,this, false,false,Color.YELLOW);
-        Archer archer4 = new Archer("archer3Maquina",1,2,this, false,false,Color.YELLOW);
-        Archer archer3 = new Archer("Archer1Player",12,8,this, true,false,Color.ORANGE);
-        Archer archer5 = new Archer("Archer2Player",13,14,this, true,false,Color.ORANGE);
-        Archer archer6 = new Archer("Arche3Player",12,1,this, true,false,Color.ORANGE);
-        Giant giant1 = new Giant("GigantePlayer1",12,6,this,true,false,Color.BLUE);
-        Giant giant2 = new Giant("GiganteMaquina1",4,3,this,false,false,Color.CYAN);
-        Giant giant3 = new Giant("GigantePlayer2",12,11,this,true,false,Color.BLUE);
-        Giant giant4 = new Giant("GiganteMaquina2",4,13,this,false,false,Color.CYAN);
-        Canon canon1 = new Canon("CanonPlayer",11,6,this,true,false,Color.ORANGE);
-        Canon canon2 = new Canon("CanonMaquina",3,5,this,false,false,Color.ORANGE);
+
+
         Base baseIA = new Base("BaseMAquina",0,7,this, false,false,Color.ORANGE);
         Base baseUser = new Base("BasePlayer",14,7,this, true,false,Color.ORANGE);
+        new Thread(baseUser).start();
+        new Thread(baseIA).start();
+        board.setTroopBoard(baseIA);
+        board.setTroopBoard(baseUser);
 
-
-
-        // thread para contar el dinero del User
-        /*moneyCounterUser = new MoneyCounter(this);
-        new Thread(moneyCounterUser).start();*/
 
         // thread para la IA del juego
         ia = new IA(this, time);
         new Thread(ia).start();
 
+        //Usuario de la partida
+        user = new User(this,time);
+
+
         // thread para contar el dinero de la IA
-        moneyCounterIA = new MoneyCounter(this, ia);
-        new Thread(moneyCounterIA).start();
+        moneyCounter = new MoneyCounter(this,ia,user);
+        new Thread(moneyCounter).start();
 
 
 
-        new Thread(giant1).start();
-        /*
-        new Thread(giant2).start();
-        new Thread(giant3).start();
-        new Thread(giant4).start();
-        new Thread(archer).start();
-        new Thread(archer2).start();
-        new Thread(archer3).start();
-        new Thread(archer4).start();
-        new Thread(archer5).start();
-        new Thread(archer6).start();
-        new Thread(canon1).start();
-        new Thread(canon2).start();*/
-        new Thread(baseUser).start();
-        new Thread(baseIA).start();
-
-        board.setTroopBoard(giant1);
-        /*board.setTroopBoard(archer2);
-        board.setTroopBoard(archer3);
-        board.setTroopBoard(archer4);
-        board.setTroopBoard(archer5);
-        board.setTroopBoard(archer6);
-        board.setTroopBoard(archer);
-        board.setTroopBoard(giant2);
-        board.setTroopBoard(giant3);
-        board.setTroopBoard(giant4);
-        board.setTroopBoard(canon1);
-        board.setTroopBoard(canon2);*/
-        board.setTroopBoard(baseIA);
-        board.setTroopBoard(baseUser);
-
-        gameController.addTroop(board);
-
-
+        //Thread del tiempo
+        gameTimer = new GameTimer(time, false, this);
         new Thread(gameTimer).start();
 
     }
@@ -144,12 +106,11 @@ public class GameManager{
     }
 
     public void UpdateViewMap(){
-        gameController.addTroop(board);
+        gameController.addTroop(board,user.getMoney());
+
     }
 
-    public void updateMoney() {
-        gameController.updateMoney();
-    }
+
 
 
     public synchronized void addTroop(Attributes troopId, int x, int y, int timeAdded, boolean isUser) {
@@ -166,6 +127,8 @@ public class GameManager{
         new Thread(newTroop).start();
 
         if (isUser) {
+            user.setMoney(user.getMoney()-newTroop.getCost());
+
 
         } else {
             ia.setMoney(ia.getMoney() - newTroop.getCost());
@@ -173,6 +136,15 @@ public class GameManager{
         }
 
 
+    }
+    public void posTroop(Attributes tipo,int x, int y){
+        switch (tipo) {
+            case ARCHER_ID: if(user.getMoney()>=Attributes.ARCHER_COST.getValue()) addTroop(tipo,x,y,time,true) ;
+            case CANNON_ID : if(user.getMoney()>=Attributes.GIANT_COST.getValue()) addTroop(tipo,x,y,time,true) ;
+            case GIANT_ID : if(user.getMoney()>=Attributes.CANNON_COST.getValue()) addTroop(tipo,x,y,time,true) ;
+            /*case TESLA : if(user.getMoney()>=Attributes.TESLA_COST.getValue()) addTroop(tipo,x,y,time,true);*/
+            default : System.out.println("Bro eso esta caro");
+        }
     }
 
     public int getTime() {

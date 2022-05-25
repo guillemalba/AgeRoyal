@@ -22,6 +22,11 @@ public class GameView extends JPanel {
     private Board board;
     private JPanel table = new JPanel();
     private JPanel midJp = new JPanel();
+    private JPanel defT1 = new JPanel();
+    private JPanel offT1 = new JPanel();
+    private JPanel offT2 = new JPanel();
+    private JPanel defT2 = new JPanel();
+    private JLabel mLabel = new JLabel("5");
 
     public GameView(){
         if (board == null) {
@@ -49,11 +54,19 @@ public class GameView extends JPanel {
         table.setSize(400, 400);
         GridLayout tableLayout = new GridLayout(width,height);
         table.setLayout(tableLayout);
-
-
         //----------
         //----------
-        updateView(board);
+        tableGrid = new JPanel[15][15];
+        //funcion para pinta mapa nuevo
+        for(int i = 0; i < 15; i++){
+            for(int j = 0; j < 15; j++) {
+                tableGrid[i][j] = new JPanel();
+                tableGrid[i][j].setSize(15,15);
+                tableGrid[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
+                tableGrid[i][j].setName(i+","+j);
+            }
+        }
+        updateView(board,5);
         midJp.add(table);
 
         //si fa falta borrar el table
@@ -109,15 +122,15 @@ public class GameView extends JPanel {
         JPanel offensiveCardPanel = new JPanel();
         GridLayout offensiveCardLayout = new GridLayout(2, 2);
         offensiveCardPanel.setLayout(offensiveCardLayout);
-        JPanel offT1 = new JPanel();
-        offT1.setBackground(Color.green);
+
+        offT1.setBackground(Color.YELLOW);
         offT1.setName("offT1");
-        //offT1.addMouseListener(gameViewController);
+
         offensiveCardPanel.add(offT1);
-        JPanel offT2 = new JPanel();
-        offT2.setBackground(Color.pink);
+
+        offT2.setBackground(Color.BLUE);
         offT2.setName("offT2");
-        //offT2.addMouseListener(gameViewController);
+
         offensiveCardPanel.add(offT2);
         offensiveCardPanel.add(new JLabel("5"));
         offensiveCardPanel.add(new JLabel("3"));
@@ -126,15 +139,15 @@ public class GameView extends JPanel {
         JPanel defensiveCardPanel = new JPanel();
         GridLayout defensiveCardLayout = new GridLayout(2, 2);
         defensiveCardPanel.setLayout(defensiveCardLayout);
-        JPanel defT1 = new JPanel();
-        defT1.setBackground(Color.red);
+
+        defT1.setBackground(Color.BLACK);
         defT1.setName("defT1");
         defensiveCardPanel.add(defT1);
-        //defT1.addMouseListener(gameViewController);
-        JPanel defT2 = new JPanel();
-        defT2.setBackground(Color.blue);
+
+
+        defT2.setBackground(Color.ORANGE);
         defT2.setName("defT2");
-        //defT2.addMouseListener(gameViewController);
+
         defensiveCardPanel.add(defT2);
         defensiveCardPanel.add(new JLabel("4"));
         defensiveCardPanel.add(new JLabel("2"));
@@ -147,7 +160,7 @@ public class GameView extends JPanel {
         JLabel gLabel = new JLabel("Gold");
         gLabel.setHorizontalAlignment(JLabel.CENTER);
         goldPanel.add(gLabel);
-        JLabel mLabel = new JLabel("5");
+
         mLabel.setHorizontalAlignment(JLabel.CENTER);
         goldPanel.add(mLabel);
         midJp.add(goldPanel);
@@ -165,33 +178,22 @@ public class GameView extends JPanel {
     public void registerController(ActionListener listener1, MouseListener listener2) {
         settingsJb.addActionListener(listener1);
         backJb.addActionListener(listener1);
-        for(int i = 0; i < 15; i++){
-            for(int j = 0; j < 15; j++) {
+        defT2.addMouseListener(listener2);
+        defT1.addMouseListener(listener2);
+        offT2.addMouseListener(listener2);
+        offT1.addMouseListener(listener2);
+        for(int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
                 tableGrid[i][j].addMouseListener(listener2);
             }
         }
-
-
-
     }
 
-    public void updateView(Board board) {
+
+    public void updateView(Board board,int moneyUser) {
         //midJp.remove(table);
         table.removeAll();
         midJp.remove(table);
-        tableGrid = new JPanel[15][15];
-
-        //funcion para pinta mapa nuevo
-
-
-        for(int i = 0; i < 15; i++){
-            for(int j = 0; j < 15; j++) {
-                tableGrid[i][j] = new JPanel();
-                tableGrid[i][j].setSize(15,15);
-                tableGrid[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
-                tableGrid[i][j].setName(i+","+j);
-            }
-        }
 
         //pintem el panell
         for(int i = 0; i < board.getSide(); i++){
@@ -210,10 +212,13 @@ public class GameView extends JPanel {
                 table.add(tableGrid[i][j]);
             }
         }
-
+        mLabel.setText(Integer.toString(moneyUser));
         midJp.add(table, 0);
+
+
 
         revalidate();
         repaint();
     }
+
 }
