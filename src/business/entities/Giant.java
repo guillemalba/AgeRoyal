@@ -8,12 +8,12 @@ public class Giant extends Ofensive{
 
     public Giant(String name, int posx, int posy, GameManager gameManager, boolean isUser,boolean stop,Color color) {
         super(name,posx, posy,gameManager, isUser,stop,color);
-        this.setRange(1);//cuadrados a la redonda posible 5
-        this.setLife(70);
-        this.setCost(4);
-        this.setDamage(5);
-        this.setAttackVelocity(2000);
-        this.setMovementVelocity(4000);
+        this.setCost(Attributes.GIANT_COST.getValue());
+        this.setLife(Attributes.GIANT_LIFE.getValue());
+        this.setDamage(Attributes.GIANT_DAMAGE.getValue());
+        this.setRange(Attributes.GIANT_ATTACK_RANGE.getValue());//cuadrados a la redonda posible 5
+        this.setAttackVelocity(Attributes.GIANT_ATTACK_VELOCITY.getValue());
+        this.setMovementVelocity(Attributes.GIANT_MOVEMENT_VELOCITY.getValue());
         this.setPrefObjective("Structure");
 
     }

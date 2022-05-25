@@ -8,13 +8,13 @@ public class Canon extends Defensive {
 
     public Canon(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop,Color color) {
         super(name,posx,posy,gameManager, isUser,stop,color);
-        this.setRange(3);//cuadrados a la redonda
-        this.setLife(30);
-        this.setCost(3);
-        this.setDamage(4);
-        this.setAttackVelocity(3000);
+        this.setCost(Attributes.CANNON_COST.getValue());
+        this.setLife(Attributes.CANNON_LIFE.getValue());
+        this.setDamage(Attributes.CANNON_DAMAGE.getValue());
+        this.setRange(Attributes.CANNON_ATTACK_RANGE.getValue());//cuadrados a la redonda
+        this.setAttackVelocity(Attributes.CANNON_ATTACK_VELOCITY.getValue());
+        this.setTimeLife(Attributes.CANNON_TIME_LIFE.getValue());//seg
         this.setType("Structure");
-        this.setTimeLife(20);//seg
         this.setColor(Color.BLACK);
 
     }

@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LogoutController implements ActionListener {
-    UserManager userManager;
+    private UserManager userManager;
     private LogoutView logoutView;
     private MainView mainView;
     private CardLayout viewComponents;

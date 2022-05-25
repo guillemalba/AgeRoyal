@@ -4,11 +4,17 @@ import business.GameManager;
 
 public class IA implements Runnable{
     private int time = 0;
+    private int money = 5;
+    private int numTroopsAlive = 0;
+    private int lifes = 0;
+
 
     private GameManager gameManager;
+    private int gameTime;
 
-    public IA(GameManager gameManager) {
+    public IA(GameManager gameManager, int gameTime) {
         this.gameManager = gameManager;
+        this.gameTime = gameTime;
     }
 
     @Override
@@ -16,13 +22,13 @@ public class IA implements Runnable{
         while (true) {
 
             if (time == 4) {
-                invokeOfensiveTroop();
                 System.out.println("->intenta ofensiva");
+                invokeOfensiveTroop();
                 time = 0;
             }
 
-            //invokeDefensiveTroop();
-            /*System.out.println("////...intenta defensiva");*/
+            invokeDefensiveTroop();
+            System.out.println("////...intenta defensiva");
 
             try {
                 long sleepTime = 1000;
@@ -31,6 +37,8 @@ public class IA implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            System.out.println("IA money -----------------------------------> " + this.money);
+            /*System.out.println("IA --> " + gameManager.getTime());*/
             time++;
         }
     }
@@ -42,28 +50,108 @@ public class IA implements Runnable{
         int newPosX;
         int newPosY;
 
-        do{
+        boolean leave = false;
+        while (!leave) {
             newPosX = (int) (Math.random() * maxX);
             newPosY = (int) (Math.random() * maxY) + 1;
-        }while(gameManager.getBoard().getCellsMatrix()[newPosX][newPosY].getTroop() != null);
+            if (gameManager.getBoard().getCellsMatrix()[newPosX][newPosY].getTroop() == null) {
+                int rand = (int)(Math.random() * 2);
+                if (rand == 0) {
+                    if (this.money >= Attributes.ARCHER_COST.getValue()) {
+                        gameManager.addTroop(Attributes.ARCHER_ID, newPosX, newPosY, gameTime, false);
+                        System.out.println("-------->Added ARCHER on time " + gameManager.getTime());
+                    }
+                } else {
+                    if (this.money >= Attributes.GIANT_COST.getValue()) {
+                        gameManager.addTroop(Attributes.GIANT_ID, newPosX, newPosY, gameTime, false);
+                        System.out.println("-------->Added GIANT on time " + gameManager.getTime());
+                    }
+                }
 
-        /*if (hasMoney()) {
-        }*/
-            int rand = (int)(Math.random() * 2);
-            System.out.println("x = " + newPosX + "   y = " + newPosY);
-            if (rand == 0) {
-                gameManager.addTroop(Ids.ARCHER, newPosX, newPosY);
-            } else {
-                gameManager.addTroop(Ids.GIANT, newPosX, newPosY);
+                leave = true;
             }
+        }
+
 
     }
 
-    /*private boolean hasMoney() {
-
-    }*/
-
     public void invokeDefensiveTroop() {
+        int maxX = 7;
+        int maxY = 14;
+        int newPosX;
+        int newPosY;
+        int enemyPosX = findNearestTroop();
 
+        boolean leave = false;
+        while (!leave) {
+            if (enemyPosX == -1) {
+                newPosX = (int) (Math.random() * maxX);
+            } else if (enemyPosX != 0) {
+                newPosX = (int) (Math.random() * enemyPosX -1);
+            } else {
+                newPosX = (int) (Math.random() * enemyPosX);
+            }
+            newPosY = (int) (Math.random() * maxY) + 1;
+            if (gameManager.getBoard().getCellsMatrix()[newPosX][newPosY].getTroop() == null) {
+                int rand = (int)(Math.random() * 2);
+                if (rand == 0) {
+                    if (this.money >= Attributes.CANNON_COST.getValue()) {
+                        gameManager.addTroop(Attributes.CANNON_ID, newPosX, newPosY, gameTime, false);
+                        System.out.println("-------->Added CANNON on time " + gameManager.getTime());
+                    }
+                } else {
+                    if (this.money >= Attributes.TESLA_COST.getValue()) {
+                        gameManager.addTroop(Attributes.TESLA_ID, newPosX, newPosY, gameTime, false);
+                        System.out.println("-------->Added TESLA on time " + gameManager.getTime());
+                    }
+                }
+
+                leave = true;
+            }
+        }
+
+    }
+
+    public int findNearestTroop() {
+
+        int maxX = 7;
+        int maxY = 14;
+
+        for (int x = 0; x < maxX; x++) {
+            for (int y = 0; y < maxY; y++) {
+                Troop enemyTroop = gameManager.getBoard().getCellsMatrix()[x][y].getTroop();
+                if (enemyTroop != null) {
+                    if (enemyTroop.isUser()) {
+                        return enemyTroop.getPosx();
+                    }
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public int getNumTroopsAlive() {
+        return numTroopsAlive;
+    }
+
+    public void setNumTroopsAlive(int numTroopsAlive) {
+        this.numTroopsAlive = numTroopsAlive;
+    }
+
+    public int getLifes() {
+        return lifes;
+    }
+
+    public void setLifes(int lifes) {
+        this.lifes = lifes;
     }
 }

@@ -10,12 +10,12 @@ public class Archer extends Ofensive {
 
     public Archer(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop,Color color) {
         super(name,posx, posy, gameManager, isUser,stop,color);
-        this.setRange(3);//cuadrados a la redonda posible 5
-        this.setLife(12);
-        this.setCost(2);
-        this.setDamage(4);//quiza 2
-        this.setAttackVelocity(2000);
-        this.setMovementVelocity(3000);
+        this.setCost(Attributes.ARCHER_COST.getValue());
+        this.setLife(Attributes.ARCHER_LIFE.getValue());
+        this.setDamage(Attributes.ARCHER_DAMAGE.getValue());//quiza 2
+        this.setRange(Attributes.ARCHER_ATTACK_RANGE.getValue());//cuadrados a la redonda posible 5
+        this.setAttackVelocity(Attributes.ARCHER_ATTACK_VELOCITY.getValue());
+        this.setMovementVelocity(Attributes.ARCHER_MOVEMENT_VELOCITY.getValue());
         this.setPrefObjective("all");
 
 

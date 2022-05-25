@@ -205,27 +205,6 @@ public class Troop implements Runnable{
             }
         }
 
-
-
-        /*//mirar dreta(U) / esquerra(M)
-        if(esPotAtacar(rang_accio, 0)) {
-            return true;
-            setRival(getPartidaManager().getTaulell().getFitxaCasella(getPosx() + rang_accio, getPosy()));
-            //rival.setRival(this);
-
-            //mirar esquerra
-        } else if(esPotAtacar(-rang_accio, 0)){
-            return true;
-            setRival(getPartidaManager().getTaulell().getFitxaCasella(getPosX() - rang_accio, getPosY()));
-            //rival.setRival(this);
-
-            //mirar endavant
-        } else if(esPotAtacar(0, rang_accio)){
-            return true;
-            setRival(getPartidaManager().getTaulell().getFitxaCasella(getPosX(), getPosY() + rang_accio));
-            //rival.setRival(this);
-        }*/
-
         return null;
     }
 
@@ -322,121 +301,7 @@ public class Troop implements Runnable{
     }
 
 
-   /*
 
-   public void attack() {
-        int damage = getAtaque() / getRival().getDefensa();
-        if (rival.getNom().equals("Base")){
-            pm.baseAtacada(damage, usuari);
-        } else {
-            getRival().setVida(getRival().getVida() - (damage * 4));
-        }
-    }
-
-    public boolean enemyNear() {
-        boolean enemic = false;
-        int rang_accio;
-
-        if (this.usuari) {
-            rang_accio = -this.rangAccio;
-        } else {
-            rang_accio = this.rangAccio;
-        }
-
-        //mirar dreta(U) / esquerra(M)
-        if(esPotAtacar(rang_accio, 0)) {
-            enemic = true;
-            setRival(getPartidaManager().getTaulell().getFitxaCasella(getPosx() + rang_accio, getPosy()));
-            //rival.setRival(this);
-
-            //mirar esquerra
-        } else if(esPotAtacar(-rang_accio, 0)){
-            enemic = true;
-            setRival(getPartidaManager().getTaulell().getFitxaCasella(getPosX() - rang_accio, getPosY()));
-            //rival.setRival(this);
-
-            //mirar endavant
-        } else if(esPotAtacar(0, rang_accio)){
-            enemic = true;
-            setRival(getPartidaManager().getTaulell().getFitxaCasella(getPosX(), getPosY() + rang_accio));
-            //rival.setRival(this);
-        }
-
-        return enemic;
-    }
-
-
-    private boolean checkBoardLimits(int rangAccioX, int rangAccioY){
-        return getPartidaManager().getTaulell().inTheLimit(getPosX() + rangAccioX, getPosY() + rangAccioY);
-    }
-
-
-    private boolean cellIsEmpty(int rangAccioX, int rangAccioY){
-        return getPartidaManager().getTaulell().getFitxaCasella(getPosX() + rangAccioX, getPosY() + rangAccioY) != null;
-    }
-
-
-    private boolean isEnemy(int rangAccioX, int rangAccioY){
-        return getPartidaManager().getTaulell().getFitxaCasella(getPosX() + rangAccioX, getPosY() + rangAccioY).isUsuari() != usuari;
-    }
-
-
-    private boolean canAttack(int rangAccioX, int rangAccioY){
-        if (comprovarLimit(rangAccioX, rangAccioY) && comprovarSiHiHaAlgu(rangAccioX, rangAccioY) && comprovarSiEsEnemic(rangAccioX, rangAccioY)){
-            return true;
-        }
-        return false;
-    }
-    public void atack(){
-        enemyTroop = enemyNear();
-        while(enemyNear() != null){
-            System.out.println("te meto cerdo");
-            while(enemyTroop.getLife()-getDamage() >= 0){
-                enemyTroop.setLife(enemyTroop.getLife() - getDamage());
-            }
-
-        }
-    }
-
-
-
-
-
-
-    public String checkMove(int movel, int fila, int columna, String[][] mapa) {
-        boolean front = false;
-        boolean fRight = false;
-        boolean fLeft = false;
-        int finalpos[];
-        int i = 1;
-        if (columna == 0) {
-            while (i <= movel) {
-                if (mapa[fila + i][columna].equals("|")) front = true;
-                if (mapa[fila + i][columna + i].equals("|")) fRight = true;
-                i++;
-            }
-        } else if (columna == 20) {
-            while (i <= movel) {
-                if (mapa[fila + i][columna].equals("|")) front = true;
-                if (mapa[fila + i][columna - i].equals("|")) fLeft = true;
-                i++;
-            }
-        } else {
-            while (i <= movel) {
-                if (mapa[fila + i][columna].equals("|")) front = true;
-                if (mapa[fila + i][columna - i].equals("|")) fLeft = true;
-                if (mapa[fila + i][columna + i].equals("|")) fRight = true;
-                i++;
-            }
-        }
-        if(front){
-            return "front";
-        }else if (fRight){
-            return "fRight";
-        }else if (fLeft){
-            return "fLeft";
-        }else return "cant";
-    }*/
 
 }
 

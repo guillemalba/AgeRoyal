@@ -11,14 +11,14 @@ public class TeslaTower extends Defensive{
     public TeslaTower(String name, int posx, int posy, GameManager gameManager, boolean isUser, boolean stop, Color color) {
         super(name,posx, posy, gameManager, isUser,stop,color);
         this.hide = hide;
-        this.setRange(2);//cuadrados a la redonda
         this.setName("TeslaTower");
-        this.setLife(20);
-        this.setCost(3);
-        this.setDamage(5);
-        this.setAttackVelocity(2000);
+        this.setCost(Attributes.TESLA_COST.getValue());
+        this.setLife(Attributes.TESLA_LIFE.getValue());
+        this.setDamage(Attributes.TESLA_DAMAGE.getValue());
+        this.setRange(Attributes.TESLA_ATTACK_RANGE.getValue());//cuadrados a la redonda
+        this.setAttackVelocity(Attributes.TESLA_ATTACK_VELOCITY.getValue());
+        this.setTimeLife(Attributes.TESLA_TIME_LIFE.getValue());//seg
         this.setType("Structure");
-        this.setTimeLife(30);//seg
 
     }
 

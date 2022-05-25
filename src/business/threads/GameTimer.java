@@ -4,16 +4,13 @@ import business.GameManager;
 
 public class GameTimer implements Runnable{
 
-    // The time in milliseconds to make the Thread wait.
     private final long sleepTime;
-    // The number of times we want the Thread to print values.
     private int time;
-    // bolean to stop the timer
     private boolean stop;
     private GameManager gameManager;
 
-    public GameTimer(long sleepTime, int time, boolean stop, GameManager gameManager) {
-        this.sleepTime = sleepTime;
+    public GameTimer(int time, boolean stop, GameManager gameManager) {
+        this.sleepTime = 1000;
         this.time = time;
         this.stop = stop;
         this.gameManager = gameManager;
@@ -30,8 +27,8 @@ public class GameTimer implements Runnable{
                 e.printStackTrace();
             }
             time++;
-
-            System.out.println("Time: " + time);
+            gameManager.setTime(time);
+            /*System.out.println("Time: " + time);*/
             gameManager.UpdateViewMap();
 
         }
@@ -42,4 +39,6 @@ public class GameTimer implements Runnable{
     public void stop() {
         stop = true;
     }
+
+
 }

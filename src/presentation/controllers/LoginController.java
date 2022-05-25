@@ -37,8 +37,9 @@ public class LoginController implements ActionListener {
                     System.out.println(user.getName() + " login successful");
                     userManager.setUser(user.getName());//Registrar user en la ram
                 } else {
-                    loginView.errorMessage();
+                    /*loginView.errorMessage();*/
                 }
+                // TODO move into if condition
                 loginView.setMainView(mainView);
                 loginView.setComponents(viewComponents);
                 loginView.showMenu();
