@@ -35,4 +35,11 @@ public interface UserDAO {
      * @return a list of Users
      */
     LinkedList<User> readAllUsers();
+
+    /**
+     * Gets a list of user in the order of there win rate
+     *
+     * @return a list of Users
+     */
+    LinkedList<User> readAllOrderUsers();
 }

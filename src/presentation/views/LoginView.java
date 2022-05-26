@@ -19,13 +19,14 @@ public class LoginView extends JPanel {
     }
 
     private void configureLoginView() {
-        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        setLayout(new BorderLayout());
 
         //Creamos los labels que queremos que aparezcan en la pagina
         JLabel jlLogin = new JLabel("LOGIN");
+        jlLogin.setFont(new Font("Serif", Font.PLAIN, 40));
 
         //Creamos un panel nuevo para tener una tabla para intriducir los datos de los usuarios
-        JPanel jpTable = new JPanel(new GridLayout(0,2));
+        JPanel jpTable = new JPanel(new GridLayout(0,2 ,0, 400));
         JLabel jlUsernameEmail = new JLabel("Username / Email");
         JLabel jlPassword = new JLabel("Password");
 
@@ -48,9 +49,9 @@ public class LoginView extends JPanel {
         jpButtons.add(jbBack);
 
         //Añadimos los elementos a la pantalla
-        add(jlLogin);
-        add(jpTable);
-        add(jpButtons);
+        add(jlLogin, BorderLayout.NORTH);
+        add(jpTable, BorderLayout.CENTER);
+        add(jpButtons, BorderLayout.SOUTH);
 
     }
 

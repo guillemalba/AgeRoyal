@@ -65,7 +65,7 @@ public class MenuView extends JPanel {
         );
         Dimension dimension = new Dimension(300,100);
 
-        JPanel jpCenter = new JPanel(new GridLayout(4, 1));
+        JPanel jpCenter = new JPanel(new GridLayout(3, 1));
 
         jbPlayGame = new JButton("Play Game");
         jbPlayGame.setForeground(Color.BLACK);
@@ -83,14 +83,6 @@ public class MenuView extends JPanel {
         jbRanking.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0), BorderFactory.createLineBorder(Color.black)));
         jbRanking.setPreferredSize(dimension);
         jpCenter.add(jbRanking);
-
-        jbGameGraphics = new JButton("Game Graphics");
-        jbGameGraphics.setForeground(Color.BLACK);
-        jbGameGraphics.setBackground(Color.WHITE);
-        jbGameGraphics.setActionCommand("game_graphics");
-        jbGameGraphics.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0), BorderFactory.createLineBorder(Color.black)));
-        jbGameGraphics.setPreferredSize(dimension);
-        jpCenter.add(jbGameGraphics);
 
         jbGameRecording = new JButton("Game Recording");
         jbGameRecording.setForeground(Color.BLACK);

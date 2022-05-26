@@ -95,6 +95,32 @@ public class UserSQLDAO implements UserDAO{
         return null;
     }
 
+    @Override
+    public LinkedList<User> readAllOrderUsers() {
+        try {
+            Connection connection = DriverManager.getConnection(data.getUrl(), data.getUser(), data.getPassword());
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("Select * from player Order By ratio DESC");
+
+            LinkedList<User> users = new LinkedList<>();
+            while ((resultSet.next())) {
+                User user = new User(
+                        resultSet.getString("name"),
+                        resultSet.getString("mail"),
+                        resultSet.getString("password"),
+                        resultSet.getInt("victorias"),
+                        resultSet.getInt("totalGames"),
+                        resultSet.getFloat("ratio")
+                );
+                users.add(user);
+            }
+            return users;
+        } catch (SQLException e) {
+            System.out.println("Connection failure.");
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
     public void mostrar() {
