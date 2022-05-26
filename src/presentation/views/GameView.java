@@ -65,6 +65,7 @@ public class GameView extends JPanel {
         for(int i = 0; i < 15; i++){
             for(int j = 0; j < 15; j++) {
                 tableGrid[i][j] = new JPanel();
+                tableGrid[i][j].setLayout(new BorderLayout());
                 tableGrid[i][j].setSize(15,15);
                 tableGrid[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                 tableGrid[i][j].setName(i+","+j);
@@ -129,6 +130,7 @@ public class GameView extends JPanel {
 
         offT1.setBackground(Color.YELLOW);
         offT1.setName("offT1");
+        offT1.setLayout(new BorderLayout());
         try {
             BufferedImage image = ImageIO.read(new File("files/user_archer.png"));
             JLabel label = new JLabel(new ImageIcon(image));
@@ -142,6 +144,7 @@ public class GameView extends JPanel {
 
         offT2.setBackground(Color.BLUE);
         offT2.setName("offT2");
+        offT2.setLayout(new BorderLayout());
         try {
             BufferedImage image = ImageIO.read(new File("files/user_giant.png"));
             JLabel label = new JLabel(new ImageIcon(image));
@@ -162,6 +165,7 @@ public class GameView extends JPanel {
 
         defT1.setBackground(Color.BLACK);
         defT1.setName("defT1");
+        defT1.setLayout(new BorderLayout());
         try {
             BufferedImage image = ImageIO.read(new File("files/user_cannon.png"));
             JLabel label = new JLabel(new ImageIcon(image));
@@ -175,6 +179,7 @@ public class GameView extends JPanel {
 
         defT2.setBackground(Color.ORANGE);
         defT2.setName("defT2");
+        defT2.setLayout(new BorderLayout());
         try {
             BufferedImage image = ImageIO.read(new File("files/user_tesla.png"));
             JLabel label = new JLabel(new ImageIcon(image));

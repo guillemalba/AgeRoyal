@@ -225,7 +225,7 @@ public class GameViewController implements ActionListener, MouseListener {
     }
 
     public void addTroop(Board board,int moneyUser) {
-        gameView.updateView(board,moneyUser);
+        SwingUtilities.invokeLater(()->gameView.updateView(board,moneyUser));
 
     }
 
