@@ -236,6 +236,7 @@ public class Troop implements Runnable{
 
             synchronized (Troop.class) {
                 if(enemyTroop.getLife() > 0.0){
+
                     enemyTroop.setLife(enemyTroop.getLife() - getDamage());
                     System.out.println(name+" "+" pega a "+enemyTroop.name+" le deja con " +enemyTroop.getLife());
                 }
@@ -246,7 +247,7 @@ public class Troop implements Runnable{
         }
         if(!stop) {
             System.out.println(name + "Mata a " + enemyTroop.name);
-            gameManager.moneyReward(enemyTroop.isUser);
+
             enemyTroop.setStop(true);
 
         }
@@ -308,8 +309,8 @@ public class Troop implements Runnable{
         return "false";
     }
 
-    public void stopGame(){
-        gameManager.stopGame();
+    public void stopGame(boolean isUser){
+        gameManager.stopGame(isUser,false);
     }
 
 

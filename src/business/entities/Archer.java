@@ -60,6 +60,7 @@ public class Archer extends Ofensive {
 
 
         }
+
         dieTroop(this);
     }
 

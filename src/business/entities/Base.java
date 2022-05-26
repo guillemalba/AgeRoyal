@@ -38,7 +38,7 @@ public class Base extends Defensive{
 
         }
         dieTroop(this);
-        stopGame();
+        stopGame(isUser());
 
     }
 

@@ -36,7 +36,7 @@ public class GameViewController implements ActionListener, MouseListener {
                 mainView.showSettings();
             break;
             case "Back":
-                gameManager.stopGame();
+                gameManager.stopGame(false,true);
 
             break;
         }
@@ -235,7 +235,13 @@ public class GameViewController implements ActionListener, MouseListener {
 
     }
 
-
+public String saveGame(){
+    String game ="no";
+    //TODO:Pop guardar partida
+        //TODO:if yes-> guardamos nombre
+    //game = new
+    return game;
+}
     public void finishGame(){
         mainView.showMenu();
     }

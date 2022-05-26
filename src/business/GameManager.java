@@ -36,10 +36,12 @@ public class GameManager{
     private User user;
     private LinkedList<Troop> linkedList = new LinkedList<>();
     private HashMap<String, BufferedImage> images = new HashMap<>();
+    private UserManager userManager;
 
 
     public GameManager(UserManager userManager) {
         gameDAO = new GameSQLDAO();
+        this.userManager = userManager;
     }
 
     public LinkedList<Game> updateGames() {
@@ -78,10 +80,9 @@ public class GameManager{
 
     }
 
-    public void stopGame(){
+    public void stopGame(boolean isUser,boolean stop){
 
         //guardar partida
-
         //Parar todos los threads
         for (int i = 0; i < board.getSide(); i++) {
             for (int j = 0; j < board.getSide(); j++) {
@@ -94,6 +95,10 @@ public class GameManager{
 
         //Poner aquie lo de guardar partida
         gameTimer.stop();
+        String aux=  gameController.saveGame();
+        //TODO:if aux != no
+            //TODO: creamos nuevo game en database -> nombre,data,winner,player
+            //TODO: guardar drops
         gameController.finishGame();
 
     }
@@ -185,6 +190,6 @@ public class GameManager{
         System.out.println("primero tengo :"+user.getMoney());
          if(!isUser) user.setMoney(user.getMoney()+3);
          if(isUser) ia.setMoney(ia.getMoney()+3);
-        System.out.println("luego tengo: "+user.getMoney());
+
     }
 }
