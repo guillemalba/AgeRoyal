@@ -7,8 +7,8 @@ import java.awt.image.BufferedImage;
 
 public class Canon extends Defensive {
 
-    public Canon(String name, int posx, int posy, GameManager gameManager, boolean isUser, boolean stop, Color color, BufferedImage image) {
-        super(name, posx, posy, gameManager, isUser, stop, color, image);
+    public Canon(String name, int posx, int posy, GameManager gameManager, boolean isUser, boolean stop, BufferedImage image) {
+        super(name, posx, posy, gameManager, isUser, stop, image);
         this.setCost(Attributes.CANNON_COST.getValue());
         this.setLife(Attributes.CANNON_LIFE.getValue());
         this.setDamage(Attributes.CANNON_DAMAGE.getValue());
@@ -16,7 +16,7 @@ public class Canon extends Defensive {
         this.setAttackVelocity(Attributes.CANNON_ATTACK_VELOCITY.getValue());
         this.setTimeLife(Attributes.CANNON_TIME_LIFE.getValue());//seg
         this.setType("Structure");
-        this.setColor(Color.BLACK);
+
 
     }
 
@@ -24,7 +24,7 @@ public class Canon extends Defensive {
     public synchronized void run() {
 
 
-        while (getLife() > 0) {
+        while (getLife() > 0 && getTimeLife()>0) {
             try {
 
                 Thread.sleep(getAttackVelocity());
@@ -34,6 +34,8 @@ public class Canon extends Defensive {
             if (enemyNear() != null && enemyNear().getLife() >= 0.0) {
                 atack(enemyNear());
             }
+
+            setTimeLife(getTimeLife()-(int)(getAttackVelocity()/1000));
 
         }
         dieTroop(this);

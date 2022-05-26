@@ -13,8 +13,8 @@ public class Ofensive extends Troop {
 
 
 
-    public Ofensive(String name, int posx, int posy, GameManager gameManager, boolean isUser, boolean stop, Color color, BufferedImage image) {
-        super(name,posx,posy,gameManager, isUser, stop, color, image);
+    public Ofensive(String name, int posx, int posy, GameManager gameManager, boolean isUser, boolean stop, BufferedImage image) {
+        super(name,posx,posy,gameManager, isUser, stop, image);
     }
 
 

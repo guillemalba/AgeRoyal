@@ -9,8 +9,8 @@ public class Defensive extends Troop {
     private int timeLife;
 
 
-    public Defensive(String name, int posx, int posy, GameManager gamemanager, boolean isUser, boolean stop, Color color, BufferedImage image) {
-        super(name,posx,posy,gamemanager, isUser, stop, color, image);
+    public Defensive(String name, int posx, int posy, GameManager gamemanager, boolean isUser, boolean stop, BufferedImage image) {
+        super(name,posx,posy,gamemanager, isUser, stop, image);
         this.timeLife = timeLife;
     }
 

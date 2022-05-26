@@ -48,22 +48,25 @@ public class GameViewController implements ActionListener, MouseListener {
             switch(e.getComponent().getName()){
                 case "offT1":
                     tipo = "archer";
-
+                    gameView.putBorder(e.getComponent().getName());
 
                     break;
 
                 case "offT2":
                     tipo = "giant";
+                    gameView.putBorder(e.getComponent().getName());
 
                     break;
 
                 case "defT1":
                     tipo = "canon";
+                    gameView.putBorder(e.getComponent().getName());
 
                     break;
 
                 case "defT2":
                     tipo = "tesla";
+                    gameView.putBorder(e.getComponent().getName());
 
                     break;
 
@@ -78,14 +81,17 @@ public class GameViewController implements ActionListener, MouseListener {
             if(x > 7) {
                 switch (tipo) {
                     case "archer":
+
                         gameManager.posTroop(Attributes.ARCHER_ID, x, y);
 
                         break;
                     case "giant":
+
                         gameManager.posTroop(Attributes.GIANT_ID, x, y);
 
                         break;
                     case "canon":
+
                         gameManager.posTroop(Attributes.CANNON_ID, x, y);
 
                         break;
@@ -152,17 +158,17 @@ public class GameViewController implements ActionListener, MouseListener {
 
                 case "offT2":
 
-                    e.getComponent().setBackground(Color.BLUE);
+                    e.getComponent().setBackground(Color.YELLOW);
                     break;
 
                 case "defT1":
 
-                    e.getComponent().setBackground(Color.BLACK);
+                    e.getComponent().setBackground(Color.GREEN);
                     break;
 
                 case "defT2":
 
-                    e.getComponent().setBackground(Color.ORANGE);
+                    e.getComponent().setBackground(Color.GREEN);
                     break;
 
                 default:

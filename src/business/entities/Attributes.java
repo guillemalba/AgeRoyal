@@ -27,15 +27,15 @@ public enum Attributes {
     CANNON_DAMAGE(4),
     CANNON_ATTACK_RANGE(3),
     CANNON_ATTACK_VELOCITY(3000),
-    CANNON_TIME_LIFE(20),
+    CANNON_TIME_LIFE(18),//*atackVel
 
     TESLA_ID(3),
-    TESLA_COST(4),
+    TESLA_COST(5),
     TESLA_LIFE(30),
     TESLA_DAMAGE(4),
     TESLA_ATTACK_RANGE(2),
     TESLA_ATTACK_VELOCITY(2000),
-    TESLA_TIME_LIFE(30),
+    TESLA_TIME_LIFE(25),
     ;
 
     private final int value;

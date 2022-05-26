@@ -9,8 +9,8 @@ public class TeslaTower extends Defensive{
     private boolean hide;
 
 
-    public TeslaTower(String name, int posx, int posy, GameManager gameManager, boolean isUser, boolean stop, Color color, BufferedImage image) {
-        super(name,posx, posy, gameManager, isUser, stop, color, image);
+    public TeslaTower(String name, int posx, int posy, GameManager gameManager, boolean isUser, boolean stop, BufferedImage image) {
+        super(name,posx, posy, gameManager, isUser, stop, image);
         this.hide = hide;
         this.setName("TeslaTower");
         this.setCost(Attributes.TESLA_COST.getValue());
@@ -20,6 +20,28 @@ public class TeslaTower extends Defensive{
         this.setAttackVelocity(Attributes.TESLA_ATTACK_VELOCITY.getValue());
         this.setTimeLife(Attributes.TESLA_TIME_LIFE.getValue());//seg
         this.setType("Structure");
+
+    }
+
+    @Override
+    public synchronized void run() {
+
+
+        while (getLife() > 0 && getTimeLife() > 0) {
+            try {
+
+                Thread.sleep(getAttackVelocity());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (enemyNear() != null && enemyNear().getLife() >= 0.0) {
+                atack(enemyNear());
+            }
+
+            setTimeLife(getTimeLife()-(int)(getAttackVelocity()/1000));
+        }
+        dieTroop(this);
+        //stopGame();
 
     }
 

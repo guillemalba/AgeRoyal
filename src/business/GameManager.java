@@ -53,12 +53,10 @@ public class GameManager{
 
         readImages();
 
-        Base baseIA = new Base("BaseMAquina",0,7,this, false,false, Color.ORANGE, images.get("ia_base"));
-        Base baseUser = new Base("BasePlayer",14,7,this, true,false, Color.ORANGE, images.get("user_base"));
+        Base baseIA = new Base("BaseMAquina",0,7,this, false,false, images.get("ia_base"));
+        Base baseUser = new Base("BasePlayer",14,7,this, true,false, images.get("user_base"));
         new Thread(baseUser).start();
         new Thread(baseIA).start();
-        /*linkedList.add(baseIA);
-        linkedList.add(baseUser);*/
         board.setTroopBoard(baseIA);
         board.setTroopBoard(baseUser);
 
@@ -117,11 +115,12 @@ public class GameManager{
 
 
     public synchronized void addTroop(Attributes troopId, int x, int y, int timeAdded, boolean isUser, String key) {
+
         switch (troopId) {
-            case ARCHER_ID -> linkedList.add(new Archer("archer100Maquina",x,y,this, isUser,false, Color.YELLOW, images.get(key)));
-            case CANNON_ID -> linkedList.add(new Canon("CanonPlayer",x,y,this,isUser,false,Color.ORANGE, images.get(key)));
-            case GIANT_ID -> linkedList.add(new Giant("GigantePlayer1",x,y,this,isUser,false,Color.BLUE, images.get(key)));
-            /*case TESLA -> linkedList.add(new TeslaTower("tesla100Maquina",x,y,this, false,false, Color.YELLOW));*/
+            case ARCHER_ID -> linkedList.add(new Archer("archer100Maquina",x,y,this, isUser,false, images.get(key)));
+            case CANNON_ID -> linkedList.add(new Canon("CanonPlayer",x,y,this,isUser,false, images.get(key)));
+            case GIANT_ID -> linkedList.add(new Giant("GigantePlayer1",x,y,this,isUser,false, images.get(key)));
+            case TESLA_ID -> linkedList.add(new TeslaTower("tesla100Maquina",x,y,this, isUser,false,images.get(key)));
         }
 
         if (linkedList.size() > 0) {
@@ -143,12 +142,14 @@ public class GameManager{
 
     }
     public void posTroop(Attributes tipo,int x, int y){
+
         switch (tipo) {
-            case ARCHER_ID: if(user.getMoney()>=Attributes.ARCHER_COST.getValue()) addTroop(tipo,x,y,time,true, "user_archer") ;
-            case CANNON_ID : if(user.getMoney()>=Attributes.GIANT_COST.getValue()) addTroop(tipo,x,y,time,true, "user_cannon") ;
-            case GIANT_ID : if(user.getMoney()>=Attributes.CANNON_COST.getValue()) addTroop(tipo,x,y,time,true, "user_giant") ;
-            /*case TESLA : if(user.getMoney()>=Attributes.TESLA_COST.getValue()) addTroop(tipo,x,y,time,true, "user_tesla");*/
-            default : System.out.println("Bro eso esta caro");
+
+            case ARCHER_ID: if(user.getMoney()>=Attributes.ARCHER_COST.getValue()) addTroop(tipo,x,y,time,true, "user_archer") ; break;
+            case CANNON_ID : if(user.getMoney()>=Attributes.GIANT_COST.getValue()) addTroop(tipo,x,y,time,true, "user_cannon") ; break;
+            case GIANT_ID : if(user.getMoney()>=Attributes.CANNON_COST.getValue()) addTroop(tipo,x,y,time,true, "user_giant") ; break;
+            case TESLA_ID : if(user.getMoney()>=Attributes.TESLA_COST.getValue()) addTroop(tipo,x,y,time,true, "user_tesla"); break;
+            default : System.out.println("Bro eso esta caro"); break;
         }
     }
 
@@ -180,4 +181,10 @@ public class GameManager{
         }
     }
 
+    public void moneyReward(boolean isUser){
+        System.out.println("primero tengo :"+user.getMoney());
+         if(!isUser) user.setMoney(user.getMoney()+3);
+         if(isUser) ia.setMoney(ia.getMoney()+3);
+        System.out.println("luego tengo: "+user.getMoney());
+    }
 }

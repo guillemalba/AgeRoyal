@@ -26,7 +26,7 @@ public class Troop implements Runnable{
 
 
 
-    public Troop(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop,Color color, BufferedImage image) {
+    public Troop(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop, BufferedImage image) {
 
         this.name = name;
         this.posx = posx;
@@ -34,7 +34,6 @@ public class Troop implements Runnable{
         this.gameManager = gameManager;
         this.isUser = isUser;
         this.stop = stop;
-        this.color =color;
         this.image = image;
     }
 
@@ -220,8 +219,7 @@ public class Troop implements Runnable{
         return null;
     }
 
-    public void atack(Troop enemyTroop){ //Cuando salga del ranog que fem.
-                                        //TODO:A veces entran dos tropas a lavez y no se suma el daño.
+    public void atack(Troop enemyTroop){
 
 
         while(enemyTroop.getLife() > 0 && !stop){
@@ -248,7 +246,9 @@ public class Troop implements Runnable{
         }
         if(!stop) {
             System.out.println(name + "Mata a " + enemyTroop.name);
+            gameManager.moneyReward(enemyTroop.isUser);
             enemyTroop.setStop(true);
+
         }
 
 

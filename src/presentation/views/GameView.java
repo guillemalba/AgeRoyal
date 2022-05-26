@@ -142,7 +142,7 @@ public class GameView extends JPanel {
 
         offensiveCardPanel.add(offT1);
 
-        offT2.setBackground(Color.BLUE);
+        offT2.setBackground(Color.YELLOW);
         offT2.setName("offT2");
         offT2.setLayout(new BorderLayout());
         try {
@@ -163,7 +163,7 @@ public class GameView extends JPanel {
         GridLayout defensiveCardLayout = new GridLayout(2, 2);
         defensiveCardPanel.setLayout(defensiveCardLayout);
 
-        defT1.setBackground(Color.BLACK);
+        defT1.setBackground(Color.GREEN);
         defT1.setName("defT1");
         defT1.setLayout(new BorderLayout());
         try {
@@ -177,7 +177,7 @@ public class GameView extends JPanel {
         defensiveCardPanel.add(defT1);
 
 
-        defT2.setBackground(Color.ORANGE);
+        defT2.setBackground(Color.GREEN);
         defT2.setName("defT2");
         defT2.setLayout(new BorderLayout());
         try {
@@ -263,6 +263,40 @@ public class GameView extends JPanel {
 
         revalidate();
         repaint();
+    }
+
+    public void putBorder(String click){
+        switch (click){
+            case "offT1":
+                offT1.setBorder(BorderFactory.createLineBorder(Color.RED,4));
+                offT2.setBorder(null);
+                defT1.setBorder(null);
+                defT2.setBorder(null);
+                break;
+            case "offT2":
+                offT1.setBorder(null);
+                offT2.setBorder(BorderFactory.createLineBorder(Color.RED,4));
+                defT1.setBorder(null);
+                defT2.setBorder(null);
+                break;
+            case "defT1":
+                offT1.setBorder(null);
+                offT2.setBorder(null);
+                defT1.setBorder(BorderFactory.createLineBorder(Color.RED,4));
+                defT2.setBorder(null);
+                break;
+            case "defT2":
+                offT1.setBorder(null);
+                offT2.setBorder(null);
+                defT1.setBorder(null);
+                defT2.setBorder(BorderFactory.createLineBorder(Color.RED,4));
+                break;
+            default:
+                offT1.setBorder(null);
+                offT2.setBorder(null);
+                defT1.setBorder(null);
+                defT2.setBorder(null);
+        }
     }
 
 }
