@@ -57,7 +57,7 @@ public class UserManager {
 
     public LinkedList<User> updateUsers(){
         if(users != null) users.removeAll(users);
-        users = userDAO.readAllUsers();
+        users = userDAO.readAllOrderUsers();
         return users;
     }
 

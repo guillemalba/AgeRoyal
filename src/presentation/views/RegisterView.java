@@ -22,28 +22,38 @@ public class RegisterView extends JPanel {
     }
 
     private void configureRegisterView() {
-        setLayout(new BoxLayout(this ,BoxLayout.PAGE_AXIS));
+        setLayout(new BorderLayout());
         setSize(550, 720);
 
         //Creamos los labels que queremos que aparezcan en la pagina
-        JLabel jlSingIn = new JLabel("Register");
+        JLabel jlSingIn = new JLabel("REGISTER");
+        jlSingIn.setFont(new Font("Serif", Font.PLAIN, 40));
 
         //Creamos un panel nuevo para tener una tabla para intriducir los datos de los usuarios
-        JPanel jpTable = new JPanel(new GridLayout(0,2));
+        JPanel jpTable = new JPanel(new GridLayout(0,2, 0, 140));
         jpTable.setSize(550, 720);
-        jpTable.setBackground(Color.red);
         JLabel jlUsername = new JLabel("Username");
+        JPanel jpUsername = new JPanel();
+        jpUsername.setLayout(new BorderLayout());
+        jpUsername.setSize(300, 5);
+        jpUsername.setBounds(5, 10, 580, 80);
         jtfUsername = new JTextField();
+        jpUsername.add(jtfUsername, BorderLayout.CENTER);
         JLabel jlEmail = new JLabel("Email");
         jtfEmail = new JTextField();
+        jtfEmail.setSize(300, 50);
         JLabel jlPassword = new JLabel("Password");
         jpfPassword = new JPasswordField();
+        jpfPassword.setSize(300, 50);
         JLabel jlConfPassword = new JLabel("Confirm Password");
         jpfConfPassword = new JPasswordField();
+        jpfConfPassword.setSize(300, 50);
+        jpTable.setSize(500, 720);
+        jpTable.setBounds(5, 30, 580, 80);
 
         //Añadimos todos los elementos dentro de la tabla
         jpTable.add(jlUsername);
-        jpTable.add(jtfUsername);
+        jpTable.add(jpUsername);
         jpTable.add(jlEmail);
         jpTable.add(jtfEmail);
         jpTable.add(jlPassword);
@@ -64,9 +74,9 @@ public class RegisterView extends JPanel {
         jpButtons.add(jbBack);
 
         //Añadimos los elementos a la pantalla
-        add(jlSingIn);
-        add(jpTable);
-        add(jpButtons);
+        add(jlSingIn, BorderLayout.NORTH);
+        add(jpTable, BorderLayout.CENTER);
+        add(jpButtons, BorderLayout.SOUTH);
     }
 
     public void registerController(ActionListener listener) {
