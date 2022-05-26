@@ -19,78 +19,15 @@ Create table Game(
     foreign key (player) references Player(name)
 );
 
-Insert INTO game (name, data, win, player) values ('A', '18-04-2002', true, 'hehe');
-
-
-Drop table if exists Troops cascade;
-create table Troops(
-    id          serial,
-    name        varchar(255),
-    life        int,
-    cost        int,
-    rangeDmg    float,
-    primary key(id)
-);
-
-
-Drop table if exists Ofensive cascade;
-create table Ofensive(
-    id          int,
-    movVel      int,
-    primary key(id),
-    foreign key(id) references Troops(id)
-);
-
-Drop table if exists Defensive cascade;
-create table Defensive(
-    id          int,
-    carac1      int,
-    primary key (id),
-    foreign key (id) references Troops(id)
-);
-
-Drop table if exists Ofensive1 cascade;
-create table Ofensive1(
-    id          int,
-    carac1      int,
-    primary key(id),
-    foreign key(id) references Ofensive(id)
-);
-
-Drop table if exists Ofensive2 cascade;
-create table Ofensive2(
-    id          int,
-    carac1      int,
-    primary key(id),
-    foreign key(id) references Ofensive(id)
-);
-
-Drop table if exists Defensive1 cascade;
-create table Defensive1(
-    id          int,
-    carac1      int,
-    primary key(id),
-    foreign key(id) references Defensive(id)
-);
-
-Drop table if exists Defensive2 cascade;
-create table Defensive2(
-    id          int,
-    carac1      int,
-    primary key(id),
-    foreign key(id) references Defensive(id)
-);
-
-Drop table if exists Movement cascade;
-create table Movement(
+Drop table if exists TroopDeployed cascade;
+create table TroopDeployed(
     id              serial,
-    TempsMov        float,
-    starPosition    varchar(255),
-    endPosition     varchar(255),
-    accion          varchar(255),
-    trop            int,
+    time_deployed   int,
+    posX            int,
+    posY            int,
+    troop           int,
+    isUser          boolean,
     game            varchar(255),
     primary key(id),
-    foreign key(game) references Game(name),
-    foreign key(trop) references Troops(id)
+    foreign key(game) references Game(name)
 );

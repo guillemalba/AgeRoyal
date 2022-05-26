@@ -1,6 +1,7 @@
 package persistence;
 
 import business.entities.Game;
+import business.entities.TroopDeployed;
 
 import java.util.LinkedList;
 
@@ -11,4 +12,8 @@ public interface GameDAO {
      * @return a list of Games
      */
     LinkedList<Game> readAllGames();
+
+    boolean saveGame(Game game);
+
+    boolean saveTroopsDeployed(TroopDeployed troopDeployed, String gameName);
 }

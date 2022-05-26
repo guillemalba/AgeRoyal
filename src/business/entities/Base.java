@@ -10,10 +10,10 @@ public class Base extends Defensive{
     public Base(String name, int posx, int posy, GameManager gameManager, boolean isUser, boolean stop, BufferedImage image) {
         super(name, posx, posy, gameManager, isUser, stop, image);
         this.setRange(4);//cuadrados a la redonda posible 5
-        this.setLife(50);
+        this.setLife(5);
         this.setCost(0);
         this.setDamage(4);
-        this.setAttackVelocity(2000);
+        this.setAttackVelocity(10000);
         this.setType("Structure");
         this.setTimeLife(10000);//seg
         this.setColor(Color.BLUE);

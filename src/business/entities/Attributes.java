@@ -6,7 +6,7 @@ package business.entities;
 public enum Attributes {
 
     ARCHER_ID(0),
-    ARCHER_COST(3),
+    ARCHER_COST(1),
     ARCHER_LIFE(12),
     ARCHER_DAMAGE(4),
     ARCHER_ATTACK_RANGE(3),
@@ -14,7 +14,7 @@ public enum Attributes {
     ARCHER_MOVEMENT_VELOCITY(3000),
 
     GIANT_ID(1),
-    GIANT_COST(5),
+    GIANT_COST(1),
     GIANT_LIFE(70),
     GIANT_DAMAGE(5),
     GIANT_ATTACK_RANGE(1),

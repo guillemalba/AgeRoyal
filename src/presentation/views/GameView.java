@@ -265,6 +265,12 @@ public class GameView extends JPanel {
         repaint();
     }
 
+    public String popUpSaveGame() {
+        String name = JOptionPane.showInputDialog("Type your name please");
+        JOptionPane.showMessageDialog(null, "Hello " + name);
+        return name;
+    }
+
     public void putBorder(String click){
         switch (click){
             case "offT1":

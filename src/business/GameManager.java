@@ -27,7 +27,6 @@ public class GameManager{
     private MoneyCounter moneyCounter;
     private GameTimer gameTimer;
     private Board board;
-    private LinkedList<Troop> troops= new LinkedList();
 
     private GameViewController gameController;
     private GameDAO gameDAO;
@@ -35,6 +34,7 @@ public class GameManager{
     private IA ia;
     private User user;
     private LinkedList<Troop> linkedList = new LinkedList<>();
+    private LinkedList<TroopDeployed> listDeployedTroops = new LinkedList<>();
     private HashMap<String, BufferedImage> images = new HashMap<>();
     private UserManager userManager;
 
@@ -71,7 +71,7 @@ public class GameManager{
         user = new User(this,time);
 
         // thread para contar el dinero de la IA
-        moneyCounter = new MoneyCounter(this,ia,user);
+        moneyCounter = new MoneyCounter(this,ia,user); // TODO si hay tiempo hacerlo en el manager todo
         new Thread(moneyCounter).start();
 
         //Thread del tiempo
@@ -80,7 +80,7 @@ public class GameManager{
 
     }
 
-    public void stopGame(boolean isUser,boolean stop){
+    public void stopGame(boolean isUser, boolean stop){
 
         //guardar partida
         //Parar todos los threads
@@ -95,10 +95,21 @@ public class GameManager{
 
         //Poner aquie lo de guardar partida
         gameTimer.stop();
-        String aux=  gameController.saveGame();
+        String gameName = gameController.saveGame();
+        /*if (gameName.equals("")) {
+
+        }*/
+        if (gameDAO.saveGame(new Game(gameName, "date", !isUser, userManager.getUser()))){
+            for (int i = 0; i < listDeployedTroops.size(); i++) {
+                if (gameDAO.saveTroopsDeployed(listDeployedTroops.get(i), gameName)) {
+
+                }
+            }
+        }
         //TODO:if aux != no
             //TODO: creamos nuevo game en database -> nombre,data,winner,player
             //TODO: guardar drops
+
         gameController.finishGame();
 
     }
@@ -130,7 +141,7 @@ public class GameManager{
 
         if (linkedList.size() > 0) {
             Troop newTroop = linkedList.get(linkedList.size()-1);
-
+            listDeployedTroops.add(new TroopDeployed(troopId.getValue(), time, x, y, isUser));
             board.setTroopBoard(newTroop);
             new Thread(newTroop).start();
 
@@ -146,6 +157,7 @@ public class GameManager{
 
 
     }
+
     public void posTroop(Attributes tipo,int x, int y){
 
         switch (tipo) {
