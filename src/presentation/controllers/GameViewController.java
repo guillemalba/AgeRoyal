@@ -34,7 +34,7 @@ public class GameViewController implements ActionListener, MouseListener {
         switch (e.getActionCommand()) {
             case "Settings":
                 gameManager.stopGame(false,false);
-                mainView.showSettings();
+                mainView.showLogout();
             break;
             case "Back":
                 gameManager.stopGame(false,false);

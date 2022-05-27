@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Esta clase va a ser usada para crear la vista de registro de nuestro programa
+ */
 public class RegisterView extends JPanel {
     public static final String BTN_SING = "BTN_SING";
     public static final String BTN_BACK = "BTN_BACK";
@@ -16,11 +19,17 @@ public class RegisterView extends JPanel {
     private JButton jbBack;
     private CardLayout components;
     private MainView mainView;
-    
+
+    /**
+     * Este metodo es el constructor de nuestra vista el cual va a llamar al metodo configureRegisterView()
+     */
     public RegisterView(){
         configureRegisterView();
     }
 
+    /**
+     * Esta vista va a construir nuestra vista y va a añadir los componentes que creemos aqui
+     */
     private void configureRegisterView() {
         setLayout(new BorderLayout());
         setSize(550, 720);
@@ -79,18 +88,62 @@ public class RegisterView extends JPanel {
         add(jpButtons, BorderLayout.SOUTH);
     }
 
+    /**
+     * Este metodo asignara el controlador de los botones de nuestra vista
+     * @param listener es la clase que asigna los controladores a nuestros botones
+     */
     public void registerController(ActionListener listener) {
         jbSingin.addActionListener(listener);
         jbBack.addActionListener(listener);
     }
 
-    public void setmainView(MainView mainView){
-        this.mainView = mainView;
+    /**
+     * Este metodo muestra un popUp si la contraseña es muy corta
+     */
+    public void errorPasswordLength() {
+        JOptionPane.showMessageDialog(this, "The minimum password lenght is 8 characters.");
     }
 
-    public void getComponents(CardLayout components){
-        this.components = components;
-        setLayout(this.components);
+    /**
+     * Este metodo muestra un popUp si la segunda contraseña no coincide con la primera
+     */
+    public void errorConfirmPassword() {
+        JOptionPane.showMessageDialog(this, "Both passwords are not equal.");
+    }
+
+    /**
+     * Este metodo muestra un popUp si la contraseña no tiene un formato correcto
+     */
+    public void errorUpperLowerNumber() {
+        JOptionPane.showMessageDialog(this, "Password must have at least 1 upper case, 1 lower case and 1 number.");
+    }
+
+    /**
+     * Este metodo muestra un popUp si la base de datos falla
+     */
+    public void errorConnection() {
+        JOptionPane.showMessageDialog(this, "Something went wrong with the database connection");
+    }
+
+    /**
+     * Este metodo muestra un popUp si el correo introducido ya esta asignado a algun usuario
+     */
+    public void errorEmailExist() {
+        JOptionPane.showMessageDialog(this, "The email already exist.");
+    }
+
+    /**
+     * Este metodo muestra un popUp si el nombre de usuario introducido ya esta asignado a algun usuario
+     */
+    public void errorUsernameExist() {
+        JOptionPane.showMessageDialog(this, "The username already exist.");
+    }
+
+    /**
+     * Este metodo muestra un popUp si el correo introducido no tiene un formato valido
+     */
+    public void errorFormat() {
+        JOptionPane.showMessageDialog(this, "The mail has an invalid format.");
     }
 
     public String getInputUsername() {
@@ -109,39 +162,8 @@ public class RegisterView extends JPanel {
         return jpfConfPassword.getPassword();
     }
 
-    public void errorPasswordLength() {
-        JOptionPane.showMessageDialog(this, "The minimum password lenght is 8 characters.");
-    }
-
-    public void errorConfirmPassword() {
-        JOptionPane.showMessageDialog(this, "Both passwords are not equal.");
-    }
-
-    public void errorUpperLowerNumber() {
-        JOptionPane.showMessageDialog(this, "Password must have at least 1 upper case, 1 lower case and 1 number.");
-    }
-
-    public void errorConnection() {
-        JOptionPane.showMessageDialog(this, "Something went wrong with the database connection");
-    }
-
-    public void errorEmailExist() {
-        JOptionPane.showMessageDialog(this, "The email already exist.");
-    }
-
-    public void errorUsernameExist() {
-        JOptionPane.showMessageDialog(this, "The username already exist.");
-    }
-
-    public void errorFormat() {
-        JOptionPane.showMessageDialog(this, "The mail has an invalid format.");
-    }
-
-    public void showMain(){
-        components.show(this.mainView.getContentPane(), "loginView");
-    }
-    public void showMenu(){
-        components.show(this.mainView.getContentPane(), "menuView");
+    public void setmainView(MainView mainView){
+        this.mainView = mainView;
     }
 
     public void setComponents(CardLayout viewComponents) {

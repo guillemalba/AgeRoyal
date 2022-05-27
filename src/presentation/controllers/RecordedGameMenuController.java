@@ -1,17 +1,13 @@
 package presentation.controllers;
 
 import business.GameManager;
-import business.entities.Game;
-import presentation.views.MainMenuView;
 import presentation.views.MainView;
 import presentation.views.RecordedGameMenuView;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.LinkedList;
 
 public class RecordedGameMenuController implements ActionListener, MouseListener {
     private RecordedGameMenuView recordedGameMenuView;
@@ -30,7 +26,7 @@ public class RecordedGameMenuController implements ActionListener, MouseListener
         String command = e.getActionCommand();
         switch (command) {
             case "settings":
-                mainView.showSettings();
+                mainView.showLogout();
                 break;
             case "back":
                 mainView.showMenu();

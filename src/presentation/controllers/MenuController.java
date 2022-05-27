@@ -5,7 +5,6 @@ import business.UserManager;
 import presentation.views.GameView;
 import presentation.views.MainView;
 import presentation.views.MenuView;
-import presentation.views.RecordedGameView;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -37,7 +36,7 @@ public class MenuController implements ActionListener {
             case MenuView.BTN_LOGOUT :
                 menuView.setMainView(mainView);
                 menuView.setViewComponents(viewComponents);
-                menuView.showLogout();
+                mainView.showLogout();
             break;
             case "play_game":
 
@@ -54,9 +53,6 @@ public class MenuController implements ActionListener {
                 recordedGameMenuController.updateRecordedGame();
                 mainView.showRecordedGame();
                 //menuView.setVisible(false);
-                /*RecordedGameView recordedGameView = new RecordedGameView();
-                RecordedGameMenuController recordedGameMenuController = new RecordedGameMenuController(recordedGameView, mainView, viewComponents, userManager);
-                recordedGameView.recordedGameMenuController(recordedGameMenuController);*/
                 break;
         }
     }

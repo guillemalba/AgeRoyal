@@ -23,7 +23,7 @@ public class RankingController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()){
             case "settings":
-                mainView.showSettings();
+                mainView.showLogout();
                 break;
             case "back":
                 mainView.showMenu();

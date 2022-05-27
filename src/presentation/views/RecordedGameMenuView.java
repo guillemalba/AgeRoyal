@@ -13,6 +13,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 import java.util.LinkedList;
 
+/**
+ * Esta clase nos permitira mostrar y controlar el ranking de nuesrtro codigo
+ */
 public class RecordedGameMenuView extends JPanel {
     private JButton jbSettings;
     private JButton jbBack;
@@ -25,7 +28,10 @@ public class RecordedGameMenuView extends JPanel {
 
     private JPanel[] recorded = new JPanel[100];
 
-
+    /**
+     * Este sera el constructor de nuestra vista de partidas guardadas. Aqui crearemos y añadiremos todos los componentes
+     * de nuestra vista
+     */
     public RecordedGameMenuView() {
         if(games == null){
             games = new LinkedList<Game>();
@@ -81,11 +87,20 @@ public class RecordedGameMenuView extends JPanel {
         recordedGameMenuController(recordedGameMenuController);
     }
 
+    /**
+     *  Este metodo sirve para asignar los controladores de cada boton de nuestra vita a alguna accion
+     * @param actionListener es el lugar desde el cual se controlaran los botones
+     */
     public void recordedGameMenuController(ActionListener actionListener) {
         jbSettings.addActionListener(actionListener);
         jbBack.addActionListener(actionListener);
     }
 
+    /**
+     * Esta clase actualiza la array de juegos guardados cada vez que se accede a esta vista para que siempre tenga la
+     * ultima puntuacion
+     * @param games es la lista de juegos de la que disponemos
+     */
     public void update(LinkedList<Game> games){
         this.games = games;
 
@@ -125,6 +140,9 @@ public class RecordedGameMenuView extends JPanel {
         repaint();
     }
 
+    /**
+     * Este metodo mostrara un popUp para saber si queremos mostrar la vista nueva
+     */
     public void popUp() {
         int input = JOptionPane.showConfirmDialog(new RecordedGameMenuView(),
                 "Do you want to watch that game?", "Customized Dialog",

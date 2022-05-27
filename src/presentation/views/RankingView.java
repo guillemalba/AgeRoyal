@@ -16,6 +16,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 import java.util.LinkedList;
 
+/**
+ * Es
+ */
 public class RankingView extends JPanel {
     private JButton jbSettings;
     private JButton jbBack;
@@ -53,13 +56,6 @@ public class RankingView extends JPanel {
         /******************************************** BODY *******************************************/
 
         scrollPane.setBounds(5, 10, 580, 80);
-
-
-        //BoxLayout layout = new BoxLayout(jpCenter, BoxLayout.PAGE_AXIS);
-        //jpCenter.setLayout(layout);
-        //jpCenter.add(scrollPane);
-
-        //background.add(scrollPane, BorderLayout.CENTER);
 
         /******************************************** FOOT *******************************************/
         JPanel jpSouth = new JPanel(new BorderLayout());

@@ -48,13 +48,11 @@ public class Main {
         RecordedGameMenuController recordedGameMenuController = new RecordedGameMenuController(recordedGameMenuView, mainView, gameManager);
         GameViewController gameViewController = new GameViewController(gameView, mainView,gameManager);
         RankingController rankingController = new RankingController(rankingView, mainView, userManager);
-        MenuController menuController = new MenuController(menuView, mainView, cardLayout,userManager,gameManager, recordedGameMenuController, rankingController);
 
         /* Vincular Controllers */
         loginView.loginController(loginController);
         registerView.registerController(registerController);
         logoutView.registerController(logoutController);
-        menuView.registerActionListener(menuController);
         gameView.registerController(gameViewController, gameViewController);
         recordedGameMenuView.setRecordedGameMenuController(recordedGameMenuController);
         gameManager.registerController(gameViewController);
