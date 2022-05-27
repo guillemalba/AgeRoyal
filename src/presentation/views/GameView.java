@@ -47,14 +47,13 @@ public class GameView extends JPanel {
     private JPanel badLives = new JPanel();
     private Color playerColor = new Color(64, 204, 248);
     //private Graphics g;
+
     public GameView(){
         if (board == null) {
             board = new Board();
         }
         configureView();
     }
-
-
 
     private void configureView() {
         setLayout(new BorderLayout());
@@ -68,6 +67,31 @@ public class GameView extends JPanel {
         GridLayout layout = new GridLayout(2,2);
         midJp.setLayout(layout);
 
+        createTable();
+
+        JPanel info = new JPanel();
+        createInformationTable(info);
+        midJp.add(info);
+
+        JPanel troopPanel = new JPanel();
+        createTroopPanel(troopPanel);
+        midJp.add(troopPanel);
+
+        JPanel goldPanel = new JPanel();
+        createGoldPanel(goldPanel);
+        midJp.add(goldPanel);
+
+        JPanel botJp = new JPanel();
+        botJp.add(backJb, BorderLayout.EAST);
+
+        general.add(topJp, BorderLayout.NORTH);
+        general.add(midJp, BorderLayout.CENTER);
+        general.add(botJp, BorderLayout.SOUTH);
+
+        add(general, BorderLayout.CENTER);
+    }
+
+    private void createTable(){
         int height = 15;
         int width = 15;
 
@@ -88,12 +112,9 @@ public class GameView extends JPanel {
                 tableGrid[i][j].setName(i+","+j);
             }
         }
+    }
 
-
-
-        //si fa falta borrar el table
-
-        JPanel info = new JPanel();
+    private void createInformationTable(JPanel info){
         info.setLayout(new BorderLayout());
         info.setSize(200, 400);
         GridLayout layoutInfo = new GridLayout(4,1);
@@ -150,9 +171,9 @@ public class GameView extends JPanel {
         info.add(troopCountPanel2);
         updateView(board,5,50,50);
         midJp.add(table);
-        midJp.add(info);
+    }
 
-        JPanel troopPanel = new JPanel();
+    private void createTroopPanel(JPanel troopPanel){
         troopPanel.setBackground(Color.white);
         troopPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         GridLayout troopCardNameLayout = new GridLayout(2, 2);
@@ -238,9 +259,9 @@ public class GameView extends JPanel {
         costTesla.setHorizontalAlignment(0);
 
         troopPanel.add(defensiveCardPanel);
+    }
 
-        midJp.add(troopPanel);
-        JPanel goldPanel = new JPanel();
+    private void createGoldPanel(JPanel goldPanel) {
         GridLayout goldLayout = new GridLayout(2,1);
         goldPanel.setLayout(goldLayout);
         JLabel gLabel = new JLabel("Gold");
@@ -249,16 +270,6 @@ public class GameView extends JPanel {
 
         mLabel.setHorizontalAlignment(JLabel.CENTER);
         goldPanel.add(mLabel);
-        midJp.add(goldPanel);
-
-        JPanel botJp = new JPanel();
-        botJp.add(backJb, BorderLayout.EAST);
-
-        general.add(topJp, BorderLayout.NORTH);
-        general.add(midJp, BorderLayout.CENTER);
-        general.add(botJp, BorderLayout.SOUTH);
-
-        add(general, BorderLayout.CENTER);
     }
 
     public void registerController(ActionListener listener1, MouseListener listener2) {
@@ -274,7 +285,6 @@ public class GameView extends JPanel {
             }
         }
     }
-
 
     public void updateView(Board board,int moneyUser,float vidasUser,float vidasIA) {
         //midJp.remove(table);
@@ -337,7 +347,6 @@ public class GameView extends JPanel {
         return name;
     }
 
-
     public void putBorder(String click){
         switch (click){
             case "offT1":
@@ -371,6 +380,7 @@ public class GameView extends JPanel {
                 defT2.setBorder(null);
         }
     }
+
     /*@Override //con esto se deberia de escribir las barras pero no eniendo como funciona esta pedazo de basura
     //pls sent help me pone de los nervios
 
