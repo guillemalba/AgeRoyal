@@ -73,7 +73,7 @@ public class GameManager{
         user = new User(this,time);
 
         // thread para contar el dinero de la IA
-        moneyCounter = new MoneyCounter(this,ia,user); // TODO si hay tiempo hacerlo en el manager todo
+        moneyCounter = new MoneyCounter(this); // TODO si hay tiempo hacerlo en el manager todo
         new Thread(moneyCounter).start();
 
         //Thread del tiempo
@@ -82,6 +82,11 @@ public class GameManager{
         updateViewMap();
 
 
+    }
+
+    public void sumMoney(){
+        user.setMoney(user.getMoney()+1);
+        ia.setMoney(ia.getMoney() + 1);
     }
 
     public void stopGame(boolean isUser, boolean stop){
@@ -198,9 +203,7 @@ public class GameManager{
         }
     }
 
-    public int getTime() {
-        return time;
-    }
+
 
     public void setTime(int time) {
         this.time = time;

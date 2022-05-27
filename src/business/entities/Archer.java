@@ -2,7 +2,7 @@ package business.entities;
 
 import business.GameManager;
 
-import java.awt.*;
+
 import java.awt.image.BufferedImage;
 
 
@@ -13,14 +13,13 @@ public class Archer extends Ofensive {
         super(name,posx, posy, gameManager, isUser, stop, image);
         this.setCost(Attributes.ARCHER_COST.getValue());
         this.setLife(Attributes.ARCHER_LIFE.getValue());
-        this.setDamage(Attributes.ARCHER_DAMAGE.getValue());//quiza 2
-        this.setRange(Attributes.ARCHER_ATTACK_RANGE.getValue());//cuadrados a la redonda posible 5
+        this.setDamage(Attributes.ARCHER_DAMAGE.getValue());
+        this.setRange(Attributes.ARCHER_ATTACK_RANGE.getValue());
         this.setAttackVelocity(Attributes.ARCHER_ATTACK_VELOCITY.getValue());
         this.setMovementVelocity(Attributes.ARCHER_MOVEMENT_VELOCITY.getValue());
-        this.setPrefObjective("all");
-
 
     }
+
 
 
     @Override
@@ -40,28 +39,7 @@ public class Archer extends Ofensive {
 
     @Override
     public void run() {
-
-        while(!isStop()) {
-
-            try {
-                Thread.sleep(getMovementVelocity());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            if (enemyNear() != null && enemyNear().getLife() >= 0.0) {
-
-                atack(enemyNear());
-
-            } else {
-                String move = canMove();
-                if (!move.equals("false")) move(move);
-            }
-
-
-        }
-
-        dieTroop(this);
+        super.run();
     }
 
     @Override

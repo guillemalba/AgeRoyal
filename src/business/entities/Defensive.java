@@ -11,13 +11,12 @@ public class Defensive extends Troop {
 
     public Defensive(String name, int posx, int posy, GameManager gamemanager, boolean isUser, boolean stop, BufferedImage image) {
         super(name,posx,posy,gamemanager, isUser, stop, image);
-        this.timeLife = timeLife;
+
     }
 
 
     @Override
     public synchronized void run() {
-
 
         while (!isStop() && getTimeLife()>0) {
             try {
@@ -40,7 +39,7 @@ public class Defensive extends Troop {
             removeTroop(!isUser());
         }
         dieTroop(this);
-        //stopGame();
+
 
     }
 
@@ -52,16 +51,5 @@ public class Defensive extends Troop {
         this.timeLife = timeLife;
     }
 
-    /*@Override
-    public synchronized void run() {
-        while (true) {
-            try {
-                Thread.sleep(((Archer)troop).getMovementVelocity());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            //drawMap();
-            moveTroop();
-        }
-    }*/
+
 }

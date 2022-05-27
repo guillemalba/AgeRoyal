@@ -2,7 +2,6 @@ package business.entities;
 
 import business.GameManager;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Giant extends Ofensive{
@@ -15,8 +14,6 @@ public class Giant extends Ofensive{
         this.setRange(Attributes.GIANT_ATTACK_RANGE.getValue());//cuadrados a la redonda posible 5
         this.setAttackVelocity(Attributes.GIANT_ATTACK_VELOCITY.getValue());
         this.setMovementVelocity(Attributes.GIANT_MOVEMENT_VELOCITY.getValue());
-        this.setPrefObjective("Structure");
-
     }
 
     @Override
@@ -34,29 +31,11 @@ public class Giant extends Ofensive{
         return super.canMove();
     }
 
+
+
     @Override
-    public synchronized void run() {
-
-        while(!isStop()) {
-            try {
-                Thread.sleep(getMovementVelocity());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            if (enemyNear() != null && enemyNear().getLife() >= 0.0) {
-                atack(enemyNear());
-
-            } else {
-
-                String move = canMove();
-                if (!move.equals("false")) move(move);
-
-            }
-
-
-        }
-        dieTroop(this);
+    public void run() {
+        super.run();
     }
 
     @Override

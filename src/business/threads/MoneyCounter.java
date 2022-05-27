@@ -8,15 +8,11 @@ import business.entities.User;
 public class MoneyCounter implements Runnable {
 
     private GameManager gameManager;
-    private IA ia;
-    private int money;
     private boolean stop;
-    private User user;
 
-    public MoneyCounter(GameManager gameManager, IA ia,User user) {
+
+    public MoneyCounter(GameManager gameManager) {
         this.gameManager = gameManager;
-        this.ia = ia;
-        this.user = user;
     }
 
     @Override
@@ -29,9 +25,7 @@ public class MoneyCounter implements Runnable {
                 e.printStackTrace();
             }
 
-            money++;
-            user.setMoney(user.getMoney()+1);
-            ia.setMoney(ia.getMoney() + 1);
+            gameManager.sumMoney();
         }
     }
 

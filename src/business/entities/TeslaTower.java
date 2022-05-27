@@ -24,7 +24,7 @@ public class TeslaTower extends Defensive{
     }
 
     @Override
-    public synchronized void run() {
+    public  void run() {
         super.run();
     }
 
