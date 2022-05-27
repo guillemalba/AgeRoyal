@@ -30,7 +30,6 @@ public class Base extends Defensive{
         this.setAttackVelocity(10000);
         this.setType("Structure");
         this.setTimeLife(10000);//seg
-        this.setColor(Color.BLUE);
     }
 
 

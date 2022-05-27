@@ -1,5 +1,8 @@
 package persistence.json;
 
+/**
+ * Clase del modelo
+ */
 public class ConfigData {
     private int port;
     private String user;
@@ -9,19 +12,12 @@ public class ConfigData {
 
     public ConfigData(){}
 
-    public int getPort() {
-        return port;
-    }
     public String getUser() {
         return user;
     }
     public String getPassword() {
         return password;
     }
-    public String getDb() {
-        return db;
-    }
-
     public String getUrl() {
         return url;
     }

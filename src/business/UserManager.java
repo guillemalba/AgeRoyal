@@ -57,10 +57,10 @@ public class UserManager {
         this.user = user;
     }
 
-    public List<User> updateUsers(){
+    public LinkedList<User> updateUsers(){
         if(users != null) users.removeAll(users);
         users = userDAO.readAllOrderUsers();
-        return Collections.unmodifiableList(users);
+        return users;
     }
 
 }

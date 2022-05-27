@@ -6,6 +6,9 @@ import persistence.json.ConfigData;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+/**
+ * Clase que lee el json del archivo de configuracion
+ */
 public class JsonReader {
     private static ConfigData data = new ConfigData();
 
