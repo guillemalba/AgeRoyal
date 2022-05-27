@@ -10,12 +10,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Esta clase es el controlador de nuestra vista de eliminacion y cerrado de sesión
+ */
 public class LoginController implements ActionListener {
     private UserManager userManager;
     private LoginView loginView;
     private MainView mainView;
     private CardLayout viewComponents;
 
+    /**
+     * Este es el constructor de nuestra clase al cual le pasaremos todos los objeto que necesitamos para que funcione
+     * @param loginView es la vista que queremos controlar
+     * @param mainView es la ventana inicial de nuestra vista
+     * @param viewComponents estos son los componentes de tipo cardlayout de nuestra ventana inicial
+     * @param userManager este es el manager de nuestros usuarios
+     */
     public LoginController(LoginView loginView, MainView mainView, CardLayout viewComponents, UserManager userManager) {
         this.loginView = loginView;
         this.mainView = mainView;
@@ -23,6 +33,10 @@ public class LoginController implements ActionListener {
         this.userManager = userManager;
     }
 
+    /**
+     * Este es el metodo en el que asignatremos lo que queremos que haga cada boton
+     * @param e es el objeto asignado al boton presionado
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
