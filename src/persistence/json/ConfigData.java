@@ -1,4 +1,4 @@
-package business.json;
+package persistence.json;
 
 public class ConfigData {
     private int port;

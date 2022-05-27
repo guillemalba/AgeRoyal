@@ -1,8 +1,10 @@
 package business.entities;
 
 import business.GameManager;
-import business.threads.GameTimer;
 
+/**
+ * Clase del usuario que juega la partida con sus atributos necesarios
+ */
 public class User {
     private String name;
     private String email;
@@ -15,7 +17,16 @@ public class User {
     private int gameTime;
     private int numTroopAlive = 0;
 
-    /* Constructor per al register*/
+    /**
+     * Constructor para leer los usuarios del ranking en la DAO
+     *
+     * @param name del usuario
+     * @param email del usuario
+     * @param password del usuario
+     * @param victories del usuario
+     * @param totalGames del usuario
+     * @param ratio del usuario
+     */
     public User(String name, String email, String password, int victories, int totalGames, float ratio) {
         this.name = name;
         this.email = email;
@@ -25,22 +36,30 @@ public class User {
         this.ratio = ratio;
     }
 
-    /* Constructor per al login */
+    /**
+     * Constructor para crear el usuario en el login y el register
+     *
+     * @param name del usuario
+     * @param email del usuario
+     * @param password del usuario
+     */
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
-    /*Constructor para el Manager*/
-
+    /**
+     * Constructor para el GameManager
+     *
+     * @param gameManager del juego
+     * @param gameTime del juego
+     */
     public User(GameManager gameManager, int gameTime) {
         this.gameManager = gameManager;
         this.gameTime = gameTime;
         this.money = 5;
     }
-
-
 
     public String getName() {
         return name;

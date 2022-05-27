@@ -1,6 +1,7 @@
-package business.json;
+package persistence.json;
 
 import com.google.gson.Gson;
+import persistence.json.ConfigData;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -9,8 +10,8 @@ public class JsonReader {
     private static ConfigData data = new ConfigData();
 
     /**
-     * Mètode que llegeix la informació del json
-     * @return informació del json en una classe Data
+     * Metodo que lee la informacion del json
+     * @return info del json en una classe Data
      */
     public static ConfigData llegeixJson() {
         try{

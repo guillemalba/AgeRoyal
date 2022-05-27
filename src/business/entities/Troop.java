@@ -23,7 +23,6 @@ public class Troop implements Runnable{
     private GameManager gameManager;
     private int posx;
     private int posy;
-    private Color color;
     private BufferedImage image;
 
     /**
@@ -359,6 +358,11 @@ public class Troop implements Runnable{
         return "false";
     }
 
+    /**
+     * Metodo que termina el juego
+     *
+     * @param isUser un boleano con el ganador de la partida, si es true, el usuario ha ganado
+     */
     public void stopGame(boolean isUser){
         gameManager.stopGame(isUser,false);
     }

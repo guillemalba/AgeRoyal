@@ -5,15 +5,14 @@ package business;
 import business.entities.Base;
 import business.entities.Board;
 import business.entities.Troop;
-import business.threads.GameTimer;
+import business.entities.GameTimer;
 import business.entities.*;
-import business.threads.MoneyCounter;
+import business.entities.MoneyCounter;
 import persistence.GameDAO;
 import persistence.GameSQLDAO;
 import presentation.controllers.GameViewController;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;

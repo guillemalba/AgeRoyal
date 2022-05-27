@@ -1,7 +1,9 @@
 package persistence;
 import business.entities.Game;
 import business.entities.TroopDeployed;
-import business.json.*;
+import persistence.json.ConfigData;
+import persistence.json.JsonReader;
+
 import java.sql.*;
 import java.util.LinkedList;
 

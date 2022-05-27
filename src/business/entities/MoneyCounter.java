@@ -1,4 +1,4 @@
-package business.threads;
+package business.entities;
 
 import business.GameManager;
 import business.UserManager;
