@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Clase tropa que implementa Runnable para que tenga el comportamiento de un thread y cada una sea diferente
+ */
 public class Troop implements Runnable{
 
     private boolean isUser;
@@ -23,9 +26,17 @@ public class Troop implements Runnable{
     private Color color;
     private BufferedImage image;
 
-
-
-
+    /**
+     * Constructor de la tropa con sus atributos
+     *
+     * @param name de la tropa
+     * @param posx del mapa
+     * @param posy del mapa
+     * @param gameManager para acceder a los metodos del manager
+     * @param isUser para saber si es la IA o el usuario
+     * @param stop para detener el thread
+     * @param image a cargar en el mapa
+     */
     public Troop(String name,int posx, int posy, GameManager gameManager, boolean isUser,boolean stop, BufferedImage image) {
 
         this.name = name;
@@ -117,14 +128,6 @@ public class Troop implements Runnable{
         this.posy = posy;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
     public boolean isUser() {
         return isUser;
     }
@@ -147,7 +150,11 @@ public class Troop implements Runnable{
     }
 
 
-
+    /**
+     * Metodo para mover una tropa en el mapa
+     *
+     * @param direction en la que se debe mover la tropa
+     */
     public void move(String direction) {
 
         gameManager.getBoard().removeTroopBoard(this);
@@ -183,32 +190,36 @@ public class Troop implements Runnable{
             }
         }
 
-
-
         setPosx(auxX);
         setPosy(auxY);
         gameManager.getBoard().setTroopBoard(this);
-
-
     }
 
 
-
+    /**
+     * Metodo que busca un enemigo cerca al que atacar
+     *
+     * @return devuelve null si no hay enemigo en rango o devuelve la Tropa a la que hay que atacar
+     */
     public Troop enemyNear() {
+        // desde la posicion de la tropa menos el rango de ataque hasta la posicion de la tropa mas el rango de ataque
         for (int i = this.posx - this.range; i <= this.posx + this.range; i++) {
             for (int j = this.posy - this.range; j <= this.posy + this.range; j++) {
+
+                // nos aseguramos que el rango este siempre dentro del mapa
                 if (i >= 0 && j >= 0 && i <= 14 && j <= 14) {
 
+                    // si el getter de la tropa del tablero no es null, significa que hat algo
                     if (gameManager.getBoard().getCellsMatrix()[i][j].getTroop() != null){
+
+                        // si la tropa del tablero es del usuario y la tropa actual es de la IA entra y devuelve la tropa
                         if (gameManager.getBoard().getCellsMatrix()[i][j].getTroop().isUser() && !this.isUser) {
                             Troop troop = gameManager.getBoard().getCellsMatrix()[i][j].getTroop();
-                            /*System.out.println("["+this.posy+","+this.posx+"]" + " --> pos (" + troop.getPosx() + "," + troop.getPosy() + ")");*/ // TODO: elimina
-
                             return troop;
 
+                        // sino, si la tropa del mapa no es del usuario y la actual si, entra tambien y devuelve la tropa
                         } else if (!(gameManager.getBoard().getCellsMatrix()[i][j].getTroop().isUser()) && this.isUser) {
                             Troop troop = gameManager.getBoard().getCellsMatrix()[i][j].getTroop();
-                            /*System.out.println("["+this.posy+","+this.posx+"]" + " --> pos (" + troop.getPosx() + "," + troop.getPosy() + ")");*/ // TODO: elimina
                             return troop;
                         }
                     }
@@ -219,12 +230,14 @@ public class Troop implements Runnable{
         return null;
     }
 
+    /**
+     * Metodo para atacar la tropa en concreto que devuelve la funcion enemyNear()
+     *
+     * @param enemyTroop que hay que atacar.
+     */
     public void atack(Troop enemyTroop){
 
-
         while(enemyTroop.getLife() > 0 && !stop && isRange(enemyTroop)){
-
-            //if(enemyTroop != enemyNear()) enemyTroop = enemyNear();
 
             System.out.println("Soy"+ name + "voy a pegar a " +enemyTroop.getName());
 
@@ -240,7 +253,7 @@ public class Troop implements Runnable{
                     enemyTroop.setLife(enemyTroop.getLife() - getDamage());
                     if(enemyTroop.getLife() <= 0.0){
 
-                        System.out.println(name + "Que soy " + isUser + " Mato a "+ enemyTroop.name);
+                        System.out.println(getName() + "Que soy " + isUser + " Mato a "+ enemyTroop.getName());
                         gameManager.moneyReward(isUser);
 
                         removeTroop(isUser);
@@ -248,32 +261,54 @@ public class Troop implements Runnable{
                     }
                 }
             }
-
         }
-
     }
+
+    /**
+     * Metodo para ver si una tropa esta en rango, este metodo se ha hecho porque hay casos en los que las tropas a las que se estan atacando se siguen moviendo mientras las disparan
+     *
+     * @param enemyTroop para ver si todavia esta en rango
+     * @return boolean si es true, esta en rango, sino no
+     */
     public boolean isRange(Troop enemyTroop){
-        if(this.posx - enemyTroop.posx <= this.range || this.posx - enemyTroop.posx >= -this.range ){
-            if(this.posy - enemyTroop.posy <= this.range || this.posy - enemyTroop.posy >= -this.range){
-                System.out.println("la tropa esta dins del rang");
-                System.out.println(enemyTroop.posx+" "+ enemyTroop.posy);
+        if(this.posx - enemyTroop.getPosx() <= this.range || this.posx - enemyTroop.getPosx() >= -this.range ){
+            if(this.posy - enemyTroop.getPosy() <= this.range || this.posy - enemyTroop.getPosy() >= -this.range){
                 return true;
             }
-            System.out.println("no esta dins del rang");
                return false;
         }
-        System.out.println("no esta dins del rang");
         return false;
     }
+
+    /**
+     * Metodo que elimina una tropa del contador de tropas de las graficas del mapa
+     * @param isUser si es la IA o el usuario al que se le tiene que restar 1
+     */
     public void removeTroop(boolean isUser){
         System.out.println("entro a matar la tropa");
         gameManager.removeTroop(isUser);
     }
 
+    /**
+     * Metodo que elimina la tropa del tablero
+     *
+     * @param troop a eliminar
+     */
     public void dieTroop(Troop troop){
         gameManager.getBoard().removeTroopBoard(troop);
     }
 
+    /**
+     * Metodo que comprueba si la tropa puede moverse o no.
+     * Funcionamiento:
+     *      - si la tropa se encuentra en el lado izquierdo del tablero, que intente moverse a la derecha
+     *      - si la tropa se encuentra en el lado derecho del tablero, que intente moverse a la izquierda
+     *      - si se encuentra en el medio, que intente moverse hacia delante
+     *
+     *      - si la casilla a la que intenta moverse esta ocupada, intenta moverse hacia delante, delante izquierda o delante derecha
+     *
+     * @return un String con la direccion a la que se debe mover la tropa
+     */
     public String canMove() {
         if (this.isUser) {
             if (getPosy() > 7 && getPosy() <= 15) {

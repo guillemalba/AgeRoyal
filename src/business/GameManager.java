@@ -17,8 +17,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 
 public class GameManager{
 
@@ -46,10 +48,10 @@ public class GameManager{
         this.userManager = userManager;
     }
 
-    public LinkedList<Game> updateGames() {
+    public List<Game> updateGames() {
         if(games != null) games.removeAll(games);
         games = gameDAO.readAllGames();
-        return games;
+        return Collections.unmodifiableList(games);
     }
 
     public void initGame(){
@@ -116,9 +118,6 @@ public class GameManager{
                 }
             }
         }
-        //TODO:if aux != no
-            //TODO: creamos nuevo game en database -> nombre,data,winner,player
-            //TODO: guardar drops
 
         gameController.finishGame();
 

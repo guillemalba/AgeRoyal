@@ -6,8 +6,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class RecordedGameView extends JFrame {
-    JButton jbSettings;
-    JButton jbBack;
+    private JButton jbSettings;
+    private JButton jbBack;
 
     public RecordedGameView() {
         /** Configurem la finestra **/

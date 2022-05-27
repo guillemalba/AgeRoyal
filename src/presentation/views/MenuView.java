@@ -8,11 +8,11 @@ import java.awt.event.ActionListener;
 public class MenuView extends JPanel {
     public static final String BTN_LOGOUT = "BTN_LOGOUT";
 
-    JButton jbSettings;
-    JButton jbPlayGame;
-    JButton jbRanking;
-    JButton jbGameGraphics;
-    JButton jbGameRecording;
+    private JButton jbSettings;
+    private JButton jbPlayGame;
+    private JButton jbRanking;
+    private JButton jbGameGraphics;
+    private JButton jbGameRecording;
     private MainView mainView;
     private CardLayout viewComponents;
 

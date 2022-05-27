@@ -13,8 +13,6 @@ public class Ofensive extends Troop {
         super(name,posx,posy,gameManager, isUser, stop, image);
     }
 
-
-
     public int getMovementVelocity() {
         return movementVelocity;
     }

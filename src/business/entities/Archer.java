@@ -5,10 +5,22 @@ import business.GameManager;
 
 import java.awt.image.BufferedImage;
 
-
+/**
+ * Herencia de la clase Ofensiva donde sobreescribimos los metodos y los implementamos con su constructor.
+ */
 public class Archer extends Ofensive {
 
-
+    /**
+     * Constructor para crear una nueva Arquera
+     *
+     * @param name de la arquera
+     * @param posx del mapa
+     * @param posy del mapa
+     * @param gameManager // todo por que el manager?
+     * @param isUser para saber si es tropa de la IA o del usuario
+     * @param stop para parar el thread
+     * @param image imagen que cargamos en el mapa
+     */
     public Archer(String name, int posx, int posy, GameManager gameManager, boolean isUser, boolean stop, BufferedImage image) {
         super(name,posx, posy, gameManager, isUser, stop, image);
         this.setCost(Attributes.ARCHER_COST.getValue());

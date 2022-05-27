@@ -2,6 +2,9 @@ package business.entities;
 
 import business.GameManager;
 
+/**
+ * Clase de la IA que simula la partida de la maquina
+ */
 public class IA implements Runnable{
     private int time = 0;
     private int money = 5;
@@ -9,10 +12,10 @@ public class IA implements Runnable{
     private int lifes = 0;
     private boolean stop = false;
 
-
     private GameManager gameManager;
     private int gameTime;
 
+    // todo luego hago
     public IA(GameManager gameManager, int gameTime) {
         this.gameManager = gameManager;
         this.gameTime = gameTime;

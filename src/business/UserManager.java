@@ -4,7 +4,9 @@ import business.entities.User;
 import persistence.UserDAO;
 import persistence.UserSQLDAO;
 
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
 public class UserManager {
     private UserDAO userDAO;
@@ -55,10 +57,10 @@ public class UserManager {
         this.user = user;
     }
 
-    public LinkedList<User> updateUsers(){
+    public List<User> updateUsers(){
         if(users != null) users.removeAll(users);
         users = userDAO.readAllOrderUsers();
-        return users;
+        return Collections.unmodifiableList(users);
     }
 
 }

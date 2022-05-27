@@ -6,11 +6,11 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class MainMenuView extends JFrame {
-    JButton jbSettings;
-    JButton jbPlayGame;
-    JButton jbRanking;
-    JButton jbGameGraphics;
-    JButton jbGameRecording;
+    private JButton jbSettings;
+    private JButton jbPlayGame;
+    private JButton jbRanking;
+    private JButton jbGameGraphics;
+    private JButton jbGameRecording;
 
     public MainMenuView () {
         /** Configurem la finestra **/

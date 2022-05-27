@@ -1,7 +1,7 @@
 package business.entities;
 
 /**
- * An enumeration with some Troop Ids.
+ * Una enumeracion con atributos de las tropas.
  */
 public enum Attributes {
 
