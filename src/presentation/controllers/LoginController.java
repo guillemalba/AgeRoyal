@@ -42,12 +42,12 @@ public class LoginController implements ActionListener {
                 // TODO move into if condition
                 loginView.setMainView(mainView);
                 loginView.setComponents(viewComponents);
-                loginView.showMenu();
+                mainView.showMenu();
             break;
             case LoginView.BTN_REG:
                 loginView.setMainView(mainView);
                 loginView.setComponents(viewComponents);
-                loginView.showRegister();
+                mainView.showRegister();
             break;
         }
     }

@@ -83,4 +83,16 @@ public class MainView extends JFrame {
     public void showRanking() {
         this.getViewComponent().show(this.getContentPane(), "rankingView");
     }
+
+    public void showRegister() {
+        this.getViewComponent().show(this.getContentPane(), "registerView");
+    }
+
+    public void showLogout() {
+        this.getViewComponent().show(this.getContentPane(), "logoutView");
+    }
+
+    public void showLogin() {
+        this.getViewComponent().show(this.getContentPane(), "loginView");
+    }
 }

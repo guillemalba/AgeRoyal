@@ -32,13 +32,13 @@ public class LogoutController implements ActionListener {
                     //TODO:Aqui vol fer logout
                     logoutView.setmainView(mainView);
                     logoutView.setComponents(viewComponents);
-                    logoutView.showLogin();
+                    mainView.showLogin();
                     userManager.setUser("");//Se puede poner asi? para vaciar la variable
                 }
                 if(option == 0){ //No quiero hacer logout
                     logoutView.setmainView(mainView);
                     logoutView.setComponents(viewComponents);
-                    logoutView.showLogout();
+                    mainView.showLogout();
                 }
             break;
 
@@ -51,13 +51,13 @@ public class LogoutController implements ActionListener {
                     System.out.println("Se ha borrado bien");
                     logoutView.setmainView(mainView);
                     logoutView.setComponents(viewComponents);
-                    logoutView.showLogin();//Aqui me manda al Menu
+                    mainView.showLogin();
                     userManager.setUser("");//Se puede poner asi? para vaciar la variable
                 }
                 if(option == 0){//No quiero borrar la cuenta
                     logoutView.setmainView(mainView);
                     logoutView.setComponents(viewComponents);
-                    logoutView.showLogout();//Aqui me esta mandando al menu en vez de al logout WTF?!?!?!
+                    mainView.showLogout();
                 }
 
             break;
@@ -65,7 +65,7 @@ public class LogoutController implements ActionListener {
             case LogoutView.BTN_BACK:
                 logoutView.setmainView(mainView);
                 logoutView.setComponents(viewComponents);
-                logoutView.showMenu();
+                mainView.showMenu();
             break;
 
         }

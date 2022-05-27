@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Esta clase nos permitira crear la vista de inicio de sesion de nuestra aplicaion.
+ */
 public class LoginView extends JPanel {
     public static final String BTN_LOG = "BTN_LOG";
     public static final String BTN_REG = "BTN_REG";
@@ -14,10 +17,16 @@ public class LoginView extends JPanel {
     private CardLayout components;
     private MainView mainView;
 
+    /**
+     * Este al ser el constructor de nuestra vista, lo unico que hace es llamar al metodo (configureLoginView())
+     */
     public LoginView(){
         configureLoginView();
     }
 
+    /**
+     * Este metodo servira para crear la vista en si, con todos los paneles, botones y JTextfields necesarios
+     */
     private void configureLoginView() {
         setLayout(new BorderLayout());
 
@@ -55,19 +64,34 @@ public class LoginView extends JPanel {
 
     }
 
+    /**
+     * Este metodod servira para poder asignar los listeners necesarios a cada boton de nuestra vista.
+     * @param listener
+     */
     public void loginController(ActionListener listener) {
         jbLogin.addActionListener(listener);
         jbBack.addActionListener(listener);
     }
 
+    /**
+     * Este metodod nos devolvera el correo electronico / nombre de usuario introducido en nuestra vista.
+     * @return un string que contiene lo que el usuario haya introducido en ese campo de texto
+     */
     public String getInputUsernameEmail() {
         return jtfUsernameEmail.getText();
     }
 
+    /**
+     * Este metodod nos devolvera la contraseña introducida en nuestra vista.
+     * @return devolvera un array de caracteres que forman la contraseña de nuestro usuario
+     */
     public char[] getInputPassword() {
         return jpfPassword.getPassword();
     }
 
+    /**
+     * Este metodo envia un mensaje de error si la informacion introducioda no es correcta
+     */
     public void errorMessage() {
         JOptionPane.showMessageDialog(this, "The user or the password is wrong");
     }
@@ -78,13 +102,5 @@ public class LoginView extends JPanel {
 
     public void setComponents(CardLayout viewComponents) {
         this.components = viewComponents;
-    }
-
-    public void showRegister(){
-        components.show(this.mainView.getContentPane(), "registerView");
-    }
-
-    public void showMenu() {
-        components.show(this.mainView.getContentPane(), "menuView");
     }
 }

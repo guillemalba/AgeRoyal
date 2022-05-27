@@ -18,6 +18,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
+/**
+ * Esta vista sera la encargada de mostrar cualquier información relacionada con una partida y cualquier accion que se
+ * se pueda realizar durante una de estas, como por ejemplo controlar el tablero o poner una tropa en el campo de
+ * batalla
+ */
 public class GameView extends JPanel {
 
     private JButton settingsJb = new JButton("Settings");
@@ -48,6 +53,10 @@ public class GameView extends JPanel {
     private Color playerColor = new Color(64, 204, 248);
     //private Graphics g;
 
+    /**
+     * Como podeis observar el constructor de esta clase solo contiene la posibilidad de inicializar un tablero si este
+     * deja de ser nulo en algun momento. A parte de eso, se llama al metodo configureView() que creara la vista desde cero.
+     */
     public GameView(){
         if (board == null) {
             board = new Board();
@@ -55,6 +64,11 @@ public class GameView extends JPanel {
         configureView();
     }
 
+    /**
+     * Este metodo servira para construir toda la vista de una partida. Cada panel ubicado en el panel central se creara
+     * llamando a un metodo que nos servira para crear ese componente en especifico. A parte de eso se crea la vista
+     * general dividida en tres partes (topPanel, midPanel y botPanel).
+     */
     private void configureView() {
         setLayout(new BorderLayout());
         setSize(550, 720);
@@ -91,6 +105,11 @@ public class GameView extends JPanel {
         add(general, BorderLayout.CENTER);
     }
 
+    /**
+     * Este metodo nos servira para crear el tablero central de juego. Esto se ara en un bucle que generara cada panel
+     * (casilla) con sus respectivos mouseListeners que nos ayudaran a detectar cuando se intenta interactuar con alguno
+     * de estos.
+     */
     private void createTable(){
         int height = 15;
         int width = 15;
@@ -114,6 +133,12 @@ public class GameView extends JPanel {
         }
     }
 
+    /**
+     * Este metodo servira para crear el panel derecho con toda la informacion de la partida. Este panel se crea en el
+     * metodo configure view pero se esta utilizando en este metodo y se le esta añadiendo toda la informacion que era
+     * necesaria.
+     * @param info es el panel que deseamos modificar y al que queremos añadir el resto de componentes
+     */
     private void createInformationTable(JPanel info){
         info.setLayout(new BorderLayout());
         info.setSize(200, 400);
@@ -173,6 +198,11 @@ public class GameView extends JPanel {
         midJp.add(table);
     }
 
+    /**
+     * Este metodo crear sirve para introducir toda la informacion de las tropas como su coste o el tipo de tropa que es.
+     * El panel que se esta modificando en este caso es el que se encuentra debajo del tablero.
+     * @param troopPanel es el panel que deseamos modificar y al que queremos añadir el resto de componentes
+     */
     private void createTroopPanel(JPanel troopPanel){
         troopPanel.setBackground(Color.white);
         troopPanel.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -261,6 +291,11 @@ public class GameView extends JPanel {
         troopPanel.add(defensiveCardPanel);
     }
 
+    /**
+     * Este metodo crear sirve para introducir toda la informacion de los recursos (oro) que tiene nuestro usuario para
+     * combatir contra la IA. El panel que se esta modificando en este caso es el que se encuentra debajo del tablero.
+     * @param goldPanel
+     */
     private void createGoldPanel(JPanel goldPanel) {
         GridLayout goldLayout = new GridLayout(2,1);
         goldPanel.setLayout(goldLayout);
@@ -272,6 +307,11 @@ public class GameView extends JPanel {
         goldPanel.add(mLabel);
     }
 
+    /**
+     * En este metodo se esta añadiendo los listeners de todos los botones y paneles qu podemos localizar en la vista.
+     * @param listener1 son los listeners de los botones
+     * @param listener2 son los listeners de los paneles
+     */
     public void registerController(ActionListener listener1, MouseListener listener2) {
         settingsJb.addActionListener(listener1);
         backJb.addActionListener(listener1);
@@ -286,6 +326,14 @@ public class GameView extends JPanel {
         }
     }
 
+    /**
+     * Este metodo servira para actualizar la vista. Para ello necesitamos recibir toda la infomraion que nos permita
+     * mostrar desde las tropas enemigas y aliadas ubicada en el tablero hasta la vida restante de nuestro oponente.
+     * @param board Una matriz que contiene toda la informacion de las tropas (enemigas y aliadas)
+     * @param moneyUser Es el dinero del que dispone nuestro usuario para poder introducir tropas en el campo de batalla
+     * @param vidasUser Es el numer de vidas restantes de la torre aliada
+     * @param vidasIA Es el numer de vidas restantes de la torre enemigas
+     */
     public void updateView(Board board,int moneyUser,float vidasUser,float vidasIA) {
         //midJp.remove(table);
         table.removeAll();
@@ -341,12 +389,20 @@ public class GameView extends JPanel {
         repaint();
     }
 
+    /**
+     * Este metodo genera un popUp que permitira guardar la partida
+     * @return el nombre de la partida guardada
+     */
     public String popUpSaveGame() {
         String name = JOptionPane.showInputDialog("Type your name please");
         JOptionPane.showMessageDialog(null, "Hello " + name);
         return name;
     }
 
+    /**
+     * Este metodo nos pertmite añadir un reborde rojo al rededor de la tropa seleccionada en el panel inferior
+     * @param click es el nombre assingado a la tropa que se ha selecionado
+     */
     public void putBorder(String click){
         switch (click){
             case "offT1":

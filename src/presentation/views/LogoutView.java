@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Esta clase nos servira para poder mostrar la vista que permite desloguearse y eliminar la cuenta del usuario activo
+ */
 public class LogoutView extends JPanel {
     public static final String BTN_LOGOUT = "BTN_LOGOUT";
     //public static final String BTN_EDIT = "BTN_EDIT";
@@ -18,10 +21,16 @@ public class LogoutView extends JPanel {
     private MainView mainView;
     private CardLayout components;
 
+    /**
+     *  Este al ser el constructor de nuestra vista, lo unico que hace es llamar al metodo (configureLoginView())
+     */
     public LogoutView() {
         configureLogoutView();
     }
 
+    /**
+     * Este metodo se utiliza para poder crear y añadir todos los componentes de la vista.
+     */
     private void configureLogoutView() {
         setLayout(new BoxLayout(this ,BoxLayout.PAGE_AXIS));
 
@@ -48,6 +57,10 @@ public class LogoutView extends JPanel {
 
     }
 
+    /**
+     * Este metodod servira para poder asignar los listeners necesarios a cada boton de nuestra vista
+     * @param listener es la clase que detectara si nuestros botones son pulsados
+     */
     public void registerController(ActionListener listener) {
         jbLogout.addActionListener(listener);
         //jbEdit.addActionListener(listener);
@@ -55,6 +68,10 @@ public class LogoutView extends JPanel {
         jbBack.addActionListener(listener);
     }
 
+    /**
+     * Este metodo muestra un mensaje para asegurarse que el ususario quiere desloguearse
+     * @return el resultado del popUp (si quiere salir o no)
+     */
     public int logout(){
         int dialogButton = JOptionPane.showConfirmDialog (null, "Are you sure you want to logout?","WARNING",JOptionPane.YES_NO_OPTION);
         int option;
@@ -67,6 +84,10 @@ public class LogoutView extends JPanel {
         return option;
     }
 
+    /**
+     * Este metodo muestra un mensaje para asegurarse que el ususario quiere eliminar su cuenta
+     * @return el resultado del popUp (si quiere eliminar su cuenta o no)
+     */
     public int delete(){
         int dialogDeleteButton = JOptionPane.showConfirmDialog (null, "Are you sure you want to Delete this account?","WARNING",JOptionPane.YES_NO_OPTION);
         int option;
@@ -89,29 +110,7 @@ public class LogoutView extends JPanel {
         this.components = viewComponents;
     }
 
-    public void showMain(){
-        components.show(this.mainView.getContentPane(), "main");
-    }
-
     public void setmainView(MainView mainView){
         this.mainView = mainView;
-    }
-
-    public void showLoggedMain() {
-        components.show(this.mainView.getContentPane(), "loggedMainView");
-    }
-
-    public void showEditUser(){ components.show(this.mainView.getContentPane(), "editUserView");}
-
-    public void showMenu() {
-        components.show(this.mainView.getContentPane(), "menuView");
-    }
-
-    public void showLogin() {
-        components.show(this.mainView.getContentPane(), "loginView");
-    }
-
-    public void showLogout() {
-        components.show(this.mainView.getContentPane(), "logoutView");
     }
 }
