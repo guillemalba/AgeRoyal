@@ -1,6 +1,6 @@
 package persistence;
 import business.entities.User;
-import persistence.json.ConfigData;
+import business.entities.ConfigData;
 import persistence.json.JsonReader;
 
 import java.sql.*;

@@ -33,10 +33,11 @@ public class GameViewController implements ActionListener, MouseListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Settings":
+                gameManager.stopGame(false,false);
                 mainView.showSettings();
             break;
             case "Back":
-                gameManager.stopGame(false,true);
+                gameManager.stopGame(false,false);
 
             break;
         }
@@ -182,9 +183,7 @@ public class GameViewController implements ActionListener, MouseListener {
 
     public String saveGame(){
         String gameName = gameView.popUpSaveGame();
-        //TODO:Pop guardar partida
-            //TODO:if yes-> guardamos nombre
-        //game = new
+
         return gameName;
     }
     public void finishGame(){

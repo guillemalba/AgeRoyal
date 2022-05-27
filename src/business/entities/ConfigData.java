@@ -1,7 +1,7 @@
-package persistence.json;
+package business.entities;
 
 /**
- * Clase del modelo
+ * Clase del modelo del fichero de configuracion
  */
 public class ConfigData {
     private int port;

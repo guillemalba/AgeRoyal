@@ -16,6 +16,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -41,16 +43,15 @@ public class GameManager{
     private Base baseUser;
     private Base baseIA;
 
-
     public GameManager(UserManager userManager) {
         gameDAO = new GameSQLDAO();
         this.userManager = userManager;
     }
 
-    public List<Game> updateGames() {
+    public LinkedList<Game> updateGames() {
         if(games != null) games.removeAll(games);
         games = gameDAO.readAllGames();
-        return Collections.unmodifiableList(games);
+        return games;
     }
 
     public void initGame(){
@@ -90,9 +91,8 @@ public class GameManager{
         ia.setMoney(ia.getMoney() + 1);
     }
 
-    public void stopGame(boolean isUser, boolean stop){
+    public void stopGame(boolean isUser, boolean somebodyWon){
 
-        //guardar partida
         //Parar todos los threads
         for (int i = 0; i < board.getSide(); i++) {
             for (int j = 0; j < board.getSide(); j++) {
@@ -102,23 +102,27 @@ public class GameManager{
                 }
             }
         }
-
-        //Poner aquie lo de guardar partida
         gameTimer.stop();
+        moneyCounter.stop();
         ia.setStop(true);
-        String gameName = gameController.saveGame();
-        /*if (gameName.equals("")) {
 
-        }*/
-        if (gameDAO.saveGame(new Game(gameName, "date", !isUser, userManager.getUser()))){
-            for (int i = 0; i < listDeployedTroops.size(); i++) {
-                if (gameDAO.saveTroopsDeployed(listDeployedTroops.get(i), gameName)) {
+        System.out.println("ENTROOOOOOOOO");
+        if (somebodyWon) {
+            String gameName = gameController.saveGame();
+            if (gameName != null) {
+                String actualDate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(LocalDateTime.now());
+                if (gameDAO.saveGame(new Game(gameName, actualDate, !isUser, userManager.getUser()))){
+                    for (int i = 0; i < listDeployedTroops.size(); i++) {
+                        if (gameDAO.saveTroopsDeployed(listDeployedTroops.get(i), gameName)) {
 
+                        }
+                    }
                 }
             }
         }
 
         gameController.finishGame();
+
 
     }
 

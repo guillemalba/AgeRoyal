@@ -1,7 +1,7 @@
 package persistence.json;
 
 import com.google.gson.Gson;
-import persistence.json.ConfigData;
+import business.entities.ConfigData;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

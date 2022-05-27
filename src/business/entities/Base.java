@@ -36,10 +36,8 @@ public class Base extends Defensive{
     @Override
     public synchronized void run() {
 
-
         while (getLife() > 0 && !isStop()) {
             try {
-
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -47,12 +45,12 @@ public class Base extends Defensive{
             if (enemyNear() != null && enemyNear().getLife() >= 0.0) {
                 atack(enemyNear());
             }
-
-
+        }
+        if (getLife() <= 0) {
+            stopGame(isUser(), true);
+        } else {
+            stopGame(isUser(), false);
         }
         dieTroop(this);
-        stopGame(isUser());
-
     }
-
 }
