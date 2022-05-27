@@ -13,6 +13,7 @@ public class User {
     private int money = 5;
     private GameManager gameManager;
     private int gameTime;
+    private int numTroopAlive = 0;
 
     /* Constructor per al register*/
     public User(String name, String email, String password, int victories, int totalGames, float ratio) {
@@ -95,5 +96,13 @@ public class User {
 
     public void setMoney(int money) {
         this.money = money;
+    }
+
+    public int getNumTroopAlive() {
+        return numTroopAlive;
+    }
+
+    public void setNumTroopAlive(int numTroopAlive) {
+        this.numTroopAlive = numTroopAlive;
     }
 }

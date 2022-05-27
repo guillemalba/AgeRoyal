@@ -30,14 +30,31 @@ public class GameView extends JPanel {
     private JPanel offT1 = new JPanel();
     private JPanel offT2 = new JPanel();
     private JPanel defT2 = new JPanel();
+    private JLabel costCanon = new JLabel("4");
+    private JLabel costTesla = new JLabel("5");
+    private JLabel costArcher = new JLabel("3");
+    private JLabel costGiant = new JLabel("5");
     private JLabel mLabel = new JLabel("5");
-
+    private JPanel livesPanel1 = new JPanel();
+    private JPanel troopCountPanel1 = new JPanel();
+    private JPanel troopCountPanel2 = new JPanel();
+    private JPanel livesPanel2 = new JPanel();
+    private JPanel livesIA = new JPanel();
+    private JPanel livesUser = new JPanel();
+    private JPanel goodLives = new JPanel();
+    private JPanel goodTroops = new JPanel();
+    private JPanel badTroops = new JPanel();
+    private JPanel badLives = new JPanel();
+    private Color playerColor = new Color(64, 204, 248);
+    //private Graphics g;
     public GameView(){
         if (board == null) {
             board = new Board();
         }
         configureView();
     }
+
+
 
     private void configureView() {
         setLayout(new BorderLayout());
@@ -71,8 +88,8 @@ public class GameView extends JPanel {
                 tableGrid[i][j].setName(i+","+j);
             }
         }
-        updateView(board,5);
-        midJp.add(table);
+
+
 
         //si fa falta borrar el table
 
@@ -81,36 +98,58 @@ public class GameView extends JPanel {
         info.setSize(200, 400);
         GridLayout layoutInfo = new GridLayout(4,1);
         info.setLayout(layoutInfo);
-        JPanel livesPanel1 = new JPanel();
+
+
         info.add(livesPanel1);
         JLabel lives = new JLabel("Lives");
         livesPanel1.add(lives);
-        JPanel livesPanel2 = new JPanel();
-        livesPanel2.setBackground(Color.gray);
+
+
+        livesPanel2.setBackground(Color.GRAY);
+        livesPanel2.setLayout(new GridLayout(2,1));
+
+        livesIA.setLayout(new BorderLayout());
+        livesUser.setLayout(new BorderLayout());
+        livesIA.setBackground(Color.RED);
+        livesUser.setBackground(Color.CYAN);
+        livesPanel2.add(livesIA);
+        livesPanel2.add(livesUser);
         livesPanel2.setBorder(BorderFactory.createLineBorder(Color.black));
         livesPanel2.setLayout(new GridLayout(2,1));
-        JPanel badLives = new JPanel();
-        badLives.setBackground(Color.red);
+
+
+        //Vidas ia
+        //badLives.setBackground(Color.red);
         livesPanel2.add(badLives);
-        JPanel goodLives = new JPanel();
-        goodLives.setBackground(Color.blue);
+
+
+        //Vidas user
+        //goodLives.setBackground(Color.blue);
         livesPanel2.add(goodLives);
         info.add(livesPanel2);
-        JPanel troopCountPanel1 = new JPanel();
+
+
         info.add(troopCountPanel1);
         JLabel Troops = new JLabel("Troops");
         troopCountPanel1.add(Troops);
-        JPanel troopCountPanel2 = new JPanel();
+
+
         troopCountPanel2.setBackground(Color.gray);
         troopCountPanel2.setBorder(BorderFactory.createLineBorder(Color.black));
         troopCountPanel2.setLayout(new GridLayout(2,1));
-        JPanel badTroops = new JPanel();
-        badTroops.setBackground(Color.red);
+
+        //Llista tropas ia
+        //badTroops.setBackground(Color.red);
         troopCountPanel2.add(badTroops);
-        JPanel goodTroops = new JPanel();
-        goodTroops.setBackground(Color.blue);
+
+        //Llista tropas user
+        //goodTroops.setBackground(Color.blue);
         troopCountPanel2.add(goodTroops);
+
+
         info.add(troopCountPanel2);
+        updateView(board,5,50,50);
+        midJp.add(table);
         midJp.add(info);
 
         JPanel troopPanel = new JPanel();
@@ -128,7 +167,7 @@ public class GameView extends JPanel {
         GridLayout offensiveCardLayout = new GridLayout(2, 2);
         offensiveCardPanel.setLayout(offensiveCardLayout);
 
-        offT1.setBackground(Color.YELLOW);
+        offT1.setBackground(playerColor);
         offT1.setName("offT1");
         offT1.setLayout(new BorderLayout());
         try {
@@ -142,7 +181,7 @@ public class GameView extends JPanel {
 
         offensiveCardPanel.add(offT1);
 
-        offT2.setBackground(Color.YELLOW);
+        offT2.setBackground(playerColor);
         offT2.setName("offT2");
         offT2.setLayout(new BorderLayout());
         try {
@@ -155,15 +194,17 @@ public class GameView extends JPanel {
         }
 
         offensiveCardPanel.add(offT2);
-        offensiveCardPanel.add(new JLabel("5"));
-        offensiveCardPanel.add(new JLabel("3"));
+        offensiveCardPanel.add(costArcher);
+        offensiveCardPanel.add(costGiant);
+        costArcher.setHorizontalAlignment(0);
+        costGiant.setHorizontalAlignment(0);
         troopPanel.add(offensiveCardPanel);
 
         JPanel defensiveCardPanel = new JPanel();
         GridLayout defensiveCardLayout = new GridLayout(2, 2);
         defensiveCardPanel.setLayout(defensiveCardLayout);
 
-        defT1.setBackground(Color.GREEN);
+        defT1.setBackground(playerColor);
         defT1.setName("defT1");
         defT1.setLayout(new BorderLayout());
         try {
@@ -177,7 +218,7 @@ public class GameView extends JPanel {
         defensiveCardPanel.add(defT1);
 
 
-        defT2.setBackground(Color.GREEN);
+        defT2.setBackground(playerColor);
         defT2.setName("defT2");
         defT2.setLayout(new BorderLayout());
         try {
@@ -190,8 +231,12 @@ public class GameView extends JPanel {
         }
 
         defensiveCardPanel.add(defT2);
-        defensiveCardPanel.add(new JLabel("4"));
-        defensiveCardPanel.add(new JLabel("2"));
+
+        defensiveCardPanel.add(costCanon);
+        costCanon.setHorizontalAlignment(0);
+        defensiveCardPanel.add(costTesla);
+        costTesla.setHorizontalAlignment(0);
+
         troopPanel.add(defensiveCardPanel);
 
         midJp.add(troopPanel);
@@ -231,7 +276,7 @@ public class GameView extends JPanel {
     }
 
 
-    public void updateView(Board board,int moneyUser) {
+    public void updateView(Board board,int moneyUser,float vidasUser,float vidasIA) {
         //midJp.remove(table);
         table.removeAll();
         midJp.remove(table);
@@ -244,12 +289,14 @@ public class GameView extends JPanel {
                     tableGrid[i][j].setBackground(Color.WHITE);
                 } else {
                     tableGrid[i][j].add(new JLabel (new ImageIcon(board.getCellsMatrix()[i][j].getTroop().getImage())));
+                    tableGrid[i][j].getComponent(0).setSize(1,1);
 
                     /*tableGrid[i][j].setBackground(board.getColorTroop(i,j));*/
                 }
 
             }
         }
+
         //omplim la table amb el panell pintat
         for(int i = 0; i < 15; i++){
             for(int j = 0; j < 15; j++) {
@@ -257,9 +304,28 @@ public class GameView extends JPanel {
             }
         }
         mLabel.setText(Integer.toString(moneyUser));
+
         midJp.add(table, 0);
 
 
+        //Vidas IA
+
+        badLives.setBackground(Color.RED);
+
+        //badLives.setLayout(new BorderLayout());
+        livesIA.add(badLives);
+
+        //Vidas user
+        goodLives.setBackground(Color.BLACK);
+        livesUser.add(goodLives);
+
+        //Llista tropas ia
+        badTroops.setBackground(Color.red);
+        troopCountPanel2.add(badTroops);
+
+        //Llista tropas user
+        goodTroops.setBackground(Color.blue);
+        troopCountPanel2.add(goodTroops);
 
         revalidate();
         repaint();
@@ -270,6 +336,7 @@ public class GameView extends JPanel {
         JOptionPane.showMessageDialog(null, "Hello " + name);
         return name;
     }
+
 
     public void putBorder(String click){
         switch (click){
@@ -304,5 +371,16 @@ public class GameView extends JPanel {
                 defT2.setBorder(null);
         }
     }
+    /*@Override //con esto se deberia de escribir las barras pero no eniendo como funciona esta pedazo de basura
+    //pls sent help me pone de los nervios
+
+    public void paint(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+
+       g2d.drawRect(20,20,20,20);
+
+
+    }*/
+
 
 }

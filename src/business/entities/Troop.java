@@ -222,7 +222,7 @@ public class Troop implements Runnable{
     public void atack(Troop enemyTroop){
 
 
-        while(enemyTroop.getLife() > 0 && !stop){
+        while(enemyTroop.getLife() > 0 && !stop && isRange(enemyTroop)){
 
             //if(enemyTroop != enemyNear()) enemyTroop = enemyNear();
 
@@ -238,21 +238,36 @@ public class Troop implements Runnable{
                 if(enemyTroop.getLife() > 0.0){
 
                     enemyTroop.setLife(enemyTroop.getLife() - getDamage());
-                    System.out.println(name+" "+" pega a "+enemyTroop.name+" le deja con " +enemyTroop.getLife());
+                    if(enemyTroop.getLife() <= 0.0){
+
+                        System.out.println(name + "Que soy " + isUser + " Mato a "+ enemyTroop.name);
+                        gameManager.moneyReward(isUser);
+
+                        removeTroop(isUser);
+                        enemyTroop.setStop(true);
+                    }
                 }
             }
 
-
-
-        }
-        if(!stop) {
-            System.out.println(name + "Mata a " + enemyTroop.name);
-
-            enemyTroop.setStop(true);
-
         }
 
-
+    }
+    public boolean isRange(Troop enemyTroop){
+        if(this.posx - enemyTroop.posx <= this.range || this.posx - enemyTroop.posx >= -this.range ){
+            if(this.posy - enemyTroop.posy <= this.range || this.posy - enemyTroop.posy >= -this.range){
+                System.out.println("la tropa esta dins del rang");
+                System.out.println(enemyTroop.posx+" "+ enemyTroop.posy);
+                return true;
+            }
+            System.out.println("no esta dins del rang");
+               return false;
+        }
+        System.out.println("no esta dins del rang");
+        return false;
+    }
+    public void removeTroop(boolean isUser){
+        System.out.println("entro a matar la tropa");
+        gameManager.removeTroop(isUser);
     }
 
     public void dieTroop(Troop troop){

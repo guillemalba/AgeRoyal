@@ -22,25 +22,6 @@ public class Canon extends Defensive {
 
     @Override
     public synchronized void run() {
-
-
-        while (getLife() > 0 && getTimeLife()>0) {
-            try {
-
-                Thread.sleep(getAttackVelocity());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            if (enemyNear() != null && enemyNear().getLife() >= 0.0) {
-                atack(enemyNear());
-            }
-
-            setTimeLife(getTimeLife()-(int)(getAttackVelocity()/1000));
-
-        }
-        dieTroop(this);
-        //stopGame();
-
+        super.run();
     }
-
 }

@@ -7,6 +7,7 @@ public class IA implements Runnable{
     private int money = 5;
     private int numTroopsAlive = 0;
     private int lifes = 0;
+    private boolean stop = false;
 
 
     private GameManager gameManager;
@@ -19,16 +20,16 @@ public class IA implements Runnable{
 
     @Override
     public void run() {
-        while (true) {
+        while (!stop) {
 
             if (time == 4) {
-                System.out.println("->intenta ofensiva");
+
                 invokeOfensiveTroop();
                 time = 0;
             }
 
             invokeDefensiveTroop();
-            System.out.println("////...intenta defensiva");
+
 
             try {
                 long sleepTime = 1000;
@@ -37,7 +38,7 @@ public class IA implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("IA money -----------------------------------> " + this.money);
+
             /*System.out.println("IA --> " + gameManager.getTime());*/
             time++;
         }
@@ -59,12 +60,12 @@ public class IA implements Runnable{
                 if (rand == 0) {
                     if (this.money >= Attributes.ARCHER_COST.getValue()) {
                         gameManager.addTroop(Attributes.ARCHER_ID, newPosX, newPosY, gameTime, false, "ia_archer");
-                        System.out.println("-------->Added ARCHER on time " + gameManager.getTime());
+
                     }
                 } else {
                     if (this.money >= Attributes.GIANT_COST.getValue()) {
                         gameManager.addTroop(Attributes.GIANT_ID, newPosX, newPosY, gameTime, false, "ia_giant");
-                        System.out.println("-------->Added GIANT on time " + gameManager.getTime());
+
                     }
                 }
 
@@ -97,12 +98,12 @@ public class IA implements Runnable{
                 if (rand == 0) {
                     if (this.money >= Attributes.CANNON_COST.getValue()) {
                         gameManager.addTroop(Attributes.CANNON_ID, newPosX, newPosY, gameTime, false, "ia_cannon");
-                        System.out.println("-------->Added CANNON on time " + gameManager.getTime());
+
                     }
                 } else {
                     if (this.money >= Attributes.TESLA_COST.getValue()) {
                         gameManager.addTroop(Attributes.TESLA_ID, newPosX, newPosY, gameTime, false, "ia_tesla");
-                        System.out.println("-------->Added TESLA on time " + gameManager.getTime());
+
                     }
                 }
 
@@ -153,5 +154,9 @@ public class IA implements Runnable{
 
     public void setLifes(int lifes) {
         this.lifes = lifes;
+    }
+
+    public void setStop(boolean stop) {
+        this.stop = stop;
     }
 }

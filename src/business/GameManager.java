@@ -37,6 +37,8 @@ public class GameManager{
     private LinkedList<TroopDeployed> listDeployedTroops = new LinkedList<>();
     private HashMap<String, BufferedImage> images = new HashMap<>();
     private UserManager userManager;
+    private Base baseUser;
+    private Base baseIA;
 
 
     public GameManager(UserManager userManager) {
@@ -55,8 +57,8 @@ public class GameManager{
 
         readImages();
 
-        Base baseIA = new Base("BaseMAquina",0,7,this, false,false, images.get("ia_base"));
-        Base baseUser = new Base("BasePlayer",14,7,this, true,false, images.get("user_base"));
+        baseIA = new Base("BaseMAquina",0,7,this, false,false, images.get("ia_base"));
+        baseUser = new Base("BasePlayer",14,7,this, true,false, images.get("user_base"));
         new Thread(baseUser).start();
         new Thread(baseIA).start();
         board.setTroopBoard(baseIA);
@@ -77,6 +79,8 @@ public class GameManager{
         //Thread del tiempo
         gameTimer = new GameTimer(time, false, this);
         new Thread(gameTimer).start();
+        updateViewMap();
+
 
     }
 
@@ -95,6 +99,7 @@ public class GameManager{
 
         //Poner aquie lo de guardar partida
         gameTimer.stop();
+        ia.setStop(true);
         String gameName = gameController.saveGame();
         /*if (gameName.equals("")) {
 
@@ -122,8 +127,12 @@ public class GameManager{
         this.gameController = controller;
     }
 
-    public void UpdateViewMap(){
-        gameController.addTroop(board,user.getMoney());
+    public void updateViewMap(){
+
+        gameController.addTroop(board,user.getMoney(),baseUser.getLife(),baseIA.getLife());
+        System.out.println("user:" +user.getNumTroopAlive());
+        System.out.println("ia: "+ia.getNumTroopsAlive());
+
 
     }
 
@@ -147,6 +156,7 @@ public class GameManager{
 
             if (isUser) {
                 user.setMoney(user.getMoney()-newTroop.getCost());
+                user.setNumTroopAlive(user.getNumTroopAlive()+1);
 
 
             } else {
@@ -159,14 +169,32 @@ public class GameManager{
     }
 
     public void posTroop(Attributes tipo,int x, int y){
+        if(board.isEmpty(x,y)) {
+            switch (tipo) {
 
-        switch (tipo) {
-
-            case ARCHER_ID: if(user.getMoney()>=Attributes.ARCHER_COST.getValue()) addTroop(tipo,x,y,time,true, "user_archer") ; break;
-            case CANNON_ID : if(user.getMoney()>=Attributes.GIANT_COST.getValue()) addTroop(tipo,x,y,time,true, "user_cannon") ; break;
-            case GIANT_ID : if(user.getMoney()>=Attributes.CANNON_COST.getValue()) addTroop(tipo,x,y,time,true, "user_giant") ; break;
-            case TESLA_ID : if(user.getMoney()>=Attributes.TESLA_COST.getValue()) addTroop(tipo,x,y,time,true, "user_tesla"); break;
-            default : System.out.println("Bro eso esta caro"); break;
+                case ARCHER_ID:
+                    if (user.getMoney() >= Attributes.ARCHER_COST.getValue())
+                        addTroop(tipo, x, y, time, true, "user_archer");
+                    break;
+                case CANNON_ID:
+                    if (user.getMoney() >= Attributes.GIANT_COST.getValue())
+                        addTroop(tipo, x, y, time, true, "user_cannon");
+                    break;
+                case GIANT_ID:
+                    if (user.getMoney() >= Attributes.CANNON_COST.getValue())
+                        addTroop(tipo, x, y, time, true, "user_giant");
+                    break;
+                case TESLA_ID:
+                    if (user.getMoney() >= Attributes.TESLA_COST.getValue())
+                        addTroop(tipo, x, y, time, true, "user_tesla");
+                    break;
+                default:
+                    System.out.println("Bro eso esta caro");
+                    break;
+            }
+        }
+        else{
+            System.out.println("Ja esta ocupada");
         }
     }
 
@@ -199,9 +227,16 @@ public class GameManager{
     }
 
     public void moneyReward(boolean isUser){
-        System.out.println("primero tengo :"+user.getMoney());
-         if(!isUser) user.setMoney(user.getMoney()+3);
-         if(isUser) ia.setMoney(ia.getMoney()+3);
+        System.out.println("le sumo la pasta");
+         if(isUser) user.setMoney(user.getMoney()+3);
+         if(!isUser) ia.setMoney(ia.getMoney()+3);
 
+
+    }
+
+
+    public void removeTroop(boolean isUser){
+        if(isUser) ia.setNumTroopsAlive(ia.getNumTroopsAlive() - 1);
+        if(!isUser) user.setNumTroopAlive(user.getNumTroopAlive()-1);
     }
 }

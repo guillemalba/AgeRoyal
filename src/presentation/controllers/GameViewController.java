@@ -114,69 +114,12 @@ public class GameViewController implements ActionListener, MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (e.getComponent().getName().equals("offT1") || e.getComponent().getName().equals("offT2") || e.getComponent().getName().equals("defT1") || e.getComponent().getName().equals("defT2") ) {
-            switch (e.getComponent().getName()) {
-                case "offT1":
 
-                    e.getComponent().setBackground(Color.GRAY);
-
-                    break;
-
-                case "offT2":
-
-                    e.getComponent().setBackground(Color.GRAY);
-                    break;
-
-                case "defT1":
-
-                    e.getComponent().setBackground(Color.GRAY);
-                    break;
-
-                case "defT2":
-
-                    e.getComponent().setBackground(Color.GRAY);
-                    break;
-
-                default:
-                    System.out.println("hola");
-                    break;
-            }
-
-        }
 
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (e.getComponent().getName().equals("offT1") || e.getComponent().getName().equals("offT2") || e.getComponent().getName().equals("defT1") || e.getComponent().getName().equals("defT2") ) {
-            switch (e.getComponent().getName()) {
-                case "offT1":
-
-                    e.getComponent().setBackground(Color.YELLOW);
-
-                    break;
-
-                case "offT2":
-
-                    e.getComponent().setBackground(Color.YELLOW);
-                    break;
-
-                case "defT1":
-
-                    e.getComponent().setBackground(Color.GREEN);
-                    break;
-
-                case "defT2":
-
-                    e.getComponent().setBackground(Color.GREEN);
-                    break;
-
-                default:
-                    System.out.println("hola");
-                    break;
-            }
-
-        }
 
     }
 
@@ -230,10 +173,11 @@ public class GameViewController implements ActionListener, MouseListener {
         return Integer.parseInt(String.valueOf(positions[1]));
     }
 
-    public void addTroop(Board board,int moneyUser) {
-        SwingUtilities.invokeLater(()->gameView.updateView(board,moneyUser));
-
+    public void addTroop(Board board,int moneyUser,float vidasUser,float vidasIA) {
+        SwingUtilities.invokeLater(()->gameView.updateView(board,moneyUser,vidasUser,vidasIA));
     }
+
+
 
 
     public String saveGame(){

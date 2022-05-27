@@ -10,7 +10,7 @@ public class Base extends Defensive{
     public Base(String name, int posx, int posy, GameManager gameManager, boolean isUser, boolean stop, BufferedImage image) {
         super(name, posx, posy, gameManager, isUser, stop, image);
         this.setRange(4);//cuadrados a la redonda posible 5
-        this.setLife(5);
+        this.setLife(50);
         this.setCost(0);
         this.setDamage(4);
         this.setAttackVelocity(10000);
@@ -24,7 +24,7 @@ public class Base extends Defensive{
     public synchronized void run() {
 
 
-        while (getLife() > 0) {
+        while (getLife() > 0 && !isStop()) {
             try {
 
                 Thread.sleep(1000);
@@ -34,7 +34,7 @@ public class Base extends Defensive{
             if (enemyNear() != null && enemyNear().getLife() >= 0.0) {
                 atack(enemyNear());
             }
-            System.out.println(getLife());
+
 
         }
         dieTroop(this);

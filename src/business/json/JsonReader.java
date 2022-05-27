@@ -1,6 +1,8 @@
 package business.json;
 
 import com.google.gson.Gson;
+
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 public class JsonReader {
@@ -17,7 +19,7 @@ public class JsonReader {
             reader = new com.google.gson.stream.JsonReader(new FileReader("files/config.json"));
             data = gson.fromJson(reader, ConfigData.class);
 
-        }catch(Exception e){
+        }catch(FileNotFoundException e){
             System.out.println("No s'ha pogut llegir el fitxer JSON: " + e.getMessage());
         }
         return data;

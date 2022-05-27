@@ -29,7 +29,7 @@ public class GameTimer implements Runnable{
             time++;
             gameManager.setTime(time);
             System.out.println("Time: " + time);
-            gameManager.UpdateViewMap();
+            gameManager.updateViewMap();
 
         }
         /*System.out.println("*** CountWorker FINISHED ***");*/
