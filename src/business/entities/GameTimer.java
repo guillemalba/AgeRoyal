@@ -1,6 +1,7 @@
 package business.entities;
 
 import business.GameManager;
+import business.RecordedGameManager;
 
 public class GameTimer implements Runnable{
 
@@ -8,13 +9,26 @@ public class GameTimer implements Runnable{
     private int time;
     private boolean stop;
     private GameManager gameManager;
+    private RecordedGameManager recordedGameManager;
+    private boolean repro;
+
 
     public GameTimer(int time, boolean stop, GameManager gameManager) {
         this.sleepTime = 1000;
         this.time = time;
         this.stop = stop;
         this.gameManager = gameManager;
+        this.repro = false;
+
     }
+    public GameTimer(int time, boolean stop, RecordedGameManager recordedGameManager) {
+        this.sleepTime = 1000;
+        this.time = time;
+        this.stop = stop;
+        this.recordedGameManager = recordedGameManager;
+        this.repro = true;
+    }
+
 
     @Override
     public void run() {
@@ -27,12 +41,22 @@ public class GameTimer implements Runnable{
                 e.printStackTrace();
             }
             time++;
-            gameManager.setTime(time);
+
+            if(repro){
+                recordedGameManager.setTime(time);
+                recordedGameManager.reproGame();
+            }else{
+                gameManager.setTime(time);
+            }
+
             System.out.println("Time: " + time);
-            gameManager.updateViewMap();
+
+            if(repro)recordedGameManager.updateViewMap();
+            if(!repro) gameManager.updateViewMap(false);
+
 
         }
-        /*System.out.println("*** CountWorker FINISHED ***");*/
+
 
     }
 

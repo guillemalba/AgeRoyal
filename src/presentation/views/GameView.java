@@ -29,6 +29,7 @@ public class GameView extends JPanel {
     private JButton backJb = new JButton("Back");
     private JPanel[][] tableGrid = new JPanel[15][15];
     private Board board;
+    private boolean isRepro;
     private JPanel table = new JPanel();
     private JPanel midJp = new JPanel();
     private JPanel defT1 = new JPanel();
@@ -51,13 +52,14 @@ public class GameView extends JPanel {
     private JPanel badTroops = new JPanel();
     private JPanel badLives = new JPanel();
     private Color playerColor = new Color(64, 204, 248);
+    private JPanel troopPanel = new JPanel();
     //private Graphics g;
 
     /**
      * Como podeis observar el constructor de esta clase solo contiene la posibilidad de inicializar un tablero si este
      * deja de ser nulo en algun momento. A parte de eso, se llama al metodo configureView() que creara la vista desde cero.
      */
-    public GameView(){
+    public GameView() {
         if (board == null) {
             board = new Board();
         }
@@ -78,7 +80,7 @@ public class GameView extends JPanel {
         topJp.add(settingsJb, BorderLayout.EAST);
 
 
-        GridLayout layout = new GridLayout(2,2);
+        GridLayout layout = new GridLayout(2, 2);
         midJp.setLayout(layout);
 
         createTable();
@@ -87,7 +89,7 @@ public class GameView extends JPanel {
         createInformationTable(info);
         midJp.add(info);
 
-        JPanel troopPanel = new JPanel();
+
         createTroopPanel(troopPanel);
         midJp.add(troopPanel);
 
@@ -110,25 +112,25 @@ public class GameView extends JPanel {
      * (casilla) con sus respectivos mouseListeners que nos ayudaran a detectar cuando se intenta interactuar con alguno
      * de estos.
      */
-    private void createTable(){
+    private void createTable() {
         int height = 15;
         int width = 15;
 
 
         table.setSize(400, 400);
-        GridLayout tableLayout = new GridLayout(width,height);
+        GridLayout tableLayout = new GridLayout(width, height);
         table.setLayout(tableLayout);
         //----------
         //----------
         tableGrid = new JPanel[15][15];
         //funcion para pinta mapa nuevo
-        for(int i = 0; i < 15; i++){
-            for(int j = 0; j < 15; j++) {
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
                 tableGrid[i][j] = new JPanel();
                 tableGrid[i][j].setLayout(new BorderLayout());
-                tableGrid[i][j].setSize(15,15);
+                tableGrid[i][j].setSize(15, 15);
                 tableGrid[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
-                tableGrid[i][j].setName(i+","+j);
+                tableGrid[i][j].setName(i + "," + j);
             }
         }
     }
@@ -137,12 +139,13 @@ public class GameView extends JPanel {
      * Este metodo servira para crear el panel derecho con toda la informacion de la partida. Este panel se crea en el
      * metodo configure view pero se esta utilizando en este metodo y se le esta añadiendo toda la informacion que era
      * necesaria.
+     *
      * @param info es el panel que deseamos modificar y al que queremos añadir el resto de componentes
      */
-    private void createInformationTable(JPanel info){
+    private void createInformationTable(JPanel info) {
         info.setLayout(new BorderLayout());
         info.setSize(200, 400);
-        GridLayout layoutInfo = new GridLayout(4,1);
+        GridLayout layoutInfo = new GridLayout(4, 1);
         info.setLayout(layoutInfo);
 
 
@@ -152,7 +155,7 @@ public class GameView extends JPanel {
 
 
         livesPanel2.setBackground(Color.GRAY);
-        livesPanel2.setLayout(new GridLayout(2,1));
+        livesPanel2.setLayout(new GridLayout(2, 1));
 
         livesIA.setLayout(new BorderLayout());
         livesUser.setLayout(new BorderLayout());
@@ -161,7 +164,7 @@ public class GameView extends JPanel {
         livesPanel2.add(livesIA);
         livesPanel2.add(livesUser);
         livesPanel2.setBorder(BorderFactory.createLineBorder(Color.black));
-        livesPanel2.setLayout(new GridLayout(2,1));
+        livesPanel2.setLayout(new GridLayout(2, 1));
 
 
         //Vidas ia
@@ -182,7 +185,7 @@ public class GameView extends JPanel {
 
         troopCountPanel2.setBackground(Color.gray);
         troopCountPanel2.setBorder(BorderFactory.createLineBorder(Color.black));
-        troopCountPanel2.setLayout(new GridLayout(2,1));
+        troopCountPanel2.setLayout(new GridLayout(2, 1));
 
         //Llista tropas ia
         //badTroops.setBackground(Color.red);
@@ -194,16 +197,17 @@ public class GameView extends JPanel {
 
 
         info.add(troopCountPanel2);
-        updateView(board,5,50,50);
+        updateView(board, 5, 50, 50);
         midJp.add(table);
     }
 
     /**
      * Este metodo crear sirve para introducir toda la informacion de las tropas como su coste o el tipo de tropa que es.
      * El panel que se esta modificando en este caso es el que se encuentra debajo del tablero.
+     *
      * @param troopPanel es el panel que deseamos modificar y al que queremos añadir el resto de componentes
      */
-    private void createTroopPanel(JPanel troopPanel){
+    private void createTroopPanel(JPanel troopPanel) {
         troopPanel.setBackground(Color.white);
         troopPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         GridLayout troopCardNameLayout = new GridLayout(2, 2);
@@ -294,10 +298,11 @@ public class GameView extends JPanel {
     /**
      * Este metodo crear sirve para introducir toda la informacion de los recursos (oro) que tiene nuestro usuario para
      * combatir contra la IA. El panel que se esta modificando en este caso es el que se encuentra debajo del tablero.
+     *
      * @param goldPanel
      */
     private void createGoldPanel(JPanel goldPanel) {
-        GridLayout goldLayout = new GridLayout(2,1);
+        GridLayout goldLayout = new GridLayout(2, 1);
         goldPanel.setLayout(goldLayout);
         JLabel gLabel = new JLabel("Gold");
         gLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -309,6 +314,7 @@ public class GameView extends JPanel {
 
     /**
      * En este metodo se esta añadiendo los listeners de todos los botones y paneles qu podemos localizar en la vista.
+     *
      * @param listener1 son los listeners de los botones
      * @param listener2 son los listeners de los paneles
      */
@@ -319,9 +325,10 @@ public class GameView extends JPanel {
         defT1.addMouseListener(listener2);
         offT2.addMouseListener(listener2);
         offT1.addMouseListener(listener2);
-        for(int i = 0; i < 15; i++) {
+        for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
                 tableGrid[i][j].addMouseListener(listener2);
+
             }
         }
     }
@@ -329,25 +336,26 @@ public class GameView extends JPanel {
     /**
      * Este metodo servira para actualizar la vista. Para ello necesitamos recibir toda la infomraion que nos permita
      * mostrar desde las tropas enemigas y aliadas ubicada en el tablero hasta la vida restante de nuestro oponente.
-     * @param board Una matriz que contiene toda la informacion de las tropas (enemigas y aliadas)
+     *
+     * @param board     Una matriz que contiene toda la informacion de las tropas (enemigas y aliadas)
      * @param moneyUser Es el dinero del que dispone nuestro usuario para poder introducir tropas en el campo de batalla
      * @param vidasUser Es el numer de vidas restantes de la torre aliada
-     * @param vidasIA Es el numer de vidas restantes de la torre enemigas
+     * @param vidasIA   Es el numer de vidas restantes de la torre enemigas
      */
-    public void updateView(Board board,int moneyUser,float vidasUser,float vidasIA) {
+    public void updateView(Board board, int moneyUser, float vidasUser, float vidasIA) {
         //midJp.remove(table);
         table.removeAll();
         midJp.remove(table);
 
         //pintem el panell
-        for(int i = 0; i < board.getSide(); i++){
-            for(int j = 0; j < 15; j++) {
+        for (int i = 0; i < board.getSide(); i++) {
+            for (int j = 0; j < 15; j++) {
                 tableGrid[i][j].removeAll();
-                if (board.isEmpty(i,j)) {
+                if (board.isEmpty(i, j)) {
                     tableGrid[i][j].setBackground(Color.WHITE);
                 } else {
-                    tableGrid[i][j].add(new JLabel (new ImageIcon(board.getCellsMatrix()[i][j].getTroop().getImage())));
-                    tableGrid[i][j].getComponent(0).setSize(1,1);
+                    tableGrid[i][j].add(new JLabel(new ImageIcon(board.getCellsMatrix()[i][j].getTroop().getImage())));
+                    tableGrid[i][j].getComponent(0).setSize(1, 1);
 
                     /*tableGrid[i][j].setBackground(board.getColorTroop(i,j));*/
                 }
@@ -356,8 +364,8 @@ public class GameView extends JPanel {
         }
 
         //omplim la table amb el panell pintat
-        for(int i = 0; i < 15; i++){
-            for(int j = 0; j < 15; j++) {
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
                 table.add(tableGrid[i][j]);
             }
         }
@@ -391,6 +399,7 @@ public class GameView extends JPanel {
 
     /**
      * Este metodo genera un popUp que permitira guardar la partida
+     *
      * @return el nombre de la partida guardada
      */
     public String popUpSaveGame() {
@@ -399,33 +408,34 @@ public class GameView extends JPanel {
 
     /**
      * Este metodo nos pertmite añadir un reborde rojo al rededor de la tropa seleccionada en el panel inferior
+     *
      * @param click es el nombre assingado a la tropa que se ha selecionado
      */
-    public void putBorder(String click){
-        switch (click){
+    public void putBorder(String click) {
+        switch (click) {
             case "offT1":
-                offT1.setBorder(BorderFactory.createLineBorder(Color.RED,4));
+                offT1.setBorder(BorderFactory.createLineBorder(Color.RED, 4));
                 offT2.setBorder(null);
                 defT1.setBorder(null);
                 defT2.setBorder(null);
                 break;
             case "offT2":
                 offT1.setBorder(null);
-                offT2.setBorder(BorderFactory.createLineBorder(Color.RED,4));
+                offT2.setBorder(BorderFactory.createLineBorder(Color.RED, 4));
                 defT1.setBorder(null);
                 defT2.setBorder(null);
                 break;
             case "defT1":
                 offT1.setBorder(null);
                 offT2.setBorder(null);
-                defT1.setBorder(BorderFactory.createLineBorder(Color.RED,4));
+                defT1.setBorder(BorderFactory.createLineBorder(Color.RED, 4));
                 defT2.setBorder(null);
                 break;
             case "defT2":
                 offT1.setBorder(null);
                 offT2.setBorder(null);
                 defT1.setBorder(null);
-                defT2.setBorder(BorderFactory.createLineBorder(Color.RED,4));
+                defT2.setBorder(BorderFactory.createLineBorder(Color.RED, 4));
                 break;
             default:
                 offT1.setBorder(null);
@@ -434,6 +444,7 @@ public class GameView extends JPanel {
                 defT2.setBorder(null);
         }
     }
+
 
     /*@Override //con esto se deberia de escribir las barras pero no eniendo como funciona esta pedazo de basura
     //pls sent help me pone de los nervios
@@ -446,5 +457,11 @@ public class GameView extends JPanel {
 
     }*/
 
+    public boolean isRepro() {
+        return isRepro;
+    }
 
+    public void setRepro(boolean repro) {
+        isRepro = repro;
+    }
 }

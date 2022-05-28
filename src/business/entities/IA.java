@@ -62,12 +62,12 @@ public class IA implements Runnable{
                 int rand = (int)(Math.random() * 2);
                 if (rand == 0) {
                     if (this.money >= Attributes.ARCHER_COST.getValue()) {
-                        gameManager.addTroop(Attributes.ARCHER_ID, newPosX, newPosY, gameTime, false, "ia_archer");
+                        gameManager.addTroop(Attributes.ARCHER_ID, newPosX, newPosY, false, "ia_archer");
 
                     }
                 } else {
                     if (this.money >= Attributes.GIANT_COST.getValue()) {
-                        gameManager.addTroop(Attributes.GIANT_ID, newPosX, newPosY, gameTime, false, "ia_giant");
+                        gameManager.addTroop(Attributes.GIANT_ID, newPosX, newPosY, false, "ia_giant");
 
                     }
                 }
@@ -100,12 +100,12 @@ public class IA implements Runnable{
                 int rand = (int)(Math.random() * 2);
                 if (rand == 0) {
                     if (this.money >= Attributes.CANNON_COST.getValue()) {
-                        gameManager.addTroop(Attributes.CANNON_ID, newPosX, newPosY, gameTime, false, "ia_cannon");
+                        gameManager.addTroop(Attributes.CANNON_ID, newPosX, newPosY, false, "ia_cannon");
 
                     }
                 } else {
                     if (this.money >= Attributes.TESLA_COST.getValue()) {
-                        gameManager.addTroop(Attributes.TESLA_ID, newPosX, newPosY, gameTime, false, "ia_tesla");
+                        gameManager.addTroop(Attributes.TESLA_ID, newPosX, newPosY, false, "ia_tesla");
 
                     }
                 }

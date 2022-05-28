@@ -67,4 +67,30 @@ public class GameSQLDAO implements GameDAO{
         }
         return false;
     }
+
+    @Override
+    public LinkedList<TroopDeployed> readAllTroopDeployed(String game2){
+        try {
+            Connection connection = DriverManager.getConnection(data.getUrl(), data.getUser(), data.getPassword());
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("Select troop,time_deployed,posX,posY,isuser from troopdeployed where game = '" + game2 + "' order by time_deployed asc");
+
+            LinkedList<TroopDeployed> troopDeployeds = new LinkedList<>();
+            while ((resultSet.next())) {
+                TroopDeployed troopDeployed = new TroopDeployed(
+                        resultSet.getInt("troop"),
+                        resultSet.getInt("time_deployed"),
+                        resultSet.getInt("posX"),
+                        resultSet.getInt("posY"),
+                        resultSet.getBoolean("isuser")
+                );
+                troopDeployeds.add(troopDeployed);
+            }
+            return troopDeployeds;
+        } catch (SQLException e) {
+            System.out.println("Connection failure.");
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

@@ -13,8 +13,8 @@ public class UserManager {
     private String user;
     private LinkedList<User> users;
 
-    public UserManager() {
-        userDAO = new UserSQLDAO();
+    public UserManager(UserDAO userSQLDAO) {
+        userDAO = userSQLDAO;
     }
 
     public boolean register(User user) {

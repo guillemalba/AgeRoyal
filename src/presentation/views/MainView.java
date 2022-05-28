@@ -136,4 +136,8 @@ public class MainView extends JFrame {
     public void showLogin() {
         this.getViewComponent().show(this.getContentPane(), "loginView");
     }
+
+    public GameView getGameView() {
+        return gameView;
+    }
 }

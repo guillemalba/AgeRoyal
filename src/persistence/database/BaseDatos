@@ -32,3 +32,5 @@ create table TroopDeployed(
                               primary key(id),
                               foreign key(game) references Game(name)
 );
+
+Select troop,time_deployed,posX,posY,isuser from troopdeployed where game = game order by time_deployed asc

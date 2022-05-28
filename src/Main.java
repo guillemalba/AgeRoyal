@@ -1,5 +1,8 @@
 import business.GameManager;
+import business.RecordedGameManager;
 import business.UserManager;
+import persistence.GameDAO;
+import persistence.GameSQLDAO;
 import persistence.UserDAO;
 import persistence.UserSQLDAO;
 import presentation.controllers.*;
@@ -22,10 +25,12 @@ public class Main {
 
         /* New dels DAO */
         UserDAO userDAO = new UserSQLDAO();
+        GameDAO gameDAO = new GameSQLDAO();
 
         /* News dels Managers */
-        UserManager userManager = new UserManager();
-        GameManager gameManager = new GameManager(userManager);
+        UserManager userManager = new UserManager(userDAO);
+        GameManager gameManager = new GameManager(gameDAO,userManager);
+        RecordedGameManager recordedGameManager = new RecordedGameManager(gameDAO,gameManager);
 
 
         /* New de les Vistes */
@@ -45,7 +50,7 @@ public class Main {
         LoginController loginController = new LoginController(loginView, mainView, cardLayout, userManager);
         RegisterController registerController = new RegisterController(registerView, mainView, cardLayout,userManager);
         LogoutController logoutController = new LogoutController(logoutView, mainView, cardLayout,userManager);
-        RecordedGameMenuController recordedGameMenuController = new RecordedGameMenuController(recordedGameMenuView, mainView, gameManager);
+        RecordedGameMenuController recordedGameMenuController = new RecordedGameMenuController(recordedGameMenuView, mainView, gameManager,recordedGameManager);
         GameViewController gameViewController = new GameViewController(gameView, mainView,gameManager);
         RankingController rankingController = new RankingController(rankingView, mainView, userManager);
 

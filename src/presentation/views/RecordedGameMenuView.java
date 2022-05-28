@@ -118,7 +118,7 @@ public class RecordedGameMenuView extends JPanel {
             for (int i = 0; i < games.size(); i++) {
                 recorded[i] = new JPanel(new BorderLayout());
                 recorded[i].setSize(50, 50);
-
+                recorded[i].setName(games.get(i).getName());
                 recorded[i].add(new JLabel("Name: " + games.get(i).getName()), BorderLayout.NORTH);
                 recorded[i].add(new JLabel("Player: "+ games.get(i).getPlayer()));
                 if (games.get(i).getWin()) {
@@ -143,10 +143,10 @@ public class RecordedGameMenuView extends JPanel {
     /**
      * Este metodo mostrara un popUp para saber si queremos mostrar la vista nueva
      */
-    public void popUp() {
+    public int  popUp() {
         int input = JOptionPane.showConfirmDialog(new RecordedGameMenuView(),
                 "Do you want to watch that game?", "Customized Dialog",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-        System.out.println(input);
+        return input;
     }
 }

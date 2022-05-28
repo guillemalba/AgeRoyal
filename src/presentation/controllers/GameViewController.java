@@ -45,71 +45,74 @@ public class GameViewController implements ActionListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getComponent().getName().equals("offT1") || e.getComponent().getName().equals("offT2") || e.getComponent().getName().equals("defT1") || e.getComponent().getName().equals("defT2") ){
-            switch(e.getComponent().getName()){
-                case "offT1":
-                    tipo = "archer";
-                    gameView.putBorder(e.getComponent().getName());
+        if(!gameView.isRepro()) {
+            if (e.getComponent().getName().equals("offT1") || e.getComponent().getName().equals("offT2") || e.getComponent().getName().equals("defT1") || e.getComponent().getName().equals("defT2")) {
+                switch (e.getComponent().getName()) {
+                    case "offT1":
 
-                    break;
+                        tipo = "archer";
 
-                case "offT2":
-                    tipo = "giant";
-                    gameView.putBorder(e.getComponent().getName());
-
-                    break;
-
-                case "defT1":
-                    tipo = "canon";
-                    gameView.putBorder(e.getComponent().getName());
-
-                    break;
-
-                case "defT2":
-                    tipo = "tesla";
-                    gameView.putBorder(e.getComponent().getName());
-
-                    break;
-
-                default:
-                    tipo = "null";
-                    System.out.println("hola");
-                    break;
-            }
-        }else{
-            int x = getPositionX(e.getComponent().getName());
-            int y = getPositionY(e.getComponent().getName());
-            if(x > 7) {
-                switch (tipo) {
-                    case "archer":
-
-                        gameManager.posTroop(Attributes.ARCHER_ID, x, y);
+                        gameView.putBorder(e.getComponent().getName());
 
                         break;
-                    case "giant":
 
-                        gameManager.posTroop(Attributes.GIANT_ID, x, y);
-
-                        break;
-                    case "canon":
-
-                        gameManager.posTroop(Attributes.CANNON_ID, x, y);
+                    case "offT2":
+                        tipo = "giant";
+                        gameView.putBorder(e.getComponent().getName());
 
                         break;
-                    case "tesla":
-                        gameManager.posTroop(Attributes.TESLA_ID, x, y);
+
+                    case "defT1":
+                        tipo = "canon";
+                        gameView.putBorder(e.getComponent().getName());
 
                         break;
+
+                    case "defT2":
+                        tipo = "tesla";
+                        gameView.putBorder(e.getComponent().getName());
+
+                        break;
+
                     default:
-                        System.out.println("Default peta igual");
+                        tipo = "null";
+                        System.out.println("hola");
                         break;
                 }
+            } else {
+                int x = getPositionX(e.getComponent().getName());
+                int y = getPositionY(e.getComponent().getName());
+                if (x > 7) {
+                    switch (tipo) {
+                        case "archer":
 
-            }else{
-                System.out.println("Tira en tu mitad bro");
+                            gameManager.posTroop(Attributes.ARCHER_ID, x, y);
+
+                            break;
+                        case "giant":
+
+                            gameManager.posTroop(Attributes.GIANT_ID, x, y);
+
+                            break;
+                        case "canon":
+
+                            gameManager.posTroop(Attributes.CANNON_ID, x, y);
+
+                            break;
+                        case "tesla":
+                            gameManager.posTroop(Attributes.TESLA_ID, x, y);
+
+                            break;
+                        default:
+                            System.out.println("Default peta igual");
+                            break;
+                    }
+
+                } else {
+                    System.out.println("Tira en tu mitad bro");
+                }
             }
         }
-
 
     }
 

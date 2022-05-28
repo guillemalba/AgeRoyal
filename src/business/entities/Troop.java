@@ -253,7 +253,7 @@ public class Troop implements Runnable{
                     if(enemyTroop.getLife() <= 0.0){
 
                         System.out.println(getName() + "Que soy " + isUser + " Mato a "+ enemyTroop.getName());
-                        gameManager.moneyReward(isUser);
+                        if(!gameManager.isRepro())gameManager.moneyReward(isUser);
 
                         removeTroop(isUser);
                         enemyTroop.setStop(true);

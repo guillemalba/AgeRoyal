@@ -29,4 +29,6 @@ public interface GameDAO {
      * @return true si se ha podido guardar
      */
     boolean saveTroopsDeployed(TroopDeployed troopDeployed, String gameName);
+
+    LinkedList<TroopDeployed> readAllTroopDeployed(String game);
 }

@@ -42,9 +42,11 @@ public class GameManager{
     private UserManager userManager;
     private Base baseUser;
     private Base baseIA;
+    private boolean isRepro;
 
-    public GameManager(UserManager userManager) {
-        gameDAO = new GameSQLDAO();
+
+    public GameManager(GameDAO gameSQLDAO,UserManager userManager) {
+        this.gameDAO = gameSQLDAO;
         this.userManager = userManager;
     }
 
@@ -52,6 +54,14 @@ public class GameManager{
         if(games != null) games.removeAll(games);
         games = gameDAO.readAllGames();
         return games;
+    }
+
+    public boolean isRepro() {
+        return isRepro;
+    }
+
+    public void setRepro(boolean repro) {
+        isRepro = repro;
     }
 
     public void initGame(){
@@ -81,9 +91,26 @@ public class GameManager{
         //Thread del tiempo
         gameTimer = new GameTimer(time, false, this);
         new Thread(gameTimer).start();
-        updateViewMap();
+        updateViewMap(false);
 
 
+    }
+
+    public void initReproGame() {
+        board = new Board();
+        readImages();
+
+        baseIA = new Base("BaseMAquina", 0, 7, this, false, false, images.get("ia_base"));
+        baseUser = new Base("BasePlayer", 14, 7, this, true, false, images.get("user_base"));
+        new Thread(baseUser).start();
+        new Thread(baseIA).start();
+        board.setTroopBoard(baseIA);
+        board.setTroopBoard(baseUser);
+
+
+        //Thread del tiempo
+
+        updateViewMap(true);
     }
 
     public void sumMoney(){
@@ -130,23 +157,31 @@ public class GameManager{
         return board;
     }
 
+    public int getTime() {
+        return time;
+    }
+
     public void registerController(GameViewController controller) {
         this.gameController = controller;
     }
 
-    public void updateViewMap(){
+    public void updateViewMap(boolean isRepro){
 
-        gameController.addTroop(board,user.getMoney(),baseUser.getLife(),baseIA.getLife());
-        System.out.println("user:" +user.getNumTroopAlive());
-        System.out.println("ia: "+ia.getNumTroopsAlive());
+        if (isRepro){
+            gameController.addTroop(board,0,baseUser.getLife(),baseIA.getLife());
 
+        }else {
+            gameController.addTroop(board, user.getMoney(), baseUser.getLife(), baseIA.getLife());
+            System.out.println("user:" + user.getNumTroopAlive());
+            System.out.println("ia: " + ia.getNumTroopsAlive());
+        }
 
     }
 
 
 
 
-    public synchronized void addTroop(Attributes troopId, int x, int y, int timeAdded, boolean isUser, String key) {
+    public synchronized void addTroop(Attributes troopId, int x, int y, boolean isUser, String key) {
 
         switch (troopId) {
             case ARCHER_ID -> linkedList.add(new Archer("archer100Maquina",x,y,this, isUser,false, images.get(key)));
@@ -156,23 +191,23 @@ public class GameManager{
         }
 
         if (linkedList.size() > 0) {
-            Troop newTroop = linkedList.get(linkedList.size()-1);
+            Troop newTroop = linkedList.get(linkedList.size() - 1);
             listDeployedTroops.add(new TroopDeployed(troopId.getValue(), time, x, y, isUser));
             board.setTroopBoard(newTroop);
             new Thread(newTroop).start();
 
-            if (isUser) {
-                user.setMoney(user.getMoney()-newTroop.getCost());
-                user.setNumTroopAlive(user.getNumTroopAlive()+1);
+            if (!isRepro) {
+                if (isUser) {
+                    user.setMoney(user.getMoney() - newTroop.getCost());
+                    user.setNumTroopAlive(user.getNumTroopAlive() + 1);
 
 
-            } else {
-                ia.setMoney(ia.getMoney() - newTroop.getCost());
-                ia.setNumTroopsAlive(ia.getNumTroopsAlive() + 1);
+                } else {
+                    ia.setMoney(ia.getMoney() - newTroop.getCost());
+                    ia.setNumTroopsAlive(ia.getNumTroopsAlive() + 1);
+                }
             }
         }
-
-
     }
 
     public void posTroop(Attributes tipo,int x, int y){
@@ -181,19 +216,19 @@ public class GameManager{
 
                 case ARCHER_ID:
                     if (user.getMoney() >= Attributes.ARCHER_COST.getValue())
-                        addTroop(tipo, x, y, time, true, "user_archer");
+                        addTroop(tipo, x, y, true, "user_archer");
                     break;
                 case CANNON_ID:
                     if (user.getMoney() >= Attributes.GIANT_COST.getValue())
-                        addTroop(tipo, x, y, time, true, "user_cannon");
+                        addTroop(tipo, x, y, true, "user_cannon");
                     break;
                 case GIANT_ID:
                     if (user.getMoney() >= Attributes.CANNON_COST.getValue())
-                        addTroop(tipo, x, y, time, true, "user_giant");
+                        addTroop(tipo, x, y, true, "user_giant");
                     break;
                 case TESLA_ID:
                     if (user.getMoney() >= Attributes.TESLA_COST.getValue())
-                        addTroop(tipo, x, y, time, true, "user_tesla");
+                        addTroop(tipo, x, y, true, "user_tesla");
                     break;
                 default:
                     System.out.println("Bro eso esta caro");
@@ -204,6 +239,49 @@ public class GameManager{
             System.out.println("Ja esta ocupada");
         }
     }
+
+    public void addRecordedTroop(int troopID, int x, int y, boolean isUser){
+        System.out.println("te pinto la tropa: " + troopID);
+        switch (troopID) {
+
+            case 0:
+                if(isUser) {
+                    addTroop(Attributes.ARCHER_ID, x, y, isUser, "user_archer");
+                }else{
+                    addTroop(Attributes.ARCHER_ID, x, y, isUser, "ia_archer");
+                }
+
+
+                break;
+            case 2:
+                if(isUser) {
+                    addTroop(Attributes.CANNON_ID, x, y, isUser, "user_cannon");
+                }else{
+                    addTroop(Attributes.CANNON_ID, x, y, isUser, "ia_cannon");
+                }
+                break;
+            case 1:
+                if(isUser) {
+                    addTroop(Attributes.GIANT_ID, x, y, isUser, "user_giant");
+                }else{
+                    addTroop(Attributes.GIANT_ID, x, y, isUser, "ia_giant");
+                }
+                break;
+            case 3:
+                if(isUser) {
+                    addTroop(Attributes.TESLA_ID, x, y, isUser, "user_tesla");
+                }else{
+                    addTroop(Attributes.TESLA_ID, x, y, isUser, "ia_tesla");
+                }
+
+
+                break;
+            default:
+                System.out.println("Bro eso esta caro");
+                break;
+        }
+    }
+
 
 
 
@@ -241,7 +319,9 @@ public class GameManager{
 
 
     public void removeTroop(boolean isUser){
-        if(isUser) ia.setNumTroopsAlive(ia.getNumTroopsAlive() - 1);
-        if(!isUser) user.setNumTroopAlive(user.getNumTroopAlive()-1);
+        if(!isRepro) {
+            if (isUser) ia.setNumTroopsAlive(ia.getNumTroopsAlive() - 1);
+            if (!isUser) user.setNumTroopAlive(user.getNumTroopAlive() - 1);
+        }
     }
 }
