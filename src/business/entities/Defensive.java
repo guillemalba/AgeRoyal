@@ -17,7 +17,7 @@ public class Defensive extends Troop {
      * @param name de la tropa
      * @param posx del mapa
      * @param posy del mapa
-     * @param gamemanager // todo esto que?
+     * @param gamemanager para acceder a los metodos
      * @param isUser para saber si es de la IA o del usuario
      * @param stop para detener el thread
      * @param image a cargar en el mapa
@@ -25,6 +25,24 @@ public class Defensive extends Troop {
     public Defensive(String name, int posx, int posy, GameManager gamemanager, boolean isUser, boolean stop, BufferedImage image) {
         super(name,posx,posy,gamemanager, isUser, stop, image);
 
+    }
+
+    /**
+     * Getter del tiempo de vida de la tropa defensiva
+     *
+     * @return el tiempo de vida
+     */
+    public int getTimeLife() {
+        return timeLife;
+    }
+
+    /**
+     * Setter del tiempo de la vida
+     *
+     * @param timeLife de la tropa
+     */
+    public void setTimeLife(int timeLife) {
+        this.timeLife = timeLife;
     }
 
     @Override
@@ -47,17 +65,6 @@ public class Defensive extends Troop {
             removeTroop(!isUser());
         }
         dieTroop(this);
-
-
     }
-
-    public int getTimeLife() {
-        return timeLife;
-    }
-
-    public void setTimeLife(int timeLife) {
-        this.timeLife = timeLife;
-    }
-
 
 }

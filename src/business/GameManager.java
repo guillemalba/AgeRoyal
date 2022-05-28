@@ -147,9 +147,6 @@ public class GameManager{
             }
             gameController.finishGame();
         }
-
-
-
     }
 
     public Board getBoard() {

@@ -13,13 +13,13 @@ public class TeslaTower extends Defensive{
     /**
      * Constructor para añadir un nuevo Tesla
      *
-     * @param name
-     * @param posx
-     * @param posy
-     * @param gameManager
-     * @param isUser
-     * @param stop
-     * @param image
+     * @param name de la tropa
+     * @param posx en el mapa
+     * @param posy en el mapa
+     * @param gameManager para acceder a los metodos
+     * @param isUser para saber si es del usuario o de la IA
+     * @param stop para detener el thread
+     * @param image imagen para mostrar en el mapa
      */
     public TeslaTower(String name, int posx, int posy, GameManager gameManager, boolean isUser, boolean stop, BufferedImage image) {
         super(name,posx, posy, gameManager, isUser, stop, image);

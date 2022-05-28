@@ -27,42 +27,92 @@ public class TroopDeployed {
         this.isUser = isUser;
     }
 
+    /**
+     * Getter que devuelve el id de la tropa
+     *
+     * @return id
+     */
     public int getTroopId() {
         return troopId;
     }
 
+    /**
+     * Setter para asignar el id de la tropa
+     *
+     * @param troopId de la tropa
+     */
     public void setTroopId(int troopId) {
         this.troopId = troopId;
     }
 
+    /**
+     * Getter que devuelve el tiempo de la partida en que se ha desplegado de la tropa
+     *
+     * @return tiempo de la partida
+     */
     public int getTimeDeployed() {
         return timeDeployed;
     }
 
+    /**
+     * Setter para asignar el tiempo de la partida en el que se ha desplegado la tropa
+     *
+     * @param timeDeployed de la partida en segundos
+     */
     public void setTimeDeployed(int timeDeployed) {
         this.timeDeployed = timeDeployed;
     }
 
+    /**
+     * Getter que devuelve la posicion X de la tropa
+     *
+     * @return posicion X
+     */
     public int getPosX() {
         return posX;
     }
 
+    /**
+     * Setter para asignar la posicion X inicial de la tropa
+     *
+     * @param posX del mapa
+     */
     public void setPosX(int posX) {
         this.posX = posX;
     }
 
+    /**
+     * Getter que devuelve la posicion Y de la tropa
+     *
+     * @return posicion Y
+     */
     public int getPosY() {
         return posY;
     }
 
+    /**
+     * Setter para asignar la posicion y inicial de la tropa
+     *
+     * @param posY del mapa
+     */
     public void setPosY(int posY) {
         this.posY = posY;
     }
 
+    /**
+     * Getter que devuelve si la tropa es del usuario o de la IA
+     *
+     * @return true si es del usuario, false si es de la IA
+     */
     public boolean isUser() {
         return isUser;
     }
 
+    /**
+     * Setter para asignar si la topa desplegada es del usuario o no
+     *
+     * @param user true si es del usuario, false si es de la IA
+     */
     public void setUser(boolean user) {
         isUser = user;
     }

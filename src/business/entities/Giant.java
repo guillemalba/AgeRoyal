@@ -15,7 +15,7 @@ public class Giant extends Ofensive{
      * @param name de la tropa
      * @param posx del mapa
      * @param posy del mapa
-     * @param gameManager //todo esta vaina?
+     * @param gameManager para acceder a los metodos
      * @param isUser para saber si es la IA o el usuario
      * @param stop para detener el thread
      * @param image a cargar en el mapa

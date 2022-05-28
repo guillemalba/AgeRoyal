@@ -16,20 +16,20 @@ public class Base extends Defensive{
      * @param name de la base
      * @param posx del mapa
      * @param posy del mapa
-     * @param gameManager // todo por que manager?
+     * @param gameManager para acceder a los metodos
      * @param isUser para saber si es la Base de la IA o del usuario
      * @param stop para parar el thread
      * @param image de la base para cargar en el mapa
      */
     public Base(String name, int posx, int posy, GameManager gameManager, boolean isUser, boolean stop, BufferedImage image) {
         super(name, posx, posy, gameManager, isUser, stop, image);
-        this.setRange(4);//cuadrados a la redonda posible 5
-        this.setLife(50);
-        this.setCost(0);
-        this.setDamage(4);
-        this.setAttackVelocity(10000);
+        this.setRange(Attributes.BASE_ATTACK_RANGE.getValue());
+        this.setLife(Attributes.BASE_LIFE.getValue());
+        this.setCost(Attributes.BASE_COST.getValue());
+        this.setDamage(Attributes.BASE_DAMAGE.getValue());
+        this.setAttackVelocity(Attributes.BASE_ATTACK_VELOCITY.getValue());
+        this.setTimeLife(Attributes.BASE_TIME_LIFE.getValue());//seg
         this.setType("Structure");
-        this.setTimeLife(10000);//seg
     }
 
 

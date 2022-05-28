@@ -26,38 +26,83 @@ public class Game {
         this.player = player;
     }
 
+    /**
+     * Getter para devolver una partida guardada
+     *
+     * @return el la partida
+     */
     public Game getGame(){
         return new Game(this.name, this.date, this.win, this.player);
     }
 
+    /**
+     * Getter que devuelve el nombre de la partida
+     *
+     * @return nombre de la partida
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Setter para asignar un nombre a la partida jugada
+     *
+     * @param name de la partida
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Getter que devuelve la fecha de la partida
+     *
+     * @return la fecha
+     */
     public String getDate() {
         return date;
     }
 
+    /**
+     * Setter que asigna una fecha a la partida
+     *
+     * @param date de la partida
+     */
     public void setDate(String date) {
         this.date = date;
     }
 
-    public Boolean getWin() {
+    /**
+     * Getter que devuelve el ganador
+     *
+     * @return true si ha ganado el usuario, false si ha ganado la IA
+     */
+    public boolean getWin() {
         return win;
     }
 
+    /**
+     * Setter que asigna un ganador
+     *
+     * @param win true si ha ganado el usuario, false si ha ganado la IA
+     */
     public void setWin(Boolean win) {
         this.win = win;
     }
 
+    /**
+     * Getter para devolver el nombre del jugador que ha realizado la partida
+     *
+     * @return el nombre del jugador
+     */
     public String getPlayer() {
         return player;
     }
 
+    /**
+     * Setter que asigna el nombre del jugador de la partida
+     *
+     * @param player nombre
+     */
     public void setPlayer(String player) {
         this.player = player;
     }

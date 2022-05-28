@@ -16,7 +16,7 @@ public class Canon extends Defensive {
      * @param name del cannon
      * @param posx en el mapa
      * @param posy en el mapa
-     * @param gameManager // todo esto pa que?
+     * @param gameManager para acceder a los metodos
      * @param isUser para saber si es de la IA o del usuario
      * @param stop para detener el thread
      * @param image para cargar en el mapa

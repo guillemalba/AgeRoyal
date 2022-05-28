@@ -1,15 +1,11 @@
 package presentation.controllers;
 
 import business.UserManager;
-import business.entities.User;
 import presentation.views.MainView;
 import presentation.views.RankingView;
-import presentation.views.RecordedGameMenuView;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
 
 /**
  * Esta clase es la que controlara nuestra vista de ranking con sus botones
@@ -51,6 +47,6 @@ public class RankingController implements ActionListener {
      * Este metodo actualizara la informacion de los usuarios guardados en la vista
      */
     public void updateRecorderUsers(){
-        rankingView.update(userManager.updateUsers());
+        rankingView.update(userManager.readSortedUsers());
     }
 }

@@ -16,7 +16,7 @@ public class Archer extends Ofensive {
      * @param name de la arquera
      * @param posx del mapa
      * @param posy del mapa
-     * @param gameManager // todo por que el manager?
+     * @param gameManager para acceder a los metodos
      * @param isUser para saber si es tropa de la IA o del usuario
      * @param stop para parar el thread
      * @param image imagen que cargamos en el mapa

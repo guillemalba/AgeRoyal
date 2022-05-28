@@ -47,102 +47,213 @@ public class Troop implements Runnable{
         this.image = image;
     }
 
+    /**
+     * Getter que devuelve si el thread esta parado o no
+     * @return true si esta parado
+     */
     public boolean isStop() {
         return stop;
     }
 
+    /**
+     * Setter para parar el thread
+     * @param stop true si esta parado
+     */
     public void setStop(boolean stop) {
         this.stop = stop;
     }
 
-    public int getRange() {
-        return range;
-    }
-
+    /**
+     * Getter para devolver el rango de ataque de la tropa
+     * @param range de ataque
+     */
     public void setRange(int range) {
         this.range = range;
     }
 
+    /**
+     * Getter para devolver el nombre de la tropa
+     *
+     * @return el nombre de la tropa
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Setter para asignar un nombre a la tropa
+     *
+     * @param name de la tropa
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Getter para devolver la vida de la tropa
+     *
+     * @return vida
+     */
     public float getLife() {
         return life;
     }
 
+    /**
+     * Setter para asignar la vida de la tropa
+     *
+     * @param life de la tropa
+     */
     public void setLife(float life) {
         this.life = life;
     }
 
+    /**
+     * Getter para devolver el coste de la tropa
+     *
+     * @return coste
+     */
     public int getCost() {
         return cost;
     }
 
+    /**
+     * Setter para asignar un coste a la tropa
+     *
+     * @param cost de la tropa
+     */
     public void setCost(int cost) {
         this.cost = cost;
     }
 
+    /**
+     * Getter para devolver el daño de la tropa
+     *
+     * @return daño
+     */
     public float getDamage() {
         return damage;
     }
 
+    /**
+     * Setter para asignar el daño de la tropa
+     *
+     * @param damage de la tropa
+     */
     public void setDamage(float damage) {
         this.damage = damage;
     }
 
+    /**
+     * Getter para devolver el tiempo que tarda la tropa en realizar el ataque
+     *
+     * @return tiempo de ataque de la tropa
+     */
     public long getAttackVelocity() {
         return attackVelocity;
     }
 
+    /**
+     * Setter para asignar el tiempo que tarda la tropa en realizar el ataque
+     *
+     * @param attackVelocity de la tropa
+     */
     public void setAttackVelocity(int attackVelocity) {
         this.attackVelocity = attackVelocity;
     }
 
+    /**
+     * Getter para devolver el tipo de tropa que es
+     *
+     * @return el tipo
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * Setter para asignar el tipo de tropa que es
+     *
+     * @param type de la tropa
+     */
     public void setType(String type) {
         this.type = type;
     }
 
+    /**
+     * Getter para devolver la posicion x de la tropa en el mapa
+     *
+     * @return posicion x
+     */
     public int getPosx() {
         return posx;
     }
 
+    /**
+     * Setter para asignar la posicion x de la tropa en el mapa
+     *
+     * @param posx de la tropa
+     */
     public void setPosx(int posx) {
         this.posx = posx;
     }
 
+    /**
+     * Getter para devolver la posicion y de la tropa en el mapa
+     *
+     * @return posicion y
+     */
     public int getPosy() {
         return posy;
     }
 
+    /**
+     * Setter para asignar la posicion y de la tropa en el mapa
+     *
+     * @param posy de la tropa
+     */
     public void setPosy(int posy) {
         this.posy = posy;
     }
 
+    /**
+     * Getter para saber si la tropa es del usuario o de la IA
+     *
+     * @return true si pertenece al usuario, false si pertenece a la IA
+     */
     public boolean isUser() {
         return isUser;
     }
 
+    /**
+     * Setter para asignar un boleano a la tropa y diferenciar si es del usuario o de la IA
+     *
+     * @param user true si pertenece al usuario, false si pertenece a la IA
+     */
     public void setUser(boolean user) {
         isUser = user;
     }
 
+    /**
+     * Getter para devolver la imagen de la tropa
+     *
+     * @return la imagen
+     */
     public BufferedImage getImage() {
         return image;
     }
 
+    /**
+     * Setter para asignar una imagen a la tropa
+     *
+     * @param image de la tropa
+     */
     public void setImage(BufferedImage image) {
         this.image = image;
     }
 
+    /**
+     * Metodo run que iremos implementando en cada tropa especifica, debido a que todas las tropas tienen comportamientos distintos
+     */
     @Override
     public void run() {
 

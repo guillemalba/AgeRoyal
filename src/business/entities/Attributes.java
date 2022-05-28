@@ -5,6 +5,13 @@ package business.entities;
  */
 public enum Attributes {
 
+    BASE_COST(5),
+    BASE_LIFE(50),
+    BASE_DAMAGE(4),
+    BASE_ATTACK_RANGE(4),
+    BASE_ATTACK_VELOCITY(10000),
+    BASE_TIME_LIFE(10000),
+
     ARCHER_ID(0),
     ARCHER_COST(3),
     ARCHER_LIFE(12),
