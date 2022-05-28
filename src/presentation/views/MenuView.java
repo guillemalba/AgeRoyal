@@ -47,9 +47,10 @@ public class MenuView extends JPanel {
         jpNorth.setOpaque(false);
 
         /** Configurem el "SETTINGS" button **/
-        jbSettings = new JButton("Settings");
-        jbSettings.setBackground(Color.BLUE);
-        jbSettings.setForeground(Color.WHITE);
+        jbSettings = new JButton();
+        jbSettings.setIcon(new ImageIcon(new ImageIcon("files/btn_settings.png").getImage().getScaledInstance(150, 75, Image.SCALE_DEFAULT)));
+        jbSettings.setBorderPainted(false);
+        jbSettings.setContentAreaFilled(false);
         jbSettings.setActionCommand("BTN_LOGOUT");
         jpNorth.add(jbSettings, BorderLayout.WEST);
 

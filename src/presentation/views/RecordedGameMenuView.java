@@ -47,9 +47,10 @@ public class RecordedGameMenuView extends JPanel {
         JPanel jpNorth = new JPanel(new BorderLayout());
         jpNorth.setOpaque(false);
 
-        jbSettings = new JButton("Settings");
-        jbSettings.setBackground(Color.BLUE);
-        jbSettings.setForeground(Color.WHITE);
+        jbSettings = new JButton();
+        jbSettings.setIcon(new ImageIcon(new ImageIcon("files/btn_settings.png").getImage().getScaledInstance(150, 75, Image.SCALE_DEFAULT)));
+        jbSettings.setBorderPainted(false);
+        jbSettings.setContentAreaFilled(false);
         jbSettings.setActionCommand("settings");
         jpNorth.add(jbSettings, BorderLayout.WEST);
 
@@ -71,9 +72,10 @@ public class RecordedGameMenuView extends JPanel {
         JPanel jpSouth = new JPanel(new BorderLayout());
         jpSouth.setOpaque(false);
 
-        jbBack = new JButton("Back");
-        jbBack.setBackground(Color.GRAY);
-        jbBack.setForeground(Color.WHITE);
+        jbBack = new JButton();
+        jbBack.setIcon(new ImageIcon(new ImageIcon("files/btn_back.png").getImage().getScaledInstance(150, 75, Image.SCALE_DEFAULT)));
+        jbBack.setBorderPainted(false);
+        jbBack.setContentAreaFilled(false);
         jbBack.setActionCommand("back");
         jpSouth.add(jbBack, BorderLayout.WEST);
 

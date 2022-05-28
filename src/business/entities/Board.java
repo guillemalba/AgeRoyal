@@ -41,6 +41,11 @@ public class Board {
         return cellsMatrix[i][j].getTroop() == null;
     }
 
+    /**
+     * Metodo que devuelve el tamaño del tablero
+     *
+     * @return tamaño del tablero
+     */
     public int getSide(){
         return side;
     }

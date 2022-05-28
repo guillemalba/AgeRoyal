@@ -26,8 +26,8 @@ import java.util.LinkedList;
  */
 public class GameView extends JPanel {
 
-    private JButton settingsJb = new JButton("Settings");
-    private JButton backJb = new JButton("Back");
+    private JButton settingsJb = new JButton();
+    private JButton backJb = new JButton();
     private JPanel[][] tableGrid = new JPanel[15][15];
     private Board board;
     private boolean isRepro;
@@ -78,6 +78,10 @@ public class GameView extends JPanel {
         JPanel general = new JPanel();
         general.setLayout(new BorderLayout());
         JPanel topJp = new JPanel();
+        settingsJb.setIcon(new ImageIcon(new ImageIcon("files/btn_settings.png").getImage().getScaledInstance(150, 75, Image.SCALE_DEFAULT)));
+        settingsJb.setBorderPainted(false);
+        settingsJb.setContentAreaFilled(false);
+        settingsJb.setActionCommand("Settings");
         topJp.add(settingsJb, BorderLayout.EAST);
 
 
@@ -99,6 +103,10 @@ public class GameView extends JPanel {
         midJp.add(goldPanel);
 
         JPanel botJp = new JPanel();
+        backJb.setIcon(new ImageIcon(new ImageIcon("files/btn_leave.png").getImage().getScaledInstance(150, 75, Image.SCALE_DEFAULT)));
+        backJb.setBorderPainted(false);
+        backJb.setContentAreaFilled(false);
+        backJb.setActionCommand("Back");
         botJp.add(backJb, BorderLayout.EAST);
 
         general.add(topJp, BorderLayout.NORTH);
@@ -228,7 +236,7 @@ public class GameView extends JPanel {
         offT1.setLayout(new BorderLayout());
         try {
             BufferedImage image = ImageIO.read(new File("files/user_archer.png"));
-            JLabel label = new JLabel(new ImageIcon(image));
+            JLabel label = new JLabel(new ImageIcon(image.getScaledInstance(65, 65, Image.SCALE_DEFAULT)));
             offT1.add(label);
 
         } catch (IOException e) {
@@ -242,7 +250,7 @@ public class GameView extends JPanel {
         offT2.setLayout(new BorderLayout());
         try {
             BufferedImage image = ImageIO.read(new File("files/user_giant.png"));
-            JLabel label = new JLabel(new ImageIcon(image));
+            JLabel label = new JLabel(new ImageIcon(image.getScaledInstance(65, 65, Image.SCALE_DEFAULT)));
             offT2.add(label);
 
         } catch (IOException e) {
@@ -265,7 +273,7 @@ public class GameView extends JPanel {
         defT1.setLayout(new BorderLayout());
         try {
             BufferedImage image = ImageIO.read(new File("files/user_cannon.png"));
-            JLabel label = new JLabel(new ImageIcon(image));
+            JLabel label = new JLabel(new ImageIcon(image.getScaledInstance(65, 65, Image.SCALE_DEFAULT)));
             defT1.add(label);
 
         } catch (IOException e) {
@@ -279,7 +287,7 @@ public class GameView extends JPanel {
         defT2.setLayout(new BorderLayout());
         try {
             BufferedImage image = ImageIO.read(new File("files/user_tesla.png"));
-            JLabel label = new JLabel(new ImageIcon(image));
+            JLabel label = new JLabel(new ImageIcon(image.getScaledInstance(65, 65, Image.SCALE_DEFAULT)));
             defT2.add(label);
 
         } catch (IOException e) {
@@ -355,7 +363,7 @@ public class GameView extends JPanel {
                 if (board.isEmpty(i, j)) {
                     tableGrid[i][j].setBackground(Color.WHITE);
                 } else {
-                    tableGrid[i][j].add(new JLabel(new ImageIcon(board.getCellsMatrix()[i][j].getTroop().getImage())));
+                    tableGrid[i][j].add(new JLabel(new ImageIcon(board.getCellsMatrix()[i][j].getTroop().getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT))));
                     tableGrid[i][j].getComponent(0).setSize(1, 1);
 
                     /*tableGrid[i][j].setBackground(board.getColorTroop(i,j));*/

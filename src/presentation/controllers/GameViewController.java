@@ -38,7 +38,7 @@ public class GameViewController implements ActionListener, MouseListener {
             break;
             case "Back":
                 gameManager.stopGame(false,false);
-
+                mainView.showMenu();
             break;
         }
     }

@@ -32,12 +32,16 @@ public class LoginView extends JPanel {
 
         //Creamos los labels que queremos que aparezcan en la pagina
         JLabel jlLogin = new JLabel("LOGIN");
+        jlLogin.setHorizontalAlignment((int)CENTER_ALIGNMENT);
         jlLogin.setFont(new Font("Serif", Font.PLAIN, 40));
 
         //Creamos un panel nuevo para tener una tabla para introducir los datos de los usuarios
         JPanel jpTable = new JPanel(new GridLayout(0,2 ,0, 400));
         JLabel jlUsernameEmail = new JLabel("Username / Email");
         JLabel jlPassword = new JLabel("Password");
+
+        jlUsernameEmail.setHorizontalAlignment((int)CENTER_ALIGNMENT);
+        jlPassword.setHorizontalAlignment((int)CENTER_ALIGNMENT);
 
         //Añadimos todos los elementos dentro de la tabla
         jpTable.add(jlUsernameEmail);
@@ -48,12 +52,18 @@ public class LoginView extends JPanel {
         JPanel jpButtons = new JPanel();
 
         //Creamos un boton para poder enviar la información
-        jbLogin = new JButton("Login");
+        jbLogin = new JButton();
+        jbLogin.setIcon(new ImageIcon(new ImageIcon("files/btn_login.png").getImage().getScaledInstance(150, 75, Image.SCALE_DEFAULT)));
+        jbLogin.setBorderPainted(false);
+        jbLogin.setContentAreaFilled(false);
         jbLogin.setActionCommand(BTN_LOG);
         jpButtons.add(jbLogin);
 
         //Creamos un boton para poder volver
-        jbBack = new JButton("Register");
+        jbBack = new JButton("");
+        jbBack.setIcon(new ImageIcon(new ImageIcon("files/btn_back.png").getImage().getScaledInstance(150, 75, Image.SCALE_DEFAULT)));
+        jbBack.setBorderPainted(false);
+        jbBack.setContentAreaFilled(false);
         jbBack.setActionCommand(BTN_REG);
         jpButtons.add(jbBack);
 
@@ -104,6 +114,9 @@ public class LoginView extends JPanel {
         this.components = viewComponents;
     }
 
+    /**
+     * Metodo que resetea los campos de texto del login
+     */
     public void resetInputInfo() {
         this.jpfPassword.setText("");
         this.jtfUsernameEmail.setText("");

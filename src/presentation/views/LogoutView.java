@@ -39,13 +39,26 @@ public class LogoutView extends JPanel {
 
         JPanel jpButtons = new JPanel();
 
-        jbLogout = new JButton("Logout");
+        jbLogout = new JButton();
+        jbLogout.setIcon(new ImageIcon(new ImageIcon("files/btn_logout.png").getImage().getScaledInstance(150, 75, Image.SCALE_DEFAULT)));
+        jbLogout.setBorderPainted(false);
+        jbLogout.setContentAreaFilled(false);
         jbLogout.setActionCommand(BTN_LOGOUT);
         //jbEdit = new JButton("Edit User");
         //jbEdit.setActionCommand(BTN_EDIT);
-        jbDelete = new JButton("Delete");
+
+
+        jbDelete = new JButton();
+        jbDelete.setIcon(new ImageIcon(new ImageIcon("files/btn_delete.png").getImage().getScaledInstance(150, 75, Image.SCALE_DEFAULT)));
+        jbDelete.setBorderPainted(false);
+        jbDelete.setContentAreaFilled(false);
         jbDelete.setActionCommand(BTN_DEL);
-        jbBack = new JButton("Back");
+
+
+        jbBack = new JButton();
+        jbBack.setIcon(new ImageIcon(new ImageIcon("files/btn_back.png").getImage().getScaledInstance(150, 75, Image.SCALE_DEFAULT)));
+        jbBack.setBorderPainted(false);
+        jbBack.setContentAreaFilled(false);
         jbBack.setActionCommand(BTN_BACK);
 
         jpButtons.add(jbLogout, BorderLayout.NORTH);

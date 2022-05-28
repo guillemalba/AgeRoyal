@@ -133,7 +133,6 @@ public class GameManager{
         moneyCounter.stop();
         ia.setStop(true);
 
-        System.out.println("ENTROOOOOOOOO");
         if (somebodyWon) {
             String gameName = gameController.saveGame();
             if (gameName != null) {
@@ -146,9 +145,9 @@ public class GameManager{
                     }
                 }
             }
+            gameController.finishGame();
         }
 
-        gameController.finishGame();
 
 
     }

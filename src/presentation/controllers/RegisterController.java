@@ -76,7 +76,7 @@ public class RegisterController implements ActionListener {
                 registerView.resetInputInfo();
                 registerView.setmainView(mainView);
                 registerView.setComponents(viewComponents);
-                mainView.showMenu();
+                mainView.showLogin();
             break;
         }
     }

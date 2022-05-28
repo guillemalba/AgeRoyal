@@ -15,7 +15,7 @@ public class RegisterView extends JPanel {
     private JTextField jtfEmail;
     private JPasswordField jpfPassword;
     private JPasswordField jpfConfPassword;
-    private JButton jbSingin;
+    private JButton jbRegister;
     private JButton jbBack;
     private CardLayout components;
     private MainView mainView;
@@ -35,13 +35,15 @@ public class RegisterView extends JPanel {
         setSize(550, 720);
 
         //Creamos los labels que queremos que aparezcan en la pagina
-        JLabel jlSingIn = new JLabel("REGISTER");
-        jlSingIn.setFont(new Font("Serif", Font.PLAIN, 40));
+        JLabel jlRegister = new JLabel("REGISTER");
+        jlRegister.setHorizontalAlignment(0);
+        jlRegister.setFont(new Font("Serif", Font.PLAIN, 40));
 
         //Creamos un panel nuevo para tener una tabla para intriducir los datos de los usuarios
         JPanel jpTable = new JPanel(new GridLayout(0,2, 0, 140));
         jpTable.setSize(550, 720);
         JLabel jlUsername = new JLabel("Username");
+        jlUsername.setHorizontalAlignment(0);
         JPanel jpUsername = new JPanel();
         jpUsername.setLayout(new BorderLayout());
         jpUsername.setSize(300, 5);
@@ -49,12 +51,15 @@ public class RegisterView extends JPanel {
         jtfUsername = new JTextField();
         jpUsername.add(jtfUsername, BorderLayout.CENTER);
         JLabel jlEmail = new JLabel("Email");
+        jlEmail.setHorizontalAlignment(0);
         jtfEmail = new JTextField();
         jtfEmail.setSize(300, 50);
         JLabel jlPassword = new JLabel("Password");
+        jlPassword.setHorizontalAlignment(0);
         jpfPassword = new JPasswordField();
         jpfPassword.setSize(300, 50);
         JLabel jlConfPassword = new JLabel("Confirm Password");
+        jlConfPassword.setHorizontalAlignment(0);
         jpfConfPassword = new JPasswordField();
         jpfConfPassword.setSize(300, 50);
         jpTable.setSize(500, 720);
@@ -73,17 +78,23 @@ public class RegisterView extends JPanel {
         JPanel jpButtons = new JPanel();
 
         //Creamos un boton para poder enviar la información
-        jbSingin = new JButton("Register");
-        jbSingin.setActionCommand(BTN_SING);
-        jpButtons.add(jbSingin);
+        jbRegister = new JButton();
+        jbRegister.setIcon(new ImageIcon(new ImageIcon("files/btn_register.png").getImage().getScaledInstance(150, 75, Image.SCALE_DEFAULT)));
+        jbRegister.setBorderPainted(false);
+        jbRegister.setContentAreaFilled(false);
+        jbRegister.setActionCommand(BTN_SING);
+        jpButtons.add(jbRegister);
 
         //Creamos un boton para poder volver
-        jbBack = new JButton("Login");
+        jbBack = new JButton("");
+        jbBack.setIcon(new ImageIcon(new ImageIcon("files/btn_back.png").getImage().getScaledInstance(150, 75, Image.SCALE_DEFAULT)));
+        jbBack.setBorderPainted(false);
+        jbBack.setContentAreaFilled(false);
         jbBack.setActionCommand(BTN_BACK);
         jpButtons.add(jbBack);
 
         //Añadimos los elementos a la pantalla
-        add(jlSingIn, BorderLayout.NORTH);
+        add(jlRegister, BorderLayout.NORTH);
         add(jpTable, BorderLayout.CENTER);
         add(jpButtons, BorderLayout.SOUTH);
     }
@@ -93,7 +104,7 @@ public class RegisterView extends JPanel {
      * @param listener es la clase que asigna los controladores a nuestros botones
      */
     public void registerController(ActionListener listener) {
-        jbSingin.addActionListener(listener);
+        jbRegister.addActionListener(listener);
         jbBack.addActionListener(listener);
     }
 
@@ -170,6 +181,9 @@ public class RegisterView extends JPanel {
         this.components = viewComponents;
     }
 
+    /**
+     * Metodo que resetea los campos de texto del register
+     */
     public void resetInputInfo() {
         this.jtfEmail.setText("");
         this.jtfUsername.setText("");

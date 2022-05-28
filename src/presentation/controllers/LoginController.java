@@ -50,6 +50,8 @@ public class LoginController implements ActionListener {
                     userManager.login(user);
                     System.out.println(user.getName() + " login successful");
                     userManager.setUser(user.getName());//Registrar user en la ram
+
+
                 } else {
                     /*loginView.errorMessage();*/
                 }
@@ -58,6 +60,7 @@ public class LoginController implements ActionListener {
                 loginView.setMainView(mainView);
                 loginView.setComponents(viewComponents);
                 mainView.showMenu();
+
             break;
             case LoginView.BTN_REG:
                 loginView.resetInputInfo();
