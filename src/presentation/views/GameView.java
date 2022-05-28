@@ -1,5 +1,6 @@
 package presentation.views;
 
+import business.entities.Attributes;
 import business.entities.Board;
 import business.entities.Troop;
 
@@ -36,10 +37,10 @@ public class GameView extends JPanel {
     private JPanel offT1 = new JPanel();
     private JPanel offT2 = new JPanel();
     private JPanel defT2 = new JPanel();
-    private JLabel costCanon = new JLabel("4");
-    private JLabel costTesla = new JLabel("5");
-    private JLabel costArcher = new JLabel("3");
-    private JLabel costGiant = new JLabel("5");
+    private JLabel costCanon = new JLabel(String.valueOf(Attributes.CANNON_COST.getValue()));
+    private JLabel costTesla = new JLabel(String.valueOf(Attributes.TESLA_COST.getValue()));
+    private JLabel costArcher = new JLabel(String.valueOf(Attributes.ARCHER_COST.getValue()));
+    private JLabel costGiant = new JLabel(String.valueOf(Attributes.GIANT_COST.getValue()));
     private JLabel mLabel = new JLabel("5");
     private JPanel livesPanel1 = new JPanel();
     private JPanel troopCountPanel1 = new JPanel();
@@ -450,11 +451,9 @@ public class GameView extends JPanel {
     //pls sent help me pone de los nervios
 
     public void paint(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
 
-       g2d.drawRect(20,20,20,20);
-
-
+        g.fillRect(((int)this.getSize().getWidth()/2)-25,350-10+20,50, 50);
+        g.fillRect(((int)this.getSize().getWidth()/2)-25,MAX_HEIGHT-valorX+20,50, valorX);
     }*/
 
     public boolean isRepro() {

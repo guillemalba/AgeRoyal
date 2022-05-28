@@ -34,7 +34,7 @@ public class LoginView extends JPanel {
         JLabel jlLogin = new JLabel("LOGIN");
         jlLogin.setFont(new Font("Serif", Font.PLAIN, 40));
 
-        //Creamos un panel nuevo para tener una tabla para intriducir los datos de los usuarios
+        //Creamos un panel nuevo para tener una tabla para introducir los datos de los usuarios
         JPanel jpTable = new JPanel(new GridLayout(0,2 ,0, 400));
         JLabel jlUsernameEmail = new JLabel("Username / Email");
         JLabel jlPassword = new JLabel("Password");
@@ -102,5 +102,10 @@ public class LoginView extends JPanel {
 
     public void setComponents(CardLayout viewComponents) {
         this.components = viewComponents;
+    }
+
+    public void resetInputInfo() {
+        this.jpfPassword.setText("");
+        this.jtfUsernameEmail.setText("");
     }
 }

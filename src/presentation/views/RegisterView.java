@@ -170,4 +170,11 @@ public class RegisterView extends JPanel {
         this.components = viewComponents;
     }
 
+    public void resetInputInfo() {
+        this.jtfEmail.setText("");
+        this.jtfUsername.setText("");
+        this.jpfConfPassword.setText("");
+        this.jpfPassword.setText("");
+    }
+
 }

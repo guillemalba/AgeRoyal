@@ -54,11 +54,13 @@ public class LoginController implements ActionListener {
                     /*loginView.errorMessage();*/
                 }
                 // TODO move into if condition
+                loginView.resetInputInfo();
                 loginView.setMainView(mainView);
                 loginView.setComponents(viewComponents);
                 mainView.showMenu();
             break;
             case LoginView.BTN_REG:
+                loginView.resetInputInfo();
                 loginView.setMainView(mainView);
                 loginView.setComponents(viewComponents);
                 mainView.showRegister();

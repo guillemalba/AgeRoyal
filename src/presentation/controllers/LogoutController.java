@@ -43,11 +43,10 @@ public class LogoutController implements ActionListener {
             case LogoutView.BTN_LOGOUT:
                 int option = logoutView.logout();
                 if(option == 1) { //Quiero hacer logout
-                    //TODO:Aqui vol fer logout
                     logoutView.setmainView(mainView);
                     logoutView.setComponents(viewComponents);
                     mainView.showLogin();
-                    userManager.setUser("");//Se puede poner asi? para vaciar la variable
+                    userManager.setUser("");
                 }
                 if(option == 0){ //No quiero hacer logout
                     logoutView.setmainView(mainView);
@@ -66,7 +65,7 @@ public class LogoutController implements ActionListener {
                     logoutView.setmainView(mainView);
                     logoutView.setComponents(viewComponents);
                     mainView.showLogin();
-                    userManager.setUser("");//Se puede poner asi? para vaciar la variable
+                    userManager.setUser("");
                 }
                 if(option == 0){//No quiero borrar la cuenta
                     logoutView.setmainView(mainView);

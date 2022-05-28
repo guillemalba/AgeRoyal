@@ -63,6 +63,7 @@ public class RegisterController implements ActionListener {
                     userManager.setUser(username);
                     registerView.setmainView(mainView);
                     registerView.setComponents(viewComponents);
+                    registerView.resetInputInfo();
                     mainView.showMenu();
                 } else {
                     registerView.errorConnection();
@@ -72,6 +73,7 @@ public class RegisterController implements ActionListener {
             break;
 
             case RegisterView.BTN_BACK:
+                registerView.resetInputInfo();
                 registerView.setmainView(mainView);
                 registerView.setComponents(viewComponents);
                 mainView.showMenu();
