@@ -189,7 +189,9 @@ public class GameViewController implements ActionListener, MouseListener {
 
         return gameName;
     }
-    public void finishGame(){
-        mainView.showMenu();
+    public void finishGame(boolean isRepro){
+        if (isRepro) mainView.showRecordedGame();
+        if(!isRepro)mainView.showMenu();
+
     }
 }

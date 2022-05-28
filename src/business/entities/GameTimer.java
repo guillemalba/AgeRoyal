@@ -34,7 +34,7 @@ public class GameTimer implements Runnable{
     public void run() {
 
         time = 0;
-        while (!stop) {
+        while (!stop ) {
             try {
                 Thread.sleep(sleepTime);
             } catch (InterruptedException e) {

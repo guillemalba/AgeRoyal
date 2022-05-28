@@ -27,6 +27,7 @@ public class Defensive extends Troop {
 
     }
 
+
     /**
      * Getter del tiempo de vida de la tropa defensiva
      *

@@ -1,7 +1,7 @@
 package business.entities;
 
 import business.GameManager;
-
+import business.RecordedGameManager;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -46,6 +46,7 @@ public class Troop implements Runnable{
         this.stop = stop;
         this.image = image;
     }
+
 
     /**
      * Getter que devuelve si el thread esta parado o no
@@ -475,6 +476,7 @@ public class Troop implements Runnable{
      * @param isUser un boleano con el ganador de la partida, si es true, el usuario ha ganado
      */
     public void stopGame(boolean isUser, boolean somebodyWon){
+
         gameManager.stopGame(isUser, somebodyWon);
     }
 

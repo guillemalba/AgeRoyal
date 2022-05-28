@@ -19,6 +19,7 @@ public class RecordedGameManager {
 
 
 
+
     public RecordedGameManager(GameDAO gameDAO,GameManager gameManager) {
         this.gameManager = gameManager;
         this.gameDAO = gameDAO;
@@ -32,11 +33,12 @@ public class RecordedGameManager {
 
 
     public void initReproduction() {
-        gameManager.setRepro(true);
         gameManager.initReproGame();
+        gameManager.setRepro(true);
         gameTimer = new GameTimer(time, false, this);
         new Thread(gameTimer).start();
         reproGame();
+
     }
 
 
@@ -53,7 +55,6 @@ public class RecordedGameManager {
     }
 
     public void reproGame() {
-        System.out.println("Entro repro");
         for (int i = 0; i < listDeployedTroops.size(); i++) {
             if (time == listDeployedTroops.get(i).getTimeDeployed()) {
 
@@ -66,5 +67,8 @@ public class RecordedGameManager {
 
     public void updateViewMap(){
         gameManager.updateViewMap(true);
+        if(gameManager.isStopRepro()) gameTimer.stop();
     }
 }
+
+

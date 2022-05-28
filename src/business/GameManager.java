@@ -43,6 +43,7 @@ public class GameManager{
     private Base baseUser;
     private Base baseIA;
     private boolean isRepro;
+    private boolean stopRepro;
 
 
     public GameManager(GameDAO gameSQLDAO,UserManager userManager) {
@@ -97,6 +98,7 @@ public class GameManager{
     }
 
     public void initReproGame() {
+        stopRepro = false;
         board = new Board();
         readImages();
 
@@ -129,25 +131,35 @@ public class GameManager{
                 }
             }
         }
-        gameTimer.stop();
-        moneyCounter.stop();
-        ia.setStop(true);
 
-        if (somebodyWon) {
-            String gameName = gameController.saveGame();
-            if (gameName != null) {
-                String actualDate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(LocalDateTime.now());
-                if (gameDAO.saveGame(new Game(gameName, actualDate, !isUser, userManager.getUser()))){
-                    for (int i = 0; i < listDeployedTroops.size(); i++) {
-                        if (gameDAO.saveTroopsDeployed(listDeployedTroops.get(i), gameName)) {
+        if(isRepro){
+            stopRepro = true;
+            gameController.finishGame(isRepro);
 
+        }else {
+            gameTimer.stop();
+            moneyCounter.stop();
+            ia.setStop(true);
+
+
+            if (somebodyWon) {
+                String gameName = gameController.saveGame();
+                if (gameName != null) {
+                    String actualDate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(LocalDateTime.now());
+                    if (gameDAO.saveGame(new Game(gameName, actualDate, !isUser, userManager.getUser()))) {
+                        for (int i = 0; i < listDeployedTroops.size(); i++) {
+                            if (gameDAO.saveTroopsDeployed(listDeployedTroops.get(i), gameName)) {
+
+                            }
                         }
                     }
                 }
+
+                gameController.finishGame(isRepro);
             }
-            gameController.finishGame();
         }
     }
+
 
     public Board getBoard() {
         return board;
@@ -155,6 +167,14 @@ public class GameManager{
 
     public int getTime() {
         return time;
+    }
+
+    public boolean isStopRepro() {
+        return stopRepro;
+    }
+
+    public void setStopRepro(boolean stopRepro) {
+        this.stopRepro = stopRepro;
     }
 
     public void registerController(GameViewController controller) {

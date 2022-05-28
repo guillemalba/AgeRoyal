@@ -4,6 +4,7 @@ import business.GameManager;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import business.RecordedGameManager;
 
 /**
  * Herencia de la clase Defensiva donde sobreescribimos los metodos y los implementamos con su constructor.
@@ -33,6 +34,7 @@ public class Base extends Defensive{
     }
 
 
+
     @Override
     public synchronized void run() {
 
@@ -47,8 +49,10 @@ public class Base extends Defensive{
             }
         }
         if (getLife() <= 0) {
+            System.out.println("Paro el juego");
             stopGame(isUser(), true);
         } else {
+            System.out.println("Paro el juego");
             stopGame(isUser(), false);
         }
         dieTroop(this);
