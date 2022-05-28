@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Esta clase es el controlador de nuestra vista de eliminacion y cerrado de sesión
+ * Esta clase es el controlador de nuestra vista de inicio de sesión
  */
 public class LoginController implements ActionListener {
     private UserManager userManager;

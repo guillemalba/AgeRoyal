@@ -53,6 +53,7 @@ public class Main {
         RecordedGameMenuController recordedGameMenuController = new RecordedGameMenuController(recordedGameMenuView, mainView, gameManager,recordedGameManager);
         GameViewController gameViewController = new GameViewController(gameView, mainView,gameManager);
         RankingController rankingController = new RankingController(rankingView, mainView, userManager);
+        MenuController menuController = new MenuController(menuView, mainView, cardLayout, userManager, gameManager, recordedGameMenuController, rankingController);
 
         /* Vincular Controllers */
         loginView.loginController(loginController);
@@ -62,7 +63,7 @@ public class Main {
         recordedGameMenuView.setRecordedGameMenuController(recordedGameMenuController);
         gameManager.registerController(gameViewController);
         rankingView.registerRankingController(rankingController);
-
+        menuView.registerActionListener(menuController);
         mainView.start();
     }
     

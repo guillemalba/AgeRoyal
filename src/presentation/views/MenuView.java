@@ -106,14 +106,6 @@ public class MenuView extends JPanel {
         jbRanking.setPreferredSize(dimension);
         jpCenter.add(jbRanking);
 
-        jbGameGraphics = new JButton("Game Graphics");
-        jbGameGraphics.setForeground(Color.BLACK);
-        jbGameGraphics.setBackground(Color.WHITE);
-        jbGameGraphics.setActionCommand("game_graphics");
-        jbGameGraphics.setBorder(border);
-        jbGameGraphics.setPreferredSize(dimension);
-        jpCenter.add(jbGameGraphics);
-
         jbGameRecording = new JButton("Game Recording");
         jbGameRecording.setForeground(Color.BLACK);
         jbGameRecording.setBackground(Color.WHITE);
