@@ -2,9 +2,9 @@ package business.entities;
 
 import business.GameManager;
 
-import java.awt.*;
+
 import java.awt.image.BufferedImage;
-import business.RecordedGameManager;
+
 
 /**
  * Herencia de la clase Defensiva donde sobreescribimos los metodos y los implementamos con su constructor.

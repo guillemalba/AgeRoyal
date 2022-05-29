@@ -1,6 +1,6 @@
 package business.entities;
 
-import java.awt.*;
+
 
 /**
  * Clase Board donde guardaremos un array de celdas

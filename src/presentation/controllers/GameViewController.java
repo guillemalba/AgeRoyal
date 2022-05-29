@@ -3,12 +3,12 @@ package presentation.controllers;
 
 import business.GameManager;
 import business.entities.*;
-import com.sun.tools.javac.Main;
+
 import presentation.views.GameView;
 import presentation.views.MainView;
 
 import javax.swing.*;
-import java.awt.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -152,11 +152,7 @@ public class GameViewController implements ActionListener, MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        /*if(e.getComponent().getName().equals("offT1") || e.getComponent().getName().equals("offT2") || e.getComponent().getName().equals("defT1") || e.getComponent().getName().equals("defT2")){
-            e.getComponent().setBackground(Color.lightGray);
-        } else {
-            e.getComponent().setBackground(Color.GRAY);
-        }*/
+
     }
 
     @Override
@@ -220,8 +216,8 @@ public class GameViewController implements ActionListener, MouseListener {
      * @param vidasUser vidas user
      * @param vidasIA vidas IA
      */
-    public void addTroop(Board board,int moneyUser,float vidasUser,float vidasIA) {
-        SwingUtilities.invokeLater(()->gameView.updateView(board,moneyUser,vidasUser,vidasIA));
+    public void addTroop(Board board,int moneyUser,float vidasUser,float vidasIA,int tropasUser,int tropasIa) {
+        SwingUtilities.invokeLater(()->gameView.updateView(board,moneyUser,vidasUser,vidasIA,tropasUser,tropasIa));
     }
 
     /**

@@ -186,23 +186,6 @@ public class IA implements Runnable{
         this.numTroopsAlive = numTroopsAlive;
     }
 
-    /**
-     * Getter para devolver la vida de la base
-     *
-     * @return vida
-     */
-    public int getLifes() {
-        return lifes;
-    }
-
-    /**
-     * Setter para actualizar la vida
-     *
-     * @param lifes vida a actualizar
-     */
-    public void setLifes(int lifes) {
-        this.lifes = lifes;
-    }
 
     /**
      * Setter para detener el thread

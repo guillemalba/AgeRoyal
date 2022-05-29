@@ -206,7 +206,7 @@ public class GameView extends JPanel {
 
 
         info.add(troopCountPanel2);
-        updateView(board, 5, 50, 50);
+        updateView(board, 5, 50, 50,0,0);
         midJp.add(table);
     }
 
@@ -351,10 +351,14 @@ public class GameView extends JPanel {
      * @param vidasUser Es el numer de vidas restantes de la torre aliada
      * @param vidasIA   Es el numer de vidas restantes de la torre enemigas
      */
-    public void updateView(Board board, int moneyUser, float vidasUser, float vidasIA) {
+    public void updateView(Board board, int moneyUser, float vidasUser, float vidasIA,int tropasUser,int tropasIA) {
         //midJp.remove(table);
         table.removeAll();
         midJp.remove(table);
+        badLives.removeAll();
+        goodLives.removeAll();
+        badTroops.removeAll();
+        goodTroops.removeAll();
 
         //pintem el panell
         for (int i = 0; i < board.getSide(); i++) {
@@ -366,7 +370,6 @@ public class GameView extends JPanel {
                     tableGrid[i][j].add(new JLabel(new ImageIcon(board.getCellsMatrix()[i][j].getTroop().getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT))));
                     tableGrid[i][j].getComponent(0).setSize(1, 1);
 
-                    /*tableGrid[i][j].setBackground(board.getColorTroop(i,j));*/
                 }
 
             }
@@ -384,22 +387,28 @@ public class GameView extends JPanel {
 
 
         //Vidas IA
-
+        JLabel iaLive = new JLabel(Integer.toString((int)vidasIA));
+        badLives.add(iaLive);
         badLives.setBackground(Color.RED);
-
         //badLives.setLayout(new BorderLayout());
         livesIA.add(badLives);
 
         //Vidas user
-        goodLives.setBackground(Color.BLACK);
+        JLabel userLive = new JLabel(Integer.toString((int)vidasUser));
+        goodLives.setBackground(Color.BLUE);
+        goodLives.add(userLive);
         livesUser.add(goodLives);
 
         //Llista tropas ia
+        JLabel IATrops = new JLabel(Integer.toString(tropasIA));
         badTroops.setBackground(Color.red);
+        badTroops.add(IATrops);
         troopCountPanel2.add(badTroops);
 
         //Llista tropas user
+        JLabel UserTrops = new JLabel(Integer.toString(tropasUser));
         goodTroops.setBackground(Color.blue);
+        goodTroops.add(UserTrops);
         troopCountPanel2.add(goodTroops);
 
         revalidate();

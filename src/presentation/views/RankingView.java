@@ -8,8 +8,10 @@ import presentation.controllers.RecordedGameMenuController;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -25,10 +27,10 @@ public class RankingView extends JPanel {
     private JPanel[] jPlayerButton = new JPanel[100];
     private LinkedList<User> players;
 
-    private JTable table = new JTable();
+    private JTable table;
     private JScrollPane scrollPane = new JScrollPane();
     private JPanel background = new JPanel(new BorderLayout());
-    private RankingController rankingController;
+
 
     /**
      * Constructor del ranking donde crearemos la tabla de jugadores
@@ -59,6 +61,7 @@ public class RankingView extends JPanel {
         /******************************************** BODY *******************************************/
 
         scrollPane.setBounds(5, 10, 580, 80);
+        table = new JTable();
 
         /******************************************** FOOT *******************************************/
         JPanel jpSouth = new JPanel(new BorderLayout());
@@ -80,10 +83,11 @@ public class RankingView extends JPanel {
      * Este metodo asignara el controlador de los botones de nuestra vista
      * @param actionListener es la clase que asigna los controladores a nuestros botones
      */
-    public void registerRankingController(ActionListener actionListener) {
+    public void registerRankingController(ActionListener actionListener, MouseListener mouseListener) {
         jbSettings.addActionListener(actionListener);
         jbBack.addActionListener(actionListener);
-        rankingController = (RankingController) actionListener;
+
+
     }
 
     /**
@@ -93,24 +97,30 @@ public class RankingView extends JPanel {
      */
     public void update(LinkedList<User> players){
         this.players = players;
+        table.removeAll();
 
         if(players.size() != 0) {
             String[] colName = {"Name", "Win Ratio", "Victories", "Total Games"};
+
             Object[][] data = new Object[players.size()][5];
+
             for(int i = 0; i < players.size(); i++){
                 data[i][0] = players.get(i).getName();
                 data[i][1] = players.get(i).getRatio() + "%";
                 data[i][2] = String.valueOf(players.get(i).getVictories());
                 data[i][3] = String.valueOf(players.get(i).getTotalGames());
+
             }
-            table = new JTable(data, colName);
-            table.setEnabled(false);
+
+            table = new JTable(data,colName);
+            table.setEnabled(true);
 
             background.add(new JScrollPane(table), BorderLayout.CENTER);
+            revalidate();
+            repaint();
         }
-        //scrollPane.setViewportView(table);
 
-        revalidate();
-        repaint();
+
+
     }
 }

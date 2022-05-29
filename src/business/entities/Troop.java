@@ -1,9 +1,6 @@
 package business.entities;
 
 import business.GameManager;
-import business.RecordedGameManager;
-import javax.swing.*;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
@@ -161,15 +158,6 @@ public class Troop implements Runnable{
      */
     public void setAttackVelocity(int attackVelocity) {
         this.attackVelocity = attackVelocity;
-    }
-
-    /**
-     * Getter para devolver el tipo de tropa que es
-     *
-     * @return el tipo
-     */
-    public String getType() {
-        return type;
     }
 
     /**
@@ -481,10 +469,21 @@ public class Troop implements Runnable{
         gameManager.stopGame(isUser, somebodyWon);
     }
 
+
+    /**
+     * Getter para saber si esta en pausa
+     *
+     * @return devuelve el booleano
+     */
     public Boolean getPause() {
         return pause;
     }
 
+    /**
+     * Setter del pause
+     *
+     * @param pause boleano que nos indica la pausa
+     */
     public void setPause(Boolean pause) {
         this.pause = pause;
     }

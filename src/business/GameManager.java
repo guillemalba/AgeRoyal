@@ -110,7 +110,7 @@ public class GameManager{
         user = new User(this,time);
 
         // thread para contar el dinero de la IA
-        moneyCounter = new MoneyCounter(this); // TODO si hay tiempo hacerlo en el manager todo
+        moneyCounter = new MoneyCounter(this);
         new Thread(moneyCounter).start();
 
         //Thread del tiempo
@@ -137,8 +137,6 @@ public class GameManager{
         board.setTroopBoard(baseIA);
         board.setTroopBoard(baseUser);
 
-
-        //Thread del tiempo
 
         updateViewMap(true);
     }
@@ -217,14 +215,6 @@ public class GameManager{
         return board;
     }
 
-    /**
-     * Getter para devolver el tiempo de la partida
-     *
-     * @return tiempo
-     */
-    public int getTime() {
-        return time;
-    }
 
     /**
      * Metodo para saber si se ha parado la grabacion
@@ -235,14 +225,6 @@ public class GameManager{
         return stopRepro;
     }
 
-    /**
-     * Setter para parar la reproduccion de la partida
-     *
-     * @param stopRepro true si es verdad, false si no
-     */
-    public void setStopRepro(boolean stopRepro) {
-        this.stopRepro = stopRepro;
-    }
 
     /**
      * Setter para asignar el controlador de la partida
@@ -261,10 +243,10 @@ public class GameManager{
     public void updateViewMap(boolean isRepro){
 
         if (isRepro){
-            gameController.addTroop(board,0,baseUser.getLife(),baseIA.getLife());
+            gameController.addTroop(board,0,baseUser.getLife(),baseIA.getLife(),user.getNumTroopAlive(),ia.getNumTroopsAlive());
 
         }else {
-            gameController.addTroop(board, user.getMoney(), baseUser.getLife(), baseIA.getLife());
+            gameController.addTroop(board, user.getMoney(), baseUser.getLife(), baseIA.getLife(),user.getNumTroopAlive(),ia.getNumTroopsAlive());
             System.out.println("user:" + user.getNumTroopAlive());
             System.out.println("ia: " + ia.getNumTroopsAlive());
         }
@@ -338,7 +320,7 @@ public class GameManager{
                         addTroop(tipo, x, y, true, "user_tesla");
                     break;
                 default:
-                    System.out.println("Bro eso esta caro");
+
                     break;
             }
         }
@@ -348,15 +330,16 @@ public class GameManager{
     }
 
     /**
-     * todo Mario comenta esto
+     * Esta funcion hace un switch case que nos viene del RecordedManager para añadir las tropas en el board
+     * separa en funcion del tipo de tropa que quiere pintar.
      *
-     * @param troopID
-     * @param x
-     * @param y
-     * @param isUser
+     * @param troopID el id de la tropa
+     * @param x posicion x
+     * @param y posicion y
+     * @param isUser si es del usuatrio
      */
     public void addRecordedTroop(int troopID, int x, int y, boolean isUser){
-        System.out.println("te pinto la tropa: " + troopID);
+
         switch (troopID) {
 
             case 0:
@@ -365,7 +348,6 @@ public class GameManager{
                 }else{
                     addTroop(Attributes.ARCHER_ID, x, y, isUser, "ia_archer");
                 }
-
 
                 break;
             case 2:
@@ -392,7 +374,7 @@ public class GameManager{
 
                 break;
             default:
-                System.out.println("Bro eso esta caro");
+
                 break;
         }
     }
@@ -435,7 +417,7 @@ public class GameManager{
      * @param isUser si es IA o usuario
      */
     public void moneyReward(boolean isUser){
-        System.out.println("le sumo la pasta");
+
          if(isUser) user.setMoney(user.getMoney()+3);
          if(!isUser) ia.setMoney(ia.getMoney()+3);
 
@@ -468,8 +450,7 @@ public class GameManager{
             }
         }
         if(!pause){
-            System.out.println(pauseRepro+" soy pause repro");
-            System.out.println("entro a poner las tropas en marxa");
+
             for (int i = 0; i < board.getSide(); i++) {
                 for (int j = 0; j < board.getSide(); j++) {
                     if (!board.isEmpty(i, j)) {
@@ -483,11 +464,15 @@ public class GameManager{
 
     }
 
+
+    /**
+     * Getter para saber si el juego esta en pausa
+     *
+     * @return true si el juego esta en pausa
+     */
     public boolean isPauseRepro() {
         return pauseRepro;
     }
 
-    public void setPauseRepro(boolean pauseRepro) {
-        this.pauseRepro = pauseRepro;
-    }
+
 }

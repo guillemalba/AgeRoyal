@@ -70,25 +70,6 @@ public class Ofensive extends Troop {
         }
         dieTroop(this);
     }
-    @Override
-    public void move(String direction) {
-        super.move(direction);
-    }
-
-    @Override
-    public String canMove() {
-        return super.canMove();
-    }
-
-    @Override
-    public Troop enemyNear() {
-        return super.enemyNear();
-    }
-
-    @Override
-    public void dieTroop(Troop troop) {
-        super.dieTroop(troop);
-    }
 
 
 }

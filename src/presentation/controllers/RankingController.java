@@ -6,11 +6,13 @@ import presentation.views.RankingView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * Esta clase es la que controlara nuestra vista de ranking con sus botones
  */
-public class RankingController implements ActionListener {
+public class RankingController implements ActionListener, MouseListener {
     private RankingView rankingView;
     private MainView mainView;
     private UserManager userManager;
@@ -43,10 +45,36 @@ public class RankingController implements ActionListener {
         }
     }
 
+
     /**
      * Este metodo actualizara la informacion de los usuarios guardados en la vista
      */
     public void updateRecorderUsers(){
         rankingView.update(userManager.readSortedUsers());
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }

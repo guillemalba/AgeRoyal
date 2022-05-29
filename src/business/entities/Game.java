@@ -1,6 +1,5 @@
 package business.entities;
 
-import java.util.Date;
 
 /**
  * Clase donde guardaremos los atributos necesarios para guardar un juego en la base de datos
@@ -62,14 +61,6 @@ public class Game {
         return date;
     }
 
-    /**
-     * Setter que asigna una fecha a la partida
-     *
-     * @param date de la partida
-     */
-    public void setDate(String date) {
-        this.date = date;
-    }
 
     /**
      * Getter que devuelve el ganador
@@ -80,14 +71,6 @@ public class Game {
         return win;
     }
 
-    /**
-     * Setter que asigna un ganador
-     *
-     * @param win true si ha ganado el usuario, false si ha ganado la IA
-     */
-    public void setWin(Boolean win) {
-        this.win = win;
-    }
 
     /**
      * Getter para devolver el nombre del jugador que ha realizado la partida
@@ -98,12 +81,4 @@ public class Game {
         return player;
     }
 
-    /**
-     * Setter que asigna el nombre del jugador de la partida
-     *
-     * @param player nombre
-     */
-    public void setPlayer(String player) {
-        this.player = player;
-    }
 }

@@ -56,8 +56,7 @@ public class LogoutController implements ActionListener {
             case LogoutView.BTN_DEL:
                 option = logoutView.delete();
 
-                if(option == 1){ //Quiero hacer Delete
-                    //TODO:Aqui vol fer delete
+                if(option == 1){
                     userManager.deleteAllGames();
                     userManager.delete();
                     mainView.showMessage("Your user has been deleted");

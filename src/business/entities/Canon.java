@@ -2,7 +2,6 @@ package business.entities;
 
 import business.GameManager;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**

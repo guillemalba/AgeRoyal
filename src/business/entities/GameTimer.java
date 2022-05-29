@@ -29,6 +29,7 @@ public class GameTimer implements Runnable{
         this.stop = stop;
         this.gameManager = gameManager;
         this.repro = false;
+        this.pause = true;
 
     }
 
@@ -58,24 +59,24 @@ public class GameTimer implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
+            System.out.println("la pausa es: "+pause);
             if (pause){
                 time++;
 
                 if (repro) {
                     recordedGameManager.setTime(time);
                     recordedGameManager.reproGame();
+                    recordedGameManager.updateViewMap();
                 } else {
                     gameManager.setTime(time);
+                    gameManager.updateViewMap(false);
                 }
 
                 System.out.println("Time: " + time);
 
-                if (repro) recordedGameManager.updateViewMap();
-                if (!repro) gameManager.updateViewMap(false);
 
             }else{
-                recordedGameManager.tryResume();
+                if(repro)recordedGameManager.tryResume();
             }
         }
     }
@@ -87,6 +88,12 @@ public class GameTimer implements Runnable{
         stop = true;
     }
 
+
+    /**
+     * Setter del Pause que nos pasa como queremos que este el pause
+     *
+     * @param pause de si queremos parar la partida
+     */
     public void setPause(boolean pause) {
         this.pause = pause;
     }

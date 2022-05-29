@@ -36,14 +36,6 @@ public class TroopDeployed {
         return troopId;
     }
 
-    /**
-     * Setter para asignar el id de la tropa
-     *
-     * @param troopId de la tropa
-     */
-    public void setTroopId(int troopId) {
-        this.troopId = troopId;
-    }
 
     /**
      * Getter que devuelve el tiempo de la partida en que se ha desplegado de la tropa
@@ -54,14 +46,6 @@ public class TroopDeployed {
         return timeDeployed;
     }
 
-    /**
-     * Setter para asignar el tiempo de la partida en el que se ha desplegado la tropa
-     *
-     * @param timeDeployed de la partida en segundos
-     */
-    public void setTimeDeployed(int timeDeployed) {
-        this.timeDeployed = timeDeployed;
-    }
 
     /**
      * Getter que devuelve la posicion X de la tropa
@@ -72,14 +56,6 @@ public class TroopDeployed {
         return posX;
     }
 
-    /**
-     * Setter para asignar la posicion X inicial de la tropa
-     *
-     * @param posX del mapa
-     */
-    public void setPosX(int posX) {
-        this.posX = posX;
-    }
 
     /**
      * Getter que devuelve la posicion Y de la tropa
@@ -90,14 +66,6 @@ public class TroopDeployed {
         return posY;
     }
 
-    /**
-     * Setter para asignar la posicion y inicial de la tropa
-     *
-     * @param posY del mapa
-     */
-    public void setPosY(int posY) {
-        this.posY = posY;
-    }
 
     /**
      * Getter que devuelve si la tropa es del usuario o de la IA

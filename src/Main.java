@@ -55,7 +55,7 @@ public class Main {
         gameView.registerController(gameViewController, gameViewController);
         recordedGameMenuView.setRecordedGameMenuController(recordedGameMenuController);
         gameManager.registerController(gameViewController);
-        rankingView.registerRankingController(rankingController);
+        rankingView.registerRankingController(rankingController,rankingController);
         menuView.registerActionListener(menuController);
         mainView.start();
     }
