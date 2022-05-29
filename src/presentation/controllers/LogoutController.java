@@ -38,7 +38,7 @@ public class LogoutController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()){
-            case LogoutView.BTN_LOGOUT:
+            case "BTN_LOGOUT":
                 int option = logoutView.logout();
                 if(option == 1) { //Quiero hacer logout
                     logoutView.setmainView(mainView);
@@ -53,7 +53,7 @@ public class LogoutController implements ActionListener {
                 }
             break;
 
-            case LogoutView.BTN_DEL:
+            case "BTN_DEL":
                 option = logoutView.delete();
 
                 if(option == 1){ //Quiero hacer Delete
@@ -74,7 +74,7 @@ public class LogoutController implements ActionListener {
 
             break;
 
-            case LogoutView.BTN_BACK:
+            case "BTN_BACK":
                 logoutView.setmainView(mainView);
                 logoutView.setComponents(viewComponents);
                 mainView.showMenu();

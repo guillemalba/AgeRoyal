@@ -40,7 +40,7 @@ public class LoginController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
-            case LoginView.BTN_LOG:
+            case "BTN_LOG":
                 String userNameEmail;
                 String password;
                 userNameEmail = loginView.getInputUsernameEmail();
@@ -60,7 +60,7 @@ public class LoginController implements ActionListener {
                 }
 
             break;
-            case LoginView.BTN_REG:
+            case "BTN_REG":
                 loginView.resetInputInfo();
                 loginView.setMainView(mainView);
                 loginView.setComponents(viewComponents);
