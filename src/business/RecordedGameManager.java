@@ -18,9 +18,6 @@ public class RecordedGameManager {
     private GameTimer gameTimer;
     private int time = 0;
 
-
-
-
     public RecordedGameManager(GameDAO gameDAO,GameManager gameManager) {
         this.gameManager = gameManager;
         this.gameDAO = gameDAO;
@@ -32,7 +29,6 @@ public class RecordedGameManager {
 
     }
 
-
     public void initReproduction() {
         gameManager.initReproGame();
         gameManager.setRepro(true);
@@ -41,7 +37,6 @@ public class RecordedGameManager {
         reproGame();
 
     }
-
 
     public boolean isRepro() {
         return isRepro;
