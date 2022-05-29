@@ -179,7 +179,7 @@ public class GameManager{
         if (somebodyWon) {
             String gameName;
             do {
-                gameName = gameController.askForGameName();
+                gameName = gameController.askForGameName(userWins);
             } while (!gameDAO.gameNameIsUnique(gameName));
 
 
