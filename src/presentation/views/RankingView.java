@@ -1,21 +1,14 @@
 package presentation.views;
 
-import business.entities.Game;
+
 import business.entities.User;
-import presentation.controllers.RankingController;
-import presentation.controllers.RecordedGameMenuController;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
+
 import java.util.LinkedList;
 
 /**
@@ -24,7 +17,7 @@ import java.util.LinkedList;
 public class RankingView extends JPanel {
     private JButton jbSettings;
     private JButton jbBack;
-    private JPanel[] jPlayerButton = new JPanel[100];
+
     private LinkedList<User> players;
 
     private JTable table;
@@ -83,7 +76,7 @@ public class RankingView extends JPanel {
      * Este metodo asignara el controlador de los botones de nuestra vista
      * @param actionListener es la clase que asigna los controladores a nuestros botones
      */
-    public void registerRankingController(ActionListener actionListener, MouseListener mouseListener) {
+    public void registerRankingController(ActionListener actionListener) {
         jbSettings.addActionListener(actionListener);
         jbBack.addActionListener(actionListener);
 
@@ -113,7 +106,7 @@ public class RankingView extends JPanel {
             }
 
             table = new JTable(data,colName);
-            table.setEnabled(true);
+            table.setEnabled(false);
 
             background.add(new JScrollPane(table), BorderLayout.CENTER);
             revalidate();
