@@ -20,6 +20,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+/**
+ * Clase que controla lo relacionado con la partida que se esta reproduciendo al momento, se encarga de guardar la partida, etc...
+ */
 public class GameManager{
 
     private int time = 0;
@@ -42,26 +45,49 @@ public class GameManager{
     private boolean isRepro;
     private boolean stopRepro;
 
-
+    /**
+     * Constructor del juego
+     *
+     * @param gameSQLDAO la interficie del juego para llamar a las funciones de la DAO
+     * @param userManager manager del jugador
+     */
     public GameManager(GameDAO gameSQLDAO, UserManager userManager) {
         this.gameDAO = gameSQLDAO;
         this.userManager = userManager;
     }
 
-    public LinkedList<Game> updateGames() {
+    /**
+     * Metodo que devuelve una lista de los juegos guardados del jugador
+     *
+     * @return lista de juegos
+     */
+    public LinkedList<Game> readUserGames() {
         if(games != null) games.removeAll(games);
         games = gameDAO.readUserGames(userManager.getUser());
         return games;
     }
 
+    /**
+     * Comprueba si la partida se esta jugando o es una grabacion
+     *
+     * @return true si se esta jugando
+     */
     public boolean isRepro() {
         return isRepro;
     }
 
+    /**
+     * Setter para asignar si la partida es a tiempo real o grabada
+     *
+     * @param repro true si se esta jugando
+     */
     public void setRepro(boolean repro) {
         isRepro = repro;
     }
 
+    /**
+     * Metodo que inicia una partida a tiempo real de un jugador contra la maquina
+     */
     public void initGame(){
         board = new Board();
 
@@ -94,6 +120,9 @@ public class GameManager{
 
     }
 
+    /**
+     * Metodo que inicia la grabacion de una partida seleccionada de la base de datos
+     */
     public void initReproGame() {
         stopRepro = false;
         board = new Board();
@@ -112,11 +141,20 @@ public class GameManager{
         updateViewMap(true);
     }
 
+    /**
+     * Metodo que suma el dinero pasivamente de la IA i del usuario
+     */
     public void sumMoney(){
         user.setMoney(user.getMoney()+1);
         ia.setMoney(ia.getMoney() + 1);
     }
 
+    /**
+     * Metodo que termina el juego, implica terminar los threads, vaciar el mapa, preguntar al usuario si la quiere guardar, y actuaizar las estadisticas del usuario
+     *
+     * @param userWins boolean para saber si el usuario ha ganado o no
+     * @param somebodyWon boolean para saber si ha habido ganador o ha abandonado la partida
+     */
     public void stopGame(boolean userWins, boolean somebodyWon){
 
         //Parar todos los threads
@@ -167,26 +205,56 @@ public class GameManager{
         }
     }
 
+    /**
+     * Getter para devolver el tablero
+     *
+     * @return el tablero con todas las celdas y tropas
+     */
     public Board getBoard() {
         return board;
     }
 
+    /**
+     * Getter para devolver el tiempo de la partida
+     *
+     * @return tiempo
+     */
     public int getTime() {
         return time;
     }
 
+    /**
+     * Metodo para saber si se ha parado la grabacion
+     *
+     * @return true si es verdad, false si no
+     */
     public boolean isStopRepro() {
         return stopRepro;
     }
 
+    /**
+     * Setter para parar la reproduccion de la partida
+     *
+     * @param stopRepro true si es verdad, false si no
+     */
     public void setStopRepro(boolean stopRepro) {
         this.stopRepro = stopRepro;
     }
 
+    /**
+     * Setter para asignar el controlador de la partida
+     *
+     * @param controller controlador
+     */
     public void registerController(GameViewController controller) {
         this.gameController = controller;
     }
 
+    /**
+     * Metodo para actualizar el mapa de la partida
+     *
+     * @param isRepro boolean para saber si es una partida grabada o es una partida a tiempo real
+     */
     public void updateViewMap(boolean isRepro){
 
         if (isRepro){
@@ -200,6 +268,16 @@ public class GameManager{
 
     }
 
+    /**
+     * Metodo que añade una tropa en una linked list, tambien añade una tropa desplegada a otra linked list con la posicion inicial de la tropa,
+     * el segundo en que ha sido desplegada, el id de la tropa y un boolean para saber si es de usuario o de la IA
+     *
+     * @param troopId id (arquera, gigante, canon, tesla)
+     * @param x posicion
+     * @param y posicion
+     * @param isUser si es del usuario o de la IA
+     * @param key id de la imagen de la tropa
+     */
     public synchronized void addTroop(Attributes troopId, int x, int y, boolean isUser, String key) {
 
         switch (troopId) {
@@ -229,6 +307,13 @@ public class GameManager{
         }
     }
 
+    /**
+     * Metodo que intenta añadir una tropa de los listeners del mouse del usuario al mapa
+     *
+     * @param tipo de tropa
+     * @param x posicion
+     * @param y posicion
+     */
     public void posTroop(Attributes tipo,int x, int y){
         if(board.isEmpty(x,y)) {
             switch (tipo) {
@@ -301,10 +386,18 @@ public class GameManager{
         }
     }
 
+    /**
+     * Setter del tiempo de la partida
+     *
+     * @param time de la partida
+     */
     public void setTime(int time) {
         this.time = time;
     }
 
+    /**
+     * Metodo que lee las imagenes de las tropas
+     */
     public void readImages () {
 
         try {
@@ -325,6 +418,11 @@ public class GameManager{
         }
     }
 
+    /**
+     * Metodo que suma dinero a la IA y al usuario tras matar una tropa
+     *
+     * @param isUser si es IA o usuario
+     */
     public void moneyReward(boolean isUser){
         System.out.println("le sumo la pasta");
          if(isUser) user.setMoney(user.getMoney()+3);
@@ -333,6 +431,11 @@ public class GameManager{
 
     }
 
+    /**
+     * Metodo que elimina una tropa del contador de tropas vivas en el mapa
+     *
+     * @param isUser si es del usuario o de la IA
+     */
     public void removeTroop(boolean isUser){
         if(!isRepro) {
             if (isUser) ia.setNumTroopsAlive(ia.getNumTroopsAlive() - 1);

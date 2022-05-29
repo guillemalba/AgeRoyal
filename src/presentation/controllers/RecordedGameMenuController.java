@@ -58,7 +58,7 @@ public class RecordedGameMenuController implements ActionListener, MouseListener
      * Este metodo actualizara la informacion de las partidas guardadas en la base de datos
      */
     public void updateRecordedGame(){
-        recordedGameMenuView.update(gameManager.updateGames());
+        recordedGameMenuView.update(gameManager.readUserGames());
     }
 
     /**

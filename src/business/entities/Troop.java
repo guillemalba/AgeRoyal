@@ -47,7 +47,6 @@ public class Troop implements Runnable{
         this.image = image;
     }
 
-
     /**
      * Getter que devuelve si el thread esta parado o no
      * @return true si esta parado
@@ -260,7 +259,6 @@ public class Troop implements Runnable{
 
     }
 
-
     /**
      * Metodo para mover una tropa en el mapa
      *
@@ -305,7 +303,6 @@ public class Troop implements Runnable{
         setPosy(auxY);
         gameManager.getBoard().setTroopBoard(this);
     }
-
 
     /**
      * Metodo que busca un enemigo cerca al que atacar

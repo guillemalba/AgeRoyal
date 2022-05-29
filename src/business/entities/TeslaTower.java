@@ -39,5 +39,4 @@ public class TeslaTower extends Defensive{
         super.run();
     }
 
-
 }

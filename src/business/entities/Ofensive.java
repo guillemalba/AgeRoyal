@@ -11,7 +11,6 @@ import java.awt.image.BufferedImage;
 public class Ofensive extends Troop {
     private int movementVelocity;
 
-
     /**
      * Constructor para crear una nueva tropa ofensiva
      *
@@ -45,7 +44,6 @@ public class Ofensive extends Troop {
         this.movementVelocity = movementVelocity;
     }
 
-
     @Override
     public void run() {
 
@@ -78,7 +76,6 @@ public class Ofensive extends Troop {
     public String canMove() {
         return super.canMove();
     }
-
 
     @Override
     public Troop enemyNear() {

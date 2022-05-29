@@ -47,7 +47,6 @@ public class IA implements Runnable{
         }
     }
 
-
     public void invokeOfensiveTroop() {
         int maxX = 7;
         int maxY = 14;

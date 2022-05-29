@@ -45,8 +45,6 @@ public class Giant extends Ofensive{
         return super.canMove();
     }
 
-
-
     @Override
     public void run() {
         super.run();

@@ -12,7 +12,6 @@ public class GameTimer implements Runnable{
     private RecordedGameManager recordedGameManager;
     private boolean repro;
 
-
     public GameTimer(int time, boolean stop, GameManager gameManager) {
         this.sleepTime = 1000;
         this.time = time;
@@ -28,7 +27,6 @@ public class GameTimer implements Runnable{
         this.recordedGameManager = recordedGameManager;
         this.repro = true;
     }
-
 
     @Override
     public void run() {
@@ -63,6 +61,5 @@ public class GameTimer implements Runnable{
     public void stop() {
         stop = true;
     }
-
 
 }

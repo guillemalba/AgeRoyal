@@ -10,7 +10,6 @@ public class MoneyCounter implements Runnable {
     private GameManager gameManager;
     private boolean stop;
 
-
     public MoneyCounter(GameManager gameManager) {
         this.gameManager = gameManager;
     }
