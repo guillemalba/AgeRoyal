@@ -94,10 +94,20 @@ public class Board {
         cellsMatrix[x][y].getTroop().setStop(true);
     }
 
-    //  TODO falta comentar
+    /**
+     * Metodo para poner en pausa la reproduccion
+     * @param x posicion del mapa
+     * @param y posicion del mapa
+     */
     public void stopTroop(int x, int y){
         cellsMatrix[x][y].getTroop().setPause(false);
     }
+
+    /**
+     * Metodo para volver a poner en marxa la reproduccion
+     * @param x posicion del mapa
+     * @param y posicion del mapa
+     */
     public  void resumeTroop(int x, int y){
         cellsMatrix[x][y].getTroop().setPause(true);
     }

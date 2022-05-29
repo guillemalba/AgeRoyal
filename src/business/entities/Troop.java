@@ -335,10 +335,9 @@ public class Troop implements Runnable{
      */
     public void atack(Troop enemyTroop){
 
-        while(enemyTroop.getLife() > 0 && !stop && isRange(enemyTroop)){
+        while(enemyTroop.getLife() > 0 && !stop && isRange(enemyTroop) && this.getLife() > 0){
             if(pause) {
 
-                System.out.println("Soy" + name + "voy a pegar a " + enemyTroop.getName());
 
                 try {
                     Thread.sleep(attackVelocity);

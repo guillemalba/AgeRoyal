@@ -2,22 +2,15 @@ package presentation.views;
 
 import business.entities.Attributes;
 import business.entities.Board;
-import business.entities.Troop;
-
-import presentation.controllers.GameViewController;
-import org.w3c.dom.*;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
+
 
 /**
  * Esta vista sera la encargada de mostrar cualquier información relacionada con una partida y cualquier accion que se
@@ -54,7 +47,6 @@ public class GameView extends JPanel {
     private JPanel badLives = new JPanel();
     private final Color playerColor = new Color(64, 204, 248);
     private JPanel troopPanel = new JPanel();
-    //private Graphics g;
 
     /**
      * Como podeis observar el constructor de esta clase solo contiene la posibilidad de inicializar un tablero si este
@@ -469,17 +461,6 @@ public class GameView extends JPanel {
                 defT2.setBorder(null);
         }
     }
-
-
-    //Todo eliminar si no se usa
-    /*@Override //con esto se deberia de escribir las barras pero no eniendo como funciona esta pedazo de basura
-    //pls sent help me pone de los nervios
-
-    public void paint(Graphics g) {
-
-        g.fillRect(((int)this.getSize().getWidth()/2)-25,350-10+20,50, 50);
-        g.fillRect(((int)this.getSize().getWidth()/2)-25,MAX_HEIGHT-valorX+20,50, valorX);
-    }*/
 
     /**
      * Getter de si es reproducida o no

@@ -90,6 +90,7 @@ public class RankingView extends JPanel {
      */
     public void update(LinkedList<User> players){
         this.players = players;
+        background.remove(table);
         table.removeAll();
 
         if(players.size() != 0) {
@@ -109,11 +110,11 @@ public class RankingView extends JPanel {
             table.setEnabled(false);
 
             background.add(new JScrollPane(table), BorderLayout.CENTER);
-            revalidate();
-            repaint();
+
         }
 
-
+        revalidate();
+        repaint();
 
     }
 }

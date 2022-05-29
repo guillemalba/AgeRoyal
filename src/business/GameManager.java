@@ -243,7 +243,7 @@ public class GameManager{
     public void updateViewMap(boolean isRepro){
 
         if (isRepro){
-            gameController.addTroop(board,0,baseUser.getLife(),baseIA.getLife(),user.getNumTroopAlive(),ia.getNumTroopsAlive());
+            gameController.addTroop(board,0,baseUser.getLife(),baseIA.getLife(),0,0);
 
         }else {
             gameController.addTroop(board, user.getMoney(), baseUser.getLife(), baseIA.getLife(),user.getNumTroopAlive(),ia.getNumTroopsAlive());

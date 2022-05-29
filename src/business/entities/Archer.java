@@ -13,7 +13,7 @@ public class Archer extends Ofensive {
     /**
      * Constructor para crear una nueva Arquera
      *
-     * @param name de la arquera
+     * @param name de la arqueraI
      * @param posx del mapa
      * @param posy del mapa
      * @param gameManager para acceder a los metodos
@@ -30,35 +30,5 @@ public class Archer extends Ofensive {
         this.setAttackVelocity(Attributes.ARCHER_ATTACK_VELOCITY.getValue());
         this.setMovementVelocity(Attributes.ARCHER_MOVEMENT_VELOCITY.getValue());
 
-    }
-
-    @Override
-    public int getMovementVelocity() {
-        return super.getMovementVelocity();
-    }
-
-    @Override
-    public void move(String direction) {
-        super.move(direction);
-    }
-
-    @Override
-    public String canMove() {
-        return super.canMove();
-    }
-
-    @Override
-    public void run() {
-        super.run();
-    }
-
-    @Override
-    public Troop enemyNear() {
-        return super.enemyNear();
-    }
-
-    @Override
-    public void dieTroop(Troop troop) {
-        super.dieTroop(troop);
     }
 }

@@ -3,11 +3,8 @@ package business;
 import business.entities.User;
 import persistence.GameDAO;
 import persistence.UserDAO;
-import persistence.UserSQLDAO;
-
-import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
+
 
 /**
  * Manager del jugador donde se encuentran todas las funciones necesarias para añadir jugadores en la base de datos, comprovar que la informacion introducida sea valida.
