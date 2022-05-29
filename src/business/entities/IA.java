@@ -13,17 +13,14 @@ public class IA implements Runnable{
     private boolean stop = false;
 
     private GameManager gameManager;
-    private int gameTime;
 
     /**
      * Constructor de la IA con el manager del juego y el timer de la partida
      *
      * @param gameManager del juego
-     * @param gameTime de la partida
      */
-    public IA(GameManager gameManager, int gameTime) {
+    public IA(GameManager gameManager) {
         this.gameManager = gameManager;
-        this.gameTime = gameTime;
     }
 
     @Override

@@ -465,7 +465,6 @@ public class Troop implements Runnable{
      * @param isUser un boleano con el ganador de la partida, si es true, el usuario ha ganado
      */
     public void stopGame(boolean isUser, boolean somebodyWon){
-
         gameManager.stopGame(isUser, somebodyWon);
     }
 

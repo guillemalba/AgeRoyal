@@ -103,11 +103,11 @@ public class GameManager{
 
 
         // thread para la IA del juego
-        ia = new IA(this, time);
+        ia = new IA(this);
         new Thread(ia).start();
 
         //Usuario de la partida
-        user = new User(this,time);
+        user = new User(this);
 
         // thread para contar el dinero de la IA
         moneyCounter = new MoneyCounter(this);

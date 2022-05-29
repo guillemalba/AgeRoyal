@@ -14,7 +14,6 @@ public class User {
     private float ratio;
     private int money = 5;
     private GameManager gameManager;
-    private int gameTime;
     private int numTroopAlive = 0;
 
     /**
@@ -53,11 +52,9 @@ public class User {
      * Constructor para el GameManager
      *
      * @param gameManager del juego
-     * @param gameTime del juego
      */
-    public User(GameManager gameManager, int gameTime) {
+    public User(GameManager gameManager) {
         this.gameManager = gameManager;
-        this.gameTime = gameTime;
         this.money = 5;
     }
 
