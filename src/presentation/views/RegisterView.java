@@ -8,8 +8,8 @@ import java.awt.event.ActionListener;
  * Esta clase va a ser usada para crear la vista de registro de nuestro programa
  */
 public class RegisterView extends JPanel {
-    public static final String BTN_REGISTER = "BTN_REGISTER";
-    public static final String BTN_BACK = "BTN_BACK";
+    private static final String BTN_REGISTER = "BTN_REGISTER";
+    private static final String BTN_BACK = "BTN_BACK";
     
     private JTextField jtfUsername;
     private JTextField jtfEmail;

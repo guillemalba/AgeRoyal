@@ -9,8 +9,6 @@ import java.awt.event.ActionListener;
  * Esta clase se empleara para crear el menu central de nuestro el codigo
  */
 public class MenuView extends JPanel {
-    public static final String BTN_LOGOUT = "BTN_LOGOUT";
-
     private JButton jbSettings;
     private JButton jbPlayGame;
     private JButton jbRanking;

@@ -1,4 +1,4 @@
-package business.entities;
+package persistence.json;
 
 /**
  * Clase del modelo del fichero de configuracion

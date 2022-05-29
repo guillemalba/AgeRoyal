@@ -8,8 +8,8 @@ import java.awt.event.ActionListener;
  * Esta clase nos permitira crear la vista de inicio de sesion de nuestra aplicaion.
  */
 public class LoginView extends JPanel {
-    public static final String BTN_LOG = "BTN_LOG";
-    public static final String BTN_REG = "BTN_REG";
+    private static final String BTN_LOG = "BTN_LOG";
+    private static final String BTN_REG = "BTN_REG";
     private JButton jbLogin;
     private JButton jbBack;
     private JTextField jtfUsernameEmail = new JTextField();

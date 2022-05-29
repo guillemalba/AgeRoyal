@@ -41,7 +41,7 @@ public class RegisterController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
-            case RegisterView.BTN_REGISTER:
+            case "BTN_REGISTER":
                 String username = registerView.getInputUsername();
                 String email = registerView.getInputEmail();
                 String password = String.valueOf(registerView.getInputPassword());
@@ -72,7 +72,7 @@ public class RegisterController implements ActionListener {
 
             break;
 
-            case RegisterView.BTN_BACK:
+            case "BTN_BACK":
                 registerView.resetInputInfo();
                 registerView.setmainView(mainView);
                 registerView.setComponents(viewComponents);

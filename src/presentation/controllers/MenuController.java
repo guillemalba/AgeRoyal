@@ -51,7 +51,7 @@ public class MenuController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()){
-            case MenuView.BTN_LOGOUT :
+            case "BTN_LOGOUT" :
                 menuView.setMainView(mainView);
                 menuView.setViewComponents(viewComponents);
                 mainView.showLogout();

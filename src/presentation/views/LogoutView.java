@@ -8,13 +8,11 @@ import java.awt.event.ActionListener;
  * Esta clase nos servira para poder mostrar la vista que permite desloguearse y eliminar la cuenta del usuario activo
  */
 public class LogoutView extends JPanel {
-    public static final String BTN_LOGOUT = "BTN_LOGOUT";
-    //public static final String BTN_EDIT = "BTN_EDIT";
-    public static final String BTN_DEL = "BTN_DEL";
-    public static final String BTN_BACK = "BTN_BACK";
+    private static final String BTN_LOGOUT = "BTN_LOGOUT";
+    private static final String BTN_DEL = "BTN_DEL";
+    private static final String BTN_BACK = "BTN_BACK";
 
     private JButton jbLogout;
-    //private JButton jbEdit;
     private JButton jbDelete;
     private JButton jbBack;
 

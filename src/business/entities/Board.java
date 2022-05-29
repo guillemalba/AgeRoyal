@@ -94,6 +94,7 @@ public class Board {
         cellsMatrix[x][y].getTroop().setStop(true);
     }
 
+    //  TODO falta comentar
     public void stopTroop(int x, int y){
         cellsMatrix[x][y].getTroop().setPause(false);
     }
