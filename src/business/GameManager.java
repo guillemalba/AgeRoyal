@@ -198,7 +198,7 @@ public class GameManager{
             if (userWins) {
                 user.setVictories(user.getVictories() +1);
             }
-            user.setRatio((float)user.getVictories()/(float)user.getTotalGames() * 10);
+            user.setRatio((float)user.getVictories()/(float)user.getTotalGames() * 100);
             userManager.updateUser(user);
 
             gameController.finishGame(isRepro);

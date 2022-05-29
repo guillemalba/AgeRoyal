@@ -99,7 +99,7 @@ public class RankingView extends JPanel {
             Object[][] data = new Object[players.size()][5];
             for(int i = 0; i < players.size(); i++){
                 data[i][0] = players.get(i).getName();
-                data[i][1] = String.valueOf(players.get(i).getRatio());
+                data[i][1] = players.get(i).getRatio() + "%";
                 data[i][2] = String.valueOf(players.get(i).getVictories());
                 data[i][3] = String.valueOf(players.get(i).getTotalGames());
             }
