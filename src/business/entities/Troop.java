@@ -24,6 +24,7 @@ public class Troop implements Runnable{
     private int posx;
     private int posy;
     private BufferedImage image;
+    private Boolean pause;
 
     /**
      * Constructor de la tropa con sus atributos
@@ -45,6 +46,7 @@ public class Troop implements Runnable{
         this.isUser = isUser;
         this.stop = stop;
         this.image = image;
+        this.pause = true;
     }
 
     /**
@@ -346,26 +348,28 @@ public class Troop implements Runnable{
     public void atack(Troop enemyTroop){
 
         while(enemyTroop.getLife() > 0 && !stop && isRange(enemyTroop)){
+            if(pause) {
 
-            System.out.println("Soy"+ name + "voy a pegar a " +enemyTroop.getName());
+                System.out.println("Soy" + name + "voy a pegar a " + enemyTroop.getName());
 
-            try {
-                Thread.sleep(attackVelocity);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+                try {
+                    Thread.sleep(attackVelocity);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-            synchronized (Troop.class) {
-                if(enemyTroop.getLife() > 0.0){
+                synchronized (Troop.class) {
+                    if (enemyTroop.getLife() > 0.0) {
 
-                    enemyTroop.setLife(enemyTroop.getLife() - getDamage());
-                    if(enemyTroop.getLife() <= 0.0){
+                        enemyTroop.setLife(enemyTroop.getLife() - getDamage());
+                        if (enemyTroop.getLife() <= 0.0) {
 
-                        System.out.println(getName() + "Que soy " + isUser + " Mato a "+ enemyTroop.getName());
-                        if(!gameManager.isRepro())gameManager.moneyReward(isUser);
+                            System.out.println(getName() + "Que soy " + isUser + " Mato a " + enemyTroop.getName());
+                            if (!gameManager.isRepro()) gameManager.moneyReward(isUser);
 
-                        removeTroop(isUser);
-                        enemyTroop.setStop(true);
+                            removeTroop(isUser);
+                            enemyTroop.setStop(true);
+                        }
                     }
                 }
             }
@@ -477,8 +481,12 @@ public class Troop implements Runnable{
         gameManager.stopGame(isUser, somebodyWon);
     }
 
+    public Boolean getPause() {
+        return pause;
+    }
 
-
-
+    public void setPause(Boolean pause) {
+        this.pause = pause;
+    }
 }
 

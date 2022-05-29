@@ -49,20 +49,23 @@ public class Defensive extends Troop {
     public synchronized void run() {
 
         while (!isStop() && getTimeLife()>0) {
+
             try {
                 Thread.sleep(getAttackVelocity());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if (enemyNear() != null && enemyNear().getLife() >= 0.0) {
-                atack(enemyNear());
+            if (getPause()) {
+                if (enemyNear() != null && enemyNear().getLife() >= 0.0) {
+                    atack(enemyNear());
+                }
+                setTimeLife(getTimeLife() - (int) (getAttackVelocity() / 1000));
             }
-            setTimeLife(getTimeLife()-(int)(getAttackVelocity()/1000));
-        }
 
-        if(getTimeLife()<=0){
-            System.out.println(isUser());
-            removeTroop(!isUser());
+            if (getTimeLife() <= 0) {
+                System.out.println(isUser());
+                removeTroop(!isUser());
+            }
         }
         dieTroop(this);
     }

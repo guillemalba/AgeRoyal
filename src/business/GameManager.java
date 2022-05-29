@@ -44,6 +44,7 @@ public class GameManager{
     private Base baseIA;
     private boolean isRepro;
     private boolean stopRepro;
+    private boolean pauseRepro;
 
     /**
      * Constructor del juego
@@ -115,6 +116,7 @@ public class GameManager{
         //Thread del tiempo
         gameTimer = new GameTimer(time, false, this);
         new Thread(gameTimer).start();
+
         updateViewMap(false);
 
 
@@ -174,34 +176,35 @@ public class GameManager{
             gameTimer.stop();
             moneyCounter.stop();
             ia.setStop(true);
-        }
-
-        if (somebodyWon) {
-            String gameName;
-            do {
-                gameName = gameController.askForGameName();
-            } while (!gameDAO.gameNameIsUnique(gameName));
 
 
-            if (gameName != null) {
-                if (gameDAO.saveGame(new Game(gameName, new SimpleDateFormat("yyyy-MM-dd").format(new Date()), userWins, userManager.getUser()))) {
-                    for (int i = 0; i < listDeployedTroops.size(); i++) {
-                        if (gameDAO.saveTroopsDeployed(listDeployedTroops.get(i), gameName)) {
+            if (somebodyWon) {
+                String gameName;
+                do {
+                    gameName = gameController.askForGameName();
+                } while (!gameDAO.gameNameIsUnique(gameName));
 
+
+                if (gameName != null) {
+                    if (gameDAO.saveGame(new Game(gameName, new SimpleDateFormat("yyyy-MM-dd").format(new Date()), userWins, userManager.getUser()))) {
+                        for (int i = 0; i < listDeployedTroops.size(); i++) {
+                            if (gameDAO.saveTroopsDeployed(listDeployedTroops.get(i), gameName)) {
+
+                            }
                         }
                     }
                 }
-            }
 
-            User user = userManager.readUser();
-            user.setTotalGames(user.getTotalGames() +1);
-            if (userWins) {
-                user.setVictories(user.getVictories() +1);
-            }
-            user.setRatio((float)user.getVictories()/(float)user.getTotalGames() * 10);
-            userManager.updateUser(user);
+                User user = userManager.readUser();
+                user.setTotalGames(user.getTotalGames() + 1);
+                if (userWins) {
+                    user.setVictories(user.getVictories() + 1);
+                }
+                user.setRatio((float) user.getVictories() / (float) user.getTotalGames() * 10);
+                userManager.updateUser(user);
 
-            gameController.finishGame(isRepro);
+                gameController.finishGame(isRepro);
+            }
         }
     }
 
@@ -449,5 +452,42 @@ public class GameManager{
             if (isUser) ia.setNumTroopsAlive(ia.getNumTroopsAlive() - 1);
             if (!isUser) user.setNumTroopAlive(user.getNumTroopAlive() - 1);
         }
+    }
+
+    public void pauseRepro(boolean pause){
+        pauseRepro = pause;
+
+        if(pause) {
+            for (int i = 0; i < board.getSide(); i++) {
+                for (int j = 0; j < board.getSide(); j++) {
+                    if (!board.isEmpty(i, j)) {
+                        board.stopTroop(i, j);
+
+                    }
+                }
+            }
+        }
+        if(!pause){
+            System.out.println(pauseRepro+" soy pause repro");
+            System.out.println("entro a poner las tropas en marxa");
+            for (int i = 0; i < board.getSide(); i++) {
+                for (int j = 0; j < board.getSide(); j++) {
+                    if (!board.isEmpty(i, j)) {
+                        board.resumeTroop(i, j);
+
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    public boolean isPauseRepro() {
+        return pauseRepro;
+    }
+
+    public void setPauseRepro(boolean pauseRepro) {
+        this.pauseRepro = pauseRepro;
     }
 }

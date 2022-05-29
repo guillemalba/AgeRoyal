@@ -11,6 +11,7 @@ public class GameTimer implements Runnable{
     private final long sleepTime;
     private int time;
     private boolean stop;
+    private boolean pause;
     private GameManager gameManager;
     private RecordedGameManager recordedGameManager;
     private boolean repro;
@@ -44,6 +45,7 @@ public class GameTimer implements Runnable{
         this.stop = stop;
         this.recordedGameManager = recordedGameManager;
         this.repro = true;
+        this.pause = true;
     }
 
     @Override
@@ -56,24 +58,26 @@ public class GameTimer implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            time++;
 
-            if(repro){
-                recordedGameManager.setTime(time);
-                recordedGameManager.reproGame();
+            if (pause){
+                time++;
+
+                if (repro) {
+                    recordedGameManager.setTime(time);
+                    recordedGameManager.reproGame();
+                } else {
+                    gameManager.setTime(time);
+                }
+
+                System.out.println("Time: " + time);
+
+                if (repro) recordedGameManager.updateViewMap();
+                if (!repro) gameManager.updateViewMap(false);
+
             }else{
-                gameManager.setTime(time);
+                recordedGameManager.tryResume();
             }
-
-            System.out.println("Time: " + time);
-
-            if(repro)recordedGameManager.updateViewMap();
-            if(!repro) gameManager.updateViewMap(false);
-
-
         }
-
-
     }
 
     /**
@@ -83,4 +87,7 @@ public class GameTimer implements Runnable{
         stop = true;
     }
 
+    public void setPause(boolean pause) {
+        this.pause = pause;
+    }
 }

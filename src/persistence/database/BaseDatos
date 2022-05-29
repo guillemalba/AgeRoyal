@@ -13,7 +13,7 @@ select * from Player;
 Drop table if exists Game cascade;
 Create table Game(
                      name            varchar(255),
-                     data            varchar(255),
+                     data            date,
                      win             boolean,
                      player          varchar(255),
                      primary key(name),

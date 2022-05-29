@@ -55,13 +55,16 @@ public class Ofensive extends Troop {
                 e.printStackTrace();
             }
 
-            if (enemyNear() != null && enemyNear().getLife() >= 0.0) {
+            if (getPause()) {
+                if (enemyNear() != null && enemyNear().getLife() >= 0.0) {
 
-                atack(enemyNear());
+                    atack(enemyNear());
 
-            } else {
-                String move = canMove();
-                if (!move.equals("false")) move(move);
+                } else {
+                    String move = canMove();
+                    if (!move.equals("false")) move(move);
+                }
+
             }
 
         }

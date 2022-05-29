@@ -34,6 +34,7 @@ public class RecordedGameManager {
         gameManager.setRepro(true);
         gameTimer = new GameTimer(time, false, this);
         new Thread(gameTimer).start();
+
         reproGame();
 
     }
@@ -63,7 +64,16 @@ public class RecordedGameManager {
 
     public void updateViewMap(){
         gameManager.updateViewMap(true);
+        if(gameManager.isPauseRepro())  gameTimer.setPause(false);
+
         if(gameManager.isStopRepro()) gameTimer.stop();
+    }
+    public void tryResume(){
+        if(!gameManager.isPauseRepro()) {
+
+            gameTimer.setPause(true);
+        }
+
     }
 }
 

@@ -21,8 +21,8 @@ public class GameViewController implements ActionListener, MouseListener {
     private GameView gameView;
     private MainView mainView;
     private GameManager gameManager;
-    private Troop selectedT;
-    private int x,y;
+    private boolean pause = true;
+
     private String tipo = "null";
 
     /**
@@ -41,9 +41,23 @@ public class GameViewController implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
+
             case "Settings":
-                gameManager.stopGame(false,false);
-                mainView.showLogout();
+                if(!gameView.isRepro()) {
+                    gameManager.stopGame(false, false);
+                    mainView.showLogout();
+                }
+                if(gameView.isRepro()){
+                    if(pause) {
+
+                        gameManager.pauseRepro(pause);
+                        pause = false;
+                    }else{
+                        gameManager.pauseRepro(pause);
+                        pause = true;
+                    }
+
+                }
             break;
             case "Back":
                 gameManager.stopGame(false,false);
