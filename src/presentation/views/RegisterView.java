@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
  * Esta clase va a ser usada para crear la vista de registro de nuestro programa
  */
 public class RegisterView extends JPanel {
-    public static final String BTN_SING = "BTN_SING";
+    public static final String BTN_REGISTER = "BTN_REGISTER";
     public static final String BTN_BACK = "BTN_BACK";
     
     private JTextField jtfUsername;
@@ -82,7 +82,7 @@ public class RegisterView extends JPanel {
         jbRegister.setIcon(new ImageIcon(new ImageIcon("files/btn_register.png").getImage().getScaledInstance(150, 75, Image.SCALE_DEFAULT)));
         jbRegister.setBorderPainted(false);
         jbRegister.setContentAreaFilled(false);
-        jbRegister.setActionCommand(BTN_SING);
+        jbRegister.setActionCommand(BTN_REGISTER);
         jpButtons.add(jbRegister);
 
         //Creamos un boton para poder volver

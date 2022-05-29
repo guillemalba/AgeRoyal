@@ -41,7 +41,7 @@ public class RegisterController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
-            case RegisterView.BTN_SING:
+            case RegisterView.BTN_REGISTER:
                 String username = registerView.getInputUsername();
                 String email = registerView.getInputEmail();
                 String password = String.valueOf(registerView.getInputPassword());

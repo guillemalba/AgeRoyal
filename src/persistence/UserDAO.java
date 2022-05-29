@@ -42,4 +42,20 @@ public interface UserDAO {
      * @return a list of Users
      */
     LinkedList<User> readAllOrderUsers();
+
+    /**
+     * Metodo para leer un usuario de la base de datoos
+     *
+     * @param username nombre
+     * @return el usuario
+     */
+    User readUser(String username);
+
+    /**
+     * Metodo para actualizar las estadisticas de un usuario en la base de datos
+     *
+     * @param user que queremos actualizar
+     * @return true si se ha podido completar, false si no
+     */
+    boolean update(User user);
 }

@@ -45,7 +45,6 @@ public class UserSQLDAO implements UserDAO{
             System.out.println("Connection failure.");
             e.printStackTrace();
         }
-        System.out.println("No s'ha trobat el usuari"); // TODO: eliminar sout
         return false;
     }
 
@@ -124,19 +123,47 @@ public class UserSQLDAO implements UserDAO{
         return null;
     }
 
-
-    public void mostrar() {
+    @Override
+    public User readUser(String username) {
         try {
             Connection connection = DriverManager.getConnection(data.getUrl(), data.getUser(), data.getPassword());
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("Select * from player");
+            ResultSet resultSet = statement.executeQuery("Select * from player where name = '" + username +"'");
 
-            while ((resultSet.next())) {
-                System.out.println(resultSet.getString("name") + "\t" + resultSet.getString("mail") + "\t" + resultSet.getString("password"));
+            if (resultSet.next()) {
+                return new User(
+                        resultSet.getString("name"),
+                        resultSet.getString("mail"),
+                        resultSet.getString("password"),
+                        resultSet.getInt("victorias"),
+                        resultSet.getInt("totalGames"),
+                        resultSet.getFloat("ratio")
+                );
+            } else {
+                return null;
             }
+
         } catch (SQLException e) {
             System.out.println("Connection failure.");
             e.printStackTrace();
         }
+        return null;
     }
+
+    @Override
+    public boolean update(User user) {
+        try {
+            Connection connection = DriverManager.getConnection(data.getUrl(), data.getUser(), data.getPassword());
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("update player set victorias = '" + user.getVictories() + "', totalGames = '" + user.getTotalGames() + "', ratio = '" + user.getRatio() + "'where name = '" + user.getName() +"'");
+
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("Connection failure.");
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

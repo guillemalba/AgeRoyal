@@ -60,6 +60,7 @@ public class LogoutController implements ActionListener {
 
                 if(option == 1){ //Quiero hacer Delete
                     //TODO:Aqui vol fer delete
+                    userManager.deleteAllGames();
                     userManager.delete();
                     System.out.println("Se ha borrado bien");
                     logoutView.setmainView(mainView);

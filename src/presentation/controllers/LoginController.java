@@ -51,15 +51,13 @@ public class LoginController implements ActionListener {
                     System.out.println(user.getName() + " login successful");
                     userManager.setUser(user.getName());//Registrar user en la ram
 
-
+                    loginView.resetInputInfo();
+                    loginView.setMainView(mainView);
+                    loginView.setComponents(viewComponents);
+                    mainView.showMenu();
                 } else {
-                    /*loginView.errorMessage();*/
+                    loginView.errorMessage();
                 }
-                // TODO move into if condition
-                loginView.resetInputInfo();
-                loginView.setMainView(mainView);
-                loginView.setComponents(viewComponents);
-                mainView.showMenu();
 
             break;
             case LoginView.BTN_REG:

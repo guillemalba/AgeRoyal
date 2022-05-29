@@ -16,11 +16,11 @@ public class GameSQLDAO implements GameDAO{
     }
 
     @Override
-    public LinkedList<Game> readAllGames() {
+    public LinkedList<Game> readUserGames(String username) {
         try {
             Connection connection = DriverManager.getConnection(data.getUrl(), data.getUser(), data.getPassword());
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("Select * from game");
+            ResultSet resultSet = statement.executeQuery("Select * from game where game.player = '" + username + "' order by data desc");
 
             LinkedList<Game> games = new LinkedList<>();
             while ((resultSet.next())) {
@@ -92,5 +92,38 @@ public class GameSQLDAO implements GameDAO{
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public boolean deleteUserGames(String username) {
+        try {
+            Connection connection = DriverManager.getConnection(data.getUrl(), data.getUser(), data.getPassword());
+            Statement statement = connection.createStatement();
+            statement.execute("delete from troopdeployed where troopdeployed.game in (select game.name from game)");
+            statement.execute("delete from game where game.player = '" + username + "'");
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Connection failure.");
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean gameNameIsUnique(String gameName) {
+        try {
+            Connection connection = DriverManager.getConnection(data.getUrl(), data.getUser(), data.getPassword());
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("Select name from game where name = '" + gameName +"'");
+            if (!resultSet.next()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Connection failure.");
+            e.printStackTrace();
+        }
+        return false;
     }
 }

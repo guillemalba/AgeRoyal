@@ -11,7 +11,7 @@ public interface GameDAO {
      *
      * @return a list of Games
      */
-    LinkedList<Game> readAllGames();
+    LinkedList<Game> readUserGames(String username);
 
     /**
      * Metodo para guardar un Juego en la base de datos
@@ -30,5 +30,26 @@ public interface GameDAO {
      */
     boolean saveTroopsDeployed(TroopDeployed troopDeployed, String gameName);
 
+    /**
+     * Metodo que lee y guarda en una lista todas las tropas desplegadas en una partida
+     *
+     * @param game el nombre de la partida
+     * @return la lista de partidas
+     */
     LinkedList<TroopDeployed> readAllTroopDeployed(String game);
+
+    /**
+     * Elimina todas las partidas de un jugador
+     *
+     * @param username del jugador
+     * @return true si se han eliminado correctamente, false si no
+     */
+    boolean deleteUserGames (String username);
+
+    /**
+     * Metodo que comprueba que el nombre de la partida sea unica
+     *
+     * @param gameName nombre de la partida
+     */
+    boolean gameNameIsUnique(String gameName);
 }

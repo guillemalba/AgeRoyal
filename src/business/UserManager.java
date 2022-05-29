@@ -1,6 +1,7 @@
 package business;
 
 import business.entities.User;
+import persistence.GameDAO;
 import persistence.UserDAO;
 import persistence.UserSQLDAO;
 
@@ -14,6 +15,7 @@ import java.util.List;
  */
 public class UserManager {
     private UserDAO userDAO;
+    private GameDAO gameDAO;
     private String user;
     private LinkedList<User> users;
 
@@ -22,8 +24,9 @@ public class UserManager {
      *
      * @param userSQLDAO con los metodos necesarios de la base de datos
      */
-    public UserManager(UserDAO userSQLDAO) {
+    public UserManager(UserDAO userSQLDAO, GameDAO gameSQLDAO) {
         userDAO = userSQLDAO;
+        gameDAO = gameSQLDAO;
     }
 
     /**
@@ -114,6 +117,28 @@ public class UserManager {
         if(users != null) users.removeAll(users);
         users = userDAO.readAllOrderUsers();
         return users;
+    }
+
+    /**
+     * Metodo que elimina todas las partidas guardadas de un usuario en la base de datos
+     *
+     * @return true si ha sido posible eliminarlas, false si no
+     */
+    public boolean deleteAllGames() {
+        return gameDAO.deleteUserGames(user);
+    }
+
+    /**
+     * Metodo que llama a la funcion de la DAO para devolver un usuario
+     *
+     * @return el usuario
+     */
+    public User readUser() {
+        return userDAO.readUser(user);
+    }
+
+    public void updateUser(User user) {
+        userDAO.update(user);
     }
 
 }

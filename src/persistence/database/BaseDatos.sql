@@ -12,7 +12,7 @@ Create table Player(
 Drop table if exists Game cascade;
 Create table Game(
     name            varchar(255),
-    data            varchar(255),
+    data            date,
     win             boolean,
     player          varchar(255),
     primary key(name),
@@ -31,3 +31,11 @@ create table TroopDeployed(
     primary key(id),
     foreign key(game) references Game(name)
 );
+
+select * from game where game.player = 't';
+
+select * from player;
+select * from game;
+select * from troopdeployed;
+delete from troopdeployed where troopdeployed.game in (select game.name from game);
+delete from game where game.player = 't';

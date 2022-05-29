@@ -412,7 +412,7 @@ public class GameView extends JPanel {
      * @return el nombre de la partida guardada
      */
     public String popUpSaveGame() {
-        return JOptionPane.showInputDialog("Enter a name for the game");
+        return JOptionPane.showInputDialog("Enter a unique name for the game");
     }
 
     /**

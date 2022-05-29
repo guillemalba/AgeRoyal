@@ -33,12 +33,16 @@ public class Board {
 
     /**
      * Metodo para detectar si hay una tropa en el tablero
-     * @param i posicion del mapa
-     * @param j posicoin del mapa
+     * @param x posicion del mapa
+     * @param y posicoin del mapa
      * @return true si esta vacia la celda
      */
-    public synchronized boolean isEmpty(int i, int j){
-        return cellsMatrix[i][j].getTroop() == null;
+    public synchronized boolean isEmpty(int x, int y){
+        if (isInsideTheMap(x, y)) {
+            return cellsMatrix[x][y].getTroop() == null;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -66,9 +70,15 @@ public class Board {
         cellsMatrix[troop.getPosx()][troop.getPosy()].setTroop(null);
     }
 
-    // todo si al final no se usa borra esto
-    public boolean isOnTheEdge(int x, int y){
-        if(x >=0 && x < side){
+    /**
+     * Metodo que comprueba si la posicion esta dentro del mapa o no
+     *
+     * @param x posicion
+     * @param y posicion
+     * @return true si esta en el mapa, false si no
+     */
+    public boolean isInsideTheMap(int x, int y){
+        if(x >= 0 && x < side){
             if(y >= 0 && y < side) {
                 return true;
             }

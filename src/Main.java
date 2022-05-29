@@ -10,25 +10,18 @@ import presentation.views.*;
 
 import java.awt.*;
 
-
+/**
+ * Clase Main donde instanciamos todas las clases (DAOs, Managers, Views, Controllers y relacion entre Views y Controllers
+ */
 public class Main {
     public static void main(String[] args) {
-
-        /**
-         * 1- New dels DAO
-         * 2- New dels Manager
-         * 3- New de les vistes
-         * 4- New del Mainview, o Cardlayout
-         * 5- New dels Controller
-         * 6- Vincular controladors
-         */
 
         /* New dels DAO */
         UserDAO userDAO = new UserSQLDAO();
         GameDAO gameDAO = new GameSQLDAO();
 
         /* News dels Managers */
-        UserManager userManager = new UserManager(userDAO);
+        UserManager userManager = new UserManager(userDAO, gameDAO);
         GameManager gameManager = new GameManager(gameDAO,userManager);
         RecordedGameManager recordedGameManager = new RecordedGameManager(gameDAO,gameManager);
 

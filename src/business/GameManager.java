@@ -9,19 +9,16 @@ import business.entities.GameTimer;
 import business.entities.*;
 import business.entities.MoneyCounter;
 import persistence.GameDAO;
-import persistence.GameSQLDAO;
 import presentation.controllers.GameViewController;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Collections;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 
 public class GameManager{
 
@@ -46,14 +43,14 @@ public class GameManager{
     private boolean stopRepro;
 
 
-    public GameManager(GameDAO gameSQLDAO,UserManager userManager) {
+    public GameManager(GameDAO gameSQLDAO, UserManager userManager) {
         this.gameDAO = gameSQLDAO;
         this.userManager = userManager;
     }
 
     public LinkedList<Game> updateGames() {
         if(games != null) games.removeAll(games);
-        games = gameDAO.readAllGames();
+        games = gameDAO.readUserGames(userManager.getUser());
         return games;
     }
 
@@ -120,7 +117,7 @@ public class GameManager{
         ia.setMoney(ia.getMoney() + 1);
     }
 
-    public void stopGame(boolean isUser, boolean somebodyWon){
+    public void stopGame(boolean userWins, boolean somebodyWon){
 
         //Parar todos los threads
         for (int i = 0; i < board.getSide(); i++) {
@@ -132,31 +129,41 @@ public class GameManager{
             }
         }
 
-        if(isRepro){
+        if (isRepro) {
             stopRepro = true;
             gameController.finishGame(isRepro);
-
-        }else {
+        } else {
             gameTimer.stop();
             moneyCounter.stop();
             ia.setStop(true);
+        }
+
+        if (somebodyWon) {
+            String gameName;
+            do {
+                gameName = gameController.askForGameName();
+            } while (!gameDAO.gameNameIsUnique(gameName));
 
 
-            if (somebodyWon) {
-                String gameName = gameController.saveGame();
-                if (gameName != null) {
-                    String actualDate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(LocalDateTime.now());
-                    if (gameDAO.saveGame(new Game(gameName, actualDate, !isUser, userManager.getUser()))) {
-                        for (int i = 0; i < listDeployedTroops.size(); i++) {
-                            if (gameDAO.saveTroopsDeployed(listDeployedTroops.get(i), gameName)) {
+            if (gameName != null) {
+                if (gameDAO.saveGame(new Game(gameName, new SimpleDateFormat("yyyy-MM-dd").format(new Date()), userWins, userManager.getUser()))) {
+                    for (int i = 0; i < listDeployedTroops.size(); i++) {
+                        if (gameDAO.saveTroopsDeployed(listDeployedTroops.get(i), gameName)) {
 
-                            }
                         }
                     }
                 }
-
-                gameController.finishGame(isRepro);
             }
+
+            User user = userManager.readUser();
+            user.setTotalGames(user.getTotalGames() +1);
+            if (userWins) {
+                user.setVictories(user.getVictories() +1);
+            }
+            user.setRatio((float)user.getVictories()/(float)user.getTotalGames() * 10);
+            userManager.updateUser(user);
+
+            gameController.finishGame(isRepro);
         }
     }
 

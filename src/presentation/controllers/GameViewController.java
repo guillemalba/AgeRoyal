@@ -181,14 +181,10 @@ public class GameViewController implements ActionListener, MouseListener {
         SwingUtilities.invokeLater(()->gameView.updateView(board,moneyUser,vidasUser,vidasIA));
     }
 
-
-
-
-    public String saveGame(){
-        String gameName = gameView.popUpSaveGame();
-
-        return gameName;
+    public String askForGameName(){
+        return gameView.popUpSaveGame();
     }
+
     public void finishGame(boolean isRepro){
         if (isRepro) mainView.showRecordedGame();
         if(!isRepro)mainView.showMenu();
