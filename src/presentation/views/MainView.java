@@ -8,8 +8,8 @@ import java.awt.*;
  * poder mostrar todas las vistas (unas encima de las otras)
  */
 public class MainView extends JFrame {
-    static final int width = 1300;
-    static final int height = 1080;
+    private static final int width = 1300;
+    private static final int height = 1080;
 
     private final JPanel jpView = new JPanel();
 

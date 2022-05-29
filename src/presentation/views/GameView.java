@@ -411,8 +411,15 @@ public class GameView extends JPanel {
      *
      * @return el nombre de la partida guardada
      */
-    public String popUpSaveGame() {
-        return JOptionPane.showInputDialog("Enter a unique name for the game");
+    public String popUpSaveGame(boolean userWins) {
+        String winOrLose;
+        if (userWins) {
+            winOrLose = "You Win!";
+        } else {
+            winOrLose = "You Lose!";
+        }
+        return JOptionPane.showInputDialog(null, "Enter a unique name for the game:",
+                winOrLose, JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**

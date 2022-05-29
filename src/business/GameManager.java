@@ -178,11 +178,11 @@ public class GameManager{
             ia.setStop(true);
 
 
-            if (somebodyWon) {
-                String gameName;
-                do {
-                    gameName = gameController.askForGameName();
-                } while (!gameDAO.gameNameIsUnique(gameName));
+        if (somebodyWon) {
+            String gameName;
+            do {
+                gameName = gameController.askForGameName(userWins);
+            } while (!gameDAO.gameNameIsUnique(gameName));
 
 
                 if (gameName != null) {
