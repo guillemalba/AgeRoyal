@@ -5,11 +5,16 @@ import business.entities.TroopDeployed;
 
 import java.util.LinkedList;
 
+/**
+ * Interficie con las funciones relacionadas con la partida
+ */
 public interface GameDAO {
+
     /**
      * Gets a list with all the Games
      *
-     * @return a list of Games
+     * @param username nombre del usuario
+     * @return la lista
      */
     LinkedList<Game> readUserGames(String username);
 

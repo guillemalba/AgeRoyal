@@ -336,6 +336,7 @@ public class GameView extends JPanel {
      * @param moneyUser Es el dinero del que dispone nuestro usuario para poder introducir tropas en el campo de batalla
      * @param vidasUser Es el numer de vidas restantes de la torre aliada
      * @param vidasIA   Es el numer de vidas restantes de la torre enemigas
+     * @param tropasIA   Es el numer de tropas restantes de la torre enemigas
      */
     public void updateView(Board board, int moneyUser, float vidasUser, float vidasIA,int tropasUser,int tropasIA) {
         //midJp.remove(table);

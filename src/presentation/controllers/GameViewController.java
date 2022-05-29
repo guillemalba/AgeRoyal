@@ -223,7 +223,8 @@ public class GameViewController implements ActionListener, MouseListener {
     /**
      * Metodo que te pregunta por el nombre de la partida
      *
-     * @return null si le ha dado a cancelar, sino, devuelve el nombre de la partida
+     * @param userWins boolean
+     * @return string
      */
     public String askForGameName(boolean userWins){
         return gameView.popUpSaveGame(userWins);

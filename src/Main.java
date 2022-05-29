@@ -14,6 +14,12 @@ import java.awt.*;
  * Clase Main donde instanciamos todas las clases (DAOs, Managers, Views, Controllers y relacion entre Views y Controllers
  */
 public class Main {
+
+    /**
+     * Metodo principal que ejecuta toda la practica
+     *
+     * @param args args
+     */
     public static void main(String[] args) {
 
         /* New dels DAO */

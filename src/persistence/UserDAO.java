@@ -4,6 +4,9 @@ import business.entities.User;
 
 import java.util.LinkedList;
 
+/**
+ * Interficie con los metodos relacionados del Usuario
+ */
 public interface UserDAO {
     /**
      * Creates the User into the DAO

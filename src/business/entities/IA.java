@@ -186,7 +186,7 @@ public class IA implements Runnable{
     /**
      * Setter para detener el thread
      *
-     * @param stop
+     * @param stop boolean
      */
     public void setStop(boolean stop) {
         this.stop = stop;

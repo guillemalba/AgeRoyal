@@ -76,7 +76,7 @@ public class LoginView extends JPanel {
 
     /**
      * Este metodod servira para poder asignar los listeners necesarios a cada boton de nuestra vista.
-     * @param listener
+     * @param listener listener
      */
     public void loginController(ActionListener listener) {
         jbLogin.addActionListener(listener);

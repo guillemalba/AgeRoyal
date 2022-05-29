@@ -60,7 +60,7 @@ public class Cell {
     /**
      * Getter que devuelve la instancia de la tropa que se encuentra en la celda
      *
-     * @return
+     * @return tropa
      */
     public Troop getTroop() {
         return troop;

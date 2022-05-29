@@ -10,6 +10,9 @@ public class ConfigData {
     private String db;
     private String url;
 
+    /**
+     * Constrictor del ConfigData
+     */
     public ConfigData(){}
 
     /**
@@ -33,7 +36,7 @@ public class ConfigData {
     /**
      * Getter que devuelve la url de la base de datos
      *
-     * @return
+     * @return url
      */
     public String getUrl() {
         return url;

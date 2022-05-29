@@ -149,8 +149,10 @@ public class RecordedGameMenuView extends JPanel {
 
     /**
      * Este metodo mostrara un popUp para saber si queremos mostrar la vista nueva
+     *
+     * @return entero
      */
-    public int  popUp() {
+    public int popUp() {
         int input = JOptionPane.showConfirmDialog(new RecordedGameMenuView(),
                 "Do you want to watch that game?", "Customized Dialog",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);

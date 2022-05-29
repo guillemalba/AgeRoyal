@@ -20,6 +20,7 @@ public class UserManager {
      * Constructor del manager con una nueva instancia del UserDAO
      *
      * @param userSQLDAO con los metodos necesarios de la base de datos
+     * @param gameSQLDAO con los metodos necesarios de la base de datos
      */
     public UserManager(UserDAO userSQLDAO, GameDAO gameSQLDAO) {
         userDAO = userSQLDAO;

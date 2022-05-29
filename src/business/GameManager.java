@@ -431,6 +431,11 @@ public class GameManager{
         }
     }
 
+    /**
+     * Metodo que para la reproduccion
+     *
+     * @param pause true or false
+     */
     public void pauseRepro(boolean pause){
         pauseRepro = pause;
 

@@ -116,7 +116,7 @@ public class MenuView extends JPanel {
 
     /**
      * Este metodo sirve para asignar los controladores de cada boton de nuestra vita a alguna accion
-     * @param actionListener
+     * @param actionListener listener
      */
     public void registerActionListener(ActionListener actionListener){
         jbSettings.addActionListener(actionListener);

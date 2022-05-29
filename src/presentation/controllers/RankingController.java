@@ -31,7 +31,7 @@ public class RankingController implements ActionListener, MouseListener {
 
     /**
      * Este metodo muestra lo que tiene que hacer el codigo si se presiona un boton concreto
-     * @param e
+     * @param e event
      */
     @Override
     public void actionPerformed(ActionEvent e) {

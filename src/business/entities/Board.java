@@ -55,7 +55,7 @@ public class Board {
 
     /**
      * Metodo para añadir una tropa en el tablero
-     * @param troop
+     * @param troop tropa
      */
     public void setTroopBoard(Troop troop){
         cellsMatrix[troop.getPosx()][troop.getPosy()].setTroop(troop);

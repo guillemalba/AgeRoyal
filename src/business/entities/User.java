@@ -70,7 +70,7 @@ public class User {
     /**
      * Setter para asignar el nombre del usuario
      *
-     * @param name
+     * @param name nombre
      */
     public void setName(String name) {
         this.name = name;
