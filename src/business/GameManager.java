@@ -167,7 +167,6 @@ public class GameManager{
         }
     }
 
-
     public Board getBoard() {
         return board;
     }
@@ -200,9 +199,6 @@ public class GameManager{
         }
 
     }
-
-
-
 
     public synchronized void addTroop(Attributes troopId, int x, int y, boolean isUser, String key) {
 
@@ -305,9 +301,6 @@ public class GameManager{
         }
     }
 
-
-
-
     public void setTime(int time) {
         this.time = time;
     }
@@ -339,7 +332,6 @@ public class GameManager{
 
 
     }
-
 
     public void removeTroop(boolean isUser){
         if(!isRepro) {

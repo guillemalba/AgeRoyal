@@ -48,7 +48,7 @@ public class LoginController implements ActionListener {
                 User user = new User(userNameEmail, userNameEmail, password);
                 if (userManager.login(user)) {
                     userManager.login(user);
-                    System.out.println(user.getName() + " login successful");
+                    mainView.showMessage(user.getName() + " login successful");
                     userManager.setUser(user.getName());//Registrar user en la ram
 
                     loginView.resetInputInfo();
@@ -56,7 +56,7 @@ public class LoginController implements ActionListener {
                     loginView.setComponents(viewComponents);
                     mainView.showMenu();
                 } else {
-                    loginView.errorMessage();
+                    mainView.showMessage("The user or the password is wrong");
                 }
 
             break;

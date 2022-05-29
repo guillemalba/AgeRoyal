@@ -17,7 +17,7 @@ import java.time.temporal.TemporalAccessor;
 import java.util.LinkedList;
 
 /**
- * Es
+ * Esta clase se encarga de mostrar la lista de jugadores del juago
  */
 public class RankingView extends JPanel {
     private JButton jbSettings;
@@ -30,7 +30,9 @@ public class RankingView extends JPanel {
     private JPanel background = new JPanel(new BorderLayout());
     private RankingController rankingController;
 
-
+    /**
+     * Constructor del ranking donde crearemos la tabla de jugadores
+     */
     public RankingView() {
         if(players == null){
             players = new LinkedList<User>();
@@ -74,12 +76,21 @@ public class RankingView extends JPanel {
         add(background);
     }
 
+    /**
+     * Este metodo asignara el controlador de los botones de nuestra vista
+     * @param actionListener es la clase que asigna los controladores a nuestros botones
+     */
     public void registerRankingController(ActionListener actionListener) {
         jbSettings.addActionListener(actionListener);
         jbBack.addActionListener(actionListener);
         rankingController = (RankingController) actionListener;
     }
 
+    /**
+     * Metodo para actualizar la vista del ranking
+     *
+     * @param players jugadores a actualizar
+     */
     public void update(LinkedList<User> players){
         this.players = players;
 

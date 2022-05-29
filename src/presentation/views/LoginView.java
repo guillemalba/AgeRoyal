@@ -100,16 +100,19 @@ public class LoginView extends JPanel {
     }
 
     /**
-     * Este metodo envia un mensaje de error si la informacion introducioda no es correcta
+     * Setter para asignar la main view
+     *
+     * @param mainView vista principal
      */
-    public void errorMessage() {
-        JOptionPane.showMessageDialog(this, "The user or the password is wrong");
-    }
-
     public void setMainView(MainView mainView){
         this.mainView = mainView;
     }
 
+    /**
+     * Setter para asignar los componentes del card layout
+     *
+     * @param viewComponents card layout
+     */
     public void setComponents(CardLayout viewComponents) {
         this.components = viewComponents;
     }

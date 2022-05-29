@@ -65,6 +65,11 @@ public class MainView extends JFrame {
         this.getViewComponent().show(this.getContentPane(), "main");
     }
 
+    /**
+     * Getter para devolver los componentes del card layout
+     *
+     * @return card layout
+     */
     private CardLayout getViewComponent() {
         return viewComponents;
     }
@@ -137,7 +142,19 @@ public class MainView extends JFrame {
         this.getViewComponent().show(this.getContentPane(), "loginView");
     }
 
+    /**
+     * Getter de la vista del game view
+     *
+     * @return game view
+     */
     public GameView getGameView() {
         return gameView;
     }
+
+    /**
+     * Muestra un mensaje
+     *
+     * @param message a mostrar
+     */
+    public void showMessage(String message) {JOptionPane.showMessageDialog(this, message);}
 }

@@ -113,16 +113,20 @@ public class LogoutView extends JPanel {
         return option;
     }
 
-    public void errorusernull() {
-        JOptionPane.showMessageDialog(this, "You have not log any user yet");
-    }
-
-    public void userdeletedmessage() {JOptionPane.showMessageDialog(this, "Your user has been deleted");}
-
+    /**
+     * Setter para asignar los componentes del card layout
+     *
+     * @param viewComponents card layout
+     */
     public void setComponents(CardLayout viewComponents) {
         this.components = viewComponents;
     }
 
+    /**
+     * Setter para asignar la main view
+     *
+     * @param mainView vista principal
+     */
     public void setmainView(MainView mainView){
         this.mainView = mainView;
     }

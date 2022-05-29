@@ -157,26 +157,56 @@ public class RegisterView extends JPanel {
         JOptionPane.showMessageDialog(this, "The mail has an invalid format.");
     }
 
+    /**
+     * Getter para recibir el texto del campo de texto del nombre del usuario
+     *
+     * @return nombre del usuario
+     */
     public String getInputUsername() {
         return jtfUsername.getText();
     }
 
+    /**
+     * Getter para recibir el texto del campo de texto del email del usuario
+     *
+     * @return email del usuario
+     */
     public String getInputEmail() {
         return jtfEmail.getText();
     }
 
+    /**
+     * Getter para recibir el texto del campo de texto del la password del usuario
+     *
+     * @return password del usuario
+     */
     public char[] getInputPassword() {
         return jpfPassword.getPassword();
     }
 
+    /**
+     * Getter para recibir el texto del campo de texto del confirm password del usuario
+     *
+     * @return password del usuario
+     */
     public char[] getInputConfPassword() {
         return jpfConfPassword.getPassword();
     }
 
+    /**
+     * Setter para asignar la main view
+     *
+     * @param mainView vista principal
+     */
     public void setmainView(MainView mainView){
         this.mainView = mainView;
     }
 
+    /**
+     * Setter para asignar los componentes del card layout
+     *
+     * @param viewComponents card layout
+     */
     public void setComponents(CardLayout viewComponents) {
         this.components = viewComponents;
     }

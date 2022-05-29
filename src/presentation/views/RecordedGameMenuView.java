@@ -84,6 +84,11 @@ public class RecordedGameMenuView extends JPanel {
         add(background);
     }
 
+    /**
+     * Asignamos el controlador
+     *
+     * @param recordedGameMenuController el controlador
+     */
     public void setRecordedGameMenuController(RecordedGameMenuController recordedGameMenuController) {
         this.recordedGameMenuController = recordedGameMenuController;
         recordedGameMenuController(recordedGameMenuController);

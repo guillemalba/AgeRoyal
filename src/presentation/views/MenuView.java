@@ -127,10 +127,20 @@ public class MenuView extends JPanel {
         jbGameRecording.addActionListener(actionListener);
     }
 
+    /**
+     * setter para asignar la main view
+     *
+     * @param mainView vista principal
+     */
     public void setMainView(MainView mainView) {
         this.mainView = mainView;
     }
 
+    /**
+     * Setter para asignar los componentes del card layout
+     *
+     * @param viewComponents card layout
+     */
     public void setViewComponents(CardLayout viewComponents) {
         this.viewComponents = viewComponents;
     }

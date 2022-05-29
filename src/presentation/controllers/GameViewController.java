@@ -14,7 +14,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-
+/**
+ * Classe que controla toda la vista del juego
+ */
 public class GameViewController implements ActionListener, MouseListener {
     private GameView gameView;
     private MainView mainView;
@@ -23,6 +25,13 @@ public class GameViewController implements ActionListener, MouseListener {
     private int x,y;
     private String tipo = "null";
 
+    /**
+     * Constructor con la vista del juego, la main view y el manager del juego
+     *
+     * @param gameView vista del juego
+     * @param mainView vista principal
+     * @param gameManager manager de la partida
+     */
     public GameViewController (GameView gameView, MainView mainView, GameManager gameManager){
         this.gameView = gameView;
         this.mainView = mainView;
@@ -167,24 +176,54 @@ public class GameViewController implements ActionListener, MouseListener {
         }*/
     }
 
+    /**
+     * getter de la posicion X
+     *
+     * @param name asignado a la casilla, ejemplo... "3,5"
+     * @return la posicion X
+     */
     private int getPositionX(String name){
         String[] positions = name.split(",");
         return Integer.parseInt(String.valueOf(positions[0]));
     }
 
+    /**
+     * getter de la posicion Y
+     *
+     * @param name asignado a la casilla, ejemplo... "3,5"
+     * @return la posicion Y
+     */
     private int getPositionY(String name){
         String[] positions = name.split(",");
         return Integer.parseInt(String.valueOf(positions[1]));
     }
 
+    /**
+     * Metodo para actualizar una tropa en el mapa, el dinero del jugador y las vidas de la IA y el jugador
+     *
+     * @param board mapa
+     * @param moneyUser dinero
+     * @param vidasUser vidas user
+     * @param vidasIA vidas IA
+     */
     public void addTroop(Board board,int moneyUser,float vidasUser,float vidasIA) {
         SwingUtilities.invokeLater(()->gameView.updateView(board,moneyUser,vidasUser,vidasIA));
     }
 
+    /**
+     * Metodo que te pregunta por el nombre de la partida
+     *
+     * @return null si le ha dado a cancelar, sino, devuelve el nombre de la partida
+     */
     public String askForGameName(){
         return gameView.popUpSaveGame();
     }
 
+    /**
+     * Metodo que muestra el menu principal o el menu de las partidas guardadas en funcion de si ha terminado una partida o una grabacion de partida
+     *
+     * @param isRepro si es true, muestra el menu de las partidas guardadas, sino el menu principal
+     */
     public void finishGame(boolean isRepro){
         if (isRepro) mainView.showRecordedGame();
         if(!isRepro)mainView.showMenu();

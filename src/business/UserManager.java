@@ -137,6 +137,11 @@ public class UserManager {
         return userDAO.readUser(user);
     }
 
+    /**
+     * Metodo que llama a la funcion de la DAO para actualizar las estadisticas del jugador
+     *
+     * @param user a actualizar en la base de datos
+     */
     public void updateUser(User user) {
         userDAO.update(user);
     }

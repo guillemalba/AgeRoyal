@@ -1,11 +1,9 @@
 package presentation.controllers;
 
 import business.UserManager;
-import presentation.views.LoginView;
 import presentation.views.LogoutView;
 import presentation.views.MainView;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -62,7 +60,7 @@ public class LogoutController implements ActionListener {
                     //TODO:Aqui vol fer delete
                     userManager.deleteAllGames();
                     userManager.delete();
-                    System.out.println("Se ha borrado bien");
+                    mainView.showMessage("Your user has been deleted");
                     logoutView.setmainView(mainView);
                     logoutView.setComponents(viewComponents);
                     mainView.showLogin();

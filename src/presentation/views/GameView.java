@@ -37,10 +37,10 @@ public class GameView extends JPanel {
     private JPanel offT1 = new JPanel();
     private JPanel offT2 = new JPanel();
     private JPanel defT2 = new JPanel();
-    private JLabel costCanon = new JLabel(String.valueOf(Attributes.CANNON_COST.getValue()));
-    private JLabel costTesla = new JLabel(String.valueOf(Attributes.TESLA_COST.getValue()));
-    private JLabel costArcher = new JLabel(String.valueOf(Attributes.ARCHER_COST.getValue()));
-    private JLabel costGiant = new JLabel(String.valueOf(Attributes.GIANT_COST.getValue()));
+    private final JLabel costCanon = new JLabel(String.valueOf(Attributes.CANNON_COST.getValue()));
+    private final JLabel costTesla = new JLabel(String.valueOf(Attributes.TESLA_COST.getValue()));
+    private final JLabel costArcher = new JLabel(String.valueOf(Attributes.ARCHER_COST.getValue()));
+    private final JLabel costGiant = new JLabel(String.valueOf(Attributes.GIANT_COST.getValue()));
     private JLabel mLabel = new JLabel("5");
     private JPanel livesPanel1 = new JPanel();
     private JPanel troopCountPanel1 = new JPanel();
@@ -52,7 +52,7 @@ public class GameView extends JPanel {
     private JPanel goodTroops = new JPanel();
     private JPanel badTroops = new JPanel();
     private JPanel badLives = new JPanel();
-    private Color playerColor = new Color(64, 204, 248);
+    private final Color playerColor = new Color(64, 204, 248);
     private JPanel troopPanel = new JPanel();
     //private Graphics g;
 
@@ -455,6 +455,7 @@ public class GameView extends JPanel {
     }
 
 
+    //Todo eliminar si no se usa
     /*@Override //con esto se deberia de escribir las barras pero no eniendo como funciona esta pedazo de basura
     //pls sent help me pone de los nervios
 
@@ -464,10 +465,20 @@ public class GameView extends JPanel {
         g.fillRect(((int)this.getSize().getWidth()/2)-25,MAX_HEIGHT-valorX+20,50, valorX);
     }*/
 
+    /**
+     * Getter de si es reproducida o no
+     *
+     * @return true si es, false si no
+     */
     public boolean isRepro() {
         return isRepro;
     }
 
+    /**
+     * Setter para asignar si se esta reproduciendo o no
+     *
+     * @param repro boolean
+     */
     public void setRepro(boolean repro) {
         isRepro = repro;
     }

@@ -6,10 +6,15 @@ import persistence.json.JsonReader;
 import java.sql.*;
 import java.util.LinkedList;
 
-
+/**
+ * Clase que implementa los metodos en SQL de la interficie UserDAO
+ */
 public class UserSQLDAO implements UserDAO{
     private ConfigData data;
 
+    /**
+     * Constructor que lee el fichero de configuracion para acceder a la base de datos
+     */
     public UserSQLDAO() {
         data = JsonReader.llegeixJson();
     }
