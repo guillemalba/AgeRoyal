@@ -84,7 +84,7 @@ public class RankingView extends JPanel {
         this.players = players;
 
         if(players.size() != 0) {
-            String[] colName = {"Name", "Win Ratio", "Victories", "Total Games", "Recorded Games"};
+            String[] colName = {"Name", "Win Ratio", "Victories", "Total Games"};
             Object[][] data = new Object[players.size()][5];
             for(int i = 0; i < players.size(); i++){
                 data[i][0] = players.get(i).getName();
@@ -93,7 +93,7 @@ public class RankingView extends JPanel {
                 data[i][3] = String.valueOf(players.get(i).getTotalGames());
             }
             table = new JTable(data, colName);
-
+            table.setEnabled(false);
 
             background.add(new JScrollPane(table), BorderLayout.CENTER);
         }
