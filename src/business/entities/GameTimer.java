@@ -59,7 +59,6 @@ public class GameTimer implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("la pausa es: "+pause);
             if (pause){
                 time++;
 

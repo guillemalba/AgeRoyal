@@ -47,10 +47,10 @@ public class Base extends Defensive{
             }
         }
         if (getLife() <= 0) {
-            System.out.println("Paro el juego");
+
             stopGame(!isUser(), true);
         } else {
-            System.out.println("Paro el juego");
+
             stopGame(!isUser(), false);
         }
         dieTroop(this);

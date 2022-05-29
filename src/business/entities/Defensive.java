@@ -61,7 +61,6 @@ public class Defensive extends Troop {
             }
 
             if (getTimeLife() <= 0) {
-                System.out.println(isUser());
                 removeTroop(!isUser());
             }
         }

@@ -27,7 +27,7 @@ public class MoneyCounter implements Runnable {
         while(!stop) {
             try {
                 Thread.sleep(2000);
-                /*gameManager.updateMoney();*/
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

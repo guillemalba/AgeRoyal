@@ -55,7 +55,7 @@ public class RankingController implements ActionListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.printf(e.getComponent().getName());
+
     }
 
     @Override

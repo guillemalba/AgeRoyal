@@ -351,7 +351,6 @@ public class Troop implements Runnable{
                         enemyTroop.setLife(enemyTroop.getLife() - getDamage());
                         if (enemyTroop.getLife() <= 0.0) {
 
-                            System.out.println(getName() + "Que soy " + isUser + " Mato a " + enemyTroop.getName());
                             if (!gameManager.isRepro()) gameManager.moneyReward(isUser);
 
                             removeTroop(isUser);
@@ -384,7 +383,6 @@ public class Troop implements Runnable{
      * @param isUser si es la IA o el usuario al que se le tiene que restar 1
      */
     public void removeTroop(boolean isUser){
-        System.out.println("entro a matar la tropa");
         gameManager.removeTroop(isUser);
     }
 

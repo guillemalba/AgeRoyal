@@ -99,7 +99,7 @@ public class GameViewController implements ActionListener, MouseListener {
 
                     default:
                         tipo = "null";
-                        System.out.println("hola");
+
                         break;
                 }
             } else {
@@ -127,12 +127,12 @@ public class GameViewController implements ActionListener, MouseListener {
 
                             break;
                         default:
-                            System.out.println("Default peta igual");
+
                             break;
                     }
 
                 } else {
-                    System.out.println("Tira en tu mitad bro");
+                    System.out.println("Camp del rival");
                 }
             }
         }

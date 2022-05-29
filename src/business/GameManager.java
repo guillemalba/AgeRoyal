@@ -176,18 +176,16 @@ public class GameManager{
             ia.setStop(true);
 
 
-        if (somebodyWon) {
-            String gameName;
-            do {
+            if (somebodyWon) {
+                String gameName;
+                do {
                 gameName = gameController.askForGameName(userWins);
             } while (!gameDAO.gameNameIsUnique(gameName));
-
 
                 if (gameName != null) {
                     if (gameDAO.saveGame(new Game(gameName, new SimpleDateFormat("yyyy-MM-dd").format(new Date()), userWins, userManager.getUser()))) {
                         for (int i = 0; i < listDeployedTroops.size(); i++) {
-                            if (gameDAO.saveTroopsDeployed(listDeployedTroops.get(i), gameName)) {
-
+                            gameDAO.saveTroopsDeployed(listDeployedTroops.get(i), gameName);
                             }
                         }
                     }
@@ -202,7 +200,6 @@ public class GameManager{
                 userManager.updateUser(user);
 
                 gameController.finishGame(isRepro);
-            }
         }
     }
 
@@ -247,8 +244,6 @@ public class GameManager{
 
         }else {
             gameController.addTroop(board, user.getMoney(), baseUser.getLife(), baseIA.getLife(),user.getNumTroopAlive(),ia.getNumTroopsAlive());
-            System.out.println("user:" + user.getNumTroopAlive());
-            System.out.println("ia: " + ia.getNumTroopsAlive());
         }
 
     }

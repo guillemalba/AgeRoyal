@@ -34,7 +34,7 @@ public class GameView extends JPanel {
     private final JLabel costTesla = new JLabel(String.valueOf(Attributes.TESLA_COST.getValue()));
     private final JLabel costArcher = new JLabel(String.valueOf(Attributes.ARCHER_COST.getValue()));
     private final JLabel costGiant = new JLabel(String.valueOf(Attributes.GIANT_COST.getValue()));
-    private JLabel mLabel = new JLabel("5");
+    private JLabel mLabel = new JLabel();
     private JPanel livesPanel1 = new JPanel();
     private JPanel troopCountPanel1 = new JPanel();
     private JPanel troopCountPanel2 = new JPanel();
@@ -121,8 +121,6 @@ public class GameView extends JPanel {
         table.setSize(400, 400);
         GridLayout tableLayout = new GridLayout(width, height);
         table.setLayout(tableLayout);
-        //----------
-        //----------
         tableGrid = new JPanel[15][15];
         //funcion para pinta mapa nuevo
         for (int i = 0; i < 15; i++) {
@@ -169,12 +167,10 @@ public class GameView extends JPanel {
 
 
         //Vidas ia
-        //badLives.setBackground(Color.red);
         livesPanel2.add(badLives);
 
 
         //Vidas user
-        //goodLives.setBackground(Color.blue);
         livesPanel2.add(goodLives);
         info.add(livesPanel2);
 
@@ -189,11 +185,9 @@ public class GameView extends JPanel {
         troopCountPanel2.setLayout(new GridLayout(2, 1));
 
         //Llista tropas ia
-        //badTroops.setBackground(Color.red);
         troopCountPanel2.add(badTroops);
 
         //Llista tropas user
-        //goodTroops.setBackground(Color.blue);
         troopCountPanel2.add(goodTroops);
 
 

@@ -44,7 +44,6 @@ public class IA implements Runnable{
                 e.printStackTrace();
             }
 
-            /*System.out.println("IA --> " + gameManager.getTime());*/
             time++;
         }
     }
