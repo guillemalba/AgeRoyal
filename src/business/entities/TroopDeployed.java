@@ -36,7 +36,6 @@ public class TroopDeployed {
         return troopId;
     }
 
-
     /**
      * Getter que devuelve el tiempo de la partida en que se ha desplegado de la tropa
      *
@@ -45,7 +44,6 @@ public class TroopDeployed {
     public int getTimeDeployed() {
         return timeDeployed;
     }
-
 
     /**
      * Getter que devuelve la posicion X de la tropa
@@ -56,7 +54,6 @@ public class TroopDeployed {
         return posX;
     }
 
-
     /**
      * Getter que devuelve la posicion Y de la tropa
      *
@@ -65,7 +62,6 @@ public class TroopDeployed {
     public int getPosY() {
         return posY;
     }
-
 
     /**
      * Getter que devuelve si la tropa es del usuario o de la IA

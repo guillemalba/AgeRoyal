@@ -7,7 +7,7 @@ package business.entities;
  */
 public class Board {
     private Cell[][] cellsMatrix;
-    private int side = 15;
+    private final int side = 15;
 
     /**
      * Constructor para inicializar la matriz de celdas

@@ -61,7 +61,6 @@ public class Game {
         return date;
     }
 
-
     /**
      * Getter que devuelve el ganador
      *
@@ -70,7 +69,6 @@ public class Game {
     public boolean getWin() {
         return win;
     }
-
 
     /**
      * Getter para devolver el nombre del jugador que ha realizado la partida
