@@ -3,6 +3,9 @@ package business.entities;
 import business.GameManager;
 import business.RecordedGameManager;
 
+/**
+ * Timer principal de la partida en curso, cada segundo suma 1
+ */
 public class GameTimer implements Runnable{
 
     private final long sleepTime;
@@ -12,6 +15,13 @@ public class GameTimer implements Runnable{
     private RecordedGameManager recordedGameManager;
     private boolean repro;
 
+    /**
+     * Constructor para el timer del juego
+     *
+     * @param time tiempo
+     * @param stop para detener el timer
+     * @param gameManager manager del juego
+     */
     public GameTimer(int time, boolean stop, GameManager gameManager) {
         this.sleepTime = 1000;
         this.time = time;
@@ -20,6 +30,14 @@ public class GameTimer implements Runnable{
         this.repro = false;
 
     }
+
+    /**
+     * Constructor del timer de la partida grabada
+     *
+     * @param time de la grabacion
+     * @param stop para detener el timer
+     * @param recordedGameManager manager de las partidas grabadas
+     */
     public GameTimer(int time, boolean stop, RecordedGameManager recordedGameManager) {
         this.sleepTime = 1000;
         this.time = time;
@@ -58,6 +76,9 @@ public class GameTimer implements Runnable{
 
     }
 
+    /**
+     * Setter para detener el timer
+     */
     public void stop() {
         stop = true;
     }

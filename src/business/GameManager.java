@@ -344,6 +344,14 @@ public class GameManager{
         }
     }
 
+    /**
+     * todo Mario comenta esto
+     *
+     * @param troopID
+     * @param x
+     * @param y
+     * @param isUser
+     */
     public void addRecordedTroop(int troopID, int x, int y, boolean isUser){
         System.out.println("te pinto la tropa: " + troopID);
         switch (troopID) {

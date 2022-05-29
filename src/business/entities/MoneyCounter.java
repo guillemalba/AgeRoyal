@@ -5,11 +5,19 @@ import business.UserManager;
 import business.entities.IA;
 import business.entities.User;
 
+/**
+ * Clase que va sumando el dinero del jugador y la IA
+ */
 public class MoneyCounter implements Runnable {
 
     private GameManager gameManager;
     private boolean stop;
 
+    /**
+     * Constructor del contador con el manager del juego
+     *
+     * @param gameManager de la partida
+     */
     public MoneyCounter(GameManager gameManager) {
         this.gameManager = gameManager;
     }
@@ -28,6 +36,9 @@ public class MoneyCounter implements Runnable {
         }
     }
 
+    /**
+     * Metodo para detener el contador
+     */
     public void stop(){
         stop = true;
     }

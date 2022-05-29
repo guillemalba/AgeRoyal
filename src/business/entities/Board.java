@@ -8,7 +8,6 @@ import java.awt.*;
 public class Board {
     private Cell[][] cellsMatrix;
     private int side = 15;
-    private Cell cell;
 
     /**
      * Constructor para inicializar la matriz de celdas

@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+// TODO mario comenta la clase perro
 public class RecordedGameManager {
 
     private GameDAO gameDAO;

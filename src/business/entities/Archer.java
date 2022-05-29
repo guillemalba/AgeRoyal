@@ -32,8 +32,6 @@ public class Archer extends Ofensive {
 
     }
 
-
-
     @Override
     public int getMovementVelocity() {
         return super.getMovementVelocity();

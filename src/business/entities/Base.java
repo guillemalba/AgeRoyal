@@ -33,8 +33,6 @@ public class Base extends Defensive{
         this.setType("Structure");
     }
 
-
-
     @Override
     public synchronized void run() {
 
