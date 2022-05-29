@@ -20,7 +20,7 @@ public class Main {
         UserDAO userDAO = new UserSQLDAO();
         GameDAO gameDAO = new GameSQLDAO();
 
-        /* News dels Managers */
+        /* News dels Managersss */
         UserManager userManager = new UserManager(userDAO, gameDAO);
         GameManager gameManager = new GameManager(gameDAO,userManager);
         RecordedGameManager recordedGameManager = new RecordedGameManager(gameDAO,gameManager);
